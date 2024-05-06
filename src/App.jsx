@@ -1,4 +1,8 @@
 import "./App.scss";
+import "./styles/animation.scss";
+import "./styles/base.scss";
+import "./styles/font.scss";
+import "./styles/style.scss";
 
 import { Routes, Route } from "react-router-dom";
 import { Container } from "react-bootstrap";
