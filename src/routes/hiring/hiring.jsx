@@ -1,11 +1,14 @@
 import "./hiring.css";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import HiringIluImage from "../../assets/images/others/hiring_ilu.png";
 
 const Hiring = () => {
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, []);
    return (
       <Fragment>
          {/* <!-- Banner --> */}

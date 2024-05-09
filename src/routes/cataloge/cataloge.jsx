@@ -1,5 +1,5 @@
-import "./catalog.css";
-import { Fragment } from "react";
+import "./cataloge.css";
+import { Fragment, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Cataloge1 from "../../assets/images/cateloge/cataloge1.png";
@@ -15,7 +15,10 @@ import CatalogeProjectImage4 from "../../assets/images/cateloge/project-4.jpg";
 import CatalogeProjectImage5 from "../../assets/images/cateloge/project-5.jpg";
 import RamenImage from "../../assets/images/others/ramen.png";
 
-const Catalog = () => {
+const Cataloge = () => {
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, []);
    return (
       <Fragment>
          {/* <!-- Project --> */}
@@ -343,4 +346,4 @@ const Catalog = () => {
    );
 };
 
-export default Catalog;
+export default Cataloge;

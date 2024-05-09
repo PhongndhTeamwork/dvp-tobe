@@ -36,6 +36,10 @@ const Home = () => {
    const [isMuted, setIsMuted] = useState(true);
 
    useEffect(() => {
+      window.scrollTo(0, 0);
+   }, []);
+
+   useEffect(() => {
       const handleScroll = () => {
          const scrollY = window.scrollY;
          const bannerHeight = bannerRef.current?.offsetHeight || 0;
@@ -152,12 +156,14 @@ const Home = () => {
                   </div>
 
                   <div className="content__link">
-                     <a className="arrow-right-link" href="./about.html">
-                        <div className="arrow-right-link__text">
-                           Go to About
-                        </div>
-                        <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
-                     </a>
+                     <Link className="arrow-right-link" to="/about">
+                        <Fragment>
+                           <div className="arrow-right-link__text">
+                              Go to About
+                           </div>
+                           <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
+                        </Fragment>
+                     </Link>
                   </div>
                </div>
             </div>
@@ -684,108 +690,118 @@ const Home = () => {
 
             <div className="work__content wrapper-flex">
                <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <a
+                  <Link
                      className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     href="./cataloge.html"
+                     to="/cataloge"
                   >
-                     <div className="img-grayscale">
-                        <Image src={Ramen} alt="black and white image" />
-                     </div>
-
-                     <div className="project__des">
-                        <div className="project__des-text">
-                           Lorem Ipsum dolor sit amet, textef
+                     <Fragment>
+                        <div className="img-grayscale">
+                           <Image src={Ramen} alt="black and white image" />
                         </div>
 
-                        <div className="project__des-icon">
-                           <div className="arrow-right-translate">
-                              <div className="arrow-right-translate__line"></div>
-                              <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                        <div className="project__des">
+                           <div className="project__des-text">
+                              Lorem Ipsum dolor sit amet, textef
+                           </div>
+
+                           <div className="project__des-icon">
+                              <div className="arrow-right-translate">
+                                 <div className="arrow-right-translate__line"></div>
+                                 <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </a>
+                     </Fragment>
+                  </Link>
                </div>
 
                <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <a
+                  <Link
                      className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     href="./cataloge.html"
+                     to="/cataloge"
                   >
-                     <div className="img-grayscale">
-                        <Image src={Ramen} alt="black and white image" />
-                     </div>
-
-                     <div className="project__des">
-                        <div className="project__des-text">
-                           Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit
-                           amet, ipsum
+                     <Fragment>
+                        <div className="img-grayscale">
+                           <Image src={Ramen} alt="black and white image" />
                         </div>
 
-                        <div className="project__des-icon">
-                           <div className="arrow-right-translate">
-                              <div className="arrow-right-translate__line"></div>
-                              <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                        <div className="project__des">
+                           <div className="project__des-text">
+                              Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit
+                              amet, ipsum
+                           </div>
+
+                           <div className="project__des-icon">
+                              <div className="arrow-right-translate">
+                                 <div className="arrow-right-translate__line"></div>
+                                 <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </a>
+                     </Fragment>
+                  </Link>
                </div>
 
                <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <a
+                  <Link
                      className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     href="./cataloge.html"
+                     to="/cataloge"
                   >
-                     <div className="img-grayscale">
-                        <Image src={Ramen} alt="black and white image" />
-                     </div>
-
-                     <div className="project__des">
-                        <div className="project__des-text">
-                           Lorem Ipsum dolor sit amet, text
+                     <Fragment>
+                        <div className="img-grayscale">
+                           <Image src={Ramen} alt="black and white image" />
                         </div>
 
-                        <div className="project__des-icon">
-                           <div className="arrow-right-translate">
-                              <div className="arrow-right-translate__line"></div>
-                              <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                        <div className="project__des">
+                           <div className="project__des-text">
+                              Lorem Ipsum dolor sit amet, text
+                           </div>
+
+                           <div className="project__des-icon">
+                              <div className="arrow-right-translate">
+                                 <div className="arrow-right-translate__line"></div>
+                                 <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </a>
+                     </Fragment>
+                  </Link>
                </div>
 
                <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <a
+                  <Link
                      className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     href="./cataloge.html"
+                     to="/cataloge"
                   >
-                     <div className="img-grayscale">
-                        <Image src={Ramen} alt="black and white image" />
-                     </div>
-
-                     <div className="project__des">
-                        <div className="project__des-text">
-                           Lorem Ipsum dolor sit amet, text
+                     <Fragment>
+                        <div className="img-grayscale">
+                           <Image src={Ramen} alt="black and white image" />
                         </div>
 
-                        <div className="project__des-icon">
-                           <div className="arrow-right-translate">
-                              <div className="arrow-right-translate__line"></div>
-                              <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                        <div className="project__des">
+                           <div className="project__des-text">
+                              Lorem Ipsum dolor sit amet, text
+                           </div>
+
+                           <div className="project__des-icon">
+                              <div className="arrow-right-translate">
+                                 <div className="arrow-right-translate__line"></div>
+                                 <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </a>
+                     </Fragment>
+                  </Link>
                </div>
             </div>
 
             <div className="work__link d-flex justify-content-center align-items-center">
-               <a className="arrow-right-link" href="./work.html">
-                  <div className="arrow-right-link__text">Go to work</div>
-                  <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
-               </a>
+               <Link className="arrow-right-link" to="/work">
+                  <Fragment>
+                     <div className="arrow-right-link__text">Go to work</div>
+                     <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
+                  </Fragment>
+               </Link>
             </div>
          </div>
          {/* <!-- End: Work --> */}

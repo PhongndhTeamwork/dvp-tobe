@@ -10,7 +10,7 @@ import Header from "./routes/header/header";
 import Footer from "./routes/footer/footer";
 import Home from "./routes/home/home";
 import About from "./routes/about/about";
-import Catalog from "./routes/catalog/catalog";
+import Cataloge from "./routes/cataloge/cataloge";
 import Contact from "./routes/contact/contact";
 import Hiring from "./routes/hiring/hiring";
 import Work from "./routes/work/work";
@@ -28,7 +28,7 @@ const App = () => {
                   <Routes>
                      <Route path="/" element={<Home />} />
                      <Route path="/about" element={<About />} />
-                     <Route path="/catalog" element={<Catalog />} />
+                     <Route path="/cataloge" element={<Cataloge />} />
                      <Route path="/contact" element={<Contact />} />
                      <Route path="/hiring" element={<Hiring />} />
                      <Route path="/work" element={<Work />} />

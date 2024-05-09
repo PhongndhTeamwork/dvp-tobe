@@ -1,26 +1,26 @@
 import "./header.css";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = () => {
    return (
       <header>
          <div className="wrapper d-flex justify-content-between align-items-center">
-            <a href="./index.html" className="header__logo">
+            <Link to="/" className="header__logo">
                Logo
-            </a>
+            </Link>
 
             <ul className="header__nav d-flex justify-content-between align-items-center">
                <li className="header__nav-link">
-                  <a href="./about.html">Giới Thiệu</a>
+                  <Link to="./about">Giới Thiệu</Link>
                </li>
                <li className="header__nav-link">
-                  <a href="./work.html">Công Việc</a>
+                  <Link to="/work">Công Việc</Link>
                </li>
                <li className="header__nav-link">
-                  <a href="./hiring.html">Tuyển Dụng</a>
+                  <Link to="/hiring">Tuyển Dụng</Link>
                </li>
                <li className="header__nav-link">
-                  <a href="./contact.html">Liên Hệ</a>
+                  <Link to="/contact">Liên Hệ</Link>
                </li>
             </ul>
          </div>
