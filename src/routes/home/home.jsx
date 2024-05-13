@@ -288,7 +288,7 @@ const Home = () => {
                                  />
                               </div>
 
-                              <div className="project__des">
+                              <div className="project__des mb-0">
                                  <div className="project__des-text">
                                     {work.description}
                                  </div>

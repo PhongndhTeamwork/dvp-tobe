@@ -71,7 +71,7 @@
     margin: 0 auto;
     padding: 0;
     padding-bottom: 2rem;
-    max-width: 100%;
+    /* max-width: 100%; */
 }
 
 .expertise .service .service__content-text {

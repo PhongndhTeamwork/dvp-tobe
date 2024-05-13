@@ -1,16 +1,16 @@
 import "./accordion-service.css";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import { Accordion, Carousel } from "react-bootstrap";
 import { Image } from "react-bootstrap";
-import Carousel1 from "../../assets/images/carousel/carousel-1.png";
-import Carousel2 from "../../assets/images/carousel/carousel-2.png";
-import Carousel3 from "../../assets/images/carousel/carousel-3.png";
+import { Link } from "react-router-dom";
 
 const AccordionService = ({
    title,
    description,
    index,
    hasCarousel,
+   hasJob,
+   job,
    images,
    contents,
 }) => {
@@ -65,23 +65,18 @@ const AccordionService = ({
                   // id="collapse-service-1"
                   // data-bs-parent="#accordion-service-1"
                >
-                  {!hasCarousel ? (
-                     <div class="accordion-body d-flex justify-content-end">
-                        <div class="service__content">
-                           <p class="service__content-text text-end">
-                              {description}
-                           </p>
-                        </div>
-                     </div>
-                  ) : (
-                     <div className="accordion-body" style={{paddingBottom: "2rem"}}>
+                  {hasCarousel ? (
+                     <div
+                        className="accordion-body"
+                        style={{ paddingBottom: "2rem" }}
+                     >
                         {/* <div
-                           // id="carousel-2"
-                           className="carousel slide touch"
-                           data-bs-ride="carousel"
-                           data-bs-interval="1500"
-                           data-bs-touch="true"
-                        > */}
+                        // id="carousel-2"
+                        className="carousel slide touch"
+                        data-bs-ride="carousel"
+                        data-bs-interval="1500"
+                        data-bs-touch="true"
+                     > */}
                         <Carousel data-bs-theme="dark">
                            {images.map((image, index) => {
                               return (
@@ -92,12 +87,12 @@ const AccordionService = ({
                                        alt="First slide"
                                     />
                                     {/* <Carousel.Caption>
-                                          <h5>First slide label</h5>
-                                          <p>
-                                             Nulla vitae elit libero, a pharetra
-                                             augue mollis interdum.
-                                          </p>
-                                       </Carousel.Caption> */}
+                                       <h5>First slide label</h5>
+                                       <p>
+                                          Nulla vitae elit libero, a pharetra
+                                          augue mollis interdum.
+                                       </p>
+                                    </Carousel.Caption> */}
                                  </Carousel.Item>
                               );
                            })}
@@ -108,6 +103,46 @@ const AccordionService = ({
                            {contents.map((content, index) => {
                               return <h6 key={index}>{content}</h6>;
                            })}
+                        </div>
+                     </div>
+                  ) : hasJob ? (
+                     <div class="accordion-collapse" id="collapse-service-3">
+                        <div class="accordion-body rectangle-100 w-100 wrapper-flex m-0 p-0">
+                           <div class="rectangle-100 rectangle-tab-50 service__content">
+                              <h4 class="service__content-heading text-uppercase">
+                                 Mô tả công việc
+                              </h4>
+                              <p class="service__content-text">
+                                 {job.description}
+                              </p>
+                           </div>
+
+                           <div class="rectangle-100 rectangle-tab-50 service__content">
+                              <h4 class="service__content-heading text-uppercase">
+                                 Hướng dẫn ứng tuyển
+                              </h4>
+                              <p class="service__content-text">
+                                 {job.instruction}
+                              </p>
+                              <p class="service__content-text">
+                                 Tất cả gửi về địa chỉ mail:{" "}
+                                 <Link
+                                    to=""
+                                    class="gmail-link"
+                                    style={{ color: "black" }}
+                                 >
+                                    {job.gmail}
+                                 </Link>
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  ) : (
+                     <div class="accordion-body d-flex justify-content-end">
+                        <div class="service__content">
+                           <p class="service__content-text text-end">
+                              {description}
+                           </p>
                         </div>
                      </div>
                   )}

@@ -120,38 +120,51 @@ const Contact = () => {
          {/* <!-- End: Location --> */}
 
          {/* <!-- Contact form --> */}
-         <div className="wrapper wrapper-top wrapper-bottom contact">
-            <div className="quote__heading-tab">Để lại thông tin của bạn</div>
+         <div class="wrapper wrapper-top wrapper-bottom contact">
+            <div class="rectangle-100 d-none d-md-block d-xl-none text-center quote__heading-top">
+               Để lại thông tin của bạn
+            </div>
 
-            <div className="d-flex justify-content-between align-items-start">
-               <div className="quote">
-                  <div className="quote__heading">Để lại thông tin của bạn</div>
+            <div class="rectangle-100 py-0">
+               <div class="wrapper-flex">
+                  <div class="wrapper-flex-item d-none d-md-block rectangle-tab-50 p-0">
+                     <div class="quote">
+                        <div class="quote__heading d-none d-xl-block">
+                           Để lại thông tin của bạn
+                        </div>
 
-                  <div className="quote__text d-flex justify-content-between align-items-start">
-                     <Image src={ContactIcon1} alt="icon 1" />
-                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book.
-                     </p>
+                        <div class="quote__text d-flex justify-content-between align-items-start">
+                           <Image src={ContactIcon1} alt="icon 1" />
+                           <p>
+                              Lorem Ipsum is simply dummy text of the printing
+                              and typesetting industry. Lorem Ipsum has been the
+                              industry's standard dummy text ever since the
+                              1500s, when an unknown printer took a galley of
+                              type and scrambled it to make a type specimen
+                              book.
+                           </p>
+                        </div>
+                        <div class="quote__text d-flex justify-content-between align-items-start">
+                           <Image src={ContactIcon2} alt="icon 2" />
+                           <p>
+                              Lorem Ipsum is simply dummy text of the printing
+                              and typesetting industry. Lorem Ipsum has been the
+                              industry's standard dummy text ever since the
+                              1500s, when an unknown printer took a galley of
+                              type and scrambled it to make a type specimen
+                              book.
+                           </p>
+                        </div>
+                     </div>
                   </div>
-                  <div className="quote__text d-flex justify-content-between align-items-start">
-                     <Image src={ContactIcon2} alt="icon 2" />
-                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book.
-                     </p>
+
+                  <div class="wrapper-flex-item rectangle-100 rectangle-tab-50 p-0">
+                     <ContactForm />
                   </div>
                </div>
-
-               <ContactForm />
             </div>
          </div>
+
          {/* <!-- End: Contact form --> */}
       </Fragment>
    );
