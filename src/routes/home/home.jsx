@@ -25,7 +25,69 @@ import PartnerSVG12 from "../../assets/images/svg/partner/Untitled-1-12.svg";
 import PartnerSVG14 from "../../assets/images/svg/partner/Untitled-1-14.svg";
 // import PartnerSVG8 from "../../assets/images/svg/partner/Untitled-1-08.svg";
 
+import AccordionService from "../../components/accordion-service/accordion-service";
+
 const Home = () => {
+   const services = [
+      {
+         name: "Branding",
+         images: [Carousel1, Carousel2, Carousel3],
+         contents: [
+            "Logos",
+            "Ấn phẩm văn phòng",
+            "Broucher, Cataloge",
+            "Capacity profile - Company profile",
+         ],
+      },
+      {
+         name: "Branding",
+         images: [Carousel1, Carousel2, Carousel3],
+         contents: [
+            "Logos",
+            "Ấn phẩm văn phòng",
+            "Broucher, Cataloge",
+            "Capacity profile - Company profile",
+         ],
+      },
+      {
+         name: "Branding",
+         images: [Carousel1, Carousel2, Carousel3],
+         contents: [
+            "Logos",
+            "Ấn phẩm văn phòng",
+            "Broucher, Cataloge",
+            "Capacity profile - Company profile",
+         ],
+      },
+      {
+         name: "Branding",
+         images: [Carousel1, Carousel2, Carousel3],
+         contents: [
+            "Logos",
+            "Ấn phẩm văn phòng",
+            "Broucher, Cataloge",
+            "Capacity profile - Company profile",
+         ],
+      },
+      {
+         name: "Branding",
+         images: [Carousel1, Carousel2, Carousel3],
+         contents: [
+            "Logos",
+            "Ấn phẩm văn phòng",
+            "Broucher, Cataloge",
+            "Capacity profile - Company profile",
+         ],
+      },
+   ];
+
+   const works = [
+      { image: Ramen, description: "Lorem Ipsum dolor sit amet, text" },
+      { image: Ramen, description: "Lorem Ipsum dolor sit amet, text" },
+      { image: Ramen, description: "Lorem Ipsum dolor sit amet, text" },
+      { image: Ramen, description: "Lorem Ipsum dolor sit amet, text" },
+   ];
+
    const dispatch = useDispatch();
    const userLogin = useSelector((state) => state.userLogin);
    const { userInfo } = userLogin;
@@ -85,12 +147,12 @@ const Home = () => {
             </div>
 
             <div className="banner__text">
-               <div className="banner__text-top d-flex justify-content-start">
-                  <div className="text-stroke">Professional</div>
-                  <div className="text-uppercase">Style</div>
+               <div className="banner__text-top d-flex justify-content-center">
+                  <div className="text-stroke cursor-default">Professional</div>
+                  <div className="text-uppercase cursor-default">Style</div>
                </div>
 
-               <div className="banner__text-bot d-flex justify-content-end">
+               <div className="banner__text-bot d-flex justify-content-center">
                   <div className="text-uppercase">Design</div>
                   <div className="text-stroke">Creative</div>
                </div>
@@ -111,59 +173,58 @@ const Home = () => {
          {/* <!-- End: Reels --> */}
 
          {/* <!-- Story --> */}
-         <div className="wrapper wrapper-top wrapper-bottom story">
-            <div className="wrapper__header">
-               <h4 className="wrapper__header-sub--heading text-uppercase">
+         <div class="wrapper wrapper-top wrapper-bottom story">
+            <div class="wrapper__header">
+               <h4 class="wrapper__header-sub--heading text-uppercase cursor-default">
                   The story of DVP
                </h4>
-               <h1 className="wrapper__header-heading text-capitalize">
+               <h1 class="wrapper__header-heading text-capitalize cursor-default">
                   Câu chuyện về DVP
                </h1>
             </div>
 
-            <div className="story__content">
-               <div className="label">
-                  <div className="label__text">About</div>
-                  <div className="label__icon"></div>
+            <div class="story__content rectangle-100 wrapper-flex align-items-end m-0 p-0">
+               <div class="rectangle-100 rectangle-pc-25 d-flex align-items-center label">
+                  <div class="label__text cursor-default">About</div>
+                  <div class="label__icon"></div>
                </div>
 
-               <div className="content d-flex justify-content-between flex-column h-100">
-                  <div className="content__text">
-                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book. Lorem Ipsum
-                        has been the industry's standard dummy text ever since
-                        the 1500s, when an unknown printer took a galley of type
-                        and scrambled it to make a type specimen book.
-                     </p>
-                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book.
-                     </p>
-                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book.
-                     </p>
-                  </div>
+               <div class="rectangle-100 rectangle-pc-50 p-0 content">
+                  <div class="wrapper-flex">
+                     <div class="rectangle-100 content__text cursor-default">
+                        <p>
+                           Lorem Ipsum is simply dummy text of the printing and
+                           typesetting industry. Lorem Ipsum has been the
+                           industry's standard dummy text ever since the 1500s,
+                           when an unknown printer took a galley of type and
+                           scrambled it to make a type specimen book. Lorem
+                           Ipsum has been the industry's standard dummy text
+                           ever since the 1500s, when an unknown printer took a
+                           galley of type and scrambled it to make a type
+                           specimen book.
+                        </p>
+                        <p>
+                           Lorem Ipsum is simply dummy text of the printing and
+                           typesetting industry. Lorem Ipsum has been the
+                           industry's standard dummy text ever since the 1500s,
+                           when an unknown printer took a galley of type and
+                           scrambled it to make a type specimen book.
+                        </p>
+                        <p>
+                           Lorem Ipsum is simply dummy text of the printing and
+                           typesetting industry. Lorem Ipsum has been the
+                           industry's standard dummy text ever since the 1500s,
+                           when an unknown printer took a galley of type and
+                           scrambled it to make a type specimen book.
+                        </p>
+                     </div>
 
-                  <div className="content__link">
-                     <Link className="arrow-right-link" to="/about">
-                        <Fragment>
-                           <div className="arrow-right-link__text">
-                              Go to About
-                           </div>
-                           <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
-                        </Fragment>
-                     </Link>
+                     <div class="rectangle-100 content__link pt-0">
+                        <a class="arrow-right-link" href="./about.html">
+                           <div class="arrow-right-link__text">Go to About</div>
+                           <i class="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
+                        </a>
+                     </div>
                   </div>
                </div>
             </div>
@@ -182,504 +243,24 @@ const Home = () => {
             </div>
 
             <div className="expertise__content">
-               <div className="service">
-                  <div className="accordion" id="accordion-service-1">
-                     <div className="accordion-item border-0">
-                        <button
-                           className="accordion-button"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#collapse-service-1"
-                        >
-                           <div
-                              className="d-flex align-items-center justify-content-between w-100 h-100"
-                              style={{ cursor: "pointer" }}
-                           >
-                              <div className="accordion-item__icon-left">
-                                 <div className="circle-rotate-icon">
-                                    <div className="circle-icon"></div>
-                                 </div>
-                              </div>
-
-                              <div className="accordion-item__content">
-                                 <h4>Branding</h4>
-                              </div>
-
-                              <div className="accordion-item__icon-right">
-                                 <div className="plus-rotate-icon">
-                                    <i className="left"></i>
-                                    <i className="right"></i>
-                                 </div>
-                              </div>
-                           </div>
-                        </button>
-
-                        <div
-                           className="accordion-collapse collapse"
-                           id="collapse-service-1"
-                           data-bs-parent="#accordion-service-1"
-                        >
-                           <div className="accordion-body">
-                              <div
-                                 id="carousel-2"
-                                 className="carousel slide touch"
-                                 data-bs-ride="carousel"
-                                 data-bs-interval="1500"
-                                 data-bs-touch="true"
-                              >
-                                 <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                       <Image
-                                          src={Carousel1}
-                                          className=""
-                                          alt="carousel-img-1"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel2}
-                                          className=""
-                                          alt="carousel-img-2"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel3}
-                                          className=""
-                                          alt="carousel-img-3"
-                                       />
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <div className="service__content">
-                                 <h6>Logo</h6>
-                                 <h6>Ấn phẩm văn phòng</h6>
-                                 <h6>Broucher, Cataloge</h6>
-                                 <h6>Capacity profile - Company profile</h6>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="service">
-                  <div className="accordion" id="accordion-service-2">
-                     <div className="accordion-item border-0">
-                        <button
-                           className="accordion-button"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#collapse-service-2"
-                        >
-                           <div
-                              className="d-flex align-items-center justify-content-between w-100 h-100"
-                              style={{ cursor: "pointer" }}
-                           >
-                              <div className="accordion-item__icon-left">
-                                 <div className="circle-rotate-icon">
-                                    <div className="circle-icon"></div>
-                                 </div>
-                              </div>
-
-                              <div className="accordion-item__content">
-                                 <h4>Branding</h4>
-                              </div>
-
-                              <div className="accordion-item__icon-right">
-                                 <div className="plus-rotate-icon">
-                                    <i className="left"></i>
-                                    <i className="right"></i>
-                                 </div>
-                              </div>
-                           </div>
-                        </button>
-
-                        <div
-                           className="accordion-collapse collapse"
-                           id="collapse-service-2"
-                           data-bs-parent="#accordion-service-2"
-                        >
-                           <div className="accordion-body">
-                              <div
-                                 id="carousel-2"
-                                 className="carousel slide touch"
-                                 data-bs-ride="carousel"
-                                 data-bs-interval="1500"
-                                 data-bs-touch="true"
-                              >
-                                 <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                       <Image
-                                          src={Carousel1}
-                                          className=""
-                                          alt="carousel-img-1"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel2}
-                                          className=""
-                                          alt="carousel-img-2"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel2}
-                                          className=""
-                                          alt="carousel-img-3"
-                                       />
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <div className="service__content">
-                                 <h6>Logo</h6>
-                                 <h6>Ấn phẩm văn phòng</h6>
-                                 <h6>Broucher, Cataloge</h6>
-                                 <h6>Capacity profile - Company profile</h6>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="service">
-                  <div className="accordion" id="accordion-service-3">
-                     <div className="accordion-item border-0">
-                        <button
-                           className="accordion-button"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#collapse-service-3"
-                        >
-                           <div
-                              className="d-flex align-items-center justify-content-between w-100 h-100"
-                              style={{ cursor: "pointer" }}
-                           >
-                              <div className="accordion-item__icon-left">
-                                 <div className="circle-rotate-icon">
-                                    <div className="circle-icon"></div>
-                                 </div>
-                              </div>
-
-                              <div className="accordion-item__content">
-                                 <h4>Branding</h4>
-                              </div>
-
-                              <div className="accordion-item__icon-right">
-                                 <div className="plus-rotate-icon">
-                                    <i className="left"></i>
-                                    <i className="right"></i>
-                                 </div>
-                              </div>
-                           </div>
-                        </button>
-
-                        <div
-                           className="accordion-collapse collapse"
-                           id="collapse-service-3"
-                           data-bs-parent="#accordion-service-3"
-                        >
-                           <div className="accordion-body">
-                              <div
-                                 id="carousel-2"
-                                 className="carousel slide touch"
-                                 data-bs-ride="carousel"
-                                 data-bs-interval="1500"
-                                 data-bs-touch="true"
-                              >
-                                 <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                       <Image
-                                          src={Carousel1}
-                                          className=""
-                                          alt="carousel-img-1"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel2}
-                                          className=""
-                                          alt="carousel-img-2"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel3}
-                                          className=""
-                                          alt="carousel-img-3"
-                                       />
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <div className="service__content">
-                                 <h6>Logo</h6>
-                                 <h6>Ấn phẩm văn phòng</h6>
-                                 <h6>Broucher, Cataloge</h6>
-                                 <h6>Capacity profile - Company profile</h6>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="service">
-                  <div className="accordion" id="accordion-service-4">
-                     <div className="accordion-item border-0">
-                        <button
-                           className="accordion-button"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#collapse-service-4"
-                        >
-                           <div
-                              className="d-flex align-items-center justify-content-between w-100 h-100"
-                              style={{ cursor: "pointer" }}
-                           >
-                              <div className="accordion-item__icon-left">
-                                 <div className="circle-rotate-icon">
-                                    <div className="circle-icon"></div>
-                                 </div>
-                              </div>
-
-                              <div className="accordion-item__content">
-                                 <h4>Branding</h4>
-                              </div>
-
-                              <div className="accordion-item__icon-right">
-                                 <div className="plus-rotate-icon">
-                                    <i className="left"></i>
-                                    <i className="right"></i>
-                                 </div>
-                              </div>
-                           </div>
-                        </button>
-
-                        <div
-                           className="accordion-collapse collapse"
-                           id="collapse-service-4"
-                           data-bs-parent="#accordion-service-4"
-                        >
-                           <div className="accordion-body">
-                              <div
-                                 id="carousel-2"
-                                 className="carousel slide touch"
-                                 data-bs-ride="carousel"
-                                 data-bs-interval="1500"
-                                 data-bs-touch="true"
-                              >
-                                 <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                       <Image
-                                          src={Carousel1}
-                                          className=""
-                                          alt="carousel-img-1"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel2}
-                                          className=""
-                                          alt="carousel-img-2"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel3}
-                                          className=""
-                                          alt="carousel-img-3"
-                                       />
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <div className="service__content">
-                                 <h6>Logo</h6>
-                                 <h6>Ấn phẩm văn phòng</h6>
-                                 <h6>Broucher, Cataloge</h6>
-                                 <h6>Capacity profile - Company profile</h6>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="service">
-                  <div className="accordion" id="accordion-service-5">
-                     <div className="accordion-item border-0">
-                        <button
-                           className="accordion-button"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#collapse-service-5"
-                        >
-                           <div
-                              className="d-flex align-items-center justify-content-between w-100 h-100"
-                              style={{ cursor: "pointer" }}
-                           >
-                              <div className="accordion-item__icon-left">
-                                 <div className="circle-rotate-icon">
-                                    <div className="circle-icon"></div>
-                                 </div>
-                              </div>
-
-                              <div className="accordion-item__content">
-                                 <h4>Branding</h4>
-                              </div>
-
-                              <div className="accordion-item__icon-right">
-                                 <div className="plus-rotate-icon">
-                                    <i className="left"></i>
-                                    <i className="right"></i>
-                                 </div>
-                              </div>
-                           </div>
-                        </button>
-
-                        <div
-                           className="accordion-collapse collapse"
-                           id="collapse-service-5"
-                           data-bs-parent="#accordion-service-5"
-                        >
-                           <div className="accordion-body">
-                              <div
-                                 id="carousel-2"
-                                 className="carousel slide touch"
-                                 data-bs-ride="carousel"
-                                 data-bs-interval="1500"
-                                 data-bs-touch="true"
-                              >
-                                 <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                       <Image
-                                          src={Carousel1}
-                                          className=""
-                                          alt="carousel-img-1"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel2}
-                                          className=""
-                                          alt="carousel-img-2"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel3}
-                                          className=""
-                                          alt="carousel-img-3"
-                                       />
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <div className="service__content">
-                                 <h6>Logo</h6>
-                                 <h6>Ấn phẩm văn phòng</h6>
-                                 <h6>Broucher, Cataloge</h6>
-                                 <h6>Capacity profile - Company profile</h6>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="service">
-                  <div className="accordion" id="accordion-service-6">
-                     <div className="accordion-item border-0">
-                        <button
-                           className="accordion-button"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#collapse-service-6"
-                        >
-                           <div
-                              className="d-flex align-items-center justify-content-between w-100 h-100"
-                              style={{ cursor: "pointer" }}
-                           >
-                              <div className="accordion-item__icon-left">
-                                 <div className="circle-rotate-icon">
-                                    <div className="circle-icon"></div>
-                                 </div>
-                              </div>
-
-                              <div className="accordion-item__content">
-                                 <h4>Branding</h4>
-                              </div>
-
-                              <div className="accordion-item__icon-right">
-                                 <div className="plus-rotate-icon">
-                                    <i className="left"></i>
-                                    <i className="right"></i>
-                                 </div>
-                              </div>
-                           </div>
-                        </button>
-
-                        <div
-                           className="accordion-collapse collapse"
-                           id="collapse-service-6"
-                           data-bs-parent="#accordion-service-6"
-                        >
-                           <div className="accordion-body">
-                              <div
-                                 id="carousel-2"
-                                 className="carousel slide touch"
-                                 data-bs-ride="carousel"
-                                 data-bs-interval="1500"
-                                 data-bs-touch="true"
-                              >
-                                 <div className="carousel-inner">
-                                    <div className="carousel-item active">
-                                       <Image
-                                          src={Carousel1}
-                                          className=""
-                                          alt="carousel-img-1"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel2}
-                                          className=""
-                                          alt="carousel-img-2"
-                                       />
-                                    </div>
-                                    <div className="carousel-item">
-                                       <Image
-                                          src={Carousel3}
-                                          className=""
-                                          alt="carousel-img-3"
-                                       />
-                                    </div>
-                                 </div>
-                              </div>
-
-                              <div className="service__content">
-                                 <h6>Logo</h6>
-                                 <h6>Ấn phẩm văn phòng</h6>
-                                 <h6>Broucher, Cataloge</h6>
-                                 <h6>Capacity profile - Company profile</h6>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+               {services.map((service, index) => {
+                  return (
+                     <AccordionService
+                        key={index}
+                        title={service.name}
+                        hasCarousel={true}
+                        images={service.images}
+                        contents={service.contents}
+                     />
+                  );
+               })}
             </div>
          </div>
          {/* <!-- End: Expertise --> */}
 
          {/* <!-- Work --> */}
          <div className="wrapper wrapper-top wrapper-bottom work">
-            <div className="wrapper__header">
+            <div className="wrapper__header cursor-default">
                <h4 className="wrapper__header-sub--heading text-uppercase">
                   Work
                </h4>
@@ -689,110 +270,41 @@ const Home = () => {
             </div>
 
             <div className="work__content wrapper-flex">
-               <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <Link
-                     className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     to="/cataloge"
-                  >
-                     <Fragment>
-                        <div className="img-grayscale">
-                           <Image src={Ramen} alt="black and white image" />
-                        </div>
-
-                        <div className="project__des">
-                           <div className="project__des-text">
-                              Lorem Ipsum dolor sit amet, textef
-                           </div>
-
-                           <div className="project__des-icon">
-                              <div className="arrow-right-translate">
-                                 <div className="arrow-right-translate__line"></div>
-                                 <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+               {works.map((work, index) => {
+                  return (
+                     <div
+                        key={index}
+                        className="rectangle-100 rectangle-tab-50 rectangle-pc-25"
+                     >
+                        <Link
+                           className="mb-0 project img-grayscale-hover arrow-right-translate-hover d-block"
+                           to="/cataloge"
+                        >
+                           <Fragment>
+                              <div className="img-grayscale">
+                                 <Image
+                                    src={work.image}
+                                    alt="black and white image"
+                                 />
                               </div>
-                           </div>
-                        </div>
-                     </Fragment>
-                  </Link>
-               </div>
 
-               <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <Link
-                     className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     to="/cataloge"
-                  >
-                     <Fragment>
-                        <div className="img-grayscale">
-                           <Image src={Ramen} alt="black and white image" />
-                        </div>
+                              <div className="project__des">
+                                 <div className="project__des-text">
+                                    {work.description}
+                                 </div>
 
-                        <div className="project__des">
-                           <div className="project__des-text">
-                              Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit
-                              amet, ipsum
-                           </div>
-
-                           <div className="project__des-icon">
-                              <div className="arrow-right-translate">
-                                 <div className="arrow-right-translate__line"></div>
-                                 <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                                 <div className="project__des-icon">
+                                    <div className="arrow-right-translate">
+                                       <div className="arrow-right-translate__line"></div>
+                                       <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                                    </div>
+                                 </div>
                               </div>
-                           </div>
-                        </div>
-                     </Fragment>
-                  </Link>
-               </div>
-
-               <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <Link
-                     className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     to="/cataloge"
-                  >
-                     <Fragment>
-                        <div className="img-grayscale">
-                           <Image src={Ramen} alt="black and white image" />
-                        </div>
-
-                        <div className="project__des">
-                           <div className="project__des-text">
-                              Lorem Ipsum dolor sit amet, text
-                           </div>
-
-                           <div className="project__des-icon">
-                              <div className="arrow-right-translate">
-                                 <div className="arrow-right-translate__line"></div>
-                                 <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
-                              </div>
-                           </div>
-                        </div>
-                     </Fragment>
-                  </Link>
-               </div>
-
-               <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <Link
-                     className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     to="/cataloge"
-                  >
-                     <Fragment>
-                        <div className="img-grayscale">
-                           <Image src={Ramen} alt="black and white image" />
-                        </div>
-
-                        <div className="project__des">
-                           <div className="project__des-text">
-                              Lorem Ipsum dolor sit amet, text
-                           </div>
-
-                           <div className="project__des-icon">
-                              <div className="arrow-right-translate">
-                                 <div className="arrow-right-translate__line"></div>
-                                 <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
-                              </div>
-                           </div>
-                        </div>
-                     </Fragment>
-                  </Link>
-               </div>
+                           </Fragment>
+                        </Link>
+                     </div>
+                  );
+               })}
             </div>
 
             <div className="work__link d-flex justify-content-center align-items-center">
@@ -841,7 +353,7 @@ const Home = () => {
                   </div>
                </div>
 
-               <div className="dosts">
+               <div className="dots">
                   <div className="dot active"></div>
                   <div className="dot"></div>
                </div>

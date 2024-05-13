@@ -1,11 +1,7 @@
-/* Header */
-header {
-   background-color: var(--main-yellow-color-70);
-}
 
 /* Project */
 .project.wrapper {
-   margin-top: 15rem;
+   margin-top: 6.875rem;
 }
 
 .project .img-1 {
@@ -20,15 +16,11 @@ header {
    height: 100%;
 }
 
-.project .wrapper__header {
-   margin-bottom: 5rem;
-}
-
 .project .project__sub-heading {
    margin-top: 1.5rem;
    font-family: 'Gilroy-SemiBold';
-   font-size: var(--fs-bold);
-   line-height: 2.25rem;
+   font-size: var(--fs-normal);
+   line-height: 1.25rem;
    color: var(--main-black-color-100);
    display: flex;
    align-items: center;
@@ -36,7 +28,7 @@ header {
 
 .project .project__sub-heading .line {
    display: inline-block;
-   width: 12.5rem;
+   width: 6.25rem;
    height: 0.0625rem;
    background-color: var(--main-black-color-100);
    margin: 0 0.5rem;
@@ -44,23 +36,26 @@ header {
 }
 
 .project .project__des {
-   margin-top: 5rem;
-   margin-bottom: 5rem;
+   margin-top: 2rem;
+   margin-bottom: 2rem;
 }
 
 .project .project__des .project__des-title {
-   margin-bottom: 1.5rem;
    font-family: 'Gilroy-SemiBold';
-   font-size: var(--fs-bold);
-   line-height: 2.25rem;
+   font-size: var(--fs-xsmall);
+   line-height: 1.125rem;
    color: var(--main-black-color-100);
 }
 
 .project .project__des .project__des-text {
    font-family: 'Gilroy-Regular';
-   font-size: var(--fs-medium);
-   line-height: 1.875rem;
+   font-size: var(--fs-xsmall);
+   line-height: 1;
    color: var(--sub-heading-color);
+}
+
+.project .project__des .project__des-text.project__des-top {
+   padding: 0 0.9375rem;
 }
 
 /* Project info */
@@ -128,17 +123,16 @@ header {
 
 .suggestion .suggestion__header {
    margin-bottom: 1.5rem;
-   padding: 0.5rem;
-   padding-right: 0;
+   padding: 0.5rem 0;
    display: flex;
    justify-content: space-between;
    align-items: center;
 }
 
 .suggestion .suggestion__header .suggestion__header-heading {
-   font-family: 'Gilroy-Bold';
-   font-size: var(--fs-xbold);
-   line-height: 3.5625rem;
+   font-family: 'Gilroy-SemiBold';
+   font-size: var(--fs-bold);
+   line-height: 2rem;
    color: var(--main-black-color-100);
 }
 
@@ -147,19 +141,20 @@ header {
    line-height: 0;
    border: none;
    background-color: transparent;
-   cursor: pointer;
+}
+
+.suggestion .suggestion__header .suggestion__header-control button.button-next {
+   padding-right: 0;
 }
 
 .suggestion .suggestion__header .suggestion__header-control button svg {
    height: 0.8125rem;
-   cursor: pointer;
 }
 
 .suggestion .suggestion__header .suggestion__header-control button path,
 .suggestion .suggestion__header .suggestion__header-control button rect {
    fill: var(--main-black-color-100);
    transition: all ease-in-out 0.3s;
-   cursor: pointer;
 }
 
 .suggestion .suggestion__header .suggestion__header-control button:hover path,
@@ -179,7 +174,6 @@ header {
    height: 100%;
    vertical-align: middle;
    transition: all ease-in-out 0.35s;
-   cursor: pointer;
 }
 
 .suggestion .suggestion__content .project:hover img {
@@ -190,7 +184,6 @@ header {
    width: 100%;
    margin-top: 1rem;
    margin-bottom: 0;
-   padding: 0 0.5rem;
    display: flex;
    justify-content: space-between;
 }
@@ -201,7 +194,6 @@ header {
    font-size: var(--fs-bold);
    line-height: 2.25rem;
    color: var(--main-black-color-100);
-   cursor: pointer;
    overflow: hidden;
    text-overflow: ellipsis;
    display: -webkit-box;
@@ -233,8 +225,74 @@ header {
    color: var(--main-black-color-100);
 }
 
-/* @media (min-width: 768px) and (max-width: 1199px) {
-   .project-info .project-info__heading {
-       text-align: center;
+/* Responive */
+@media (min-width: 576px) {
+   
+}
+
+@media (min-width: 768px) {
+   .project.wrapper {
+       margin-top: 15rem;
    }
-} */
+
+   .project .project__sub-heading {
+       font-size: var(--fs-bold);
+       line-height: 2.25rem;
+   }
+   
+   .project .project__sub-heading .line {
+       width: 12.5rem;
+   }
+
+   .project .project__des {
+       margin-top: 5rem;
+       margin-bottom: 5rem;
+   }
+
+   .project .project__des .project__des-title {
+       margin-bottom: 1.5rem;
+       font-family: 'Gilroy-SemiBold';
+       font-size: var(--fs-bold);
+       line-height: 2.25rem;
+   }
+   
+   .project .project__des .project__des-text {
+       font-family: 'Gilroy-Regular';
+       font-size: var(--fs-medium);
+       line-height: 1.875rem;
+   }
+
+   .project .project__des .project__des-text.project__des-top {
+       padding: 0.9375rem;
+   }
+
+   .suggestion .suggestion__header {
+       padding-left: 0.5rem;
+   }
+
+   .suggestion .suggestion__header .suggestion__header-heading {
+       font-family: 'Gilroy-Bold';
+       font-size: var(--fs-xbold);
+       line-height: 3.5625rem;
+   }
+
+   .suggestion .suggestion__header .suggestion__header-control button.button-next {
+       padding-right: 1rem;
+   }
+
+   .suggestion .suggestion__content .project .project__des {
+       padding: 0 0.5rem;
+   }
+}
+
+@media (min-width: 900px) {
+   
+}
+
+@media (min-width: 1200px) {
+   
+}
+
+@media (min-width: 1778px) {
+   
+}

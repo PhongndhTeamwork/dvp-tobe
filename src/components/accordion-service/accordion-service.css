@@ -1,0 +1,33 @@
+.carousel-indicators {
+   display: none !important;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+   display: none !important;
+}
+
+.accordion-body {
+   display: flex;
+   justify-content: center;
+}
+.carousel {
+   width: auto !important;
+}
+
+h6 {
+   font-family: "Gilroy-Regular";
+   font-size: var(--fs-small);
+   line-height: 1.5rem!important;
+   color: var(--main-black-color-100);
+   margin-bottom: 0.5rem !important;
+}
+
+.accordion-item__content h4 {
+   font-family: "Gilroy-Medium";
+   font-size: var(--fs-medium);
+}
+
+.carousel-item-start, .carousel-item-next {
+   width: 100%;
+}

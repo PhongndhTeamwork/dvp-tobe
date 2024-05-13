@@ -1,7 +1,10 @@
-import { Fragment, useEffect } from "react";
 import "./about.css";
+import { Fragment, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import { useState } from "react";
+import AccordionService from "../../components/accordion-service/accordion-service";
+import BrandScroll from "../../components/brand-scroll/brand-scroll";
+
 import ExOfficeImage from "../../assets/images/others/ex-office.jpg";
 import PartnerSVG1 from "../../assets/images/svg/partner/Untitled-1-01.svg";
 import PartnerSVG2 from "../../assets/images/svg/partner/Untitled-1-02.svg";
@@ -77,6 +80,29 @@ const About = () => {
          motto: "Không làm thì thôi, đã làm là phải giỏi nhất",
          name: "Trần Ngọc Minh",
          role: "UI - UX Designe",
+      },
+   ];
+
+   const services = [
+      {
+         title: "Sáng tạo là không giới hạn",
+         description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      },
+      {
+         title: "Giá trị cốt lõi",
+         description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      },
+      {
+         title: "Lắng nghe khách hàng",
+         description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      },
+      {
+         title: "Almost before we knew it, we had left the ground.",
+         description:
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
       },
    ];
 
@@ -169,232 +195,24 @@ const About = () => {
 
          {/* <!-- Expertise --> */}
          <div className="wrapper wrapper-top wrapper-bottom expertise">
-            <div className="wrapper__header">
-               <h4 className="wrapper__header-sub--heading text-uppercase">
+            <div class="wrapper__header">
+               <h4 class="wrapper__header-sub--heading text-uppercase">
                   The mottos
                </h4>
-               <h1 className="wrapper__header-heading">Phương châm cốt lõi</h1>
+               <h1 class="wrapper__header-heading">Phương châm cốt lõi</h1>
             </div>
 
-            <div className="expertise__content">
-               <div className="service">
-                  <div className="accordion" id="accordion-service-1">
-                     <div className="accordion-item border-0">
-                        <button
-                           className="accordion-button"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#collapse-service-1"
-                        >
-                           <div
-                              className="d-flex align-items-center justify-content-between w-100 h-100"
-                              style={{ cursor: "pointer" }}
-                           >
-                              <div className="accordion-item__icon-left">
-                                 <div className="circle-rotate-icon">
-                                    <div className="circle-icon"></div>
-                                 </div>
-                              </div>
-
-                              <div className="accordion-item__content">
-                                 <h4>Sáng tạo là không giới hạn</h4>
-                              </div>
-
-                              <div className="accordion-item__icon-right">
-                                 <div className="plus-rotate-icon">
-                                    <i className="left"></i>
-                                    <i className="right"></i>
-                                 </div>
-                              </div>
-                           </div>
-                        </button>
-
-                        <div
-                           className="accordion-collapse collapse"
-                           id="collapse-service-1"
-                           data-bs-parent="#accordion-service-1"
-                        >
-                           <div className="accordion-body d-flex justify-content-end">
-                              <div className="service__content">
-                                 <p className="service__content-text text-end">
-                                    Lorem Ipsum is simply dummy text of the
-                                    printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy
-                                    text ever since the 1500s, when an unknown
-                                    printer took a galley of type and scrambled
-                                    it to make a type specimen book.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="service">
-                  <div className="accordion" id="accordion-service-2">
-                     <div className="accordion-item border-0">
-                        <button
-                           className="accordion-button"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#collapse-service-2"
-                        >
-                           <div
-                              className="d-flex align-items-center justify-content-between w-100 h-100"
-                              style={{ cursor: "pointer" }}
-                           >
-                              <div className="accordion-item__icon-left">
-                                 <div className="circle-rotate-icon">
-                                    <div className="circle-icon"></div>
-                                 </div>
-                              </div>
-
-                              <div className="accordion-item__content">
-                                 <h4>Giá trị cốt lõi</h4>
-                              </div>
-
-                              <div className="accordion-item__icon-right">
-                                 <div className="plus-rotate-icon">
-                                    <i className="left"></i>
-                                    <i className="right"></i>
-                                 </div>
-                              </div>
-                           </div>
-                        </button>
-
-                        <div
-                           className="accordion-collapse collapse"
-                           id="collapse-service-2"
-                           data-bs-parent="#accordion-service-2"
-                        >
-                           <div className="accordion-body d-flex justify-content-end">
-                              <div className="service__content">
-                                 <p className="service__content-text text-end">
-                                    Lorem Ipsum is simply dummy text of the
-                                    printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy
-                                    text ever since the 1500s, when an unknown
-                                    printer took a galley of type and scrambled
-                                    it to make a type specimen book.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="service">
-                  <div className="accordion" id="accordion-service-3">
-                     <div className="accordion-item border-0">
-                        <button
-                           className="accordion-button"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#collapse-service-3"
-                        >
-                           <div
-                              className="d-flex align-items-center justify-content-between w-100 h-100"
-                              style={{ cursor: "pointer" }}
-                           >
-                              <div className="accordion-item__icon-left">
-                                 <div className="circle-rotate-icon">
-                                    <div className="circle-icon"></div>
-                                 </div>
-                              </div>
-
-                              <div className="accordion-item__content">
-                                 <h4>Lắng nghe khách hàng</h4>
-                              </div>
-
-                              <div className="accordion-item__icon-right">
-                                 <div className="plus-rotate-icon">
-                                    <i className="left"></i>
-                                    <i className="right"></i>
-                                 </div>
-                              </div>
-                           </div>
-                        </button>
-
-                        <div
-                           className="accordion-collapse collapse"
-                           id="collapse-service-3"
-                           data-bs-parent="#accordion-service-3"
-                        >
-                           <div className="accordion-body d-flex justify-content-end">
-                              <div className="service__content">
-                                 <p className="service__content-text text-end">
-                                    Lorem Ipsum is simply dummy text of the
-                                    printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy
-                                    text ever since the 1500s, when an unknown
-                                    printer took a galley of type and scrambled
-                                    it to make a type specimen book.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="service">
-                  <div className="accordion" id="accordion-service-4">
-                     <div className="accordion-item border-0">
-                        <button
-                           className="accordion-button"
-                           type="button"
-                           data-bs-toggle="collapse"
-                           data-bs-target="#collapse-service-4"
-                        >
-                           <div
-                              className="d-flex align-items-center justify-content-between w-100 h-100"
-                              style={{ cursor: "pointer" }}
-                           >
-                              <div className="accordion-item__icon-left">
-                                 <div className="circle-rotate-icon">
-                                    <div className="circle-icon"></div>
-                                 </div>
-                              </div>
-
-                              <div className="accordion-item__content">
-                                 <h4>
-                                    Almost before we knew it, we had left the
-                                    ground.
-                                 </h4>
-                              </div>
-
-                              <div className="accordion-item__icon-right">
-                                 <div className="plus-rotate-icon">
-                                    <i className="left"></i>
-                                    <i className="right"></i>
-                                 </div>
-                              </div>
-                           </div>
-                        </button>
-
-                        <div
-                           className="accordion-collapse collapse"
-                           id="collapse-service-4"
-                           data-bs-parent="#accordion-service-4"
-                        >
-                           <div className="accordion-body d-flex justify-content-end">
-                              <div className="service__content">
-                                 <p className="service__content-text text-end">
-                                    Lorem Ipsum is simply dummy text of the
-                                    printing and typesetting industry. Lorem
-                                    Ipsum has been the industry's standard dummy
-                                    text ever since the 1500s, when an unknown
-                                    printer took a galley of type and scrambled
-                                    it to make a type specimen book.
-                                 </p>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+            <div className="expertise__content w-100">
+               {services.map((service, index) => {
+                  return (
+                     <AccordionService
+                        key={index}
+                        title={service.title}
+                        description={service.description}
+                        index={index + 1}
+                     />
+                  );
+               })}
             </div>
          </div>
          {/* <!-- End: Expertise --> */}
@@ -410,8 +228,8 @@ const About = () => {
                      Khách hàng của chúng tôi
                   </div>
                </div>
-
-               <div className="scroll-wrapper">
+               <BrandScroll />
+               {/* <div className="scroll-wrapper">
                   <div className="scroll-wrapper__content align-items-start">
                      <div className="scroll-wrapper__content-item d-flex flex-column">
                         <Image src={PartnerSVG1} alt="partner-01" />
@@ -441,7 +259,7 @@ const About = () => {
                         <Image src={PartnerSVG14} alt="partner-14" />
                      </div>
                   </div>
-               </div>
+               </div> */}
 
                <div className="dosts">
                   <div className="dot active"></div>

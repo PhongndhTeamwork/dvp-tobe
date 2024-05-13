@@ -36,8 +36,8 @@ const ContactForm = () => {
       setIsServiceCategoryRevealed(!isServiceCategoryRevealed);
 
       if (isServiceCategoryRevealed) {
+         serviceCategoryRef.current.style.display = "block";
          setTimeout(() => {
-            serviceCategoryRef.current.style.display = "block";
             serviceCategoryRef.current.classList.add("active");
             const isVisible = isElementFullyVisible(serviceCategoryRef.current);
             if (!isVisible) {
