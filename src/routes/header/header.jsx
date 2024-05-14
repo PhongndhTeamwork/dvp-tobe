@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
 import HomeIcon from "../../assets/images/others/home-icon.png";
@@ -19,7 +19,19 @@ import ZaloGraySVG from "../../assets/images/svg/social/zalo-gray.svg";
 
 const Header = () => {
    const [isHeaderActive, setIsHeaderActive] = useState(false);
-
+   const location = useLocation();
+   console.log(location.pathname);
+   useEffect(() => {
+      if (
+         location.pathname.includes("work") ||
+         location.pathname.includes("contact") ||
+         location.pathname.includes("cataloge")
+      ) {
+         setIsHeaderActive(true);
+      } else {
+         setIsHeaderActive(false);
+      }
+   }, [location]);
    useEffect(() => {
       const handleScroll = () => {
          const banner = document.querySelector(".banner");
@@ -38,11 +50,11 @@ const Header = () => {
       return () => {
          window.removeEventListener("scroll", handleScroll);
       };
-   }, []); 
+   }, []);
 
    return (
       <Fragment>
-         <header className={isHeaderActive ? 'active' : ''}>
+         <header className={isHeaderActive ? "active" : ""}>
             <div className="wrapper d-flex justify-content-between align-items-center">
                <Link to="/" className="header__logo">
                   Logo
