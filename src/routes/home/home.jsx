@@ -26,6 +26,7 @@ import PartnerSVG14 from "../../assets/images/svg/partner/Untitled-1-14.svg";
 // import PartnerSVG8 from "../../assets/images/svg/partner/Untitled-1-08.svg";
 
 import AccordionService from "../../components/accordion-service/accordion-service";
+import BrandScroll from "../../components/brand-scroll/brand-scroll";
 
 const Home = () => {
    const services = [
@@ -95,11 +96,16 @@ const Home = () => {
    //?Effect
    const videoRef = useRef(null);
    const bannerRef = useRef(null);
+   const scrollWrapperRef = useRef(null);
+   const scrollWrapperContentRef = useRef(null);
    const [isMuted, setIsMuted] = useState(true);
+   const [isMouseDown, setIsMouseDown] = useState(false);
+   const [mouseMoveX, setMouseMoveX] = useState(0);
+   const [activeDot, setActiveDot] = useState(0);
 
-   useEffect(() => {
-      window.scrollTo(0, 0);
-   }, []);
+   // useEffect(() => {
+   //    window.scrollTo(0, 0);
+   // }, []);
 
    useEffect(() => {
       const handleScroll = () => {
@@ -128,6 +134,63 @@ const Home = () => {
    };
 
    //?
+   const getCurrentTranslateX = (scrollWrapperContent) => {
+      const style = window.getComputedStyle(scrollWrapperContent);
+      const transform = style.getPropertyValue("transform");
+      if (transform && transform !== "none") {
+         // Extracting the translateX value from the transform property
+         const matrix = new DOMMatrixReadOnly(transform);
+         return matrix.m41; // m41 is the translation in X direction
+      }
+   };
+
+   const handleMouseDown = (e) => {
+      setIsMouseDown(true);
+      setMouseMoveX(e.clientX);
+   };
+
+   const handleMouseUp = (e) => {
+      setIsMouseDown(false);
+   };
+
+   const handleMouseLeave = (e) => {
+      setIsMouseDown(false);
+   };
+
+   const handleMouseMove = (e) => {
+      if (isMouseDown) {
+         scrollWrapperContentRef.current.style.transition = "none";
+         let newMouseMoveX = e.clientX;
+         let translateX =
+            newMouseMoveX -
+            mouseMoveX +
+            getCurrentTranslateX(scrollWrapperContentRef.current);
+         const minTranslateX =
+            scrollWrapperRef.current.offsetWidth -
+            scrollWrapperContentRef.current.offsetWidth;
+         console.log(minTranslateX);
+         if (translateX >= minTranslateX && translateX <= 0) {
+            scrollWrapperContentRef.current.style.transform = `translateX(${translateX}px)`;
+         }
+
+         setMouseMoveX(newMouseMoveX);
+      }
+   };
+
+   const handleActivateDot = (index) => {
+      if (index !== activeDot) {
+         setActiveDot(index);
+         let distance =
+            scrollWrapperContentRef.current.offsetWidth -
+            scrollWrapperRef.current.offsetWidth;
+         scrollWrapperContentRef.current.style.transition =
+            "transform 1s ease-in-out";
+         scrollWrapperContentRef.current.style.transform = `translateX(${
+            activeDot === 0 ? -distance : 0
+         }px)`;
+         console.log(distance);
+      }
+   };
 
    const handleLogin = () => {
       console.log("LOGIN");
@@ -152,12 +215,16 @@ const Home = () => {
                   <div className="text-uppercase cursor-default">Style</div>
                </div>
 
-               <div className="banner__text-bot d-flex justify-content-center">
+               <div
+                  className="banner__text-bot d-flex justify-content-center pe-0"
+                  style={{ paddingLeft: "7rem" }}
+               >
                   <div className="text-uppercase">Design</div>
                   <div className="text-stroke">Creative</div>
                </div>
             </div>
          </div>
+         <div></div>
          {/* <!-- End: Banner --> */}
 
          {/* <!-- Reels --> */}
@@ -321,8 +388,18 @@ const Home = () => {
          {/* <!-- Partners --> */}
          <div className="partners">
             <div className="wrapper">
-               <div className="scroll-wrapper">
-                  <div className="scroll-wrapper__content align-items-start">
+               <div
+                  className="scroll-wrapper"
+                  ref={scrollWrapperRef}
+                  onMouseDown={(e) => handleMouseDown(e)}
+                  onMouseUp={(e) => handleMouseUp(e)}
+                  onMouseLeave={(e) => handleMouseLeave(e)}
+                  onMouseMove={(e) => handleMouseMove(e)}
+               >
+                  <div
+                     className="scroll-wrapper__content align-items-start"
+                     ref={scrollWrapperContentRef}
+                  >
                      <div className="scroll-wrapper__content-item d-flex">
                         <Image src={PartnerSVG1} alt="partner-01" />
                         <Image src={PartnerSVG2} alt="partner-02" />
@@ -354,9 +431,20 @@ const Home = () => {
                </div>
 
                <div className="dots">
-                  <div className="dot active"></div>
-                  <div className="dot"></div>
+                  <div
+                     className={`dot ${activeDot === 0 ? "active" : ""}`}
+                     onClick={() => {
+                        handleActivateDot(0);
+                     }}
+                  ></div>
+                  <div
+                     className={`dot ${activeDot === 1 ? "active" : ""}`}
+                     onClick={() => {
+                        handleActivateDot(1);
+                     }}
+                  ></div>
                </div>
+               
             </div>
          </div>
       </Fragment>

@@ -573,7 +573,7 @@
 }
 /* End: Banner */
 
-/* Responive */
+/* Responsive */
 @media (min-width: 576px) {
    .banner .banner__bg .banner__bg-eclipse1 {
        width: 85%;
@@ -629,7 +629,7 @@
    }
    
    .partners .scroll-wrapper .scroll-wrapper__content-item img:nth-child(1) {
-       margin-bottom: 1.875rem;
+       margin-bottom: 1.875rem ;
    }
    
    .partners .scroll-wrapper .scroll-wrapper__content-item img:nth-child(2) {

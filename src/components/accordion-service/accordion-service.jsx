@@ -1,8 +1,9 @@
 import "./accordion-service.css";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Accordion, Carousel } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
 
 const AccordionService = ({
    title,
@@ -15,10 +16,45 @@ const AccordionService = ({
    contents,
 }) => {
    const [isButtonActive, setIsButtonActive] = useState(false);
+   const [carouselWidth, setCarouselWidth] = useState(0);
+
+   const carouselRef = useRef(null);
+
+   useEffect(() => {
+      const timer = setTimeout(() => {
+         if (carouselRef.current) {
+            const carouselItem = carouselRef.current.querySelector(
+               ".active.carousel-item"
+            );
+            if (carouselItem) {
+               setCarouselWidth(carouselItem.offsetWidth);
+            }
+         }
+      }, 100); // 100 milliseconds = 0.1 seconds
+
+      return () => clearTimeout(timer); // Clear the timeout on component unmount
+   }, [isButtonActive, carouselWidth]);
 
    const toggleAccordionButton = () => {
       setIsButtonActive(!isButtonActive);
    };
+
+   // useEffect(() => {
+   //    const timer = setTimeout(() => {
+   //      if (carouselRef.current) {
+   //        const width = carouselRef.current.offsetWidth;
+   //        setCarouselWidth(
+   //          width < 700 ? width : width / 2
+   //        );
+   //      }
+   //    }, 100); // 100 milliseconds = 0.1 seconds
+
+   //    return () => clearTimeout(timer); // Clear the timeout on component unmount
+   //  }, [isButtonActive, carouselWidth]);
+
+   // const toggleAccordionButton = () => {
+   //    setIsButtonActive(!isButtonActive);
+   // };
 
    return (
       <div class="service">
@@ -61,7 +97,8 @@ const AccordionService = ({
                </Accordion.Header>
 
                <Accordion.Body
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse"
+                  // style={{width : "30%"}}
                   // id="collapse-service-1"
                   // data-bs-parent="#accordion-service-1"
                >
@@ -70,33 +107,30 @@ const AccordionService = ({
                         className="accordion-body"
                         style={{ paddingBottom: "2rem" }}
                      >
-                        {/* <div
-                        // id="carousel-2"
-                        className="carousel slide touch"
-                        data-bs-ride="carousel"
-                        data-bs-interval="1500"
-                        data-bs-touch="true"
-                     > */}
-                        <Carousel data-bs-theme="dark">
-                           {images.map((image, index) => {
-                              return (
-                                 <Carousel.Item key={index}>
-                                    <Image
-                                       className="d-block w-100"
-                                       src={image}
-                                       alt="First slide"
-                                    />
-                                    {/* <Carousel.Caption>
-                                       <h5>First slide label</h5>
-                                       <p>
-                                          Nulla vitae elit libero, a pharetra
-                                          augue mollis interdum.
-                                       </p>
-                                    </Carousel.Caption> */}
-                                 </Carousel.Item>
-                              );
-                           })}
-                        </Carousel>
+                        <div
+                           ref={carouselRef}
+                           style={{
+                              width: carouselWidth > 0 ? carouselWidth : "",
+                           }}
+                        >
+                           <Carousel interval={1000}>
+                              {images.map((image, index) => {
+                                 return (
+                                    <Carousel.Item
+                                       key={index}
+                                       // className="carousel-item"
+                                    >
+                                       <Image
+                                          className="d-block w-100"
+                                          src={image}
+                                          alt="Slide"
+                                       />
+                                    </Carousel.Item>
+                                 );
+                              })}
+                           </Carousel>
+                        </div>
+
                         {/* </div> */}
 
                         <div className="service__content">

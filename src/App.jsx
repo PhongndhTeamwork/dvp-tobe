@@ -6,7 +6,6 @@ import "./styles/style.css";
 import "./styles/bootstrap.min.css";
 
 import { Routes, Route } from "react-router-dom";
-import { Container } from "react-bootstrap";
 import Header from "./routes/header/header";
 import Footer from "./routes/footer/footer";
 import Home from "./routes/home/home";

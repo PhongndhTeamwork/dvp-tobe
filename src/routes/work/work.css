@@ -190,7 +190,11 @@
    padding: 0 1.3125rem;
 }
 
-/* Responive */
+.project__des{
+   margin-bottom: 0!important;
+}
+
+/* Responsive */
 @media (min-width: 576px) {
    .partners .wrapper {
       padding: 0 0.9375rem;

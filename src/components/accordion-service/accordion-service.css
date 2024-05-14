@@ -29,5 +29,13 @@ h6 {
 }
 
 .carousel-item-start, .carousel-item-next {
-   width: 100%;
+   width: initial!important;
+}
+
+.accordion {
+   border-bottom: 0.125rem solid var(--main-black-color-100);
+}
+
+.accordion-item {
+   border-bottom: none!important;
 }
