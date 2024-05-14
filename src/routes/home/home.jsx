@@ -96,16 +96,11 @@ const Home = () => {
    //?Effect
    const videoRef = useRef(null);
    const bannerRef = useRef(null);
-   const scrollWrapperRef = useRef(null);
-   const scrollWrapperContentRef = useRef(null);
    const [isMuted, setIsMuted] = useState(true);
-   const [isMouseDown, setIsMouseDown] = useState(false);
-   const [mouseMoveX, setMouseMoveX] = useState(0);
-   const [activeDot, setActiveDot] = useState(0);
 
-   // useEffect(() => {
-   //    window.scrollTo(0, 0);
-   // }, []);
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, []);
 
    useEffect(() => {
       const handleScroll = () => {
@@ -131,65 +126,6 @@ const Home = () => {
 
    const handleVideoClick = () => {
       setIsMuted(!isMuted);
-   };
-
-   //?
-   const getCurrentTranslateX = (scrollWrapperContent) => {
-      const style = window.getComputedStyle(scrollWrapperContent);
-      const transform = style.getPropertyValue("transform");
-      if (transform && transform !== "none") {
-         // Extracting the translateX value from the transform property
-         const matrix = new DOMMatrixReadOnly(transform);
-         return matrix.m41; // m41 is the translation in X direction
-      }
-   };
-
-   const handleMouseDown = (e) => {
-      setIsMouseDown(true);
-      setMouseMoveX(e.clientX);
-   };
-
-   const handleMouseUp = (e) => {
-      setIsMouseDown(false);
-   };
-
-   const handleMouseLeave = (e) => {
-      setIsMouseDown(false);
-   };
-
-   const handleMouseMove = (e) => {
-      if (isMouseDown) {
-         scrollWrapperContentRef.current.style.transition = "none";
-         let newMouseMoveX = e.clientX;
-         let translateX =
-            newMouseMoveX -
-            mouseMoveX +
-            getCurrentTranslateX(scrollWrapperContentRef.current);
-         const minTranslateX =
-            scrollWrapperRef.current.offsetWidth -
-            scrollWrapperContentRef.current.offsetWidth;
-         console.log(minTranslateX);
-         if (translateX >= minTranslateX && translateX <= 0) {
-            scrollWrapperContentRef.current.style.transform = `translateX(${translateX}px)`;
-         }
-
-         setMouseMoveX(newMouseMoveX);
-      }
-   };
-
-   const handleActivateDot = (index) => {
-      if (index !== activeDot) {
-         setActiveDot(index);
-         let distance =
-            scrollWrapperContentRef.current.offsetWidth -
-            scrollWrapperRef.current.offsetWidth;
-         scrollWrapperContentRef.current.style.transition =
-            "transform 1s ease-in-out";
-         scrollWrapperContentRef.current.style.transform = `translateX(${
-            activeDot === 0 ? -distance : 0
-         }px)`;
-         console.log(distance);
-      }
    };
 
    const handleLogin = () => {
@@ -388,63 +324,7 @@ const Home = () => {
          {/* <!-- Partners --> */}
          <div className="partners">
             <div className="wrapper">
-               <div
-                  className="scroll-wrapper"
-                  ref={scrollWrapperRef}
-                  onMouseDown={(e) => handleMouseDown(e)}
-                  onMouseUp={(e) => handleMouseUp(e)}
-                  onMouseLeave={(e) => handleMouseLeave(e)}
-                  onMouseMove={(e) => handleMouseMove(e)}
-               >
-                  <div
-                     className="scroll-wrapper__content align-items-start"
-                     ref={scrollWrapperContentRef}
-                  >
-                     <div className="scroll-wrapper__content-item d-flex">
-                        <Image src={PartnerSVG1} alt="partner-01" />
-                        <Image src={PartnerSVG2} alt="partner-02" />
-                     </div>
-                     <div className="scroll-wrapper__content-item d-flex">
-                        <Image src={PartnerSVG3} alt="partner-03" />
-                        <Image src={PartnerSVG4} alt="partner-04" />
-                     </div>
-                     <div className="scroll-wrapper__content-item d-flex">
-                        <Image src={PartnerSVG5} alt="partner-05" />
-                        <Image src={PartnerSVG6} alt="partner-06" />
-                     </div>
-                     <div className="scroll-wrapper__content-item d-flex">
-                        <Image src={PartnerSVG7} alt="partner-07" />
-                        <Image src={PartnerSVG8} alt="partner-08" />
-                     </div>
-                     <div className="scroll-wrapper__content-item d-flex">
-                        <Image src={PartnerSVG9} alt="partner-09" />
-                        <Image src={PartnerSVG10} alt="partner-10" />
-                     </div>
-                     <div className="scroll-wrapper__content-item d-flex">
-                        <Image src={PartnerSVG11} alt="partner-11" />
-                        <Image src={PartnerSVG12} alt="partner-12" />
-                     </div>
-                     <div className="scroll-wrapper__content-item d-flex">
-                        <Image src={PartnerSVG14} alt="partner-14" />
-                     </div>
-                  </div>
-               </div>
-
-               <div className="dots">
-                  <div
-                     className={`dot ${activeDot === 0 ? "active" : ""}`}
-                     onClick={() => {
-                        handleActivateDot(0);
-                     }}
-                  ></div>
-                  <div
-                     className={`dot ${activeDot === 1 ? "active" : ""}`}
-                     onClick={() => {
-                        handleActivateDot(1);
-                     }}
-                  ></div>
-               </div>
-               
+               <BrandScroll homePage={true} />
             </div>
          </div>
       </Fragment>

@@ -84,18 +84,22 @@ const BrandScroll = ({ homePage }) => {
       if (!homePage) {
          items.forEach((item) => {
             let images = item.querySelectorAll("img");
-            console.log(
-               images[0].style.setProperty(
-                  "margin-bottom",
-                  "1.875rem",
-                  "important"
-               )
+
+            images[0].style.setProperty(
+               "margin-bottom",
+               "1.875rem",
+               "important"
             );
-            images[0].style.marginBottom = "1.875rem";
-            // images[1].style.marginTop = "1.875rem !important"
+
+            images[1]?.style.setProperty(
+               "margin-top",
+               "1.875rem",
+               "important"
+            );
          });
       }
    }, [homePage]);
+
 
    return (
       <div
@@ -119,7 +123,7 @@ const BrandScroll = ({ homePage }) => {
                   src={PartnerSVG1}
                   alt="partner-01"
                   style={{
-                     marginBottom: homePage ? "0" : "1.875rem",
+                     marginBottom: homePage ? "0" : `1.875rem`,
                   }}
                />
 
