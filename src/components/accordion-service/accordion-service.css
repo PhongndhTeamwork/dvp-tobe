@@ -18,7 +18,7 @@
 h6 {
    font-family: "Gilroy-Regular";
    font-size: var(--fs-small);
-   line-height: 1.5rem!important;
+   line-height: 1.5rem !important;
    color: var(--main-black-color-100);
    margin-bottom: 0.5rem !important;
 }
@@ -28,12 +28,16 @@ h6 {
    font-size: var(--fs-medium);
 }
 
-
 .accordion {
    border-bottom: 0.125rem solid var(--main-black-color-100);
 }
 
 .accordion-item {
-   border-bottom: none!important;
+   border-bottom: none !important;
 }
 
+@media (min-width: 1200px) {
+   .rectangle-pc-50 {
+      max-width: none !important;
+   }
+}
