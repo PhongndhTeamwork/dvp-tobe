@@ -152,8 +152,8 @@ const Home = () => {
                </div>
 
                <div
-                  className="banner__text-bot d-flex justify-content-center pe-0"
-                  style={{ paddingLeft: "7rem" }}
+                  className="banner__text-bot banner__text-padding d-flex justify-content-center pe-0"
+                  
                >
                   <div className="text-uppercase">Design</div>
                   <div className="text-stroke">Creative</div>
