@@ -3,18 +3,18 @@ import { Fragment, useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import RamenImage from "../../assets/images/others/ramen.png";
-import ProjectImage1 from "../../assets/images/projects/project-1.png";
-import ProjectImage2 from "../../assets/images/projects/project-2.jpg";
-import ProjectImage3 from "../../assets/images/projects/project-3.jpg";
-import ProjectImage4 from "../../assets/images/projects/project-4.jpg";
-import ProjectImage5 from "../../assets/images/projects/project-5.jpg";
-import ProjectImage6 from "../../assets/images/projects/project-6.png";
-import ContactIcon1 from "../../assets/images/contact/contact_icon1.png";
-import ContactIcon2 from "../../assets/images/contact/contact_icon2.png";
+import RamenImage from "../../../assets/images/others/ramen.png";
+import ProjectImage1 from "../../../assets/images/projects/project-1.png";
+import ProjectImage2 from "../../../assets/images/projects/project-2.jpg";
+import ProjectImage3 from "../../../assets/images/projects/project-3.jpg";
+import ProjectImage4 from "../../../assets/images/projects/project-4.jpg";
+import ProjectImage5 from "../../../assets/images/projects/project-5.jpg";
+import ProjectImage6 from "../../../assets/images/projects/project-6.png";
+import ContactIcon1 from "../../../assets/images/contact/contact_icon1.png";
+import ContactIcon2 from "../../../assets/images/contact/contact_icon2.png";
 
-import ContactForm from "../../components/contact-form/contact-form";
-import BrandScroll from "../../components/brand-scroll/brand-scroll";
+import ContactForm from "../../../components/contact-form/contact-form";
+import BrandScroll from "../../../components/brand-scroll/brand-scroll";
 
 const Work = () => {
    const filterItems = [
@@ -23,7 +23,7 @@ const Work = () => {
       "Quay dựng thiết kế video",
    ];
 
-   const [showAllCategories, setShowAllCategories] = useState(true);
+   // const [showAllCategories, setShowAllCategories] = useState(true);
 
    const [activeCategory, setActiveCategory] = useState("all");
    const [activeFilter, setActiveFilter] = useState(0);

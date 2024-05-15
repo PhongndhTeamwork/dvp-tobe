@@ -1,32 +1,19 @@
 import "./home.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect, useRef } from "react";
-import { login } from "../../app/features/userLoginSlice";
+import { login } from "../../../app/features/userLoginSlice";
 import { Fragment } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import HomeVideo from "../../assets/images/others/video-auto.mp4";
-import Carousel1 from "../../assets/images/carousel/carousel-1.png";
-import Carousel2 from "../../assets/images/carousel/carousel-2.png";
-import Carousel3 from "../../assets/images/carousel/carousel-3.png";
-import Ramen from "../../assets/images/others/ramen.png";
-import PartnerSVG1 from "../../assets/images/svg/partner/Untitled-1-01.svg";
-import PartnerSVG2 from "../../assets/images/svg/partner/Untitled-1-02.svg";
-import PartnerSVG3 from "../../assets/images/svg/partner/Untitled-1-03.svg";
-import PartnerSVG4 from "../../assets/images/svg/partner/Untitled-1-04.svg";
-import PartnerSVG5 from "../../assets/images/svg/partner/Untitled-1-05.svg";
-import PartnerSVG6 from "../../assets/images/svg/partner/Untitled-1-06.svg";
-import PartnerSVG7 from "../../assets/images/svg/partner/Untitled-1-07.svg";
-import PartnerSVG8 from "../../assets/images/svg/partner/Untitled-1-08.svg";
-import PartnerSVG9 from "../../assets/images/svg/partner/Untitled-1-09.svg";
-import PartnerSVG10 from "../../assets/images/svg/partner/Untitled-1-10.svg";
-import PartnerSVG11 from "../../assets/images/svg/partner/Untitled-1-11.svg";
-import PartnerSVG12 from "../../assets/images/svg/partner/Untitled-1-12.svg";
-import PartnerSVG14 from "../../assets/images/svg/partner/Untitled-1-14.svg";
-// import PartnerSVG8 from "../../assets/images/svg/partner/Untitled-1-08.svg";
+import HomeVideo from "../../../assets/images/others/video-auto.mp4";
+import Carousel1 from "../../../assets/images/carousel/carousel-1.png";
+import Carousel2 from "../../../assets/images/carousel/carousel-2.png";
+import Carousel3 from "../../../assets/images/carousel/carousel-3.png";
+import Ramen from "../../../assets/images/others/ramen.png";
 
-import AccordionService from "../../components/accordion-service/accordion-service";
-import BrandScroll from "../../components/brand-scroll/brand-scroll";
+
+import AccordionService from "../../../components/accordion-service/accordion-service";
+import BrandScroll from "../../../components/brand-scroll/brand-scroll";
 
 const Home = () => {
    const services = [

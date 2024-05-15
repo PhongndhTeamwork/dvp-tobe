@@ -2,12 +2,12 @@ import "./contact.css";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ContactImage1 from "../../assets/images/contact/contact1.png";
-import ContactImage2 from "../../assets/images/contact/contact2.png";
-import OfficeBackground from "../../assets/images/others/office-bg.jpg";
-import ContactIcon1 from "../../assets/images/contact/contact_icon1.png";
-import ContactIcon2 from "../../assets/images/contact/contact_icon2.png";
-import ContactForm from "../../components/contact-form/contact-form";
+import ContactImage1 from "../../../assets/images/contact/contact1.png";
+import ContactImage2 from "../../../assets/images/contact/contact2.png";
+import OfficeBackground from "../../../assets/images/others/office-bg.jpg";
+import ContactIcon1 from "../../../assets/images/contact/contact_icon1.png";
+import ContactIcon2 from "../../../assets/images/contact/contact_icon2.png";
+import ContactForm from "../../../components/contact-form/contact-form";
 
 const Contact = () => {
    useEffect(() => {

@@ -174,7 +174,7 @@
    padding: 0 1.3125rem;
 }
 
-/* Responive */
+/* Responsive */
 @media (min-width: 576px) {
    .partners .wrapper {
       padding: 0 0.9375rem;

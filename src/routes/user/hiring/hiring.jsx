@@ -3,8 +3,8 @@ import { Fragment, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import HiringIluImage from "../../assets/images/others/hiring_ilu.png";
-import AccordionService from "../../components/accordion-service/accordion-service";
+import HiringIluImage from "../../../assets/images/others/hiring_ilu.png";
+import AccordionService from "../../../components/accordion-service/accordion-service";
 
 const Hiring = () => {
    const jobs = [

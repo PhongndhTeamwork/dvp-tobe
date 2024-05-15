@@ -2,21 +2,21 @@ import "./about.css";
 import { Fragment, useEffect, useRef } from "react";
 import { Image } from "react-bootstrap";
 import { useState } from "react";
-import AccordionService from "../../components/accordion-service/accordion-service";
-import BrandScroll from "../../components/brand-scroll/brand-scroll";
+import AccordionService from "../../../components/accordion-service/accordion-service";
+import BrandScroll from "../../../components/brand-scroll/brand-scroll";
 
-import ExOfficeImage from "../../assets/images/others/ex-office.jpg";
-import CultureImage1 from "../../assets/images/culture/culture1.png";
-import CultureImage2 from "../../assets/images/culture/culture2.png";
-import CultureImage3 from "../../assets/images/culture/culture3.png";
-import CultureImage4 from "../../assets/images/culture/culture4.png";
-import CultureImage5 from "../../assets/images/culture/culture5.png";
-import Avatar1 from "../../assets/images/avatar/1.png";
-import Avatar2 from "../../assets/images/avatar/2.png";
-import Avatar3 from "../../assets/images/avatar/3.png";
-import Avatar4 from "../../assets/images/avatar/4.png";
-import Avatar5 from "../../assets/images/avatar/5.png";
-import Avatar6 from "../../assets/images/avatar/6.png";
+import ExOfficeImage from "../../../assets/images/others/ex-office.jpg";
+import CultureImage1 from "../../../assets/images/culture/culture1.png";
+import CultureImage2 from "../../../assets/images/culture/culture2.png";
+import CultureImage3 from "../../../assets/images/culture/culture3.png";
+import CultureImage4 from "../../../assets/images/culture/culture4.png";
+import CultureImage5 from "../../../assets/images/culture/culture5.png";
+import Avatar1 from "../../../assets/images/avatar/1.png";
+import Avatar2 from "../../../assets/images/avatar/2.png";
+import Avatar3 from "../../../assets/images/avatar/3.png";
+import Avatar4 from "../../../assets/images/avatar/4.png";
+import Avatar5 from "../../../assets/images/avatar/5.png";
+import Avatar6 from "../../../assets/images/avatar/6.png";
 
 const About = () => {
    const staffs = [

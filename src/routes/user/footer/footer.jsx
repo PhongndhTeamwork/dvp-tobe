@@ -1,11 +1,21 @@
 import "./footer.css";
-import CopyrightIcon from "../../assets/images/svg/copyright.svg";
+import "../../../styles/animation.css";
+import "../../../styles/base.css";
+import "../../../styles/font.css";
+import "../../../styles/style.css";
+import "../../../styles/bootstrap.min.css";
+import CopyrightIcon from "../../../assets/images/svg/copyright.svg";
 import { Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
+   const location = useLocation();
+
    return (
-      <footer>
+      <footer
+         className="user-routes"
+         style={{ display: location.pathname.includes("admin") ? "none" : "" }}
+      >
          <footer className="footer">
             <div className="wrapper">
                <div className="wrapper-flex">
@@ -82,7 +92,9 @@ const Footer = () => {
 
          <div className="copyright">
             <Image src={CopyrightIcon} alt="Copyright" />
-            <h6 className="copyright__text" style={{marginBottom:"0"}}>Copyright by DVP media 2021</h6>
+            <h6 className="copyright__text mb-0" style={{ marginBottom: "0" }}>
+               Copyright by DVP media 2021
+            </h6>
          </div>
       </footer>
    );

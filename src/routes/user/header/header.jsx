@@ -1,8 +1,13 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./header.css";
+import "../../../styles/animation.css";
+import "../../../styles/base.css";
+import "../../../styles/font.css";
+import "../../../styles/style.css";
+import "../../../styles/bootstrap.min.css";
 import { Link, useLocation } from "react-router-dom";
 
-import MobileNavbar from "../../components/mobile-navbar/mobile-navbar";
+import MobileNavbar from "../../../components/mobile-navbar/mobile-navbar";
 
 const Header = () => {
    const [isHeaderActive, setIsHeaderActive] = useState(false);
@@ -40,7 +45,10 @@ const Header = () => {
    }, []);
 
    return (
-      <Fragment>
+      <div
+         className="user-routes"
+         style={{ display: location.pathname.includes("admin") ? "none" : "" }}
+      >
          <header className={isHeaderActive ? "active" : ""}>
             <div className="wrapper d-flex justify-content-center justify-content-md-between align-items-center">
                <Link to="/" className="header__logo">
@@ -64,7 +72,7 @@ const Header = () => {
             </div>
          </header>
          <MobileNavbar />
-      </Fragment>
+      </div>
    );
 };
 

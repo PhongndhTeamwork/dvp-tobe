@@ -3,8 +3,7 @@
    margin: 0;
    box-sizing: border-box;
 }
-
-:root {
+.user-routes {
    --main-yellow-color-0: rgba(240, 169, 0, 0);
    --main-yellow-color-30: rgba(240, 169, 0, 0.3);
    --main-yellow-color-50: rgba(240, 169, 0, 0.5);
