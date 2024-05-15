@@ -3,7 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import { Accordion, Carousel } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { MDBCarousel, MDBCarouselItem } from "mdb-react-ui-kit";
 
 const AccordionService = ({
    title,
@@ -33,28 +32,11 @@ const AccordionService = ({
       }, 100); // 100 milliseconds = 0.1 seconds
 
       return () => clearTimeout(timer); // Clear the timeout on component unmount
-   }, [isButtonActive, carouselWidth]);
+   }, [isButtonActive]);
 
    const toggleAccordionButton = () => {
       setIsButtonActive(!isButtonActive);
    };
-
-   // useEffect(() => {
-   //    const timer = setTimeout(() => {
-   //      if (carouselRef.current) {
-   //        const width = carouselRef.current.offsetWidth;
-   //        setCarouselWidth(
-   //          width < 700 ? width : width / 2
-   //        );
-   //      }
-   //    }, 100); // 100 milliseconds = 0.1 seconds
-
-   //    return () => clearTimeout(timer); // Clear the timeout on component unmount
-   //  }, [isButtonActive, carouselWidth]);
-
-   // const toggleAccordionButton = () => {
-   //    setIsButtonActive(!isButtonActive);
-   // };
 
    return (
       <div class="service">
@@ -104,14 +86,15 @@ const AccordionService = ({
                >
                   {hasCarousel ? (
                      <div
-                        className="accordion-body"
+                        className="accordion-body rectangle-100 rectangle-pc-50 wrapper-flex service__content"
                         style={{ paddingBottom: "2rem" }}
                      >
                         <div
+                           className="rectangle-100 rectangle-tab-50 py-0"
                            ref={carouselRef}
-                           style={{
-                              width: carouselWidth > 0 ? carouselWidth : "",
-                           }}
+                           // style={{
+                           //    width: carouselWidth > 0 ? carouselWidth : "",
+                           // }}
                         >
                            <Carousel interval={1000}>
                               {images.map((image, index) => {
@@ -129,19 +112,26 @@ const AccordionService = ({
                                  );
                               })}
                            </Carousel>
+                           {/* <Image
+                              className="d-block w-100"
+                              src={images[0]}
+                              alt="Slide"
+                           /> */}
                         </div>
 
                         {/* </div> */}
 
-                        <div className="service__content">
+                        <div className="rectangle-100 rectangle-tab-50 py-0 service__content-text cursor-default">
                            {contents.map((content, index) => {
                               return <h6 key={index}>{content}</h6>;
                            })}
                         </div>
                      </div>
                   ) : hasJob ? (
-                     <div class="accordion-collapse" id="collapse-service-3">
-                        <div class="accordion-body rectangle-100 w-100 wrapper-flex m-0 p-0">
+                     <div class="accordion-collapse" 
+                     style={{ width: "100%" }}
+                     >
+                        <div class="accordion-body rectangle-100 wrapper-flex m-0 p-0">
                            <div class="rectangle-100 rectangle-tab-50 service__content">
                               <h4 class="service__content-heading text-uppercase">
                                  Mô tả công việc

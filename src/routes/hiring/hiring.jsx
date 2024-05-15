@@ -65,7 +65,7 @@ const Hiring = () => {
             </div>
 
             <div class="banner__text">
-               <div class="d-flex justify-content-center align-items-center">
+               <div class="d-flex justify-content-center align-items-center flex-column flex-md-row">
                   <div class="text-stroke text-capitalize">We Are</div>
                   <div class="text-uppercase">Hiring</div>
                </div>

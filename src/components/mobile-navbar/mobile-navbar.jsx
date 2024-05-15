@@ -1,4 +1,4 @@
-import "./mobile-navbar.scss";
+import "./mobile-navbar.css";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
@@ -8,14 +8,6 @@ import MessageIcon from "../../assets/images/others/message-icon.png";
 import LinkIcon from "../../assets/images/others/link-icon.png";
 import PhoneIcon from "../../assets/images/others/phone-icon.png";
 
-import FacebookSVG from "../../assets/images/svg/social/facebook.svg";
-import FacebookGraySVG from "../../assets/images/svg/social/facebook-gray.svg";
-import InstagramSVG from "../../assets/images/svg/social/instagram.svg";
-import InstagramGraySVG from "../../assets/images/svg/social/instagram-gray.svg";
-import YoutubeSVG from "../../assets/images/svg/social/youtube.svg";
-import YoutubeGraySVG from "../../assets/images/svg/social/youtube-gray.svg";
-import ZaloSVG from "../../assets/images/svg/social/zalo.svg";
-import ZaloGraySVG from "../../assets/images/svg/social/zalo-gray.svg";
 import ContactForm from "../contact-form/contact-form";
 
 const MobileNavbar = () => {
@@ -26,7 +18,7 @@ const MobileNavbar = () => {
    const handleActivateItemIndex = (index) => {
       let currentItems = document.querySelectorAll(`.navbar__item`);
       let currentForms = document.querySelectorAll(`.navbar__form`);
-      if(index !== 0) {
+      if (index !== 0) {
          currentItems[0].classList.remove("active");
       }
       if (index !== activeItemIndex && activeItemIndex !== 0) {
@@ -123,7 +115,12 @@ const MobileNavbar = () => {
                <div className="navbar__item-text">Social</div>
             </div>
 
-            <div className="call navbar__form">
+            <div
+               className="call navbar__form"
+               onClick={() => {
+                  handleActivateItemIndex(0);
+               }}
+            >
                <Link to="" className="phone d-flex flex-column">
                   <Fragment>
                      <div className="label">
@@ -204,7 +201,12 @@ const MobileNavbar = () => {
                </Link>
             </div>
 
-            <div className="menu navbar__form d-flex justify-content-center align-items-center flex-column">
+            <div
+               className="menu navbar__form d-flex justify-content-center align-items-center flex-column"
+               onClick={() => {
+                  handleActivateItemIndex(0);
+               }}
+            >
                <Link to="/about" className="menu__link">
                   Giới thiệu
                </Link>
@@ -219,13 +221,23 @@ const MobileNavbar = () => {
                </Link>
             </div>
 
-            <div className="contact navbar__form">
+            <div
+               className="contact navbar__form"
+               // onClick={() => {
+               //    handleActivateItemIndex(0);
+               // }}
+            >
                <div className="rectangle-100 py-0">
                   <ContactForm />
                </div>
             </div>
 
-            <div className="social navbar__form d-flex flex-column">
+            <div
+               className="social navbar__form d-flex flex-column"
+               onClick={() => {
+                  handleActivateItemIndex(2);
+               }}
+            >
                <Link
                   to=""
                   className="d-flex align-items-center justify-content-start"

@@ -28,9 +28,6 @@ h6 {
    font-size: var(--fs-medium);
 }
 
-.carousel-item-start, .carousel-item-next {
-   width: initial!important;
-}
 
 .accordion {
    border-bottom: 0.125rem solid var(--main-black-color-100);
@@ -39,3 +36,4 @@ h6 {
 .accordion-item {
    border-bottom: none!important;
 }
+

@@ -42,12 +42,12 @@ const Header = () => {
    return (
       <Fragment>
          <header className={isHeaderActive ? "active" : ""}>
-            <div className="wrapper d-flex justify-content-between align-items-center">
+            <div className="wrapper d-flex justify-content-center justify-content-md-between align-items-center">
                <Link to="/" className="header__logo">
                   Logo
                </Link>
 
-               <ul className="header__nav d-flex justify-content-between align-items-center">
+               <ul className="header__nav d-none d-md-flex justify-content-between align-items-center">
                   <li className="header__nav-link">
                      <Link to="/about">Giới Thiệu</Link>
                   </li>
