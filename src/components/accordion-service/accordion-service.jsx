@@ -86,7 +86,7 @@ const AccordionService = ({
                >
                   {hasCarousel ? (
                      <div
-                        className="accordion-body rectangle-100 rectangle-pc-50 wrapper-flex service__content"
+                        className="accordion-body rectangle-100 rectangle-pc-50 wrapper-flex service__content max-width-none"
                         style={{ paddingBottom: "2rem" }}
                      >
                         <div

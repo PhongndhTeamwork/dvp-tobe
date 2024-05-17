@@ -91,166 +91,163 @@ const BrandScroll = ({ homePage }) => {
                "important"
             );
 
-            images[1]?.style.setProperty(
-               "margin-top",
-               "1.875rem",
-               "important"
-            );
+            images[1]?.style.setProperty("margin-top", "1.875rem", "important");
          });
       }
    }, [homePage]);
 
-
    return (
-      <div
-         className="scroll-wrapper"
-         ref={scrollWrapperRef}
-         onMouseDown={(e) => handleMouseDown(e)}
-         onMouseUp={(e) => handleMouseUp(e)}
-         onMouseLeave={(e) => handleMouseLeave(e)}
-         onMouseMove={(e) => handleMouseMove(e)}
-      >
+      <div className={homePage ? "" : "wrapper partners__content"}>
          <div
-            className="scroll-wrapper__content align-items-start"
-            ref={scrollWrapperContentRef}
+            className="scroll-wrapper"
+            ref={scrollWrapperRef}
+            onMouseDown={(e) => handleMouseDown(e)}
+            onMouseUp={(e) => handleMouseUp(e)}
+            onMouseLeave={(e) => handleMouseLeave(e)}
+            onMouseMove={(e) => handleMouseMove(e)}
          >
             <div
-               className={`scroll-wrapper__content-item d-flex ${
-                  !homePage ? "flex-column" : ""
-               }`}
+               className="scroll-wrapper__content align-items-start"
+               ref={scrollWrapperContentRef}
             >
-               <Image
-                  src={PartnerSVG1}
-                  alt="partner-01"
-                  style={{
-                     marginBottom: homePage ? "0" : `1.875rem`,
-                  }}
-               />
+               <div
+                  className={`scroll-wrapper__content-item d-flex ${
+                     !homePage ? "flex-column" : ""
+                  }`}
+               >
+                  <Image
+                     src={PartnerSVG1}
+                     alt="partner-01"
+                     style={{
+                        marginBottom: homePage ? "0" : `1.875rem`,
+                     }}
+                  />
 
-               <Image
-                  src={PartnerSVG2}
-                  alt="partner-02"
-                  style={{ marginTop: homePage ? "0" : "1.875rem" }}
-               />
-            </div>
-            <div
-               className={`scroll-wrapper__content-item d-flex ${
-                  !homePage ? "flex-column" : ""
-               }`}
-            >
-               <Image
-                  src={PartnerSVG3}
-                  alt="partner-03"
-                  style={{
-                     marginBottom: homePage ? "0" : "1.875rem",
-                  }}
-               />
+                  <Image
+                     src={PartnerSVG2}
+                     alt="partner-02"
+                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
+                  />
+               </div>
+               <div
+                  className={`scroll-wrapper__content-item d-flex ${
+                     !homePage ? "flex-column" : ""
+                  }`}
+               >
+                  <Image
+                     src={PartnerSVG3}
+                     alt="partner-03"
+                     style={{
+                        marginBottom: homePage ? "0" : "1.875rem",
+                     }}
+                  />
 
-               <Image
-                  src={PartnerSVG4}
-                  alt="partner-04"
-                  style={{ marginTop: homePage ? "0" : "1.875rem" }}
-               />
+                  <Image
+                     src={PartnerSVG4}
+                     alt="partner-04"
+                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
+                  />
+               </div>
+               <div
+                  className={`scroll-wrapper__content-item d-flex ${
+                     !homePage ? "flex-column" : ""
+                  }`}
+               >
+                  <Image
+                     src={PartnerSVG5}
+                     alt="partner-05"
+                     style={{
+                        marginBottom: homePage ? "0" : "1.875rem",
+                     }}
+                  />
+                  <Image
+                     src={PartnerSVG6}
+                     alt="partner-06"
+                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
+                  />
+               </div>
+               <div
+                  className={`scroll-wrapper__content-item d-flex ${
+                     !homePage ? "flex-column" : ""
+                  }`}
+               >
+                  <Image
+                     src={PartnerSVG7}
+                     alt="partner-07"
+                     style={{
+                        marginBottom: homePage ? "0" : "1.875rem",
+                     }}
+                  />
+                  <Image
+                     src={PartnerSVG8}
+                     alt="partner-08"
+                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
+                  />
+               </div>
+               <div
+                  className={`scroll-wrapper__content-item d-flex ${
+                     !homePage ? "flex-column" : ""
+                  }`}
+               >
+                  <Image
+                     src={PartnerSVG9}
+                     alt="partner-09"
+                     style={{
+                        marginBottom: homePage ? "0" : "1.875rem",
+                     }}
+                  />
+                  <Image
+                     src={PartnerSVG10}
+                     alt="partner-10"
+                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
+                  />
+               </div>
+               <div
+                  className={`scroll-wrapper__content-item d-flex ${
+                     !homePage ? "flex-column" : ""
+                  }`}
+               >
+                  <Image
+                     src={PartnerSVG11}
+                     alt="partner-11"
+                     style={{
+                        marginBottom: homePage ? "0" : "1.875rem",
+                     }}
+                  />
+                  <Image
+                     src={PartnerSVG12}
+                     alt="partner-12"
+                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
+                  />
+               </div>
+               <div
+                  className={`scroll-wrapper__content-item d-flex ${
+                     !homePage ? "flex-column" : ""
+                  }`}
+               >
+                  <Image
+                     src={PartnerSVG14}
+                     alt="partner-14"
+                     style={{
+                        marginBottom: homePage ? "0" : "1.875rem",
+                     }}
+                  />
+               </div>
             </div>
-            <div
-               className={`scroll-wrapper__content-item d-flex ${
-                  !homePage ? "flex-column" : ""
-               }`}
-            >
-               <Image
-                  src={PartnerSVG5}
-                  alt="partner-05"
-                  style={{
-                     marginBottom: homePage ? "0" : "1.875rem",
+            <div className="dots">
+               <div
+                  className={`dot ${activeDot === 0 ? "active" : ""}`}
+                  onClick={() => {
+                     handleActivateDot(0);
                   }}
-               />
-               <Image
-                  src={PartnerSVG6}
-                  alt="partner-06"
-                  style={{ marginTop: homePage ? "0" : "1.875rem" }}
-               />
-            </div>
-            <div
-               className={`scroll-wrapper__content-item d-flex ${
-                  !homePage ? "flex-column" : ""
-               }`}
-            >
-               <Image
-                  src={PartnerSVG7}
-                  alt="partner-07"
-                  style={{
-                     marginBottom: homePage ? "0" : "1.875rem",
+               ></div>
+               <div
+                  className={`dot ${activeDot === 1 ? "active" : ""}`}
+                  onClick={() => {
+                     handleActivateDot(1);
                   }}
-               />
-               <Image
-                  src={PartnerSVG8}
-                  alt="partner-08"
-                  style={{ marginTop: homePage ? "0" : "1.875rem" }}
-               />
+               ></div>
             </div>
-            <div
-               className={`scroll-wrapper__content-item d-flex ${
-                  !homePage ? "flex-column" : ""
-               }`}
-            >
-               <Image
-                  src={PartnerSVG9}
-                  alt="partner-09"
-                  style={{
-                     marginBottom: homePage ? "0" : "1.875rem",
-                  }}
-               />
-               <Image
-                  src={PartnerSVG10}
-                  alt="partner-10"
-                  style={{ marginTop: homePage ? "0" : "1.875rem" }}
-               />
-            </div>
-            <div
-               className={`scroll-wrapper__content-item d-flex ${
-                  !homePage ? "flex-column" : ""
-               }`}
-            >
-               <Image
-                  src={PartnerSVG11}
-                  alt="partner-11"
-                  style={{
-                     marginBottom: homePage ? "0" : "1.875rem",
-                  }}
-               />
-               <Image
-                  src={PartnerSVG12}
-                  alt="partner-12"
-                  style={{ marginTop: homePage ? "0" : "1.875rem" }}
-               />
-            </div>
-            <div
-               className={`scroll-wrapper__content-item d-flex ${
-                  !homePage ? "flex-column" : ""
-               }`}
-            >
-               <Image
-                  src={PartnerSVG14}
-                  alt="partner-14"
-                  style={{
-                     marginBottom: homePage ? "0" : "1.875rem",
-                  }}
-               />
-            </div>
-         </div>
-         <div className="dots">
-            <div
-               className={`dot ${activeDot === 0 ? "active" : ""}`}
-               onClick={() => {
-                  handleActivateDot(0);
-               }}
-            ></div>
-            <div
-               className={`dot ${activeDot === 1 ? "active" : ""}`}
-               onClick={() => {
-                  handleActivateDot(1);
-               }}
-            ></div>
          </div>
       </div>
    );

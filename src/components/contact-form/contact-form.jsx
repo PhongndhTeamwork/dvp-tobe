@@ -27,7 +27,7 @@ const ContactForm = () => {
    ];
 
    const [isServiceCategoryRevealed, setIsServiceCategoryRevealed] =
-      useState(true);
+      useState(false);
    const [categoryValue, setCategoryValue] = useState("");
 
    const serviceCategoryRef = useRef(null);
@@ -35,7 +35,7 @@ const ContactForm = () => {
    const toggleServiceCategory = (e) => {
       setIsServiceCategoryRevealed(!isServiceCategoryRevealed);
 
-      if (isServiceCategoryRevealed) {
+      if (!isServiceCategoryRevealed) {
          serviceCategoryRef.current.style.display = "block";
          setTimeout(() => {
             serviceCategoryRef.current.classList.add("active");

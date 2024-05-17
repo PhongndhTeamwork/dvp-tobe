@@ -22,29 +22,29 @@ const Cataloge = () => {
    return (
       <Fragment>
          {/* <!-- Project --> */}
-         <div class="wrapper wrapper-top wrapper-bottom project">
-            <div class="wrapper__header">
-               <h4 class="wrapper__header-sub--heading text-uppercase">
+         <div className="wrapper wrapper-top wrapper-bottom project">
+            <div className="wrapper__header">
+               <h4 className="wrapper__header-sub--heading text-uppercase">
                   Web design project
                </h4>
-               <h1 class="wrapper__header-heading">
+               <h1 className="wrapper__header-heading">
                   Dự án xây dựng website <br /> BUMN INDO
                </h1>
-               <h4 class="project__sub-heading">
-                  Web design<span class="line"></span>2024
+               <h4 className="project__sub-heading">
+                  Web design<span className="line"></span>2024
                </h4>
             </div>
 
-            <div class="wrapper-flex">
-               <Image class="img-1 rectangle-100" src={Cataloge1} alt="" />
+            <div className="wrapper-flex">
+               <Image className="img-1 rectangle-100" src={Cataloge1} alt="" />
             </div>
 
-            <div class="wrapper-flex project__des">
-               <div class="rectangle-100 project__des-title">
+            <div className="wrapper-flex project__des">
+               <div className="rectangle-100 project__des-title">
                   Almost before...
                </div>
 
-               <div class="rectangle-100 rectangle-tab-50 project__des-text">
+               <div className="rectangle-100 rectangle-tab-50 project__des-text">
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
                   standard dummy text ever since the 1500s, when an unknown
@@ -52,7 +52,7 @@ const Cataloge = () => {
                   specimen book.
                </div>
 
-               <div class="rectangle-100 rectangle-tab-50 project__des-text">
+               <div className="rectangle-100 rectangle-tab-50 project__des-text">
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
                   standard dummy text ever since the 1500s, when an unknown
@@ -61,28 +61,28 @@ const Cataloge = () => {
                </div>
             </div>
 
-            <div class="wrapper-flex">
-               <div class="rectangle-100">
-                  <Image class="w-100 img-1" src={Cataloge2} alt="" />
+            <div className="wrapper-flex">
+               <div className="rectangle-100">
+                  <Image className="w-100 img-1" src={Cataloge2} alt="" />
                </div>
-               <div class="rectangle-100 rectangle-tab-50">
-                  <Image class="w-100 img-2" src={Cataloge3} alt="" />
+               <div className="rectangle-100 rectangle-tab-50">
+                  <Image className="w-100 img-2" src={Cataloge3} alt="" />
                </div>
-               <div class="rectangle-100 rectangle-tab-50">
-                  <Image class="w-100 img-2" src={Cataloge4} alt="" />
+               <div className="rectangle-100 rectangle-tab-50">
+                  <Image className="w-100 img-2" src={Cataloge4} alt="" />
                </div>
-               <div class="rectangle-100">
-                  <Image class="w-100 img-1" src={Cataloge5} alt="" />
+               <div className="rectangle-100">
+                  <Image className="w-100 img-1" src={Cataloge5} alt="" />
                </div>
-               <div class="rectangle-100 rectangle-tab-50">
-                  <Image class="w-100 img-3" src={Cataloge6} alt="" />
+               <div className="rectangle-100 rectangle-tab-50">
+                  <Image className="w-100 img-3" src={Cataloge6} alt="" />
                </div>
-               <div class="rectangle-100 rectangle-tab-50 wrapper-flex m-0 p-0">
-                  <div class="rectangle-100">
-                     <Image class="w-100 img-2" src={Cataloge3} alt="" />
+               <div className="rectangle-100 rectangle-tab-50 wrapper-flex m-0 p-0">
+                  <div className="rectangle-100">
+                     <Image className="w-100 img-2" src={Cataloge3} alt="" />
                   </div>
-                  <div class="rectangle-100">
-                     <Image class="w-100 img-2" src={Cataloge4} alt="" />
+                  <div className="rectangle-100">
+                     <Image className="w-100 img-2" src={Cataloge4} alt="" />
                   </div>
                </div>
             </div>
@@ -90,35 +90,38 @@ const Cataloge = () => {
          {/* <!-- End: Project --> */}
 
          {/* <!-- Project info --> */}
-         <div class="wrapper wrapper-top wrapper-bottom project-info">
-            <div class="wrapper-flex">
-               <div class="rectangle-100 rectangle-pc-33">
-                  <h2 class="project-info__heading">Thông tin dự án</h2>
+         <div className="wrapper wrapper-top wrapper-bottom project-info">
+            <div className="wrapper-flex">
+               <div className="rectangle-100 rectangle-pc-33">
+                  <h2 className="project-info__heading">Thông tin dự án</h2>
                </div>
 
-               <div class="rectangle-100 rectangle-tab-50 rectangle-pc-33">
-                  <div class="project__info-customer">
-                     <h6 class="title">Khách hàng</h6>
-                     <h4 class="name text-uppercase">BUMN INDO</h4>
+               <div className="rectangle-100 rectangle-tab-50 rectangle-pc-33">
+                  <div className="project__info-customer">
+                     <h6 className="title">Khách hàng</h6>
+                     <h4 className="name text-uppercase">BUMN INDO</h4>
                   </div>
-                  <div class="project__info-category">
-                     <h6 class="title">Thể loại</h6>
-                     <h4 class="name text-uppercase">Web design</h4>
+                  <div className="project__info-category">
+                     <h6 className="title">Thể loại</h6>
+                     <h4 className="name text-uppercase">Web design</h4>
                   </div>
                </div>
 
-               <div class="rectangle-100 rectangle-tab-50 rectangle-pc-33">
-                  <div class="project__info-date">
-                     <h6 class="title">Năm hoàn thành</h6>
-                     <h4 class="name text-uppercase" id="project-complete-date">
+               <div className="rectangle-100 rectangle-tab-50 rectangle-pc-33">
+                  <div className="project__info-date">
+                     <h6 className="title">Năm hoàn thành</h6>
+                     <h4
+                        className="name text-uppercase"
+                        id="project-complete-date"
+                     >
                         01/01/2024
                      </h4>
                   </div>
-                  <div class="project__info-more">
-                     <h6 class="title">Xem thêm tại</h6>
-                     <Link to="" class="name text-uppercase project-link">
+                  <div className="project__info-more">
+                     <h6 className="title">Xem thêm tại</h6>
+                     <Link to="" className="name text-uppercase project-link">
                         BUMNINDO.COM{" "}
-                        <i class="fa-solid fa-arrow-right-long"></i>
+                        <i className="fa-solid fa-arrow-right-long"></i>
                      </Link>
                   </div>
                </div>
@@ -126,13 +129,13 @@ const Cataloge = () => {
          </div>
          {/* <!-- End: Project info --> */}
 
-         <div class="suggestion wrapper">
-            <div class="suggestion__header">
-               <div class="suggestion__header-heading">Các dự án khác</div>
+         <div className="suggestion wrapper">
+            <div className="suggestion__header">
+               <div className="suggestion__header-heading">Các dự án khác</div>
 
-               <div class="suggestion__header-control d-flex">
+               <div className="suggestion__header-control d-flex">
                   <button
-                     class="button-pre"
+                     className="button-pre"
                      type="button"
                      data-bs-target="#suggestion-project"
                      data-bs-slide="prev"
@@ -153,7 +156,7 @@ const Cataloge = () => {
                      </svg>
                   </button>
                   <button
-                     class="button-next"
+                     className="button-next"
                      type="button"
                      data-bs-target="#suggestion-project"
                      data-bs-slide="next"
@@ -172,166 +175,166 @@ const Cataloge = () => {
                </div>
             </div>
 
-            <div class="suggestion__content">
-               <div id="suggestion-project" class="carousel slide">
-                  <div class="carousel-inner">
-                     <div class="carousel-item active">
-                        <div class="wrapper-flex">
-                           <a
-                              class="rectangle-100 rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                              href="./cataloge.html"
+            <div className="suggestion__content">
+               <div id="suggestion-project" className="carousel slide">
+                  <div className="carousel-inner">
+                     <div className="carousel-item active">
+                        <div className="wrapper-flex">
+                           <Link
+                              className="rectangle-100 rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
+                              href="/cataloge"
                            >
-                              <div class="project__img">
+                              <div className="project__img">
                                  <Image
                                     src={CatalogeProjectImage1}
                                     alt="black and white image"
                                  />
                               </div>
 
-                              <div class="project__des">
-                                 <div class="project__des-text">
+                              <div className="project__des">
+                                 <div className="project__des-text">
                                     Lorem Ipsum dolor sit amet, Lorem Ipsum
                                     dolor sit amet, ipsum
                                  </div>
 
-                                 <div class="project__des-icon">
-                                    <div class="arrow-right-translate">
-                                       <div class="arrow-right-translate__line"></div>
-                                       <div class="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                                 <div className="project__des-icon">
+                                    <div className="arrow-right-translate">
+                                       <div className="arrow-right-translate__line"></div>
+                                       <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
                                     </div>
                                  </div>
                               </div>
-                           </a>
+                           </Link>
 
-                           <a
-                              class="rectangle-0 rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                              href="./cataloge.html"
+                           <Link
+                              className="rectangle-0 rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
+                              href="/cataloge"
                            >
-                              <div class="project__img">
+                              <div className="project__img">
                                  <Image
                                     src={CatalogeProjectImage2}
                                     alt="black and white image"
                                  />
                               </div>
 
-                              <div class="project__des">
-                                 <div class="project__des-text">
+                              <div className="project__des">
+                                 <div className="project__des-text">
                                     Lorem Ipsum dolor sit amet, Lorem Ipsum
                                     dolor sit amet, ipsum
                                  </div>
 
-                                 <div class="project__des-icon">
-                                    <div class="arrow-right-translate">
-                                       <div class="arrow-right-translate__line"></div>
-                                       <div class="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                                 <div className="project__des-icon">
+                                    <div className="arrow-right-translate">
+                                       <div className="arrow-right-translate__line"></div>
+                                       <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
                                     </div>
                                  </div>
                               </div>
-                           </a>
+                           </Link>
 
-                           <a
-                              class="rectangle-0 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                              href="./cataloge.html"
+                           <Link
+                              className="rectangle-0 rectangle-pc-25 project arrow-right-translate-hover d-block"
+                              href="/cataloge"
                            >
-                              <div class="project__img">
+                              <div className="project__img">
                                  <Image
                                     src={CatalogeProjectImage3}
                                     alt="black and white image"
                                  />
                               </div>
 
-                              <div class="project__des">
-                                 <div class="project__des-text">
+                              <div className="project__des">
+                                 <div className="project__des-text">
                                     Lorem Ipsum dolor sit amet, Lorem Ipsum
                                     dolor sit amet, ipsum
                                  </div>
 
-                                 <div class="project__des-icon">
-                                    <div class="arrow-right-translate">
-                                       <div class="arrow-right-translate__line"></div>
-                                       <div class="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                                 <div className="project__des-icon">
+                                    <div className="arrow-right-translate">
+                                       <div className="arrow-right-translate__line"></div>
+                                       <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
                                     </div>
                                  </div>
                               </div>
-                           </a>
+                           </Link>
 
-                           <a
-                              class="rectangle-0 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                              href="./cataloge.html"
+                           <Link
+                              className="rectangle-0 rectangle-pc-25 project arrow-right-translate-hover d-block"
+                              href="/cataloge"
                            >
-                              <div class="project__img">
+                              <div className="project__img">
                                  <Image
                                     src={CatalogeProjectImage4}
                                     alt="black and white image"
                                  />
                               </div>
 
-                              <div class="project__des">
-                                 <div class="project__des-text">
+                              <div className="project__des">
+                                 <div className="project__des-text">
                                     Lorem Ipsum dolor sit amet, Lorem Ipsum
                                     dolor sit amet, ipsum
                                  </div>
 
-                                 <div class="project__des-icon">
-                                    <div class="arrow-right-translate">
-                                       <div class="arrow-right-translate__line"></div>
-                                       <div class="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                                 <div className="project__des-icon">
+                                    <div className="arrow-right-translate">
+                                       <div className="arrow-right-translate__line"></div>
+                                       <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
                                     </div>
                                  </div>
                               </div>
-                           </a>
+                           </Link>
                         </div>
                      </div>
 
-                     <div class="carousel-item">
-                        <div class="wrapper-flex">
+                     <div className="carousel-item">
+                        <div className="wrapper-flex">
                            <a
-                              class="rectangle-100 rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                              href="./cataloge.html"
+                              className="rectangle-100 rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
+                              href="/cataloge"
                            >
-                              <div class="project__img">
+                              <div className="project__img">
                                  <Image
                                     src={CatalogeProjectImage5}
                                     alt="black and white image"
                                  />
                               </div>
 
-                              <div class="project__des">
-                                 <div class="project__des-text">
+                              <div className="project__des">
+                                 <div className="project__des-text">
                                     Lorem Ipsum dolor sit amet, Lorem Ipsum
                                     dolor sit amet, ipsum
                                  </div>
 
-                                 <div class="project__des-icon">
-                                    <div class="arrow-right-translate">
-                                       <div class="arrow-right-translate__line"></div>
-                                       <div class="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                                 <div className="project__des-icon">
+                                    <div className="arrow-right-translate">
+                                       <div className="arrow-right-translate__line"></div>
+                                       <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
                                     </div>
                                  </div>
                               </div>
                            </a>
 
                            <a
-                              class="rectangle-0 rectangle-tab-50 rectangle-pc-25 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                              href="./cataloge.html"
+                              className="rectangle-0 rectangle-tab-50 rectangle-pc-25 rectangle-pc-25 project arrow-right-translate-hover d-block"
+                              href="/cataloge"
                            >
-                              <div class="project__img">
+                              <div className="project__img">
                                  <Image
                                     src={RamenImage}
                                     alt="black and white image"
                                  />
                               </div>
 
-                              <div class="project__des">
-                                 <div class="project__des-text">
+                              <div className="project__des">
+                                 <div className="project__des-text">
                                     Lorem Ipsum dolor sit amet, Lorem Ipsum
                                     dolor sit amet, ipsum
                                  </div>
 
-                                 <div class="project__des-icon">
-                                    <div class="arrow-right-translate">
-                                       <div class="arrow-right-translate__line"></div>
-                                       <div class="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                                 <div className="project__des-icon">
+                                    <div className="arrow-right-translate">
+                                       <div className="arrow-right-translate__line"></div>
+                                       <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
                                     </div>
                                  </div>
                               </div>

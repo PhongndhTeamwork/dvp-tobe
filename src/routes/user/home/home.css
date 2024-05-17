@@ -9,6 +9,11 @@
    order: -1;
 }
 
+.banner .banner__text-padding {
+   padding-left: 7rem;
+}
+
+
 /* Video autoplay */
 .reels {
    width: 100%;
@@ -71,7 +76,7 @@
    margin: 0 auto;
    padding: 0;
    padding-bottom: 2rem;
-   /* max-width: 100%; */
+   max-width: 100%;
 }
 
 .expertise .service .service__content-text {
@@ -174,7 +179,7 @@
    padding: 0 1.3125rem;
 }
 
-/* Responsive */
+/* Responive */
 @media (min-width: 576px) {
    .partners .wrapper {
       padding: 0 0.9375rem;
@@ -198,10 +203,6 @@
 
    .banner .banner__text .banner__text-bot .text-stroke {
       order: 1;
-   }
-
-   .banner .banner__text .banner__text-bot.banner__text-padding {
-      padding-left: 7rem;
    }
 
    .story .story__content .label {
@@ -292,10 +293,6 @@
       .scroll-wrapper__content-item:last-child
       img:last-child {
       margin-right: 0 !important;
-   }
-
-   .banner .banner__text .banner__text-bot.banner__text-padding {
-      padding-left: 7rem;
    }
 }
 

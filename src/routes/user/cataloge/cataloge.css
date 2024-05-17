@@ -1,4 +1,3 @@
-
 /* Project */
 .project.wrapper {
    margin-top: 6.875rem;
@@ -18,7 +17,7 @@
 
 .project .project__sub-heading {
    margin-top: 1.5rem;
-   font-family: 'Gilroy-SemiBold';
+   font-family: "Gilroy-SemiBold";
    font-size: var(--fs-normal);
    line-height: 1.25rem;
    color: var(--main-black-color-100);
@@ -41,14 +40,14 @@
 }
 
 .project .project__des .project__des-title {
-   font-family: 'Gilroy-SemiBold';
+   font-family: "Gilroy-SemiBold";
    font-size: var(--fs-xsmall);
    line-height: 1.125rem;
    color: var(--main-black-color-100);
 }
 
 .project .project__des .project__des-text {
-   font-family: 'Gilroy-Regular';
+   font-family: "Gilroy-Regular";
    font-size: var(--fs-xsmall);
    line-height: 1;
    color: var(--sub-heading-color);
@@ -61,7 +60,7 @@
 /* Project info */
 .project-info .project-info__heading {
    padding: 0.5rem;
-   font-family: 'Gilroy-Bold';
+   font-family: "Gilroy-Bold";
    font-size: var(--fs-xbold);
    line-height: 3.5625rem;
    color: var(--main-black-color-100);
@@ -80,7 +79,7 @@
 }
 
 .project-info .title {
-   font-family: 'Gilroy-Regular';
+   font-family: "Gilroy-Regular";
    font-size: var(--fs-small);
    line-height: 1.5rem;
    color: var(--main-black-color-100);
@@ -88,7 +87,7 @@
 }
 
 .project-info .name {
-   font-family: 'Gilroy-SemiBold';
+   font-family: "Gilroy-SemiBold";
    font-size: var(--fs-bold);
    line-height: 2.25rem;
    color: var(--main-black-color-100);
@@ -130,7 +129,7 @@
 }
 
 .suggestion .suggestion__header .suggestion__header-heading {
-   font-family: 'Gilroy-SemiBold';
+   font-family: "Gilroy-SemiBold";
    font-size: var(--fs-bold);
    line-height: 2rem;
    color: var(--main-black-color-100);
@@ -190,7 +189,7 @@
 
 .suggestion .suggestion__content .project .project__des-text {
    flex: 1;
-   font-family: 'Gilroy-SemiBold';
+   font-family: "Gilroy-SemiBold";
    font-size: var(--fs-bold);
    line-height: 2.25rem;
    color: var(--main-black-color-100);
@@ -217,82 +216,89 @@
    height: 100%;
 }
 
-.suggestion .suggestion__content .project .arrow-right-translate .arrow-right-translate__line {
+.suggestion
+   .suggestion__content
+   .project
+   .arrow-right-translate
+   .arrow-right-translate__line {
    background-color: var(--main-black-color-100);
 }
 
-.suggestion .suggestion__content .project .arrow-right-translate .arrow-right-translate__right {
+.suggestion
+   .suggestion__content
+   .project
+   .arrow-right-translate
+   .arrow-right-translate__right {
    color: var(--main-black-color-100);
 }
 
 /* Responive */
 @media (min-width: 576px) {
-   
 }
 
 @media (min-width: 768px) {
    .project.wrapper {
-       margin-top: 15rem;
+      margin-top: 15rem;
    }
 
    .project .project__sub-heading {
-       font-size: var(--fs-bold);
-       line-height: 2.25rem;
+      font-size: var(--fs-bold);
+      line-height: 2.25rem;
    }
-   
+
    .project .project__sub-heading .line {
-       width: 12.5rem;
+      width: 12.5rem;
    }
 
    .project .project__des {
-       margin-top: 5rem;
-       margin-bottom: 5rem;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
    }
 
    .project .project__des .project__des-title {
-       margin-bottom: 1.5rem;
-       font-family: 'Gilroy-SemiBold';
-       font-size: var(--fs-bold);
-       line-height: 2.25rem;
+      margin-bottom: 1.5rem;
+      font-family: "Gilroy-SemiBold";
+      font-size: var(--fs-bold);
+      line-height: 2.25rem;
    }
-   
+
    .project .project__des .project__des-text {
-       font-family: 'Gilroy-Regular';
-       font-size: var(--fs-medium);
-       line-height: 1.875rem;
+      font-family: "Gilroy-Regular";
+      font-size: var(--fs-medium);
+      line-height: 1.875rem;
    }
 
    .project .project__des .project__des-text.project__des-top {
-       padding: 0.9375rem;
+      padding: 0.9375rem;
    }
 
    .suggestion .suggestion__header {
-       padding-left: 0.5rem;
+      padding-left: 0.5rem;
    }
 
    .suggestion .suggestion__header .suggestion__header-heading {
-       font-family: 'Gilroy-Bold';
-       font-size: var(--fs-xbold);
-       line-height: 3.5625rem;
+      font-family: "Gilroy-Bold";
+      font-size: var(--fs-xbold);
+      line-height: 3.5625rem;
    }
 
-   .suggestion .suggestion__header .suggestion__header-control button.button-next {
-       padding-right: 1rem;
+   .suggestion
+      .suggestion__header
+      .suggestion__header-control
+      button.button-next {
+      padding-right: 1rem;
    }
 
    .suggestion .suggestion__content .project .project__des {
-       padding: 0 0.5rem;
+      padding: 0 0.5rem;
    }
 }
 
 @media (min-width: 900px) {
-   
 }
 
 @media (min-width: 1200px) {
-   
 }
 
 @media (min-width: 1778px) {
-   
 }
