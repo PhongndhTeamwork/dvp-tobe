@@ -10,7 +10,7 @@ import Carousel1 from "../../../assets/images/carousel/carousel-1.png";
 import Carousel2 from "../../../assets/images/carousel/carousel-2.png";
 import Carousel3 from "../../../assets/images/carousel/carousel-3.png";
 import Ramen from "../../../assets/images/others/ramen.png";
-
+import axios from "axios";
 
 import AccordionService from "../../../components/accordion-service/accordion-service";
 import BrandScroll from "../../../components/brand-scroll/brand-scroll";
@@ -76,9 +76,80 @@ const Home = () => {
       { image: Ramen, description: "Lorem Ipsum dolor sit amet, text" },
    ];
 
-   const dispatch = useDispatch();
-   const userLogin = useSelector((state) => state.userLogin);
-   const { userInfo } = userLogin;
+   //? Banner
+   const [firstTextUppercase, setFirstTextUppercase] = useState("");
+   const [secondTextUppercase, setSecondTextUppercase] = useState("");
+   const [firstTextStroke, setFirstTextStroke] = useState("");
+   const [secondTextStroke, setSecondTextStroke] = useState("");
+
+   //? Story
+   const [storyTitle, setStoryTitle] = useState("");
+   const [storySubtitle, setStorySubtitle] = useState("");
+   const [firstStoryText, setFirstStoryText] = useState("");
+   const [secondStoryText, setSecondStoryText] = useState("");
+   const [thirdStoryText, setThirdStoryText] = useState("");
+
+   //? Service
+   const [serviceItems, setServiceItems] = useState([]);
+
+   //? Project
+   const [projects, setProjects] = useState([]);
+
+
+   useEffect(() => {
+      axios
+         .get("/api/home/banner")
+         .then((data) => {
+            setFirstTextUppercase(data.banner.textuppercase1);
+            setSecondTextUppercase(data.banner.textuppercase2);
+            setFirstTextStroke(data.banner.textstroke1);
+            setSecondTextStroke(data.banner.textstroke2);
+         })
+         .catch((error) => {
+            // throw new Error(error);
+         });
+   }, []);
+
+   useEffect(() => {
+      axios
+         .get("/api/home/story-home")
+         .then((data) => {
+            setStoryTitle(data.story.title);
+            setStorySubtitle(data.story.subtitle);
+            setFirstStoryText(data.story.text1);
+            setSecondStoryText(data.story.text2);
+            setThirdStoryText(data.story.text3);
+         })
+         .catch((error) => {
+            // throw new Error(error);
+         });
+   }, []);
+
+   useEffect(() => {
+      axios
+         .get("/api/home/service-home")
+         .then((data) => {
+            setServiceItems(data.listServiceHomes);
+         })
+         .catch((error) => {
+            // throw new Error(error);
+         });
+   }, []);
+
+   useEffect(() => {
+      axios
+         .get("/api/home/project-home")
+         .then((data) => {
+            setServiceItems(data.listServiceHomes);
+         })
+         .catch((error) => {
+            // throw new Error(error);
+         });
+   }, []);
+
+   // const dispatch = useDispatch();
+   // const userLogin = useSelector((state) => state.userLogin);
+   // const { userInfo } = userLogin;
 
    //?Effect
    const videoRef = useRef(null);
@@ -115,16 +186,17 @@ const Home = () => {
       setIsMuted(!isMuted);
    };
 
-   const handleLogin = () => {
-      console.log("LOGIN");
-      dispatch(login({}));
-   };
-   const handleGetUser = () => {
-      console.log(userLogin);
-   };
+   // const handleLogin = () => {
+   //    console.log("LOGIN");
+   //    dispatch(login({}));
+   // };
+   // const handleGetUser = () => {
+   //    console.log(userLogin);
+   // };
 
    return (
       <Fragment>
+         {/* <!-- Banner --> */}
          <div className="banner" ref={bannerRef}>
             <div className="banner__bg">
                <div className="banner__bg-eclipse1"></div>
@@ -138,10 +210,7 @@ const Home = () => {
                   <div className="text-uppercase cursor-default">Style</div>
                </div>
 
-               <div
-                  className="banner__text-bot banner__text-padding d-flex justify-content-center pe-0"
-                  
-               >
+               <div className="banner__text-bot banner__text-padding d-flex justify-content-center pe-0">
                   <div className="text-uppercase">Design</div>
                   <div className="text-stroke">Creative</div>
                </div>

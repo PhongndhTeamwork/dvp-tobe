@@ -9,11 +9,6 @@
    order: -1;
 }
 
-.banner .banner__text-padding {
-   padding-left: 7rem;
-}
-
-
 /* Video autoplay */
 .reels {
    width: 100%;
@@ -274,6 +269,9 @@
 }
 
 @media (min-width: 1200px) {
+   .banner .banner__text-padding {
+      padding-left: 7rem;
+   }
    .partners .wrapper {
       padding-left: 1.5rem;
       padding-right: 1.5rem;

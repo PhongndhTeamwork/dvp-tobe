@@ -35,16 +35,16 @@
 }
 
 /* Expertise */
-.expertise .expertise__content {
+.about__expertise .expertise__content {
    width: 100%;
    margin-bottom: 4rem;
 }
 
-.expertise .service .service__content {
+.about__expertise .service .service__content {
    padding: 0.5rem 2rem;
 }
 
-.expertise .service .service__content-text {
+.about__expertise .service .service__content-text {
    font-family: "Gilroy-Regular";
    font-size: var(--fs-small);
    line-height: 1.5rem;

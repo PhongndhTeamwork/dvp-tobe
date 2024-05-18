@@ -33,17 +33,17 @@
 }
 
 /* Expertise */
-.expertise .expertise__content {
+.hiring__expertise .expertise__content {
    width: 100%;
    margin-bottom: 4rem;
    padding: 0.5 2rem;
 }
 
-.expertise .service .service__content {
+.hiring__expertise .service .service__content {
    cursor: default;
 }
 
-.expertise .service .service__content-heading {
+.hiring__expertise .service .service__content-heading {
    font-family: "Gilroy-Regular";
    font-size: var(--fs-medium);
    line-height: 1.5rem;
@@ -51,7 +51,7 @@
    margin-bottom: 0.625rem;
 }
 
-.expertise .service .service__content-text {
+.hiring__expertise .service .service__content-text {
    font-family: "Gilroy-Regular";
    font-size: var(--fs-small);
    line-height: 1.5rem;
@@ -73,11 +73,11 @@
       -webkit-line-clamp: 3;
    }
 
-   .expertise .service .service__content:first-child {
+   .hiring__expertise .service .service__content:first-child {
       padding: 0.5rem 2rem 0.5rem 4rem;
    }
 
-   .expertise .service .service__content:last-child {
+   .hiring__expertise .service .service__content:last-child {
       padding: 0.5rem 4rem 0.5rem 2rem;
    }
 }

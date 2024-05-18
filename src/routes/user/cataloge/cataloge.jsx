@@ -288,7 +288,7 @@ const Cataloge = () => {
 
                      <div className="carousel-item">
                         <div className="wrapper-flex">
-                           <a
+                           <Link
                               className="rectangle-100 rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
                               href="/cataloge"
                            >
@@ -312,9 +312,9 @@ const Cataloge = () => {
                                     </div>
                                  </div>
                               </div>
-                           </a>
+                           </Link>
 
-                           <a
+                           <Link
                               className="rectangle-0 rectangle-tab-50 rectangle-pc-25 rectangle-pc-25 project arrow-right-translate-hover d-block"
                               href="/cataloge"
                            >
@@ -338,7 +338,7 @@ const Cataloge = () => {
                                     </div>
                                  </div>
                               </div>
-                           </a>
+                           </Link>
                         </div>
                      </div>
                   </div>

@@ -96,7 +96,6 @@ const About = () => {
    // const [isActive, setIsActive] = useState(false);
    const [staffIndexes, setStaffIndexes] = useState([]);
 
-
    useEffect(() => {
       window.scrollTo(0, 0);
    }, []);
@@ -182,7 +181,7 @@ const About = () => {
          {/* <!-- End: Story --> */}
 
          {/* <!-- Expertise --> */}
-         <div className="wrapper wrapper-top wrapper-bottom expertise">
+         <div className="wrapper wrapper-top wrapper-bottom about__expertise">
             <div class="wrapper__header">
                <h4 class="wrapper__header-sub--heading text-uppercase">
                   The mottos
@@ -207,19 +206,15 @@ const About = () => {
 
          {/* <!-- Partners --> */}
          <div className="partners">
-            <div className="wrapper">
-               <div className="partners__header w-100 d-flex flex-column align-items-center">
-                  <div className="partners__header-sub-heading text-uppercase">
-                     Out value clients
-                  </div>
-                  <div className="partners__header-heading text-center">
-                     Khách hàng của chúng tôi
-                  </div>
+            <div className="partners__header w-100 d-flex flex-column align-items-center">
+               <div className="partners__header-sub-heading text-uppercase">
+                  Out value clients
                </div>
-               <BrandScroll homePage={false}/>
-
-               
+               <div className="partners__header-heading text-center">
+                  Khách hàng của chúng tôi
+               </div>
             </div>
+            <BrandScroll homePage={false} />
          </div>
          {/* <!-- End: Partners --> */}
 

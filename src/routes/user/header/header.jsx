@@ -51,7 +51,13 @@ const Header = () => {
       >
          <header className={isHeaderActive ? "active" : ""}>
             <div className="wrapper d-flex justify-content-center justify-content-md-between align-items-center">
-               <Link to="/" className="header__logo">
+               <Link
+                  to="/"
+                  onClick={() => {
+                     window.scrollTo(0, 0);
+                  }}
+                  className="header__logo"
+               >
                   Logo
                </Link>
 

@@ -92,17 +92,11 @@ const AccordionService = ({
                         <div
                            className="rectangle-100 rectangle-tab-50 py-0"
                            ref={carouselRef}
-                           // style={{
-                           //    width: carouselWidth > 0 ? carouselWidth : "",
-                           // }}
                         >
                            <Carousel interval={1000}>
                               {images.map((image, index) => {
                                  return (
-                                    <Carousel.Item
-                                       key={index}
-                                       // className="carousel-item"
-                                    >
+                                    <Carousel.Item key={index}>
                                        <Image
                                           className="d-block w-100"
                                           src={image}
@@ -112,15 +106,7 @@ const AccordionService = ({
                                  );
                               })}
                            </Carousel>
-                           {/* <Image
-                              className="d-block w-100"
-                              src={images[0]}
-                              alt="Slide"
-                           /> */}
                         </div>
-
-                        {/* </div> */}
-
                         <div className="rectangle-100 rectangle-tab-50 py-0 service__content-text cursor-default">
                            {contents.map((content, index) => {
                               return <h6 key={index}>{content}</h6>;
@@ -128,9 +114,7 @@ const AccordionService = ({
                         </div>
                      </div>
                   ) : hasJob ? (
-                     <div class="accordion-collapse" 
-                     style={{ width: "100%" }}
-                     >
+                     <div class="accordion-collapse" style={{ width: "100%" }}>
                         <div class="accordion-body rectangle-100 wrapper-flex m-0 p-0">
                            <div class="rectangle-100 rectangle-tab-50 service__content">
                               <h4 class="service__content-heading text-uppercase">
@@ -162,8 +146,8 @@ const AccordionService = ({
                         </div>
                      </div>
                   ) : (
-                     <div class="accordion-body d-flex justify-content-end">
-                        <div class="service__content">
+                     <div class="accordion-body rectangle-100 wrapper-flex m-0 p-0 justify-content-end">
+                        <div class="rectangle-100 rectangle-pc-50 service__content">
                            <p class="service__content-text text-end">
                               {description}
                            </p>
