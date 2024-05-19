@@ -2,6 +2,8 @@ import "./contact.css";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
 import ContactImage1 from "../../../assets/images/contact/contact1.png";
 import ContactImage2 from "../../../assets/images/contact/contact2.png";
 import OfficeBackground from "../../../assets/images/others/office-bg.jpg";
@@ -10,20 +12,37 @@ import ContactIcon2 from "../../../assets/images/contact/contact_icon2.png";
 import ContactForm from "../../../components/contact-form/contact-form";
 
 const Contact = () => {
+   const [story, setStory] = useState({});
+   const [contactForm, setContactForm] = useState({});
+
+   useEffect(() => {
+      axios
+         .get("/api/contact")
+         .then(({ data }) => {
+            setStory(data.story);
+            setContactForm(data.contactForm);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
+
    useEffect(() => {
       window.scrollTo(0, 0);
    }, []);
+
    return (
       <Fragment>
          {/* <!-- Inspiration --> */}
          <div className="wrapper wrapper-top wrapper-bottom inspiration">
             <div className="wrapper__header">
                <h4 className="wrapper__header-sub--heading text-uppercase">
-                  Get in touch
+                  {story.subtitle}
                </h4>
-               <h1 className="wrapper__header-heading">
-                  Kết nối - Lấy cảm hứng
-               </h1>
+               <h1 className="wrapper__header-heading">{story.title}</h1>
+               {/* <p>{story.text1}</p>
+               <p>{story.text2}</p>
+               <p>{story.text3}</p> */}
                <h4 className="inspiration__sub-heading">
                   Liên hệ <span className="line"></span> Hợp tác
                </h4>
@@ -122,7 +141,7 @@ const Contact = () => {
          {/* <!-- Contact form --> */}
          <div class="wrapper wrapper-top wrapper-bottom contact">
             <div class="rectangle-100 d-none d-md-block d-xl-none text-center quote__heading-top">
-               Để lại thông tin của bạn
+               {contactForm.title}{" "}
             </div>
 
             <div class="rectangle-100 py-0">
@@ -130,30 +149,16 @@ const Contact = () => {
                   <div class="wrapper-flex-item d-none d-md-block rectangle-tab-50 p-0">
                      <div class="quote">
                         <div class="quote__heading d-none d-xl-block">
-                           Để lại thông tin của bạn
+                           {contactForm.title}{" "}
                         </div>
 
                         <div class="quote__text d-flex justify-content-between align-items-start">
                            <Image src={ContactIcon1} alt="icon 1" />
-                           <p>
-                              Lorem Ipsum is simply dummy text of the printing
-                              and typesetting industry. Lorem Ipsum has been the
-                              industry's standard dummy text ever since the
-                              1500s, when an unknown printer took a galley of
-                              type and scrambled it to make a type specimen
-                              book.
-                           </p>
+                           <p>{contactForm.text1}</p>
                         </div>
                         <div class="quote__text d-flex justify-content-between align-items-start">
                            <Image src={ContactIcon2} alt="icon 2" />
-                           <p>
-                              Lorem Ipsum is simply dummy text of the printing
-                              and typesetting industry. Lorem Ipsum has been the
-                              industry's standard dummy text ever since the
-                              1500s, when an unknown printer took a galley of
-                              type and scrambled it to make a type specimen
-                              book.
-                           </p>
+                           <p>{contactForm.text2}</p>
                         </div>
                      </div>
                   </div>

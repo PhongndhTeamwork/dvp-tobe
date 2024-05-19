@@ -4,6 +4,7 @@ import { Image } from "react-bootstrap";
 import { useState } from "react";
 import AccordionService from "../../../components/accordion-service/accordion-service";
 import BrandScroll from "../../../components/brand-scroll/brand-scroll";
+import axios from "axios";
 
 import ExOfficeImage from "../../../assets/images/others/ex-office.jpg";
 import CultureImage1 from "../../../assets/images/culture/culture1.png";
@@ -96,8 +97,63 @@ const About = () => {
    // const [isActive, setIsActive] = useState(false);
    const [staffIndexes, setStaffIndexes] = useState([]);
 
+   //? Banner
+   const [firstTextUppercase, setFirstTextUppercase] = useState("");
+   const [secondTextUppercase, setSecondTextUppercase] = useState("");
+   const [firstTextStroke, setFirstTextStroke] = useState("");
+   const [secondTextStroke, setSecondTextStroke] = useState("");
+
+   //? First Story
+   const [subtitleOfFirstStory, setSubtitleOfFirstStory] = useState("");
+   const [titleOfFirstStory, setTitleOfFirstStory] = useState("");
+   const [firstTextOfFirstStory, setFirstTextOfFirstStory] = useState("");
+   const [secondTextOfFirstStory, setSecondTextOfFirstStory] = useState("");
+   const [thirdTextOfFirstStory, setThirdTextOfFirstStory] = useState("");
+   const [imagesOfFirstStory, setImagesOfFirstStory] = useState("");
+
+   //? Second Story
+   const [subtitleOfSecondStory, setSubtitleOfSecondStory] = useState("");
+   const [titleOfSecondStory, setTitleOfSecondStory] = useState("");
+   const [firstTextOfSecondStory, setFirstTextOfSecondStory] = useState("");
+   const [secondTextOfSecondStory, setSecondTextOfSecondStory] = useState("");
+   const [thirdTextOfSecondStory, setThirdTextOfSecondStory] = useState("");
+   const [imagesOfSecondStory, setImagesOfSecondStory] = useState("");
+
+   //? Expertise
+   const [expertise, setExpertise] = useState([]);
+
    useEffect(() => {
       window.scrollTo(0, 0);
+   }, []);
+
+   useEffect(() => {
+      axios
+         .get("/api/about")
+         .then(({ data }) => {
+            setFirstTextUppercase(data.banner.textuppercase1);
+            setSecondTextUppercase(data.banner.textuppercase2);
+            setFirstTextStroke(data.banner.textstroke1);
+            setSecondTextStroke(data.banner.textstroke2);
+
+            setSubtitleOfFirstStory(data.story1.subtitle);
+            setTitleOfFirstStory(data.story1.title);
+            setFirstTextOfFirstStory(data.story1.tex1);
+            setSecondTextOfFirstStory(data.story1.tex2);
+            setThirdTextOfFirstStory(data.story1.tex3);
+            setImagesOfFirstStory(data.story1.images);
+
+            setSubtitleOfSecondStory(data.story2.subtitle);
+            setTitleOfSecondStory(data.story2.title);
+            setFirstTextOfSecondStory(data.story2.tex1);
+            setSecondTextOfSecondStory(data.story2.tex2);
+            setThirdTextOfSecondStory(data.story2.tex3);
+            setImagesOfSecondStory(data.story2.images);
+
+            setExpertise(data.expertises);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
    }, []);
 
    const toggleActive = (index) => {
@@ -122,13 +178,9 @@ const About = () => {
 
             <div className="banner__text">
                <div className="text-center">
-                  <div className="text-capitalize">
-                     Religion flows in the veins
-                  </div>
-                  <div className="text-capitalize">
-                     Creativity is the source of life
-                  </div>
-                  <div className="text-capitalize">Preserving core values</div>
+                  <div className="text-capitalize">{firstTextStroke}</div>
+                  <div className="text-capitalize">{firstTextUppercase}</div>
+                  <div className="text-capitalize">{secondTextStroke}</div>
                </div>
             </div>
          </div>
@@ -138,39 +190,18 @@ const About = () => {
          <div className="wrapper wrapper-top wrapper-bottom story">
             <div className="wrapper__header">
                <h4 className="wrapper__header-sub--heading text-uppercase">
-                  The story of DVP
+                  {subtitleOfFirstStory}
                </h4>
                <h1 className="wrapper__header-heading text-capitalize">
-                  Câu chuyện về DVP
+                  {titleOfFirstStory}
                </h1>
             </div>
 
             <div className="wrapper-flex">
                <div className="rectangle-100 rectangle-pc-50 story__content-text">
-                  <p>
-                     Lorem Ipsum is simply dummy text of the printing and
-                     typesetting industry. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book.
-                  </p>
-                  <p>
-                     Lorem Ipsum is simply dummy text of the printing and
-                     typesetting industry. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book.
-                  </p>
-                  <p>
-                     Lorem Ipsum is simply dummy text of the printing and
-                     typesetting industry. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book.
-                  </p>
+                  <p>{firstTextOfFirstStory}</p>
+                  <p>{secondTextOfFirstStory}</p>
+                  <p>{thirdTextOfFirstStory}</p>
                </div>
 
                <div className="rectangle-100 rectangle-pc-50 story__content-img">
@@ -182,15 +213,15 @@ const About = () => {
 
          {/* <!-- Expertise --> */}
          <div className="wrapper wrapper-top wrapper-bottom about__expertise">
-            <div class="wrapper__header">
-               <h4 class="wrapper__header-sub--heading text-uppercase">
+            <div className="wrapper__header">
+               <h4 className="wrapper__header-sub--heading text-uppercase">
                   The mottos
                </h4>
-               <h1 class="wrapper__header-heading">Phương châm cốt lõi</h1>
+               <h1 className="wrapper__header-heading">Phương châm cốt lõi</h1>
             </div>
 
             <div className="expertise__content w-100">
-               {services.map((service, index) => {
+               {expertise?.map((service, index) => {
                   return (
                      <AccordionService
                         key={index}

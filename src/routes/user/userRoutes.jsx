@@ -14,7 +14,7 @@ import { Route, Routes } from "react-router-dom";
 
 const UserRoutes = () => {
    return (
-      <div class="user-routes">
+      <div className="user-routes">
          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

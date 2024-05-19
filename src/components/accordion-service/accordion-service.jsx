@@ -4,6 +4,8 @@ import { Accordion, Carousel } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import axios from "axios";
+
 const AccordionService = ({
    title,
    description,
@@ -16,6 +18,19 @@ const AccordionService = ({
 }) => {
    const [isButtonActive, setIsButtonActive] = useState(false);
    const [carouselWidth, setCarouselWidth] = useState(0);
+
+   const [services, setServices] = useState({});
+
+   useEffect(() => {
+      axios
+         .get("/api/contact")
+         .then(({ data }) => {
+            setServices(data.services);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
 
    const carouselRef = useRef(null);
 
@@ -39,15 +54,18 @@ const AccordionService = ({
    };
 
    return (
-      <div class="service">
+      <div className="service">
          <Accordion
-            class="accordion"
+            className="accordion"
             // id="accordion-service-1"
             defaultActiveKey="0"
          >
-            <Accordion.Item class="accordion-item border-0" eventKey={index}>
+            <Accordion.Item
+               className="accordion-item border-0"
+               eventKey={index}
+            >
                <Accordion.Header
-                  class={`accordion-button ${
+                  className={`accordion-button ${
                      isButtonActive
                         ? "plus-rotate-icon-active circle-rotate-icon-active"
                         : ""
@@ -56,23 +74,23 @@ const AccordionService = ({
                   onClick={toggleAccordionButton}
                >
                   <div
-                     class="d-flex align-items-center justify-content-between w-100 h-100"
+                     className="d-flex align-items-center justify-content-between w-100 h-100"
                      style={{ cursor: "pointer" }}
                   >
-                     <div class="accordion-item__icon-left accordion-button__left">
-                        <div class="circle-rotate-icon">
-                           <div class="circle-icon"></div>
+                     <div className="accordion-item__icon-left accordion-button__left">
+                        <div className="circle-rotate-icon">
+                           <div className="circle-icon"></div>
                         </div>
                      </div>
 
-                     <div class="accordion-item__content accordion-button__title">
+                     <div className="accordion-item__content accordion-button__title">
                         <h4>{title}</h4>
                      </div>
 
-                     <div class="accordion-item__icon-right accordion-button__right">
-                        <div class="plus-rotate-icon">
-                           <i class="left"></i>
-                           <i class="right"></i>
+                     <div className="accordion-item__icon-right accordion-button__right">
+                        <div className="plus-rotate-icon">
+                           <i className="left"></i>
+                           <i className="right"></i>
                         </div>
                      </div>
                   </div>
@@ -114,29 +132,29 @@ const AccordionService = ({
                         </div>
                      </div>
                   ) : hasJob ? (
-                     <div class="accordion-collapse" style={{ width: "100%" }}>
-                        <div class="accordion-body rectangle-100 wrapper-flex m-0 p-0">
-                           <div class="rectangle-100 rectangle-tab-50 service__content">
-                              <h4 class="service__content-heading text-uppercase">
+                     <div
+                        className="accordion-collapse"
+                        style={{ width: "100%" }}
+                     >
+                        <div className="accordion-body rectangle-100 wrapper-flex m-0 p-0">
+                           <div className="rectangle-100 rectangle-tab-50 service__content">
+                              <h4 className="service__content-heading text-uppercase">
                                  Mô tả công việc
                               </h4>
-                              <p class="service__content-text">
+                              <p className="service__content-text">
                                  {job.description}
                               </p>
                            </div>
 
-                           <div class="rectangle-100 rectangle-tab-50 service__content">
-                              <h4 class="service__content-heading text-uppercase">
+                           <div className="rectangle-100 rectangle-tab-50 service__content">
+                              <h4 className="service__content-heading text-uppercase">
                                  Hướng dẫn ứng tuyển
                               </h4>
-                              <p class="service__content-text">
-                                 {job.instruction}
-                              </p>
-                              <p class="service__content-text">
+                              <p className="service__content-text">
                                  Tất cả gửi về địa chỉ mail:{" "}
                                  <Link
                                     to=""
-                                    class="gmail-link"
+                                    className="gmail-link"
                                     style={{ color: "black" }}
                                  >
                                     {job.gmail}
@@ -146,9 +164,9 @@ const AccordionService = ({
                         </div>
                      </div>
                   ) : (
-                     <div class="accordion-body rectangle-100 wrapper-flex m-0 p-0 justify-content-end">
-                        <div class="rectangle-100 rectangle-pc-50 service__content">
-                           <p class="service__content-text text-end">
+                     <div className="accordion-body rectangle-100 wrapper-flex m-0 p-0 justify-content-end">
+                        <div className="rectangle-100 rectangle-pc-50 service__content">
+                           <p className="service__content-text text-end">
                               {description}
                            </p>
                         </div>

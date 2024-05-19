@@ -2,6 +2,8 @@ import "./brand-scroll.css";
 
 import { Image } from "react-bootstrap";
 import { useState, useRef, useEffect } from "react";
+import axios from "axios";
+
 import PartnerSVG1 from "../../assets/images/svg/partner/Untitled-1-01.svg";
 import PartnerSVG2 from "../../assets/images/svg/partner/Untitled-1-02.svg";
 import PartnerSVG3 from "../../assets/images/svg/partner/Untitled-1-03.svg";
@@ -22,6 +24,19 @@ const BrandScroll = ({ homePage }) => {
    const scrollWrapperContentRef = useRef(null);
    const [isMouseDown, setIsMouseDown] = useState(false);
    const [mouseMoveX, setMouseMoveX] = useState(0);
+
+   const [partners, setPartners] = useState({});
+
+   useEffect(() => {
+      axios
+         .get("/api/contact")
+         .then(({ data }) => {
+            setPartners(data.partners);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
 
    const getCurrentTranslateX = (scrollWrapperContent) => {
       const style = window.getComputedStyle(scrollWrapperContent);

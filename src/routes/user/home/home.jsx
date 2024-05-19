@@ -82,6 +82,9 @@ const Home = () => {
    const [firstTextStroke, setFirstTextStroke] = useState("");
    const [secondTextStroke, setSecondTextStroke] = useState("");
 
+   //? Video
+   const [video, setVideo] = useState("");
+
    //? Story
    const [storyTitle, setStoryTitle] = useState("");
    const [storySubtitle, setStorySubtitle] = useState("");
@@ -95,55 +98,27 @@ const Home = () => {
    //? Project
    const [projects, setProjects] = useState([]);
 
-
    useEffect(() => {
       axios
-         .get("/api/home/banner")
-         .then((data) => {
+         .get("/api/home")
+         .then(({ data }) => {
             setFirstTextUppercase(data.banner.textuppercase1);
             setSecondTextUppercase(data.banner.textuppercase2);
             setFirstTextStroke(data.banner.textstroke1);
             setSecondTextStroke(data.banner.textstroke2);
-         })
-         .catch((error) => {
-            // throw new Error(error);
-         });
-   }, []);
 
-   useEffect(() => {
-      axios
-         .get("/api/home/story-home")
-         .then((data) => {
+            setVideo(data.video);
+
             setStoryTitle(data.story.title);
             setStorySubtitle(data.story.subtitle);
             setFirstStoryText(data.story.text1);
             setSecondStoryText(data.story.text2);
             setThirdStoryText(data.story.text3);
-         })
-         .catch((error) => {
-            // throw new Error(error);
-         });
-   }, []);
 
-   useEffect(() => {
-      axios
-         .get("/api/home/service-home")
-         .then((data) => {
-            setServiceItems(data.listServiceHomes);
+            setProjects(data.projects);
          })
          .catch((error) => {
-            // throw new Error(error);
-         });
-   }, []);
-
-   useEffect(() => {
-      axios
-         .get("/api/home/project-home")
-         .then((data) => {
-            setServiceItems(data.listServiceHomes);
-         })
-         .catch((error) => {
-            // throw new Error(error);
+            throw new Error(error);
          });
    }, []);
 
@@ -206,13 +181,17 @@ const Home = () => {
 
             <div className="banner__text">
                <div className="banner__text-top d-flex justify-content-center">
-                  <div className="text-stroke cursor-default">Professional</div>
-                  <div className="text-uppercase cursor-default">Style</div>
+                  <div className="text-stroke cursor-default">
+                     {firstTextStroke}
+                  </div>
+                  <div className="text-uppercase cursor-default">
+                     {firstTextUppercase}
+                  </div>
                </div>
 
                <div className="banner__text-bot banner__text-padding d-flex justify-content-center pe-0">
-                  <div className="text-uppercase">Design</div>
-                  <div className="text-stroke">Creative</div>
+                  <div className="text-uppercase">{secondTextStroke}</div>
+                  <div className="text-stroke">{secondTextUppercase}</div>
                </div>
             </div>
          </div>
@@ -223,7 +202,7 @@ const Home = () => {
          <div className="reels">
             <video
                id="video-auto-play"
-               src={HomeVideo}
+               src={video !== "link video" ? video : HomeVideo}
                ref={videoRef}
                muted={isMuted}
                onClick={handleVideoClick}
@@ -232,56 +211,36 @@ const Home = () => {
          {/* <!-- End: Reels --> */}
 
          {/* <!-- Story --> */}
-         <div class="wrapper wrapper-top wrapper-bottom story">
-            <div class="wrapper__header">
-               <h4 class="wrapper__header-sub--heading text-uppercase cursor-default">
-                  The story of DVP
+         <div className="wrapper wrapper-top wrapper-bottom story">
+            <div className="wrapper__header">
+               <h4 className="wrapper__header-sub--heading text-uppercase cursor-default">
+                  {storySubtitle}
                </h4>
-               <h1 class="wrapper__header-heading text-capitalize cursor-default">
-                  Câu chuyện về DVP
+               <h1 className="wrapper__header-heading text-capitalize cursor-default">
+                  {storyTitle}
                </h1>
             </div>
 
-            <div class="story__content rectangle-100 wrapper-flex align-items-end m-0 p-0">
-               <div class="rectangle-100 rectangle-pc-25 d-flex align-items-center label">
-                  <div class="label__text cursor-default">About</div>
-                  <div class="label__icon"></div>
+            <div className="story__content rectangle-100 wrapper-flex align-items-end m-0 p-0">
+               <div className="rectangle-100 rectangle-pc-25 d-flex align-items-center label">
+                  <div className="label__text cursor-default">About</div>
+                  <div className="label__icon"></div>
                </div>
 
-               <div class="rectangle-100 rectangle-pc-50 p-0 content">
-                  <div class="wrapper-flex">
-                     <div class="rectangle-100 content__text cursor-default">
-                        <p>
-                           Lorem Ipsum is simply dummy text of the printing and
-                           typesetting industry. Lorem Ipsum has been the
-                           industry's standard dummy text ever since the 1500s,
-                           when an unknown printer took a galley of type and
-                           scrambled it to make a type specimen book. Lorem
-                           Ipsum has been the industry's standard dummy text
-                           ever since the 1500s, when an unknown printer took a
-                           galley of type and scrambled it to make a type
-                           specimen book.
-                        </p>
-                        <p>
-                           Lorem Ipsum is simply dummy text of the printing and
-                           typesetting industry. Lorem Ipsum has been the
-                           industry's standard dummy text ever since the 1500s,
-                           when an unknown printer took a galley of type and
-                           scrambled it to make a type specimen book.
-                        </p>
-                        <p>
-                           Lorem Ipsum is simply dummy text of the printing and
-                           typesetting industry. Lorem Ipsum has been the
-                           industry's standard dummy text ever since the 1500s,
-                           when an unknown printer took a galley of type and
-                           scrambled it to make a type specimen book.
-                        </p>
+               <div className="rectangle-100 rectangle-pc-50 p-0 content">
+                  <div className="wrapper-flex">
+                     <div className="rectangle-100 content__text cursor-default">
+                        <p>{firstStoryText}</p>
+                        <p>{secondStoryText}</p>
+                        <p>{thirdStoryText}</p>
                      </div>
 
-                     <div class="rectangle-100 content__link pt-0">
-                        <a class="arrow-right-link" href="./about.html">
-                           <div class="arrow-right-link__text">Go to About</div>
-                           <i class="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
+                     <div className="rectangle-100 content__link pt-0">
+                        <a className="arrow-right-link" href="./about.html">
+                           <div className="arrow-right-link__text">
+                              Go to About
+                           </div>
+                           <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
                         </a>
                      </div>
                   </div>

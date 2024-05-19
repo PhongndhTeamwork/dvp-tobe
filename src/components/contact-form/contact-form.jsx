@@ -75,7 +75,7 @@ const ContactForm = () => {
    };
    return (
       <form action="#" className="contact__form">
-         <label for="fullname">Họ và tên</label>
+         <label htmlFor="fullname">Họ và tên</label>
          <input
             type="text"
             id="fullname"
@@ -83,7 +83,7 @@ const ContactForm = () => {
             placeholder="VD: Trần Ngọc Minh"
          />
 
-         <label for="name">Danh xưng</label>
+         <label htmlFor="name">Danh xưng</label>
          <input
             type="text"
             id="name"
@@ -91,10 +91,10 @@ const ContactForm = () => {
             placeholder="VD: Ông, bà,.."
          />
 
-         <label for="email">Email</label>
+         <label htmlFor="email">Email</label>
          <input type="email" id="email" name="email" placeholder="Email" />
 
-         <label for="phone">Số điện thoại</label>
+         <label htmlFor="phone">Số điện thoại</label>
          <input type="number" id="phone" name="phone" placeholder="+84" />
 
          <div className="category">

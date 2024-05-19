@@ -8,12 +8,29 @@ import "../../../styles/bootstrap.min.css";
 import { Link, useLocation } from "react-router-dom";
 
 import MobileNavbar from "../../../components/mobile-navbar/mobile-navbar";
+import axios from "axios";
 
 const Header = () => {
    const [isHeaderActive, setIsHeaderActive] = useState(false);
+   const [currentPathname, setCurrentPathname] = useState("");
    const location = useLocation();
-   console.log(location.pathname);
+   // console.log(location.pathname);
+
+   const [companyInfos, setCompanyInfos] = useState({});
+
    useEffect(() => {
+      axios
+         .get("/api/contact")
+         .then(({ data }) => {
+            setCompanyInfos(data.company);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
+
+   useEffect(() => {
+      if (location.pathname === currentPathname) return;
       if (
          location.pathname.includes("work") ||
          location.pathname.includes("contact") ||
@@ -23,7 +40,8 @@ const Header = () => {
       } else {
          setIsHeaderActive(false);
       }
-   }, [location]);
+      setCurrentPathname(location.pathname);
+   }, [location, currentPathname]);
    useEffect(() => {
       const handleScroll = () => {
          const banner = document.querySelector(".banner");

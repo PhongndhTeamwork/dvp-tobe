@@ -1,59 +1,77 @@
 import "./hiring.css";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 import HiringIluImage from "../../../assets/images/others/hiring_ilu.png";
 import AccordionService from "../../../components/accordion-service/accordion-service";
 
 const Hiring = () => {
-   const jobs = [
-      {
-         name: "Branding",
-         description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-         instruction:
-            "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
-         gmail: "Minhlinkin@gmail.com",
-      },
-      {
-         name: "Branding",
-         description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-         instruction:
-            "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
-         gmail: "Minhlinkin@gmail.com",
-      },
-      {
-         name: "Branding",
-         description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-         instruction:
-            "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
-         gmail: "Minhlinkin@gmail.com",
-      },
-      {
-         name: "Branding",
-         description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-         instruction:
-            "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
-         gmail: "Minhlinkin@gmail.com",
-      },
-      {
-         name: "Branding",
-         description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-         instruction:
-            "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
-         gmail: "Minhlinkin@gmail.com",
-      },
-   ];
+   // const jobs = [
+   //    {
+   //       name: "Branding",
+   //       description:
+   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+   //       instruction:
+   //          "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
+   //       gmail: "Minhlinkin@gmail.com",
+   //    },
+   //    {
+   //       name: "Branding",
+   //       description:
+   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+   //       instruction:
+   //          "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
+   //       gmail: "Minhlinkin@gmail.com",
+   //    },
+   //    {
+   //       name: "Branding",
+   //       description:
+   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+   //       instruction:
+   //          "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
+   //       gmail: "Minhlinkin@gmail.com",
+   //    },
+   //    {
+   //       name: "Branding",
+   //       description:
+   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+   //       instruction:
+   //          "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
+   //       gmail: "Minhlinkin@gmail.com",
+   //    },
+   //    {
+   //       name: "Branding",
+   //       description:
+   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
+   //       instruction:
+   //          "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
+   //       gmail: "Minhlinkin@gmail.com",
+   //    },
+   // ];
+
+   const [banner, setBanner] = useState("");
+   const [story, setStory] = useState("");
+   const [jobs, setJobs] = useState([]);
 
    useEffect(() => {
       window.scrollTo(0, 0);
    }, []);
-   
+
+   useEffect(() => {
+      axios
+         .get("/api/hiring")
+         .then(({ data }) => {
+            setBanner(data.banner);
+            setStory(data.story);
+            setJobs(data.jobs);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
+
    return (
       <Fragment>
          {/* <!-- Banner --> */}
@@ -66,8 +84,10 @@ const Hiring = () => {
 
             <div class="banner__text">
                <div class="d-flex justify-content-center align-items-center flex-column flex-md-row">
-                  <div class="text-stroke text-capitalize">We Are</div>
-                  <div class="text-uppercase">Hiring</div>
+                  <div class="text-stroke text-capitalize">
+                     {banner.textstroke1}
+                  </div>
+                  <div class="text-uppercase">{banner.textuppercase1}</div>
                </div>
             </div>
          </div>
@@ -77,40 +97,19 @@ const Hiring = () => {
          <div class="wrapper wrapper-top wrapper-bottom story">
             <div class="wrapper__header">
                <h4 class="wrapper__header-sub--heading text-uppercase">
-                  The story of DVP
+                  {story.subtitle}
                </h4>
                <h1 class="wrapper__header-heading text-capitalize">
-                  DVP - Nơi Lý Tưởng Để phát triển
+                  {story.title}
                </h1>
             </div>
 
             <div class="wrapper-flex">
                <div class="rectangle-100 rectangle-pc-50">
                   <div class="story__content-text">
-                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book. Lorem Ipsum
-                        has been the industry's standard dummy text ever since
-                        the 1500s, when an unknown printer took a galley of type
-                        and scrambled it to make a type specimen book.
-                     </p>
-                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book.
-                     </p>
-                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and
-                        typesetting industry. Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and
-                        scrambled it to make a type specimen book.
-                     </p>
+                     <p>{story.text1}</p>
+                     <p>{story.text2}</p>
+                     <p>{story.text3}</p>
                   </div>
                </div>
 
@@ -133,7 +132,12 @@ const Hiring = () => {
             <div class="expertise__content">
                {jobs.map((job, index) => {
                   return (
-                     <AccordionService hasJob={true} title={job.name} job={job} key={index} />
+                     <AccordionService
+                        hasJob={true}
+                        title={job.jobname}
+                        job={{ description: job.description, gmail : job.contactMail }}
+                        key={index}
+                     />
                   );
                })}
                {/* <div class="service">

@@ -1,7 +1,10 @@
 import "./cataloge.css";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
+import axios from "axios";
+
 import Cataloge1 from "../../../assets/images/cateloge/cataloge1.png";
 import Cataloge2 from "../../../assets/images/cateloge/cataloge2.png";
 import Cataloge3 from "../../../assets/images/cateloge/cataloge3.png";
@@ -14,8 +17,64 @@ import CatalogeProjectImage3 from "../../../assets/images/cateloge/project-3.jpg
 import CatalogeProjectImage4 from "../../../assets/images/cateloge/project-4.jpg";
 import CatalogeProjectImage5 from "../../../assets/images/cateloge/project-5.jpg";
 import RamenImage from "../../../assets/images/others/ramen.png";
+import CatalogeProject from "../../../components/cataloge-project/cataloge-project";
 
 const Cataloge = () => {
+   // const {id} = useParams();
+   // console.log(id);
+   const [project, setProject] = useState({});
+   const [projectSuggestion, setProjectSuggestion] = useState({});
+   const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
+   const [slideQuantity, setSlideQuantity] = useState(0);
+   useEffect(() => {
+      const handleResize = () => {
+         const width = window.innerWidth;
+         if (width < 768) {
+            setSlideQuantity(6);
+         } else if (width >= 768 && width < 1200) {
+            setSlideQuantity(Math.ceil(6 / 2));
+         } else {
+            setSlideQuantity(Math.ceil(6 / 4));
+         }
+         setActiveCarouselIndex(0);
+      };
+      handleResize();
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+         window.removeEventListener("resize", handleResize);
+      };
+   }, []);
+
+   const handleNext = () => {
+      setActiveCarouselIndex(
+         activeCarouselIndex === slideQuantity - 1 ? 0 : activeCarouselIndex + 1
+      );
+      console.log(activeCarouselIndex);
+   };
+
+   const handlePrev = () => {
+      setActiveCarouselIndex(
+         activeCarouselIndex === 0 ? slideQuantity - 1 : activeCarouselIndex - 1
+      );
+   };
+
+   useEffect(() => {
+      axios
+         .get("/api/contact")
+         .then(({ data }) => {
+            setProject(data.project);
+            setProjectSuggestion(data.projectSuggestion);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
+
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, []);
    useEffect(() => {
       window.scrollTo(0, 0);
    }, []);
@@ -134,12 +193,7 @@ const Cataloge = () => {
                <div className="suggestion__header-heading">Các dự án khác</div>
 
                <div className="suggestion__header-control d-flex">
-                  <button
-                     className="button-pre"
-                     type="button"
-                     data-bs-target="#suggestion-project"
-                     data-bs-slide="prev"
-                  >
+                  <button className="button-pre" type="button" onClick={handlePrev}>
                      <svg
                         width="28"
                         height="13"
@@ -155,12 +209,7 @@ const Cataloge = () => {
                         />
                      </svg>
                   </button>
-                  <button
-                     className="button-next"
-                     type="button"
-                     data-bs-target="#suggestion-project"
-                     data-bs-slide="next"
-                  >
+                  <button className="button-next" type="button" onClick={handleNext}>
                      <svg
                         width="28"
                         height="13"
@@ -177,7 +226,7 @@ const Cataloge = () => {
 
             <div className="suggestion__content">
                <div id="suggestion-project" className="carousel slide">
-                  <div className="carousel-inner">
+                  {/* <div className="carousel-inner">
                      <div className="carousel-item active">
                         <div className="wrapper-flex">
                            <Link
@@ -341,7 +390,8 @@ const Cataloge = () => {
                            </Link>
                         </div>
                      </div>
-                  </div>
+                  </div> */}
+                  <CatalogeProject activeIndex={activeCarouselIndex} />
                </div>
             </div>
          </div>
