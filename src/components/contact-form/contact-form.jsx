@@ -1,5 +1,5 @@
 import "./contact-form.css";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useState, useRef } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -13,6 +13,8 @@ import YoutubeGraySVG from "../../assets/images/svg/social/youtube-gray.svg";
 import ZaloSVG from "../../assets/images/svg/social/zalo.svg";
 import ZaloGraySVG from "../../assets/images/svg/social/zalo-gray.svg";
 
+import axios from "axios";
+
 const ContactForm = () => {
    const services = [
       "Nhận diện thương hiệu",
@@ -25,6 +27,34 @@ const ContactForm = () => {
       "None",
       "None",
    ];
+
+   const [companyInfos, setCompanyInfos] = useState({});
+
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+   const [serviceItems, setServiceItems] = useState([]);
+
+   useEffect(() => {
+      axios
+         .get("/api/info/services")
+         .then(({ data }) => {
+            setServiceItems(data.services);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   });
+
+
+   useEffect(() => {
+      axios
+         .get("/api/info/company")
+         .then(({ data }) => {
+            setCompanyInfos(data.company);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
 
    const [isServiceCategoryRevealed, setIsServiceCategoryRevealed] =
       useState(false);
@@ -128,13 +158,13 @@ const ContactForm = () => {
                ref={serviceCategoryRef}
             >
                <div className="services">
-                  {services.map((service, index) => (
+                  {serviceItems.map((service, index) => (
                      <div
                         key={index}
                         className="services__item"
                         onClick={() => handleChangeServiceValue(service)}
                      >
-                        {service}
+                        {service.serviceName}
                      </div>
                   ))}
                </div>
@@ -151,7 +181,7 @@ const ContactForm = () => {
          </div>
 
          <div className="social w-100 d-flex justify-content-center align-items-center">
-            <Link to="" className="social__link">
+            <Link to={companyInfos.companyInstagram} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
                      <Image src={InstagramGraySVG} alt="social icon gray" />
@@ -161,7 +191,7 @@ const ContactForm = () => {
                   </span>
                </Fragment>
             </Link>
-            <Link to="" className="social__link">
+            <Link to={companyInfos.companyFacebook} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
                      <Image src={FacebookGraySVG} alt="social icon gray" />
@@ -171,7 +201,7 @@ const ContactForm = () => {
                   </span>
                </Fragment>
             </Link>
-            <Link to="" className="social__link">
+            <Link to={companyInfos.companyYoutube} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
                      <Image src={YoutubeGraySVG} alt="social icon gray" />
@@ -181,7 +211,7 @@ const ContactForm = () => {
                   </span>
                </Fragment>
             </Link>
-            <Link to="" className="social__link">
+            <Link to={companyInfos.companyZalo} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
                      <Image src={ZaloGraySVG} alt="social icon gray" />

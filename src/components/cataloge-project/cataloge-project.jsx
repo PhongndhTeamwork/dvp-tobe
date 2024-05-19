@@ -3,50 +3,49 @@ import "./cataloge-project.css";
 import { Carousel, Image, Row, Col } from "react-bootstrap";
 
 import CatalogeProjectImage1 from "../../assets/images/cateloge/project-1.png";
-import CatalogeProjectImage2 from "../../assets/images/cateloge/project-2.jpg";
-import CatalogeProjectImage3 from "../../assets/images/cateloge/project-3.jpg";
-import CatalogeProjectImage4 from "../../assets/images/cateloge/project-4.jpg";
-import CatalogeProjectImage5 from "../../assets/images/cateloge/project-5.jpg";
-import RamenImage from "../../assets/images/others/ramen.png";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const CatalogeProject = ({activeIndex}) => {
-   const projects = [
-      {
-         image: CatalogeProjectImage1,
-         description:
-            "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-      },
-      {
-         image: CatalogeProjectImage2,
-         description:
-            "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-      },
-      {
-         image: CatalogeProjectImage3,
-         description:
-            "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-      },
-      {
-         image: CatalogeProjectImage4,
-         description:
-            "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-      },
-      {
-         image: CatalogeProjectImage5,
-         description:
-            "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-      },
-      {
-         image: RamenImage,
-         description:
-            "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-      },
-   ];
+const CatalogeProject = ({ activeIndex, projects }) => {
+   // const projects = [
+   //    {
+   //       image: CatalogeProjectImage1,
+   //       description:
+   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
+   //    },
+   //    {
+   //       image: CatalogeProjectImage2,
+   //       description:
+   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
+   //    },
+   //    {
+   //       image: CatalogeProjectImage3,
+   //       description:
+   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
+   //    },
+   //    {
+   //       image: CatalogeProjectImage4,
+   //       description:
+   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
+   //    },
+   //    {
+   //       image: CatalogeProjectImage5,
+   //       description:
+   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
+   //    },
+   //    {
+   //       image: RamenImage,
+   //       description:
+   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
+   //    },
+   // ];
 
    const [isMobile, setIsMobile] = useState(false);
    const [isTablet, setIsTablet] = useState(false);
+
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
+   console.log(projects);
 
    useEffect(() => {
       const handleResize = () => {
@@ -73,7 +72,7 @@ const CatalogeProject = ({activeIndex}) => {
 
    return (
       <div>
-         <Carousel interval={null} activeIndex={activeIndex} >
+         <Carousel interval={null} activeIndex={activeIndex}>
             {!isMobile && !isTablet
                ? Array(Math.ceil(projects.length / 4))
                     .fill()
@@ -85,16 +84,25 @@ const CatalogeProject = ({activeIndex}) => {
                                 .map((project, index) => (
                                    <Link
                                       className="rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                                      href="/cataloge"
+                                      to={`/cataloge/${project?.id}`}
                                       key={index}
+                                      onClick={() => {
+                                       window.scrollTo(0, 0);
+                                    }}
                                    >
                                       <div className="project__img">
-                                         <Image src={project.image} />
+                                         <Image
+                                            src={
+                                               urlRegex.test(project?.image)
+                                                  ? project?.image
+                                                  : CatalogeProjectImage1
+                                            }
+                                         />
                                       </div>
 
                                       <div className="project__des">
                                          <div className="project__des-text">
-                                            {project.description}
+                                            {project?.title}
                                          </div>
 
                                          <div className="project__des-icon">
@@ -116,16 +124,25 @@ const CatalogeProject = ({activeIndex}) => {
                           <div className="wrapper-flex">
                              <Link
                                 className="rectangle-100 rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                                href="/cataloge"
+                                to={`/cataloge/${project?.id}`}
                                 key={index}
+                                onClick={() => {
+                                 window.scrollTo(0, 0);
+                              }}
                              >
                                 <div className="project__img">
-                                   <Image src={project.image} />
+                                   <Image
+                                      src={
+                                         urlRegex.test(project?.image)
+                                            ? project?.image
+                                            : CatalogeProjectImage1
+                                      }
+                                   />
                                 </div>
 
                                 <div className="project__des">
                                    <div className="project__des-text">
-                                      {project.description}
+                                      {project?.title}
                                    </div>
 
                                    <div className="project__des-icon">
@@ -140,7 +157,7 @@ const CatalogeProject = ({activeIndex}) => {
                        </Carousel.Item>
                     );
                  })
-               : Array(Math.ceil(projects.length / 2))
+               : Array(Math.ceil(projects?.length / 2))
                     .fill()
                     .map((_, slideIndex) => (
                        <Carousel.Item key={slideIndex}>
@@ -150,16 +167,25 @@ const CatalogeProject = ({activeIndex}) => {
                                 .map((project, index) => (
                                    <Link
                                       className="rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                                      href="/cataloge"
+                                      to={`/cataloge/${project?.id}`}
                                       key={index}
+                                      onClick={() => {
+                                         window.scrollTo(0, 0);
+                                      }}
                                    >
                                       <div className="project__img">
-                                         <Image src={project.image} />
+                                         <Image
+                                            src={
+                                               urlRegex.test(project?.image[0])
+                                                  ? project?.image[0]
+                                                  : CatalogeProjectImage1
+                                            }
+                                         />
                                       </div>
 
                                       <div className="project__des">
                                          <div className="project__des-text">
-                                            {project.description}
+                                            {project?.title}
                                          </div>
 
                                          <div className="project__des-icon">

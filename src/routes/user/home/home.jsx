@@ -9,72 +9,67 @@ import HomeVideo from "../../../assets/images/others/video-auto.mp4";
 import Carousel1 from "../../../assets/images/carousel/carousel-1.png";
 import Carousel2 from "../../../assets/images/carousel/carousel-2.png";
 import Carousel3 from "../../../assets/images/carousel/carousel-3.png";
-import Ramen from "../../../assets/images/others/ramen.png";
+import RamenImage from "../../../assets/images/others/ramen.png";
 import axios from "axios";
 
 import AccordionService from "../../../components/accordion-service/accordion-service";
 import BrandScroll from "../../../components/brand-scroll/brand-scroll";
 
 const Home = () => {
-   const services = [
-      {
-         name: "Branding",
-         images: [Carousel1, Carousel2, Carousel3],
-         contents: [
-            "Logos",
-            "Ấn phẩm văn phòng",
-            "Broucher, Cataloge",
-            "Capacity profile - Company profile",
-         ],
-      },
-      {
-         name: "Branding",
-         images: [Carousel1, Carousel2, Carousel3],
-         contents: [
-            "Logos",
-            "Ấn phẩm văn phòng",
-            "Broucher, Cataloge",
-            "Capacity profile - Company profile",
-         ],
-      },
-      {
-         name: "Branding",
-         images: [Carousel1, Carousel2, Carousel3],
-         contents: [
-            "Logos",
-            "Ấn phẩm văn phòng",
-            "Broucher, Cataloge",
-            "Capacity profile - Company profile",
-         ],
-      },
-      {
-         name: "Branding",
-         images: [Carousel1, Carousel2, Carousel3],
-         contents: [
-            "Logos",
-            "Ấn phẩm văn phòng",
-            "Broucher, Cataloge",
-            "Capacity profile - Company profile",
-         ],
-      },
-      {
-         name: "Branding",
-         images: [Carousel1, Carousel2, Carousel3],
-         contents: [
-            "Logos",
-            "Ấn phẩm văn phòng",
-            "Broucher, Cataloge",
-            "Capacity profile - Company profile",
-         ],
-      },
-   ];
+   // const services = [
+   //    {
+   //       name: "Branding",
+   //       images: [Carousel1, Carousel2, Carousel3],
+   //       contents: [
+   //          "Logos",
+   //          "Ấn phẩm văn phòng",
+   //          "Broucher, Cataloge",
+   //          "Capacity profile - Company profile",
+   //       ],
+   //    },
+   //    {
+   //       name: "Branding",
+   //       images: [Carousel1, Carousel2, Carousel3],
+   //       contents: [
+   //          "Logos",
+   //          "Ấn phẩm văn phòng",
+   //          "Broucher, Cataloge",
+   //          "Capacity profile - Company profile",
+   //       ],
+   //    },
+   //    {
+   //       name: "Branding",
+   //       images: [Carousel1, Carousel2, Carousel3],
+   //       contents: [
+   //          "Logos",
+   //          "Ấn phẩm văn phòng",
+   //          "Broucher, Cataloge",
+   //          "Capacity profile - Company profile",
+   //       ],
+   //    },
+   //    {
+   //       name: "Branding",
+   //       images: [Carousel1, Carousel2, Carousel3],
+   //       contents: [
+   //          "Logos",
+   //          "Ấn phẩm văn phòng",
+   //          "Broucher, Cataloge",
+   //          "Capacity profile - Company profile",
+   //       ],
+   //    },
+   //    {
+   //       name: "Branding",
+   //       images: [Carousel1, Carousel2, Carousel3],
+   //       contents: [
+   //          "Logos",
+   //          "Ấn phẩm văn phòng",
+   //          "Broucher, Cataloge",
+   //          "Capacity profile - Company profile",
+   //       ],
+   //    },
+   // ];
 
-   const works = [
-      { image: Ramen, description: "Lorem Ipsum dolor sit amet, text" },
-      { image: Ramen, description: "Lorem Ipsum dolor sit amet, text" },
-      { image: Ramen, description: "Lorem Ipsum dolor sit amet, text" },
-      { image: Ramen, description: "Lorem Ipsum dolor sit amet, text" },
-   ];
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    //? Banner
    const [firstTextUppercase, setFirstTextUppercase] = useState("");
@@ -121,6 +116,17 @@ const Home = () => {
             throw new Error(error);
          });
    }, []);
+
+   useEffect(() => {
+      axios
+         .get("/api/info/services")
+         .then(({ data }) => {
+            setServiceItems(data.services);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   });
 
    // const dispatch = useDispatch();
    // const userLogin = useSelector((state) => state.userLogin);
@@ -261,14 +267,14 @@ const Home = () => {
             </div>
 
             <div className="expertise__content">
-               {services.map((service, index) => {
+               {serviceItems.map((service, index) => {
                   return (
                      <AccordionService
                         key={index}
-                        title={service.name}
+                        title={service?.serviceName}
                         hasCarousel={true}
-                        images={service.images}
-                        contents={service.contents}
+                        images={service?.carouselImages}
+                        contents={service?.serviceInfos}
                      />
                   );
                })}
@@ -288,7 +294,7 @@ const Home = () => {
             </div>
 
             <div className="work__content wrapper-flex">
-               {works.map((work, index) => {
+               {projects.map((project, index) => {
                   return (
                      <div
                         key={index}
@@ -296,19 +302,23 @@ const Home = () => {
                      >
                         <Link
                            className="mb-0 project img-grayscale-hover arrow-right-translate-hover d-block"
-                           to="/cataloge"
+                           to={`/cataloge/${project?.id}`}
                         >
                            <Fragment>
                               <div className="img-grayscale">
                                  <Image
-                                    src={work.image}
+                                    src={
+                                       urlRegex.test(project?.images[0])
+                                          ? project?.images[0]
+                                          : RamenImage
+                                    }
                                     alt="black and white image"
                                  />
                               </div>
 
                               <div className="project__des mb-0">
                                  <div className="project__des-text">
-                                    {work.description}
+                                    {project?.title}
                                  </div>
 
                                  <div className="project__des-icon">

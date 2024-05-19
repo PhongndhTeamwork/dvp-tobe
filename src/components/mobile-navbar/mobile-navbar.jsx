@@ -7,13 +7,28 @@ import HomeIcon from "../../assets/images/others/home-icon.png";
 import MessageIcon from "../../assets/images/others/message-icon.png";
 import LinkIcon from "../../assets/images/others/link-icon.png";
 import PhoneIcon from "../../assets/images/others/phone-icon.png";
-
+import axios from "axios";
 import ContactForm from "../contact-form/contact-form";
 
 const MobileNavbar = () => {
    const [activeItemIndex, setActiveItemIndex] = useState(0);
    const [isChanged, setIsChange] = useState(true);
    const homeIconRef = useRef(null);
+
+   const [companyInfos, setCompanyInfos] = useState({});
+
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
+   useEffect(() => {
+      axios
+         .get("/api/info/company")
+         .then(({ data }) => {
+            setCompanyInfos(data.company);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
 
    const handleActivateItemIndex = (index) => {
       let currentItems = document.querySelectorAll(`.navbar__item`);
@@ -151,7 +166,7 @@ const MobileNavbar = () => {
                         </svg>
                         Gọi ngay
                      </div>
-                     <div className="text">+84 988 081 135</div>
+                     <div className="text">{companyInfos.companyPhone}</div>
                   </Fragment>
                </Link>
 
@@ -196,7 +211,7 @@ const MobileNavbar = () => {
                         </svg>
                         Zalo
                      </div>
-                     <div className="text">+84 988 081 135</div>
+                     <div className="text">companyPhone</div>
                   </Fragment>
                </Link>
             </div>
@@ -239,7 +254,7 @@ const MobileNavbar = () => {
                }}
             >
                <Link
-                  to=""
+                  to={companyInfos.companyFacebook}
                   className="d-flex align-items-center justify-content-start"
                >
                   <Fragment>
@@ -259,7 +274,7 @@ const MobileNavbar = () => {
                   </Fragment>
                </Link>
                <Link
-                  to=""
+                  to={companyInfos.companyInstagram}
                   className="d-flex align-items-center justify-content-start"
                >
                   <Fragment>
@@ -287,7 +302,7 @@ const MobileNavbar = () => {
                   </Fragment>
                </Link>
                <Link
-                  to=""
+                  to={companyInfos.companyYoutube}
                   className="d-flex align-items-center justify-content-start"
                >
                   <Fragment>
@@ -311,7 +326,7 @@ const MobileNavbar = () => {
                   </Fragment>
                </Link>
                <Link
-                  to=""
+                  to={companyInfos.companyZalo}
                   className="d-flex align-items-center justify-content-start"
                >
                   <Fragment>

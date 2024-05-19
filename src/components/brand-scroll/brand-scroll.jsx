@@ -25,11 +25,13 @@ const BrandScroll = ({ homePage }) => {
    const [isMouseDown, setIsMouseDown] = useState(false);
    const [mouseMoveX, setMouseMoveX] = useState(0);
 
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
    const [partners, setPartners] = useState({});
 
    useEffect(() => {
       axios
-         .get("/api/contact")
+         .get("/api/info/partners")
          .then(({ data }) => {
             setPartners(data.partners);
          })
@@ -109,7 +111,7 @@ const BrandScroll = ({ homePage }) => {
             images[1]?.style.setProperty("margin-top", "1.875rem", "important");
          });
       }
-   }, [homePage]);
+   }, [homePage, partners]);
 
    return (
       <div className={homePage ? "" : "wrapper partners__content"}>
@@ -125,129 +127,45 @@ const BrandScroll = ({ homePage }) => {
                className="scroll-wrapper__content align-items-start"
                ref={scrollWrapperContentRef}
             >
-               <div
-                  className={`scroll-wrapper__content-item d-flex ${
-                     !homePage ? "flex-column" : ""
-                  }`}
-               >
-                  <Image
-                     src={PartnerSVG1}
-                     alt="partner-01"
-                     style={{
-                        marginBottom: homePage ? "0" : `1.875rem`,
-                     }}
-                  />
-
-                  <Image
-                     src={PartnerSVG2}
-                     alt="partner-02"
-                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
-                  />
-               </div>
-               <div
-                  className={`scroll-wrapper__content-item d-flex ${
-                     !homePage ? "flex-column" : ""
-                  }`}
-               >
-                  <Image
-                     src={PartnerSVG3}
-                     alt="partner-03"
-                     style={{
-                        marginBottom: homePage ? "0" : "1.875rem",
-                     }}
-                  />
-
-                  <Image
-                     src={PartnerSVG4}
-                     alt="partner-04"
-                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
-                  />
-               </div>
-               <div
-                  className={`scroll-wrapper__content-item d-flex ${
-                     !homePage ? "flex-column" : ""
-                  }`}
-               >
-                  <Image
-                     src={PartnerSVG5}
-                     alt="partner-05"
-                     style={{
-                        marginBottom: homePage ? "0" : "1.875rem",
-                     }}
-                  />
-                  <Image
-                     src={PartnerSVG6}
-                     alt="partner-06"
-                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
-                  />
-               </div>
-               <div
-                  className={`scroll-wrapper__content-item d-flex ${
-                     !homePage ? "flex-column" : ""
-                  }`}
-               >
-                  <Image
-                     src={PartnerSVG7}
-                     alt="partner-07"
-                     style={{
-                        marginBottom: homePage ? "0" : "1.875rem",
-                     }}
-                  />
-                  <Image
-                     src={PartnerSVG8}
-                     alt="partner-08"
-                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
-                  />
-               </div>
-               <div
-                  className={`scroll-wrapper__content-item d-flex ${
-                     !homePage ? "flex-column" : ""
-                  }`}
-               >
-                  <Image
-                     src={PartnerSVG9}
-                     alt="partner-09"
-                     style={{
-                        marginBottom: homePage ? "0" : "1.875rem",
-                     }}
-                  />
-                  <Image
-                     src={PartnerSVG10}
-                     alt="partner-10"
-                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
-                  />
-               </div>
-               <div
-                  className={`scroll-wrapper__content-item d-flex ${
-                     !homePage ? "flex-column" : ""
-                  }`}
-               >
-                  <Image
-                     src={PartnerSVG11}
-                     alt="partner-11"
-                     style={{
-                        marginBottom: homePage ? "0" : "1.875rem",
-                     }}
-                  />
-                  <Image
-                     src={PartnerSVG12}
-                     alt="partner-12"
-                     style={{ marginTop: homePage ? "0" : "1.875rem" }}
-                  />
-               </div>
-               <div
-                  className={`scroll-wrapper__content-item d-flex ${
-                     !homePage ? "flex-column" : ""
-                  }`}
-               >
-                  <Image
-                     src={PartnerSVG14}
-                     alt="partner-14"
-                     style={{
-                        marginBottom: homePage ? "0" : "1.875rem",
-                     }}
-                  />
-               </div>
+               {Array(Math.ceil((partners?.length || 0) / 2))
+                  .fill()
+                  .map((_, slideIndex) => (
+                     <div
+                        className={`scroll-wrapper__content-item d-flex ${
+                           !homePage ? "flex-column" : ""
+                        }`}
+                        key={slideIndex}
+                     >
+                        <Image
+                           src={
+                              urlRegex.test(partners[2 * slideIndex]?.image)
+                                 ? partners[2 * slideIndex]?.image
+                                 : PartnerSVG1
+                           }
+                           alt="partner-01"
+                           style={{
+                              marginBottom: homePage ? "0" : `1.875rem`,
+                           }}
+                        />
+                        {2 * slideIndex + 1 <= partners?.length - 1 ? (
+                           <Image
+                              src={
+                                 urlRegex.test(
+                                    partners[2 * slideIndex + 1]?.image
+                                 )
+                                    ? partners[2 * slideIndex + 1]?.image
+                                    : PartnerSVG2
+                              }
+                              alt="partner-02"
+                              style={{
+                                 marginTop: homePage ? "0" : "1.875rem",
+                              }}
+                           />
+                        ) : (
+                           ""
+                        )}
+                     </div>
+                  ))}
             </div>
             <div className="dots">
                <div

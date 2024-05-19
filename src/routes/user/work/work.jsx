@@ -36,6 +36,8 @@ const Work = () => {
    const [projects, setProjects] = useState([]);
    const [contactForm, setContactForm] = useState({});
 
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
    useEffect(() => {
       axios
          .get("/api/work")
@@ -139,7 +141,7 @@ const Work = () => {
                projects.map((project) => {
                   return <WorkProject project={project} />;
                })} */}
-            <WorkProject />
+            <WorkProject projects={projects}/>
          </div>
 
          {/* <!-- End: Work --> */}

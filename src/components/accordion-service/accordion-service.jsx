@@ -4,6 +4,9 @@ import { Accordion, Carousel } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+import  Carousel1 from "../../assets/images/carousel/carousel-1.png";
+
+
 import axios from "axios";
 
 const AccordionService = ({
@@ -17,37 +20,28 @@ const AccordionService = ({
    contents,
 }) => {
    const [isButtonActive, setIsButtonActive] = useState(false);
-   const [carouselWidth, setCarouselWidth] = useState(0);
+   // const [carouselWidth, setCarouselWidth] = useState(0);
 
-   const [services, setServices] = useState({});
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
-   useEffect(() => {
-      axios
-         .get("/api/contact")
-         .then(({ data }) => {
-            setServices(data.services);
-         })
-         .catch((error) => {
-            throw new Error(error);
-         });
-   }, []);
+
 
    const carouselRef = useRef(null);
 
-   useEffect(() => {
-      const timer = setTimeout(() => {
-         if (carouselRef.current) {
-            const carouselItem = carouselRef.current.querySelector(
-               ".active.carousel-item"
-            );
-            if (carouselItem) {
-               setCarouselWidth(carouselItem.offsetWidth);
-            }
-         }
-      }, 100); // 100 milliseconds = 0.1 seconds
+   // useEffect(() => {
+   //    const timer = setTimeout(() => {
+   //       if (carouselRef.current) {
+   //          const carouselItem = carouselRef.current.querySelector(
+   //             ".active.carousel-item"
+   //          );
+   //          if (carouselItem) {
+   //             setCarouselWidth(carouselItem.offsetWidth);
+   //          }
+   //       }
+   //    }, 100); // 100 milliseconds = 0.1 seconds
 
-      return () => clearTimeout(timer); // Clear the timeout on component unmount
-   }, [isButtonActive]);
+   //    return () => clearTimeout(timer); // Clear the timeout on component unmount
+   // }, [isButtonActive]);
 
    const toggleAccordionButton = () => {
       setIsButtonActive(!isButtonActive);
@@ -112,12 +106,12 @@ const AccordionService = ({
                            ref={carouselRef}
                         >
                            <Carousel interval={1000}>
-                              {images.map((image, index) => {
+                              {images?.map((image, index) => {
                                  return (
                                     <Carousel.Item key={index}>
                                        <Image
                                           className="d-block w-100"
-                                          src={image}
+                                          src={urlRegex.test(image) ? image : Carousel1}
                                           alt="Slide"
                                        />
                                     </Carousel.Item>

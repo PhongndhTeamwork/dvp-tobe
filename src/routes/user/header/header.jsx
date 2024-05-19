@@ -6,6 +6,7 @@ import "../../../styles/font.css";
 import "../../../styles/style.css";
 import "../../../styles/bootstrap.min.css";
 import { Link, useLocation } from "react-router-dom";
+import { Image } from "react-bootstrap";
 
 import MobileNavbar from "../../../components/mobile-navbar/mobile-navbar";
 import axios from "axios";
@@ -16,11 +17,13 @@ const Header = () => {
    const location = useLocation();
    // console.log(location.pathname);
 
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
    const [companyInfos, setCompanyInfos] = useState({});
 
    useEffect(() => {
       axios
-         .get("/api/contact")
+         .get("/api/info/company")
          .then(({ data }) => {
             setCompanyInfos(data.company);
          })
@@ -42,6 +45,7 @@ const Header = () => {
       }
       setCurrentPathname(location.pathname);
    }, [location, currentPathname]);
+
    useEffect(() => {
       const handleScroll = () => {
          const banner = document.querySelector(".banner");
@@ -76,7 +80,11 @@ const Header = () => {
                   }}
                   className="header__logo"
                >
-                  Logo
+                  {urlRegex.test(companyInfos.logo) ? (
+                     <Image src={companyInfos.logo} />
+                  ) : (
+                     "Logo"
+                  )}
                </Link>
 
                <ul className="header__nav d-none d-md-flex justify-content-between align-items-center">

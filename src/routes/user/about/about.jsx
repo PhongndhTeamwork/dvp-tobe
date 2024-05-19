@@ -71,55 +71,38 @@ const About = () => {
       },
    ];
 
-   const services = [
-      {
-         title: "Sáng tạo là không giới hạn",
-         description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      },
-      {
-         title: "Giá trị cốt lõi",
-         description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      },
-      {
-         title: "Lắng nghe khách hàng",
-         description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      },
-      {
-         title: "Almost before we knew it, we had left the ground.",
-         description:
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      },
-   ];
+   // const services = [
+   //    {
+   //       title: "Sáng tạo là không giới hạn",
+   //       description:
+   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+   //    },
+   //    {
+   //       title: "Giá trị cốt lõi",
+   //       description:
+   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+   //    },
+   //    {
+   //       title: "Lắng nghe khách hàng",
+   //       description:
+   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+   //    },
+   //    {
+   //       title: "Almost before we knew it, we had left the ground.",
+   //       description:
+   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+   //    },
+   // ];
+
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    // const [isActive, setIsActive] = useState(false);
    const [staffIndexes, setStaffIndexes] = useState([]);
 
-   //? Banner
-   const [firstTextUppercase, setFirstTextUppercase] = useState("");
-   const [secondTextUppercase, setSecondTextUppercase] = useState("");
-   const [firstTextStroke, setFirstTextStroke] = useState("");
-   const [secondTextStroke, setSecondTextStroke] = useState("");
+   const [banner, setBanner] = useState({});
+   const [firstStory, setFirstStory] = useState({});
+   const [secondStory, setSecondStory] = useState({});
 
-   //? First Story
-   const [subtitleOfFirstStory, setSubtitleOfFirstStory] = useState("");
-   const [titleOfFirstStory, setTitleOfFirstStory] = useState("");
-   const [firstTextOfFirstStory, setFirstTextOfFirstStory] = useState("");
-   const [secondTextOfFirstStory, setSecondTextOfFirstStory] = useState("");
-   const [thirdTextOfFirstStory, setThirdTextOfFirstStory] = useState("");
-   const [imagesOfFirstStory, setImagesOfFirstStory] = useState("");
-
-   //? Second Story
-   const [subtitleOfSecondStory, setSubtitleOfSecondStory] = useState("");
-   const [titleOfSecondStory, setTitleOfSecondStory] = useState("");
-   const [firstTextOfSecondStory, setFirstTextOfSecondStory] = useState("");
-   const [secondTextOfSecondStory, setSecondTextOfSecondStory] = useState("");
-   const [thirdTextOfSecondStory, setThirdTextOfSecondStory] = useState("");
-   const [imagesOfSecondStory, setImagesOfSecondStory] = useState("");
-
-   //? Expertise
    const [expertise, setExpertise] = useState([]);
 
    useEffect(() => {
@@ -130,24 +113,10 @@ const About = () => {
       axios
          .get("/api/about")
          .then(({ data }) => {
-            setFirstTextUppercase(data.banner.textuppercase1);
-            setSecondTextUppercase(data.banner.textuppercase2);
-            setFirstTextStroke(data.banner.textstroke1);
-            setSecondTextStroke(data.banner.textstroke2);
+            setBanner(data.banner);
 
-            setSubtitleOfFirstStory(data.story1.subtitle);
-            setTitleOfFirstStory(data.story1.title);
-            setFirstTextOfFirstStory(data.story1.tex1);
-            setSecondTextOfFirstStory(data.story1.tex2);
-            setThirdTextOfFirstStory(data.story1.tex3);
-            setImagesOfFirstStory(data.story1.images);
-
-            setSubtitleOfSecondStory(data.story2.subtitle);
-            setTitleOfSecondStory(data.story2.title);
-            setFirstTextOfSecondStory(data.story2.tex1);
-            setSecondTextOfSecondStory(data.story2.tex2);
-            setThirdTextOfSecondStory(data.story2.tex3);
-            setImagesOfSecondStory(data.story2.images);
+            setFirstStory(data.story1);
+            setSecondStory(data.story2);
 
             setExpertise(data.expertises);
          })
@@ -178,9 +147,9 @@ const About = () => {
 
             <div className="banner__text">
                <div className="text-center">
-                  <div className="text-capitalize">{firstTextStroke}</div>
-                  <div className="text-capitalize">{firstTextUppercase}</div>
-                  <div className="text-capitalize">{secondTextStroke}</div>
+                  <div className="text-capitalize">{banner.textstroke1}</div>
+                  <div className="text-capitalize">{banner.textstroke2}</div>
+                  <div className="text-capitalize">{banner.textuppercase1}</div>
                </div>
             </div>
          </div>
@@ -190,18 +159,18 @@ const About = () => {
          <div className="wrapper wrapper-top wrapper-bottom story">
             <div className="wrapper__header">
                <h4 className="wrapper__header-sub--heading text-uppercase">
-                  {subtitleOfFirstStory}
+                  {firstStory.subtitle}
                </h4>
                <h1 className="wrapper__header-heading text-capitalize">
-                  {titleOfFirstStory}
+                  {firstStory.title}
                </h1>
             </div>
 
             <div className="wrapper-flex">
                <div className="rectangle-100 rectangle-pc-50 story__content-text">
-                  <p>{firstTextOfFirstStory}</p>
-                  <p>{secondTextOfFirstStory}</p>
-                  <p>{thirdTextOfFirstStory}</p>
+                  <p>{firstStory.text1}</p>
+                  <p>{firstStory.text2}</p>
+                  <p>{firstStory.text3}</p>
                </div>
 
                <div className="rectangle-100 rectangle-pc-50 story__content-img">
@@ -253,48 +222,67 @@ const About = () => {
          <div className="wrapper wrapper-top wrapper-bottom culture">
             <div className="wrapper__header">
                <h4 className="wrapper__header-sub--heading text-uppercase">
-                  DVP Home Library
+                  {secondStory.subtitle}
                </h4>
                <h1 className="wrapper__header-heading text-capitalize">
-                  Văn hóa DVP
+                  {secondStory.title}
                </h1>
             </div>
 
             <div className="culture__des rectangle-100 rectangle-pc-50 p-0 ms-0">
-               <p className="culture__des-text m-0">
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
-               </p>
+               <p className="culture__des-text m-0">{secondStory.text1}</p>
+               <p className="culture__des-text m-0">{secondStory.text2}</p>
+               <p className="culture__des-text m-0">{secondStory.text3}</p>
             </div>
 
             <div className="culture__img wrapper-flex">
                <div className="rectangle-100 rectangle-pc-25 wrapper-flex m-0 p-0">
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
-                     src={CultureImage2}
+                     src={
+                        urlRegex.test(secondStory?.images?.slice(0, 1))
+                           ? secondStory?.images[0]
+                           : CultureImage2
+                     }
                      alt=""
                   />
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
-                     src={CultureImage3}
+                     src={
+                        urlRegex.test(secondStory?.images?.slice(1, 1))
+                           ? secondStory.images[1]
+                           : CultureImage3
+                     }
                      alt=""
                   />
                </div>
                <div className="rectangle-100 rectangle-pc-50">
-                  <Image src={CultureImage1} alt="" />
+                  <Image
+                     src={
+                        urlRegex.test(secondStory?.images?.slice(2, 1))
+                           ? secondStory.images[2]
+                           : CultureImage1
+                     }
+                     alt=""
+                  />
                </div>
                <div className="rectangle-100 rectangle-pc-25 wrapper-flex m-0 p-0">
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
-                     src={CultureImage4}
+                     src={
+                        urlRegex.test(secondStory?.images?.slice(3, 1))
+                           ? secondStory.images[3]
+                           : CultureImage4
+                     }
                      alt=""
                   />
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
-                     src={CultureImage5}
+                     src={
+                        urlRegex.test(secondStory?.images?.slice(4, 1))
+                           ? secondStory.images[4]
+                           : CultureImage5
+                     }
                      alt=""
                   />
                </div>

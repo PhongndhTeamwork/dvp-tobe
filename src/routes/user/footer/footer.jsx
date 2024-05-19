@@ -16,9 +16,11 @@ const Footer = () => {
 
    const [companyInfos, setCompanyInfos] = useState({});
 
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
    useEffect(() => {
       axios
-         .get("/api/contact")
+         .get("/api/info/company")
          .then(({ data }) => {
             setCompanyInfos(data.company);
          })
@@ -37,16 +39,22 @@ const Footer = () => {
                <div className="wrapper-flex">
                   <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25 info">
                      <div className="info__header">
-                        <h1 className="info__header-logo">Logo</h1>
+                        <h1 className="info__header-logo">
+                           {urlRegex.test(companyInfos.logo) ? (
+                              <Image src={companyInfos.logo} />
+                           ) : (
+                              "Logo"
+                           )}
+                        </h1>
                      </div>
                      <div className="info__content">
                         <h6 className="text">
-                           Công ty TNHH 1 thành viên DVP media
+                           {companyInfos.companyName}
                         </h6>
-                        <h6 className="text">GCNĐKKD: 0108755817</h6>
-                        <h6 className="text">Cấp ngày: 01/01/2024</h6>
+                        <h6 className="text">GCNĐKKD: {companyInfos.licenseCode}</h6>
+                        <h6 className="text">Cấp ngày: {companyInfos.licenseDate}</h6>
                         <h6 className="text">
-                           Nơi cấp: Sở Kế Hoạch Đầu Tư Thành phố Hà Nội
+                           Nơi cấp: {companyInfos.licenseAddress}
                         </h6>
                      </div>
                   </div>
@@ -57,14 +65,13 @@ const Footer = () => {
                      </div>
                      <div className="info__content">
                         <h6 className="text">
-                           Số 67 phố Láng Hạ, quận Đống Đa, <br />
-                           tp Hà Nội
+                          {companyInfos.companyAddress}
                         </h6>
-                        <h6 className="text">+84 988 123 456</h6>
-                        <h6 className="text">dvp.media@gmail.com</h6>
+                        <h6 className="text">{companyInfos.companyPhone}</h6>
+                        <h6 className="text">{companyInfos.companyEmail}</h6>
                         <h6 className="text">
                            <Link to="" className="website-link">
-                              www.dvpmedia.com
+                              {companyInfos.companyWebsite}
                            </Link>
                         </h6>
                      </div>
@@ -78,7 +85,7 @@ const Footer = () => {
                         <iframe
                            title="Google Map Location"
                            className="location__map-link"
-                           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232.7824199424376!2d105.8175071671402!3d21.01192097903609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9d54df9633%3A0xc6669ca3a3fd9129!2zS8OtbmggTeG6r3QgSMOgIFRow6BuaA!5e0!3m2!1svi!2sus!4v1714187539680!5m2!1svi!2sus"
+                           src={companyInfos.companyLocation}
                            allowFullScreen=""
                            loading="lazy"
                            referrerPolicy="no-referrer-when-downgrade"
@@ -91,14 +98,17 @@ const Footer = () => {
                         <h3 className="heading">Kết nối</h3>
                      </div>
                      <div className="info__content">
-                        <Link to="" className="social-link">
+                        <Link to={companyInfos.companyFacebook} className="social-link">
                            Facebook
                         </Link>
-                        <Link to="" className="social-link">
+                        <Link to={companyInfos.companyInstagram} className="social-link">
                            Instagram
                         </Link>
-                        <Link to="" className="social-link">
+                        <Link to={companyInfos.companyZalo} className="social-link">
                            Zalo
+                        </Link>
+                        <Link to={companyInfos.companyYoutube} className="social-link">
+                           Youtube
                         </Link>
                      </div>
                   </div>

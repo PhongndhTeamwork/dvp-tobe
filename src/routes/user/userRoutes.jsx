@@ -18,7 +18,7 @@ const UserRoutes = () => {
          <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/cataloge" element={<Cataloge />} />
+            <Route path="/cataloge/:id" element={<Cataloge />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/hiring" element={<Hiring />} />
             <Route path="/work" element={<Work />} />
