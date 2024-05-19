@@ -14,16 +14,16 @@ const Signin = () => {
 
          {/* <!-- Loading animation --> */}
          <div id="popup-loader">
-            <div class="circle"></div>
+            <div className="circle"></div>
          </div>
 
-         <div class="container">
-            <div id="form-signin" class="form">
+         <div className="container">
+            <div id="form-signin" className="form">
                <h2>Đăng nhập quản trị viên</h2>
 
-               <form id="form-login" action="dashboard.html" class="mt-4">
-                  <div class="input-box">
-                     <span class="label-error"></span>
+               <form id="form-login" action="dashboard.html" className="mt-4">
+                  <div className="input-box">
+                     <span className="label-error"></span>
                      <input
                         type="text"
                         placeholder="Nhập username"
@@ -31,8 +31,8 @@ const Signin = () => {
                         name="username"
                      />
                   </div>
-                  <div class="input-box">
-                     <span class="label-error"></span>
+                  <div className="input-box">
+                     <span className="label-error"></span>
                      <input
                         type="password"
                         placeholder="Nhập mật khẩu"
@@ -40,13 +40,13 @@ const Signin = () => {
                         name="password"
                      />
                   </div>
-                  <div class="input-box button">
+                  <div className="input-box button">
                      <button type="submit">Đăng nhập</button>
                   </div>
                </form>
 
-               <h3 class="change-link m-0 pt-2 w-100 text-center">
-                  <Link to="" class="link">
+               <h3 className="change-link m-0 pt-2 w-100 text-center">
+                  <Link to="" className="link">
                      Quên mật khẩu
                   </Link>
                </h3>

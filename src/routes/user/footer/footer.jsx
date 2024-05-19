@@ -48,11 +48,13 @@ const Footer = () => {
                         </h1>
                      </div>
                      <div className="info__content">
+                        <h6 className="text">{companyInfos.companyName}</h6>
                         <h6 className="text">
-                           {companyInfos.companyName}
+                           GCNĐKKD: {companyInfos.licenseCode}
                         </h6>
-                        <h6 className="text">GCNĐKKD: {companyInfos.licenseCode}</h6>
-                        <h6 className="text">Cấp ngày: {companyInfos.licenseDate}</h6>
+                        <h6 className="text">
+                           Cấp ngày: {companyInfos.licenseDate}
+                        </h6>
                         <h6 className="text">
                            Nơi cấp: {companyInfos.licenseAddress}
                         </h6>
@@ -64,9 +66,7 @@ const Footer = () => {
                         <h3 className="heading">Hà Nội</h3>
                      </div>
                      <div className="info__content">
-                        <h6 className="text">
-                          {companyInfos.companyAddress}
-                        </h6>
+                        <h6 className="text">{companyInfos.companyAddress}</h6>
                         <h6 className="text">{companyInfos.companyPhone}</h6>
                         <h6 className="text">{companyInfos.companyEmail}</h6>
                         <h6 className="text">
@@ -82,14 +82,15 @@ const Footer = () => {
                         <h3 className="heading">Bản đồ</h3>
                      </div>
                      <div className="info__content location__map">
-                        <iframe
+                        {companyInfos.companyLocation}
+                        {/* <iframe
                            title="Google Map Location"
                            className="location__map-link"
                            src={companyInfos.companyLocation}
                            allowFullScreen=""
                            loading="lazy"
                            referrerPolicy="no-referrer-when-downgrade"
-                        ></iframe>
+                        ></iframe> */}
                      </div>
                   </div>
 
@@ -98,16 +99,28 @@ const Footer = () => {
                         <h3 className="heading">Kết nối</h3>
                      </div>
                      <div className="info__content">
-                        <Link to={companyInfos.companyFacebook} className="social-link">
+                        <Link
+                           to={companyInfos.companyFacebook}
+                           className="social-link"
+                        >
                            Facebook
                         </Link>
-                        <Link to={companyInfos.companyInstagram} className="social-link">
+                        <Link
+                           to={companyInfos.companyInstagram}
+                           className="social-link"
+                        >
                            Instagram
                         </Link>
-                        <Link to={companyInfos.companyZalo} className="social-link">
+                        <Link
+                           to={companyInfos.companyZalo}
+                           className="social-link"
+                        >
                            Zalo
                         </Link>
-                        <Link to={companyInfos.companyYoutube} className="social-link">
+                        <Link
+                           to={companyInfos.companyYoutube}
+                           className="social-link"
+                        >
                            Youtube
                         </Link>
                      </div>

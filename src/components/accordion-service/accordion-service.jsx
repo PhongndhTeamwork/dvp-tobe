@@ -4,8 +4,7 @@ import { Accordion, Carousel } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import  Carousel1 from "../../assets/images/carousel/carousel-1.png";
-
+import Carousel1 from "../../assets/images/carousel/carousel-1.png";
 
 import axios from "axios";
 
@@ -23,8 +22,6 @@ const AccordionService = ({
    // const [carouselWidth, setCarouselWidth] = useState(0);
 
    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-
-
 
    const carouselRef = useRef(null);
 
@@ -111,7 +108,11 @@ const AccordionService = ({
                                     <Carousel.Item key={index}>
                                        <Image
                                           className="d-block w-100"
-                                          src={urlRegex.test(image) ? image : Carousel1}
+                                          src={
+                                             urlRegex.test(image)
+                                                ? image
+                                                : Carousel1
+                                          }
                                           alt="Slide"
                                        />
                                     </Carousel.Item>
@@ -144,6 +145,12 @@ const AccordionService = ({
                               <h4 className="service__content-heading text-uppercase">
                                  Hướng dẫn ứng tuyển
                               </h4>
+                              <p className="service__content-text">
+                                 Hãy gửi mail cho chúng tôi, nội dung bắt buộc
+                                 (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên -
+                                 Cách thức liên lạc, gửi CV và portfolio của bản
+                                 thân).
+                              </p>
                               <p className="service__content-text">
                                  Tất cả gửi về địa chỉ mail:{" "}
                                  <Link

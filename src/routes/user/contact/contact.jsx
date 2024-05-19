@@ -15,6 +15,21 @@ const Contact = () => {
    const [story, setStory] = useState({});
    const [contactForm, setContactForm] = useState({});
 
+   const [companyInfos, setCompanyInfos] = useState({});
+
+   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
+   useEffect(() => {
+      axios
+         .get("/api/info/company")
+         .then(({ data }) => {
+            setCompanyInfos(data.company);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
+
    useEffect(() => {
       axios
          .get("/api/contact")
@@ -58,7 +73,7 @@ const Contact = () => {
                </div>
 
                <div className="rectangle-100 rectangle-pc-50 inspiration__info">
-                  <h2 className="heading">Công ty TNHH DVP...</h2>
+                  <h2 className="heading">{companyInfos.companyName}</h2>
                   <h4 className="sub-heading">
                      Lorem Ipsum is simply dummy text of the printing and
                      typesetting industry. Lorem Ipsum has been the industry's
@@ -67,10 +82,10 @@ const Contact = () => {
                      type specimen book.
                   </h4>
 
-                  <p>Công ty TNHH 1 thành viên DVP Media</p>
-                  <p>GCNĐKKD: 0108755817</p>
-                  <p>Cấp ngày: 01/01/2024</p>
-                  <p>Nơi cấp: Sở Kế Hoạch Và Đầu Tư Thành Phố Hà Nội</p>
+                  <p>{companyInfos.companyName}</p>
+                  <p>GCNĐKKD: {companyInfos.licenseCode}</p>
+                  <p>Cấp ngày: {companyInfos.licenseDate}</p>
+                  <p>Nơi cấp: {companyInfos.licenseAddress}</p>
                </div>
             </div>
          </div>

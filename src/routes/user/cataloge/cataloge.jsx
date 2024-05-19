@@ -87,8 +87,11 @@ const Cataloge = () => {
                   {project.title} <br /> {project.categoryName}
                </h1>
                <h4 className="project__sub-heading">
-                  Web design<span className="line"></span>
-                  {project.finishDate}
+                  {project.categoryName}
+                  <span className="line"></span>
+                  {new Date(project.finishDate)
+                     ? new Date(project.finishDate).getFullYear()
+                     : project.categoryName}
                </h4>
             </div>
 
@@ -234,7 +237,10 @@ const Cataloge = () => {
                   </div>
                   <div className="project__info-more">
                      <h6 className="title">Xem thêm tại</h6>
-                     <Link to="" className="name text-uppercase project-link">
+                     <Link
+                        to={project.linkDemo}
+                        className="name text-uppercase project-link"
+                     >
                         {project.linkDemo}
                         <i className="fa-solid fa-arrow-right-long"></i>
                      </Link>

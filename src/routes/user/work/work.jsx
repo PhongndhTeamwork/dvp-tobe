@@ -50,7 +50,7 @@ const Work = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   },[]);
+   }, []);
 
    const handleAllCategoriesClick = () => {
       setActiveCategory("all");
@@ -83,8 +83,6 @@ const Work = () => {
 
             <div className="work__des rectangle-100 rectangle-pc-50 ms-0 p-0">
                <p className="work__des-text m-0">{story.text1}</p>
-               <p className="work__des-text m-0">{story.text2}</p>
-               <p className="work__des-text m-0">{story.text3}</p>
             </div>
 
             <nav className="work__nav">
@@ -141,7 +139,7 @@ const Work = () => {
                projects.map((project) => {
                   return <WorkProject project={project} />;
                })} */}
-            <WorkProject projects={projects}/>
+            <WorkProject projects={projects} />
          </div>
 
          {/* <!-- End: Work --> */}
@@ -157,20 +155,16 @@ const Work = () => {
                   <div className="wrapper-flex-item d-none d-md-block rectangle-tab-50 p-0">
                      <div className="quote">
                         <div className="quote__heading d-none d-xl-block">
-                        {contactForm.title}
+                           {contactForm.title}
                         </div>
 
                         <div className="quote__text d-flex justify-content-between align-items-start">
                            <Image src={ContactIcon1} alt="icon 1" />
-                           <p>
-                              {contactForm.text1}
-                           </p>
+                           <p>{contactForm.text1}</p>
                         </div>
                         <div className="quote__text d-flex justify-content-between align-items-start">
                            <Image src={ContactIcon2} alt="icon 2" />
-                           <p>
-                              {contactForm.text2}
-                           </p>
+                           <p>{contactForm.text2}</p>
                         </div>
                      </div>
                   </div>

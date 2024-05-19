@@ -147,9 +147,9 @@ const About = () => {
 
             <div className="banner__text">
                <div className="text-center">
-                  <div className="text-capitalize">{banner.textstroke1}</div>
                   <div className="text-capitalize">{banner.textstroke2}</div>
                   <div className="text-capitalize">{banner.textuppercase1}</div>
+                  <div className="text-capitalize">{banner.textuppercase2}</div>
                </div>
             </div>
          </div>
@@ -174,7 +174,15 @@ const About = () => {
                </div>
 
                <div className="rectangle-100 rectangle-pc-50 story__content-img">
-                  <Image src={ExOfficeImage} alt="office" />
+                  <Image
+                     src={
+                        firstStory?.images &&
+                        urlRegex.test(firstStory?.images[0])
+                           ? firstStory?.images[0]
+                           : ExOfficeImage
+                     }
+                     alt="office"
+                  />
                </div>
             </div>
          </div>
