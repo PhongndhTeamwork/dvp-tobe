@@ -118,7 +118,7 @@ const Work = () => {
                            activeCategory !== "all" ? "visible" : "hidden",
                      }}
                   >
-                     {categories.map((filterItem, index) => {
+                     {categories?.map((filterItem, index) => {
                         return (
                            <div
                               key={index}

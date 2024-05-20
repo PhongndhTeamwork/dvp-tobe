@@ -310,7 +310,7 @@ const About = () => {
             </div>
 
             <div className="wrapper-flex staff__content">
-               {staffs.map((staff, index) => {
+               {staffs?.map((staff, index) => {
                   return (
                      <div
                         key={index}

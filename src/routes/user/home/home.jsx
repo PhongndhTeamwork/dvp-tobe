@@ -267,7 +267,7 @@ const Home = () => {
             </div>
 
             <div className="expertise__content">
-               {serviceItems.map((service, index) => {
+               {serviceItems?.map((service, index) => {
                   return (
                      <AccordionService
                         key={index}
@@ -294,7 +294,7 @@ const Home = () => {
             </div>
 
             <div className="work__content wrapper-flex">
-               {projects.map((project, index) => {
+               {projects?.map((project, index) => {
                   return (
                      <div
                         key={index}

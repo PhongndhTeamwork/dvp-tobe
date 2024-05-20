@@ -1,6 +1,6 @@
-import "../../styles/admin/dashboard.css"
-import "../../styles/admin/notify.css"
-import "../../styles/admin/style.css"
+import "../../styles/admin/dashboard.css";
+import "../../styles/admin/notify.css";
+import "../../styles/admin/style.css";
 
 import Signin from "./signin/signin";
 import Dashboard from "./dashboard/dashboard";
@@ -12,10 +12,14 @@ import AdminCompany from "./admin-company/admin-company";
 import AdminAbout from "./admin-about/admin-about";
 
 import { Route, Routes } from "react-router-dom";
+import AdminHeader from "../../components/admin-header/admin-header";
 
 const AdminRoutes = () => {
    return (
       <div className="admin-routes">
+         <header>
+            <AdminHeader />
+         </header>
          <Routes>
             <Route path="/" element={<Signin />} />
             <Route path="/dashboard" element={<Dashboard />} />
@@ -29,6 +33,5 @@ const AdminRoutes = () => {
       </div>
    );
 };
-
 
 export default AdminRoutes;

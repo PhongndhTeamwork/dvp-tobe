@@ -130,7 +130,7 @@ const Hiring = () => {
             </div>
 
             <div class="expertise__content">
-               {jobs.map((job, index) => {
+               {jobs?.map((job, index) => {
                   return (
                      <AccordionService
                         hasJob={true}
