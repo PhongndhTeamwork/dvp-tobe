@@ -21,9 +21,7 @@ const Dashboard = () => {
                className="collapse collapse-horizontal show vh-100"
                id="sideBarNav"
             >
-               <div className="h-100 navbar-left">
-                  <AdminNav />
-               </div>
+               <div className="h-100 navbar-left"></div>
             </div>
 
             <div className="vh-100 content-wrapper px-2 px-lg-4">

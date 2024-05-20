@@ -37,6 +37,16 @@
    font-weight: 400;
 }
 
+.admin-routes .navbtn {
+   padding: 0.45rem 0;
+   padding-left: 2.75rem;
+   opacity: 0.75;
+   cursor: pointer;
+   color: var(--bg-light);
+   font-size: 0.875rem;
+   font-weight: 400;
+}
+
 .admin-routes .content .navbar-left .navbtn:hover {
    opacity: 1;
    background-color: var(--bg-hover-btn);
@@ -70,6 +80,9 @@
 .admin-routes .content .content-wrapper .content-body {
    background-color: var(--bg-light);
    border-radius: 0.5rem;
+   width: 100%;
+   height: calc(100vh - 10rem);
+   overflow-y: scroll;
 }
 
 .admin-routes .content .content-wrapper .content-body label {

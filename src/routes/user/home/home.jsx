@@ -144,16 +144,16 @@ const Home = () => {
    useEffect(() => {
       const handleScroll = () => {
          const scrollY = window.scrollY;
-         const bannerHeight = bannerRef.current?.offsetHeight || 0;
-         const videoHeight = videoRef.current?.offsetHeight || 0;
+         const bannerHeight = bannerRef?.current?.offsetHeight || 0;
+         const videoHeight = videoRef?.current?.offsetHeight || 0;
 
          if (scrollY > 0.5 * bannerHeight) {
-            videoRef.current.play();
+            videoRef?.current?.play();
          } else if (
             scrollY > bannerHeight + videoHeight ||
             scrollY <= 0.5 * bannerHeight
          ) {
-            videoRef.current.pause();
+            videoRef?.current?.pause();
          }
       };
 
@@ -161,7 +161,7 @@ const Home = () => {
 
       // Cleanup function to remove event listener on unmount
       return () => window.removeEventListener("scroll", handleScroll);
-   }, []);
+   });
 
    const handleVideoClick = () => {
       setIsMuted(!isMuted);

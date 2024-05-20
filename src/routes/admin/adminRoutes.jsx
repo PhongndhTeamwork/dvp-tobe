@@ -11,17 +11,39 @@ import AdminContact from "./admin-contact/admin-contact";
 import AdminCompany from "./admin-company/admin-company";
 import AdminAbout from "./admin-about/admin-about";
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import AdminHeader from "../../components/admin-header/admin-header";
+import AdminNav from "../../components/admin-nav/admin-nav";
 
 const AdminRoutes = () => {
+   const location = useLocation();
+
    return (
       <div className="admin-routes">
-         <header>
+         <header
+            style={{
+               display: location.pathname.includes("admin/signin")
+                  ? "none"
+                  : "",
+            }}
+         >
             <AdminHeader />
+            <div
+               style={{
+                  position: "absolute",
+                  left: 0,
+                  top: "3rem",
+                  width: "14rem",
+                  backgroundColor: "var(--bg-semi-dark)",
+                  height: "100vh",
+               }}
+               className="pt-3"
+            >
+               <AdminNav />
+            </div>
          </header>
          <Routes>
-            <Route path="/" element={<Signin />} />
+            <Route path="/signin" element={<Signin />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/work" element={<AdminWork />} />
             <Route path="/home" element={<AdminHome />} />
