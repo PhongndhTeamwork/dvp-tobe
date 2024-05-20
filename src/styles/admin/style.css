@@ -36,7 +36,7 @@ body {
     --color-shadow: rgba(59, 93, 80, 0.5);
 }
 
-input {
+.admin-routes input {
     padding: 0.5rem 0;
     border: 0.0625rem solid var(--color-border);
     border-radius: 0.5rem;
@@ -47,45 +47,45 @@ input {
     transition: all ease 0.2s;
 }
 
-input:focus {
+.admin-routes input:focus {
     outline: none;
     border-color: var(--color-border);
     box-shadow: 0 0.0625rem 0.25rem 0 var(--color-shadow);
 }
 
-a {
+.admin-routes a {
     text-decoration: none;
     transition: all linear 0.2s;
 }
 
-a:hover {
+.admin-routes a:hover {
     opacity: 0.75;
 }
 
-ul {
+.admin-routes ul {
     margin: 0;
     padding: 0;
 }
 
-li {
+.admin-routes li {
     list-style: none;
 }
 
-button {
+.admin-routes button {
     border: none;
     border-radius: 0.5rem;
     transition: all ease 0.2s;
 }
 
-button:hover {
+.admin-routes button:hover {
     opacity: 0.75;
 }
 
-.text-justify {
+.admin-routes .text-justify {
     text-align: justify;
 }
 
-.form {
+.admin-routes .form {
     position: absolute;
     z-index: 10;
     top: 45%;
@@ -99,14 +99,14 @@ button:hover {
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
-.form h2 {
+.admin-routes .form h2 {
     position: relative;
     font-size: 1.25rem;
     font-weight: 600;
     color: #333;
 }
 
-.form h2::before {
+.admin-routes .form h2::before {
     content: '';
     position: absolute;
     left: 0;
@@ -117,11 +117,11 @@ button:hover {
     background: var(--text-error);
 }
 
-.form .input-box {
+.admin-routes .form .input-box {
     margin: 1rem 0;
 }
 
-.form .input-box input {
+.admin-routes .form .input-box input {
     height: 2.5rem;
     width: 100%;
     outline: none;
@@ -135,30 +135,30 @@ button:hover {
     transition: all 0.3s ease;
 }
 
-.form .input-box.invalid input {
+.admin-routes .form .input-box.invalid input {
     border-color: var(--text-error);
 }
 
-.form .input-box.invalid span.label-error{
+.admin-routes .form .input-box.invalid span.label-error{
     display: block;
     margin-bottom: 0.35rem;
     font-style: italic;
     color: var(--text-error);
 }
 
-.form .policy {
+.admin-routes .form .policy {
     display: flex;
     align-items: center;
 }
 
-.form h3 {
+.admin-routes .form h3 {
     color: #707070;
     font-size: 0.875rem;
     font-weight: 500;
     margin-left: 0.625rem;
 }
 
-.form .input-box.button input {
+.admin-routes .form .input-box.button input {
     color: var(--bg-light);
     letter-spacing: 0.0625rem;
     border: none;
@@ -166,38 +166,38 @@ button:hover {
     cursor: pointer;
 }
 
-.form .input-box.button input:hover {
+.admin-routes .form .input-box.button input:hover {
     background: var(--text-link-blue);
 }
 
-.form .text h3 {
+.admin-routes .form .text h3 {
     color: #333;
     width: 100%;
     text-align: center;
     margin-left: 0;
 }
 
-.form .text h3 a {
+.admin-routes .form .text h3 a {
     color: var(--text-price);
     margin-left: 0.5rem;
     text-decoration: none;
 }
 
-.form .text h3 a:hover {
+.admin-routes .form .text h3 a:hover {
     text-decoration: underline;
 }
 
-.form .text span{
+.admin-routes .form .text span{
     color: var(--text-price);
     cursor: pointer;
     transition: all linear 0.2s;
 }
 
-.form .text span:hover{
+.admin-routes .form .text span:hover{
     opacity: 0.75;
 }
 
-.form button{
+.admin-routes .form button{
     width: 100%;
     font-size: 1.125rem;
     font-weight: 500;
@@ -205,13 +205,13 @@ button:hover {
     background-color: var(--text-price);
 }
 
-.form .change-link .link{
+.admin-routes .form .change-link .link{
     color: var(--text-error);
     cursor: pointer;
     transition: all linear 0.2s;
 }
 
-.form .change-link .link:hover{
+.admin-routes .form .change-link .link:hover{
     opacity: 0.75;
 }
 

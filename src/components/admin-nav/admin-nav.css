@@ -1,0 +1,8 @@
+.admin-header .accordion-button {
+   height: fit-content !important;
+}
+
+.admin-header .accordion-body{
+   display: flex;
+   flex-direction: column;
+}

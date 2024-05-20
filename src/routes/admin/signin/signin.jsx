@@ -1,11 +1,52 @@
 import "./signin.css";
 
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 import Notification from "../../../components/notification/notification";
 
 const Signin = () => {
+   const [username, setUsername] = useState("");
+   const [password, setPassword] = useState("");
+
+   const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
+   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+
+   const handleChangeUsername = (e) => {
+      if (e.target.value === "") {
+         setUsernameErrorMessage("Vui lòng nhập username hoặc email!");
+      } else {
+         setUsernameErrorMessage("");
+      }
+      setUsername(e.target.value);
+   };
+   const handleChangePassword = (e) => {
+      if (e.target.value === "") {
+         setPasswordErrorMessage("Vui lòng nhập mật khẩu!");
+      } else if (e.target.value.length < 8) {
+         setPasswordErrorMessage("Vui lòng nhập tối thiểu 8 kí tự!");
+      } else {
+         setPasswordErrorMessage("");
+      }
+      setPassword(e.target.value);
+   };
+
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      if (username === "") {
+         setUsernameErrorMessage("Vui lòng nhập username hoặc email!");
+      } else {
+         setUsernameErrorMessage("");
+      }
+      if (password === "") {
+         setPasswordErrorMessage("Vui lòng nhập mật khẩu!");
+      } else if (password.length < 8) {
+         setPasswordErrorMessage("Vui lòng nhập tối thiểu 8 kí tự!");
+      } else {
+         setPasswordErrorMessage("");
+      }
+   };
+
    return (
       <Fragment>
          {/* <!-- Pop up to show notifications --> */}
@@ -21,23 +62,43 @@ const Signin = () => {
             <div id="form-signin" className="form">
                <h2>Đăng nhập quản trị viên</h2>
 
-               <form id="form-login" action="dashboard.html" className="mt-4">
-                  <div className="input-box">
-                     <span className="label-error"></span>
+               <form
+                  id="form-login"
+                  onSubmit={(e) => {
+                     handleSubmit(e);
+                  }}
+                  className="mt-4"
+               >
+                  <div
+                     className={`input-box ${
+                        usernameErrorMessage !== "" ? "invalid" : ""
+                     }`}
+                  >
+                     <span className="label-error">{usernameErrorMessage}</span>
                      <input
                         type="text"
                         placeholder="Nhập username"
                         id="username"
                         name="username"
+                        onChange={(e) => {
+                           handleChangeUsername(e);
+                        }}
                      />
                   </div>
-                  <div className="input-box">
-                     <span className="label-error"></span>
+                  <div
+                     className={`input-box ${
+                        passwordErrorMessage !== "" ? "invalid" : ""
+                     }`}
+                  >
+                     <span className="label-error">{passwordErrorMessage}</span>
                      <input
                         type="password"
                         placeholder="Nhập mật khẩu"
                         id="password"
                         name="password"
+                        onChange={(e) => {
+                           handleChangePassword(e);
+                        }}
                      />
                   </div>
                   <div className="input-box button">
