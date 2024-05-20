@@ -2,49 +2,46 @@ import "./admin-nav.css";
 import { Accordion } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
+
 const AdminNav = () => {
    const categories = [
       {
          title: "Trang chủ",
          contents: ["Banner", "Video", "Story", "Dịch vụ"],
-         link:"/admin/home"
+         link: "/admin/home",
       },
       {
          title: "Giới thiệu",
          contents: ["Banner", "Story", "Phương châm", "Văn hóa", "Nhân sự"],
-         link:"/admin/about"
+         link: "/admin/about",
       },
       {
          title: "Công việc",
          contents: ["Story", "Dự án", "Danh mục dự án"],
-         link:"/admin/work"
-
+         link: "/admin/work",
       },
       {
          title: "Tuyển dụng",
          contents: ["Banner", "Story", "Vị trí tuyển dụng", "Link gmail"],
-         link:"/admin/hiring"
-
+         link: "/admin/hiring",
       },
       {
          title: "Liên hệ",
          contents: ["Story", "Ảnh location", "Đoạn văn tiêu đề"],
-         link:"/admin/contact"
-
+         link: "/admin/contact",
       },
       {
          title: "Thông tin công ty",
          contents: ["Chung"],
-         link:"/admin/company"
-
+         link: "/admin/company",
       },
       {
          title: "Tư vấn khách hàng",
          contents: ["Thông tin"],
-         link:"/admin/company"
-
+         link: "/admin/company",
       },
    ];
+
 
    return (
       <div className="admin-header">

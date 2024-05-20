@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 
+import { AdminContext } from "../../routes/admin/adminContext";
+import { useContext } from "react";
+
 const AdminHeader = () => {
+   const { fullView, setFullView } = useContext(AdminContext);
+
    return (
       <nav className="navbar navbar-expand fixed-top navbar-dark bg-dark">
          {/* <!-- Navbar Brand--> */}
@@ -13,6 +18,9 @@ const AdminHeader = () => {
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#sideBarNav"
+            onClick={() => {
+               setFullView(!fullView);
+            }}
          >
             <i className="fas fa-bars"></i>
          </button>
@@ -23,7 +31,7 @@ const AdminHeader = () => {
                <Link
                   className="nav-link dropdown-toggle"
                   id="navbarDropdown"
-                  to="#"
+                  to=""
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"

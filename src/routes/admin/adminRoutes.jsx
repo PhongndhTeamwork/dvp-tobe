@@ -15,8 +15,13 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import AdminHeader from "../../components/admin-header/admin-header";
 import AdminNav from "../../components/admin-nav/admin-nav";
 
+import { AdminContext } from "./adminContext";
+import { useContext } from "react";
+
 const AdminRoutes = () => {
    const location = useLocation();
+
+   const { fullView } = useContext(AdminContext);
 
    return (
       <div className="admin-routes">
@@ -31,11 +36,12 @@ const AdminRoutes = () => {
             <div
                style={{
                   position: "absolute",
-                  left: 0,
+                  left: fullView ? "-17.5vw" : 0,
                   top: "3rem",
-                  width: "14rem",
+                  width: "17.5vw",
                   backgroundColor: "var(--bg-semi-dark)",
                   height: "100vh",
+                  transition : "left 0.5s ease"
                }}
                className="pt-3"
             >

@@ -1,12 +1,14 @@
 import "./dashboard.css";
 
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
-import { Image } from "react-bootstrap";
 import Notification from "../../../components/notification/notification";
-import AdminNav from "../../../components/admin-nav/admin-nav";
+
+import { AdminContext } from "../adminContext";
 
 const Dashboard = () => {
+   const { fullView } = useContext(AdminContext);
+
    return (
       <Fragment>
          {/* <Notification /> */}
@@ -16,13 +18,17 @@ const Dashboard = () => {
             <div className="circle"></div>
          </div>
 
-         <div className="content d-flex vw-100">
-            <div
+         <div
+            className="content d-flex"
+            style={{ width: fullView ? "100vw" : "82.5vw" }}
+         >
+            {/* <div
                className="collapse collapse-horizontal show vh-100"
                id="sideBarNav"
+               style={{ display: fullView ? "none" : "block" }}
             >
                <div className="h-100 navbar-left"></div>
-            </div>
+            </div> */}
 
             <div className="vh-100 content-wrapper px-2 px-lg-4">
                <h1 className="p-3 ps-lg-0 fs-4 text-light fw-semibold">
