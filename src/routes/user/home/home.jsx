@@ -155,13 +155,13 @@ const Home = () => {
          ) {
             videoRef?.current?.pause();
          }
+         console.log(videoRef.current);
       };
 
       window.addEventListener("scroll", handleScroll);
 
-      // Cleanup function to remove event listener on unmount
       return () => window.removeEventListener("scroll", handleScroll);
-   });
+   }, []);
 
    const handleVideoClick = () => {
       setIsMuted(!isMuted);
@@ -208,7 +208,7 @@ const Home = () => {
          <div className="reels">
             <video
                id="video-auto-play"
-               src={video !== "link video" ? video : HomeVideo}
+               src={video && video !== "link video" ? video : HomeVideo}
                ref={videoRef}
                muted={isMuted}
                onClick={handleVideoClick}
