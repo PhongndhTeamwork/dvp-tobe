@@ -13,6 +13,7 @@ import { Provider } from "react-redux";
 
 import { AdminProvider } from "./routes/admin/adminContext";
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
    <Provider store={store}>

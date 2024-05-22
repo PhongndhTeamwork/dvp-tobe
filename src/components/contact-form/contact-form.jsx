@@ -158,7 +158,7 @@ const ContactForm = () => {
                ref={serviceCategoryRef}
             >
                <div className="services">
-                  {serviceItems.map((service, index) => (
+                  {serviceItems?.map((service, index) => (
                      <div
                         key={index}
                         className="services__item"

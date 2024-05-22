@@ -80,11 +80,9 @@ const Header = () => {
                   }}
                   className="header__logo"
                >
-                  {urlRegex.test(companyInfos.logo) ? (
-                     <Image src={companyInfos.logo} />
-                  ) : (
-                     "Logo"
-                  )}
+                  <Image
+                     src={`http://localhost:8000/${companyInfos.logo}`}
+                  />
                </Link>
 
                <ul className="header__nav d-none d-md-flex justify-content-between align-items-center">

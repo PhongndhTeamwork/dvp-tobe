@@ -72,20 +72,13 @@ const Home = () => {
    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    //? Banner
-   const [firstTextUppercase, setFirstTextUppercase] = useState("");
-   const [secondTextUppercase, setSecondTextUppercase] = useState("");
-   const [firstTextStroke, setFirstTextStroke] = useState("");
-   const [secondTextStroke, setSecondTextStroke] = useState("");
+   const [banner, setBanner] = useState({});
 
    //? Video
    const [video, setVideo] = useState("");
 
    //? Story
-   const [storyTitle, setStoryTitle] = useState("");
-   const [storySubtitle, setStorySubtitle] = useState("");
-   const [firstStoryText, setFirstStoryText] = useState("");
-   const [secondStoryText, setSecondStoryText] = useState("");
-   const [thirdStoryText, setThirdStoryText] = useState("");
+   const [story, setStory] = useState({});
 
    //? Service
    const [serviceItems, setServiceItems] = useState([]);
@@ -97,18 +90,9 @@ const Home = () => {
       axios
          .get("/api/home")
          .then(({ data }) => {
-            setFirstTextUppercase(data.banner.textuppercase1);
-            setSecondTextUppercase(data.banner.textuppercase2);
-            setFirstTextStroke(data.banner.textstroke1);
-            setSecondTextStroke(data.banner.textstroke2);
-
+            setBanner(data.banner);
             setVideo(data.video);
-
-            setStoryTitle(data.story.title);
-            setStorySubtitle(data.story.subtitle);
-            setFirstStoryText(data.story.text1);
-            setSecondStoryText(data.story.text2);
-            setThirdStoryText(data.story.text3);
+            setStory(data.story);
 
             setProjects(data.projects);
          })
@@ -188,16 +172,16 @@ const Home = () => {
             <div className="banner__text">
                <div className="banner__text-top d-flex justify-content-center">
                   <div className="text-stroke cursor-default">
-                     {firstTextStroke}
+                     {banner.textstroke1}
                   </div>
                   <div className="text-uppercase cursor-default">
-                     {firstTextUppercase}
+                     {banner.textuppercase1}
                   </div>
                </div>
 
                <div className="banner__text-bot banner__text-padding d-flex justify-content-center pe-0">
-                  <div className="text-uppercase">{secondTextStroke}</div>
-                  <div className="text-stroke">{secondTextUppercase}</div>
+                  <div className="text-uppercase">{banner.textstroke2}</div>
+                  <div className="text-stroke">{banner.textuppercase2}</div>
                </div>
             </div>
          </div>
@@ -220,10 +204,10 @@ const Home = () => {
          <div className="wrapper wrapper-top wrapper-bottom story">
             <div className="wrapper__header">
                <h4 className="wrapper__header-sub--heading text-uppercase cursor-default">
-                  {storySubtitle}
+                  {story?.subTitle}
                </h4>
                <h1 className="wrapper__header-heading text-capitalize cursor-default">
-                  {storyTitle}
+                  {story?.title}
                </h1>
             </div>
 
@@ -236,9 +220,9 @@ const Home = () => {
                <div className="rectangle-100 rectangle-pc-50 p-0 content">
                   <div className="wrapper-flex">
                      <div className="rectangle-100 content__text cursor-default">
-                        <p>{firstStoryText}</p>
-                        <p>{secondStoryText}</p>
-                        <p>{thirdStoryText}</p>
+                        <p>{story?.desTitle}</p>
+                        <p>{story?.desTitle1}</p>
+                        <p>{story?.desTitle2}</p>
                      </div>
 
                      <div className="rectangle-100 content__link pt-0">
