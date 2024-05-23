@@ -11,6 +11,7 @@ import Contact from "./contact/contact";
 import Hiring from "./hiring/hiring";
 import Work from "./work/work";
 import { Route, Routes } from "react-router-dom";
+import Quote from "./quote/quote";
 
 const UserRoutes = () => {
    return (
@@ -21,6 +22,7 @@ const UserRoutes = () => {
             <Route path="/cataloge/:id" element={<Cataloge />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/hiring" element={<Hiring />} />
+            <Route path="/quote" element={<Quote />} />
             <Route path="/work" element={<Work />} />
          </Routes>
       </div>

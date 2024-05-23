@@ -36,8 +36,6 @@ const Work = () => {
    const [projects, setProjects] = useState([]);
    const [contactForm, setContactForm] = useState({});
 
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-
    useEffect(() => {
       axios
          .get("/api/work")

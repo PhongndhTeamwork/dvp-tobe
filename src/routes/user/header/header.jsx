@@ -81,7 +81,7 @@ const Header = () => {
                   className="header__logo"
                >
                   <Image
-                     src={`http://localhost:8000/${companyInfos.logo}`}
+                     src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${companyInfos?.logo}`}
                   />
                </Link>
 
@@ -91,6 +91,9 @@ const Header = () => {
                   </li>
                   <li className="header__nav-link">
                      <Link to="/work">Công Việc</Link>
+                  </li>
+                  <li className="header__nav-link">
+                     <Link to="/quote">Dịch vụ</Link>
                   </li>
                   <li className="header__nav-link">
                      <Link to="/hiring">Tuyển Dụng</Link>

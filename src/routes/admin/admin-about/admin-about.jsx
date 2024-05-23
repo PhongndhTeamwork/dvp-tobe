@@ -1,6 +1,6 @@
 import "./admin-about.css";
 
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
@@ -17,9 +17,25 @@ import CultureImage5 from "../../../assets/images/culture/culture5.png";
 import Avatar1 from "../../../assets/images/avatar/1.png";
 
 import { AdminContext } from "../adminContext";
+import axios from "axios";
 
 const AdminAbout = () => {
    const { fullView } = useContext(AdminContext);
+
+   const [bannerImage, setBannerImage] = useState();
+
+   const [banner, setBanner] = useState({});
+   const [firstStory, setFirstStory] = useState({});
+   const [secondStory, setSecondStory] = useState({});
+   const [expertise, setExpertise] = useState({});
+
+   useEffect(() => {
+      axios.get("/api/about").then(({ data }) => {
+         setBanner(data.banner);
+
+         setBannerImage(data.banner.image);
+      });
+   }, []);
 
    return (
       <Fragment>

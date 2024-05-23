@@ -195,7 +195,7 @@
 }
 
 .admin-routes .banner {
-   height: fit-content;
+   height: fit-content !important;
 }
 
 .admin-routes .accordion {

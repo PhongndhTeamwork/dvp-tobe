@@ -107,6 +107,7 @@ const About = () => {
 
    useEffect(() => {
       window.scrollTo(0, 0);
+      console.log(process.env.REACT_APP_BASE_IMAGE_URL);
    }, []);
 
    useEffect(() => {
@@ -138,18 +139,29 @@ const About = () => {
    return (
       <Fragment>
          {/* <!-- Banner --> */}
-         <div className="banner">
+         <div className={`banner ${banner.image ? "banner-image-active" : ""}`}>
             <div className="banner__bg">
                <div className="banner__bg-eclipse1"></div>
                <div className="banner__bg-eclipse2"></div>
                <div className="banner__bg-eclipse3"></div>
             </div>
+            {banner.images ? (
+               <Image className="banner__img" src={banner?.image} />
+            ) : (
+               ""
+            )}
 
             <div className="banner__text">
-               <div className="text-center">
-                  <div className="text-capitalize">{banner.textstroke2}</div>
-                  <div className="text-capitalize">{banner.textuppercase1}</div>
-                  <div className="text-capitalize">{banner.textuppercase2}</div>
+               <div className="banner__text-top pe-0">
+                  <div className="text-stroke text-center"></div>
+                  <div className="text-uppercase text-center">
+                     {banner.textuppercase1}
+                  </div>
+               </div>
+
+               <div className="banner__text-bot">
+                  <div className="text-uppercase text-center"></div>
+                  <div className="text-stroke text-center"></div>
                </div>
             </div>
          </div>
@@ -175,12 +187,9 @@ const About = () => {
 
                <div className="rectangle-100 rectangle-pc-50 story__content-img">
                   <Image
-                     src={
-                        firstStory?.images &&
-                        urlRegex.test(firstStory?.images[0])
-                           ? firstStory?.images[0]
-                           : ExOfficeImage
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${firstStory?.images?.slice(0, 1)}`}
                      alt="office"
                   />
                </div>
@@ -247,50 +256,40 @@ const About = () => {
                <div className="rectangle-100 rectangle-pc-25 wrapper-flex m-0 p-0">
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
-                     src={
-                        urlRegex.test(secondStory?.images?.slice(0, 1))
-                           ? secondStory?.images[0]
-                           : CultureImage2
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${secondStory?.images?.slice(1, 1)}`}
                      alt=""
                   />
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
-                     src={
-                        urlRegex.test(secondStory?.images?.slice(1, 1))
-                           ? secondStory.images[1]
-                           : CultureImage3
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${secondStory?.images?.slice(2, 1)}`}
                      alt=""
                   />
                </div>
                <div className="rectangle-100 rectangle-pc-50">
                   <Image
-                     src={
-                        urlRegex.test(secondStory?.images?.slice(2, 1))
-                           ? secondStory.images[2]
-                           : CultureImage1
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${secondStory?.images?.slice(0, 1)}`}
                      alt=""
                   />
                </div>
                <div className="rectangle-100 rectangle-pc-25 wrapper-flex m-0 p-0">
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
-                     src={
-                        urlRegex.test(secondStory?.images?.slice(3, 1))
-                           ? secondStory.images[3]
-                           : CultureImage4
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${secondStory?.images?.slice(3, 1)}`}
                      alt=""
                   />
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
-                     src={
-                        urlRegex.test(secondStory?.images?.slice(4, 1))
-                           ? secondStory.images[4]
-                           : CultureImage5
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${secondStory?.images?.slice(4, 1)}`}
                      alt=""
                   />
                </div>

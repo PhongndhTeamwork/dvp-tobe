@@ -1,6 +1,6 @@
 import "./admin-home.css";
 
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Image, Carousel } from "react-bootstrap";
 
@@ -11,9 +11,56 @@ import Video from "../../../assets/images/others/video-auto.mp4";
 import Notification from "../../../components/notification/notification";
 
 import { AdminContext } from "../adminContext";
+import axios from "axios";
 
 const AdminHome = () => {
    const { fullView } = useContext(AdminContext);
+
+   const [bannerImage, setBannerImage] = useState();
+
+   const [banner, setBanner] = useState({});
+   const [video, setVideo] = useState("");
+   const [story, setStory] = useState({});
+   const [project, setProject] = useState({});
+   const [services, setServices] = useState({});
+
+   useEffect(() => {
+      axios.get("/api/home").then(({ data }) => {
+         setBanner(data.banner);
+         setVideo(data.video);
+         setStory(data.story);
+         setProject(data.projects);
+
+         setBannerImage(data.banner.image);
+      });
+   }, []);
+
+   useEffect(() => {
+      axios.get("api/info/services").then(({ data }) => {
+         setServices(data.services);
+      });
+   });
+
+   useEffect(() => {
+      console.log(banner);
+   }, [banner]);
+
+   const handleChangeBannerImage = (e) => {
+      const file = e.target.files[0];
+      if (file) {
+         setBanner({
+            ...banner,
+            image: e.target.files[0],
+         });
+
+         const reader = new FileReader();
+         reader.onloadend = () => {
+            // Update the state with the newly selected image
+            setBannerImage(reader.result);
+         };
+         reader.readAsDataURL(file);
+      }
+   };
 
    return (
       <Fragment>
@@ -44,8 +91,13 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder="Professional"
-                              value=""
+                              placeholder={banner?.textstroke1}
+                              onChange={(e) => {
+                                 setBanner({
+                                    ...banner,
+                                    textstroke1: e.target.value,
+                                 });
+                              }}
                            />
                            <br />
                            <label htmlFor="">Text stroke 2</label>
@@ -53,8 +105,13 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder="Creative"
-                              value=""
+                              placeholder={banner?.textstroke2}
+                              onChange={(e) => {
+                                 setBanner({
+                                    ...banner,
+                                    textstroke2: e.target.value,
+                                 });
+                              }}
                            />
                            <br />
                            <label htmlFor=""> Text uppercase 1</label>
@@ -62,8 +119,13 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder="STYLE"
-                              value=""
+                              placeholder={banner?.textuppercase1}
+                              onChange={(e) => {
+                                 setBanner({
+                                    ...banner,
+                                    textuppercase1: e.target.value,
+                                 });
+                              }}
                            />
                            <br />
                            <label htmlFor="">Text uppercase 2</label>
@@ -71,23 +133,38 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder="DESIGN"
-                              value=""
+                              placeholder={banner?.textuppercase2}
+                              onChange={(e) => {
+                                 setBanner({
+                                    ...banner,
+                                    textuppercase2: e.target.value,
+                                 });
+                              }}
                            />
                            <br />
                            <label htmlFor="">Banner image</label>
                            <br />
 
-                           <div className="banner__img w-50 my-4 border">
+                           <div
+                              className="banner__img w-50 my-4 border"
+                              style={{ display: "block" }}
+                           >
                               <i className="fa-solid fa-xmark"></i>
                               <Image
                                  className="w-100"
-                                 src={CarouselImage2}
+                                 src={bannerImage}
                                  alt=""
                               />
                            </div>
 
-                           <input type="file" name="" id="" />
+                           <input
+                              type="file"
+                              name=""
+                              id=""
+                              onChange={(e) => {
+                                 handleChangeBannerImage(e);
+                              }}
+                           />
                            <br />
 
                            <button
@@ -118,7 +195,12 @@ const AdminHome = () => {
                               controls
                            ></video>
                            <br />
-                           <input type="file" />
+                           <input
+                              type="file"
+                              onChange={(e) => {
+                                 setVideo(e.target.files[0]);
+                              }}
+                           />
                            <br />
 
                            <button
@@ -148,7 +230,12 @@ const AdminHome = () => {
                               type="text"
                               className="w-100"
                               placeholder="The story of DVP"
-                              value=""
+                              onChange={(e) => {
+                                 setStory({
+                                    ...story,
+                                    subtitle: e.target.value,
+                                 });
+                              }}
                            />
                            <br />
                            <label htmlFor="">Title</label>
@@ -157,7 +244,9 @@ const AdminHome = () => {
                               type="text"
                               className="w-100"
                               placeholder="Câu chuyện về DVP"
-                              value=""
+                              onChange={(e) => {
+                                 setStory({ ...story, title: e.target.value });
+                              }}
                            />
                            <br />
                            <label htmlFor="">Đoạn văn 1</label>
@@ -167,9 +256,11 @@ const AdminHome = () => {
                               name=""
                               id=""
                               rows="3"
-                           >
-                              Đoạn văn chữ thường
-                           </textarea>
+                              onChange={(e) => {
+                                 setStory({ ...story, tex1: e.target.value });
+                              }}
+                              defaultValue="Đoạn văn chữ thường"
+                           ></textarea>
                            <br />
                            <label htmlFor="">Đoạn văn 2</label>
                            <br />
@@ -178,9 +269,11 @@ const AdminHome = () => {
                               name=""
                               id=""
                               rows="3"
-                           >
-                              Đoạn văn chữ thường
-                           </textarea>
+                              onChange={(e) => {
+                                 setStory({ ...story, tex2: e.target.value });
+                              }}
+                              defaultValue="Đoạn văn chữ thường"
+                           ></textarea>
                            <br />
                            <label htmlFor="">Đoạn văn 3</label>
                            <br />
@@ -189,9 +282,11 @@ const AdminHome = () => {
                               name=""
                               id=""
                               rows="3"
-                           >
-                              Đoạn văn chữ in đậm
-                           </textarea>
+                              onChange={(e) => {
+                                 setStory({ ...story, tex3: e.target.value });
+                              }}
+                              defaultValue="Đoạn văn chữ in đậm"
+                           ></textarea>
                            <br />
 
                            <button
@@ -319,7 +414,6 @@ const AdminHome = () => {
                               type="text"
                               className="w-100"
                               placeholder="Branding"
-                              value=""
                            />
                            <br />
                            <label htmlFor="">Carousel</label>
@@ -356,9 +450,8 @@ const AdminHome = () => {
                               name=""
                               id=""
                               rows="7"
-                           >
-                              Mỗi dòng một mô tả
-                           </textarea>
+                              defaultValue="Mỗi dòng một mô tả"
+                           ></textarea>
 
                            <button
                               className="btn btn-primary px-4 fs-4 mt-5"

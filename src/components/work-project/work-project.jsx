@@ -13,7 +13,6 @@ import ProjectImage5 from "../../assets/images/projects/project-5.jpg";
 import ProjectImage6 from "../../assets/images/projects/project-6.png";
 
 const WorkProject = ({ projects }) => {
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    return (
       <div className="work__content">
@@ -27,11 +26,9 @@ const WorkProject = ({ projects }) => {
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
-                              src={
-                                 urlRegex.test(projects[0]?.images[0])
-                                    ? projects[0]?.images[0]
-                                    : RamenImage
-                              }
+                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                                 projects?.slice(0, 1)?.thumbnailSquare
+                              }`}
                               alt="black and white image"
                            />
                         </div>
@@ -60,11 +57,9 @@ const WorkProject = ({ projects }) => {
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
-                              src={
-                                 urlRegex.test(projects[1]?.images[0])
-                                    ? projects[1]?.images[0]
-                                    : ProjectImage1
-                              }
+                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                                 projects?.slice(1, 1)?.thumbnailSquare
+                              }`}
                               alt="black and white image"
                            />
                         </div>
@@ -95,11 +90,9 @@ const WorkProject = ({ projects }) => {
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
-                              src={
-                                 urlRegex.test(projects[2]?.images[0])
-                                    ? projects[2]?.images[0]
-                                    : ProjectImage2
-                              }
+                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                                 projects?.slice(2, 1)?.thumbnailSquare
+                              }`}
                               alt="black and white image"
                            />
                         </div>
@@ -123,16 +116,14 @@ const WorkProject = ({ projects }) => {
                <div className="rectangle-100">
                   <Link
                      className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                      to={`/cataloge/${projects[3]?.id ?? 1}`}
+                     to={`/cataloge/${projects[3]?.id ?? 1}`}
                   >
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
-                              src={
-                                 urlRegex.test(projects[3]?.images[0])
-                                    ? projects[3]?.images[0]
-                                    : RamenImage
-                              }
+                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                                 projects?.slice(3, 1)?.thumbnailSquare
+                              }`}
                               alt="black and white image"
                            />
                         </div>
@@ -157,16 +148,14 @@ const WorkProject = ({ projects }) => {
             <div className="rectangle-100 rectangle-pc-50">
                <Link
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                   to={`/cataloge/${projects[4]?.id ?? 1}`}
+                  to={`/cataloge/${projects[4]?.id ?? 1}`}
                >
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={
-                              urlRegex.test(projects[4]?.images[0])
-                                 ? projects[4]?.images[0]
-                                 : RamenImage
-                           }
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                              projects?.slice(4, 1)?.thumbnailSquare
+                           }`}
                            alt="black and white image"
                         />
                      </div>
@@ -192,17 +181,15 @@ const WorkProject = ({ projects }) => {
             <div className="rectangle-100 rectangle-pc-75">
                <Link
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                   to={`/cataloge/${projects[5]?.id ?? 1}`}
+                  to={`/cataloge/${projects[5]?.id ?? 1}`}
                   style={{ aspectRatio: "auto" }}
                >
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={
-                              urlRegex.test(projects[5]?.images[0])
-                                 ? projects[5]?.images[0]
-                                 : ProjectImage6
-                           }
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                              projects?.slice(5, 1)?.thumbnailRect
+                           }`}
                            alt="black and white image"
                         />
                      </div>
@@ -228,16 +215,14 @@ const WorkProject = ({ projects }) => {
                   <div className="rectangle-100 rectangle-tab-50 rectangle-pc-100">
                      <Link
                         className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                         to={`/cataloge/${projects[6]?.id ?? 1}`}
+                        to={`/cataloge/${projects[6]?.id ?? 1}`}
                      >
                         <Fragment>
                            <div className="img-grayscale">
                               <Image
-                                 src={
-                                    urlRegex.test(projects[6]?.images[0])
-                                       ? projects[6]?.images[0]
-                                       : RamenImage
-                                 }
+                                 src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                                    projects?.slice(6, 1)?.thumbnailSquare
+                                 }`}
                                  alt="black and white image"
                               />
                            </div>
@@ -261,16 +246,14 @@ const WorkProject = ({ projects }) => {
                   <div className="rectangle-100 rectangle-tab-50 rectangle-pc-100">
                      <Link
                         className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                         to={`/cataloge/${projects[7]?.id ?? 1}`}
+                        to={`/cataloge/${projects[7]?.id ?? 1}`}
                      >
                         <Fragment>
                            <div className="img-grayscale">
                               <Image
-                                 src={
-                                    urlRegex.test(projects[7]?.images[0])
-                                       ? projects[7]?.images[0]
-                                       : RamenImage
-                                 }
+                                 src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                                    projects?.slice(7, 1)?.thumbnailSquare
+                                 }`}
                                  alt="black and white image"
                               />
                            </div>
@@ -298,16 +281,14 @@ const WorkProject = ({ projects }) => {
             <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
                <Link
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                   to={`/cataloge/${projects[8]?.id ?? 1}`}
+                  to={`/cataloge/${projects[8]?.id ?? 1}`}
                >
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={
-                              urlRegex.test(projects[8]?.images[0])
-                                 ? projects[8]?.images[0]
-                                 : RamenImage
-                           }
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                              projects?.slice(8, 1)?.thumbnailSquare
+                           }`}
                            alt="black and white image"
                         />
                      </div>
@@ -331,16 +312,14 @@ const WorkProject = ({ projects }) => {
             <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
                <Link
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                   to={`/cataloge/${projects[9]?.id ?? 1}`}
+                  to={`/cataloge/${projects[9]?.id ?? 1}`}
                >
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={
-                              urlRegex.test(projects[9]?.images[9])
-                                 ? projects[0]?.images[0]
-                                 : RamenImage
-                           }
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                              projects?.slice(9, 1)?.thumbnailSquare
+                           }`}
                            alt="black and white image"
                         />
                      </div>
@@ -364,16 +343,14 @@ const WorkProject = ({ projects }) => {
             <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
                <Link
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                   to={`/cataloge/${projects[10]?.id ?? 1}`}
+                  to={`/cataloge/${projects[10]?.id ?? 1}`}
                >
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={
-                              urlRegex.test(projects[10]?.images[0])
-                                 ? projects[10]?.images[0]
-                                 : RamenImage
-                           }
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                              projects?.slice(10, 1)?.thumbnailSquare
+                           }`}
                            alt="black and white image"
                         />
                      </div>
@@ -397,16 +374,14 @@ const WorkProject = ({ projects }) => {
             <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
                <Link
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                   to={`/cataloge/${projects[11]?.id ?? 1}`}
+                  to={`/cataloge/${projects[11]?.id ?? 1}`}
                >
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={
-                              urlRegex.test(projects[11]?.images[0])
-                                 ? projects[11]?.images[0]
-                                 : RamenImage
-                           }
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                              projects?.slice(11, 1)?.thumbnailSquare
+                           }`}
                            alt="black and white image"
                         />
                      </div>

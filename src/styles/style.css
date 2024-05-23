@@ -14,12 +14,17 @@ header .wrapper {
 }
 
 header .header__logo {
-   font-family: "Gilroy-SemiBold";
-   font-size: var(--fs-normal);
-   color: var(--main-black-color-100);
    width: fit-content;
    height: 100%;
-   padding: 0 1rem;
+   padding: 0.25rem 1rem;
+   display: flex;
+   align-items: center;
+   justify-content: left;
+}
+
+header .header__logo img {
+   max-height: 100%;
+   vertical-align: middle;
 }
 
 header .header__nav {
@@ -60,10 +65,6 @@ header .header__nav .header__nav-link a:hover {
 header .header__nav .header__nav-link a:hover::after {
    width: 100%;
    background-color: var(--main-black-color-100);
-}
-
-header.active .header__logo {
-   color: var(--main-black-color-100);
 }
 
 header.active .header__nav .header__nav-link a {
@@ -141,7 +142,7 @@ header.active .header__nav .header__nav-link a {
    position: relative;
 }
 
-.footer .info__content.location__map .location__map-link {
+.footer .info__content.location__map iframe {
    position: absolute;
    top: -0.125rem;
    left: -0.125rem;
@@ -212,6 +213,24 @@ header.active .header__nav .header__nav-link a {
 /* End: Footer */
 
 /* Banner */
+.banner .banner__img {
+   width: 100%;
+   display: none;
+}
+
+.banner.banner-image-active {
+   height: auto;
+   padding-top: 1.875rem;
+}
+
+.banner.banner-image-active .banner__bg {
+   display: none;
+}
+
+.banner.banner-image-active .banner__img {
+   display: block;
+}
+
 .banner .banner__text {
    position: absolute;
    top: 50%;
@@ -219,20 +238,36 @@ header.active .header__nav .header__nav-link a {
    z-index: 11;
    transform: translate(-50%, -50%);
    cursor: default;
+   width: max-content;
+   max-width: 100%;
+}
+
+.banner .banner__text .banner__text-top,
+.banner .banner__text .banner__text-bot {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.banner .banner__text .banner__text-bot .text-stroke {
+   order: -1;
 }
 
 .banner .banner__text .text-stroke {
    font-family: "Gilroy-SemiBold";
    font-size: 3.75rem;
    line-height: 5.25rem;
+   margin: 0 0.25rem;
 }
 
-.banner .banner__text .text-uppercase,
-.banner .banner__text .text-capitalize:not(.text-stroke) {
+.banner .banner__text .text-uppercase {
    font-family: "Gilroy-XBold";
    font-size: 3.75rem;
    line-height: 5rem;
+   max-width: 75rem;
    color: var(--bg-light);
+   margin: 0 0.25rem;
 }
 
 /* Contact form */
@@ -737,9 +772,12 @@ header.active .header__nav .header__nav-link a {
    }
 
    header .header__logo {
-      font-size: var(--fs-semi-bold);
-      color: var(--main-bg-color-100);
-      padding: 1.25rem 1rem;
+      padding: 1rem;
+   }
+
+   .banner.banner-image-active {
+      background-color: var(--main-yellow-color-100);
+      padding-top: 6.25rem;
    }
 
    .banner .banner__text .text-stroke {
@@ -748,8 +786,25 @@ header.active .header__nav .header__nav-link a {
       line-height: 5.25rem;
    }
 
-   .banner .banner__text .text-uppercase,
-   .banner .banner__text .text-capitalize:not(.text-stroke) {
+   .banner .banner__text .banner__text-top,
+   .banner .banner__text .banner__text-bot {
+      flex-direction: row;
+   }
+
+   .banner .banner__text .banner__text-top {
+      align-items: start;
+   }
+
+   .banner .banner__text .banner__text-bot {
+      padding-left: 6.25rem;
+      align-items: end;
+   }
+
+   .banner .banner__text .banner__text-bot .text-stroke {
+      order: 1;
+   }
+
+   .banner .banner__text .text-uppercase {
       font-size: var(--fs-xlarge);
       line-height: 5rem;
    }
@@ -787,6 +842,10 @@ header.active .header__nav .header__nav-link a {
 }
 
 @media (min-width: 1200px) {
+   .banner .banner__text .text-stroke {
+      max-width: 75rem;
+   }
+
    .contact.wrapper {
       width: 75rem;
       padding-top: 6.5rem;

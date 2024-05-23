@@ -87,16 +87,12 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                                       to={`/cataloge/${project?.id}`}
                                       key={index}
                                       onClick={() => {
-                                       window.scrollTo(0, 0);
-                                    }}
+                                         window.scrollTo(0, 0);
+                                      }}
                                    >
                                       <div className="project__img">
                                          <Image
-                                            src={
-                                               urlRegex.test(project?.image)
-                                                  ? project?.image
-                                                  : CatalogeProjectImage1
-                                            }
+                                            src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
                                          />
                                       </div>
 
@@ -127,16 +123,12 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                                 to={`/cataloge/${project?.id}`}
                                 key={index}
                                 onClick={() => {
-                                 window.scrollTo(0, 0);
-                              }}
+                                   window.scrollTo(0, 0);
+                                }}
                              >
                                 <div className="project__img">
                                    <Image
-                                      src={
-                                         urlRegex.test(project?.image)
-                                            ? project?.image
-                                            : CatalogeProjectImage1
-                                      }
+                                      src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
                                    />
                                 </div>
 
@@ -175,11 +167,7 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                                    >
                                       <div className="project__img">
                                          <Image
-                                            src={
-                                               urlRegex.test(project?.image[0])
-                                                  ? project?.image[0]
-                                                  : CatalogeProjectImage1
-                                            }
+                                            src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
                                          />
                                       </div>
 

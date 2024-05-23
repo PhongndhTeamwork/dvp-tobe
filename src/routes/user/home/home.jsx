@@ -69,8 +69,6 @@ const Home = () => {
    //    },
    // ];
 
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-
    //? Banner
    const [banner, setBanner] = useState({});
 
@@ -106,15 +104,12 @@ const Home = () => {
          .get("/api/info/services")
          .then(({ data }) => {
             setServiceItems(data.services);
+            // console.log(data.services);
          })
          .catch((error) => {
             throw new Error(error);
          });
-   });
-
-   // const dispatch = useDispatch();
-   // const userLogin = useSelector((state) => state.userLogin);
-   // const { userInfo } = userLogin;
+   }, []);
 
    //?Effect
    const videoRef = useRef(null);
@@ -123,7 +118,9 @@ const Home = () => {
 
    useEffect(() => {
       window.scrollTo(0, 0);
-   }, []);
+      if (videoRef.current instanceof HTMLVideoElement)
+         videoRef?.current?.pause();
+   }, [videoRef]);
 
    useEffect(() => {
       const handleScroll = () => {
@@ -131,21 +128,22 @@ const Home = () => {
          const bannerHeight = bannerRef?.current?.offsetHeight || 0;
          const videoHeight = videoRef?.current?.offsetHeight || 0;
 
-         if (scrollY > 0.5 * bannerHeight) {
-            videoRef?.current?.play();
-         } else if (
-            scrollY > bannerHeight + videoHeight ||
-            scrollY <= 0.5 * bannerHeight
-         ) {
-            videoRef?.current?.pause();
+         if (videoRef?.current?.readyState >= 2) {
+            if (scrollY > 0.5 * bannerHeight && videoRef?.current?.paused) {
+               videoRef?.current?.play();
+            } else if (
+               scrollY > bannerHeight + videoHeight ||
+               scrollY <= 0.5 * bannerHeight
+            ) {
+               videoRef?.current?.pause();
+            }
          }
-         console.log(videoRef.current);
       };
 
       window.addEventListener("scroll", handleScroll);
 
       return () => window.removeEventListener("scroll", handleScroll);
-   }, []);
+   });
 
    const handleVideoClick = () => {
       setIsMuted(!isMuted);
@@ -192,7 +190,8 @@ const Home = () => {
          <div className="reels">
             <video
                id="video-auto-play"
-               src={video && video !== "link video" ? video : HomeVideo}
+               // src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${video}`}
+               src={HomeVideo}
                ref={videoRef}
                muted={isMuted}
                onClick={handleVideoClick}
@@ -204,7 +203,7 @@ const Home = () => {
          <div className="wrapper wrapper-top wrapper-bottom story">
             <div className="wrapper__header">
                <h4 className="wrapper__header-sub--heading text-uppercase cursor-default">
-                  {story?.subTitle}
+                  {story?.subtitle}
                </h4>
                <h1 className="wrapper__header-heading text-capitalize cursor-default">
                   {story?.title}
@@ -220,18 +219,18 @@ const Home = () => {
                <div className="rectangle-100 rectangle-pc-50 p-0 content">
                   <div className="wrapper-flex">
                      <div className="rectangle-100 content__text cursor-default">
-                        <p>{story?.desTitle}</p>
-                        <p>{story?.desTitle1}</p>
-                        <p>{story?.desTitle2}</p>
+                        <p>{story?.text1}</p>
+                        <p>{story?.text2}</p>
+                        <p>{story?.text3}</p>
                      </div>
 
                      <div className="rectangle-100 content__link pt-0">
-                        <a className="arrow-right-link" href="./about.html">
+                        <Link className="arrow-right-link" to="/about">
                            <div className="arrow-right-link__text">
                               Go to About
                            </div>
                            <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
-                        </a>
+                        </Link>
                      </div>
                   </div>
                </div>
@@ -291,11 +290,7 @@ const Home = () => {
                            <Fragment>
                               <div className="img-grayscale">
                                  <Image
-                                    src={
-                                       urlRegex.test(project?.images[0])
-                                          ? project?.images[0]
-                                          : RamenImage
-                                    }
+                                    src={project?.thumbnailSquare}
                                     alt="black and white image"
                                  />
                               </div>

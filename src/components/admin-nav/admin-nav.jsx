@@ -48,9 +48,9 @@ const AdminNav = () => {
          <div className="accordion pt-3" id="accordionNav">
             <Accordion>
                {categories.map((category, categoryIndex) => (
-                  <Accordion.Item eventKey={categoryIndex}>
+                  <Accordion.Item eventKey={categoryIndex} key={categoryIndex}>
                      <Accordion.Header>
-                        <button
+                        <div
                            className="accordion-button px-4 py-3"
                            type="button"
                            data-bs-toggle="collapse"
@@ -59,15 +59,16 @@ const AdminNav = () => {
                            <h4 className="m-0 text-light fs-6 fw-medium opacity-50">
                               {category.title}
                            </h4>
-                        </button>
+                        </div>
                      </Accordion.Header>
                      <Accordion.Body>
                         {category.contents.map((content, contentIndex) => (
                            <Link
                               to={category.link}
                               className="text-decoration-none"
+                              key={contentIndex}
                            >
-                              <div className="navbtn" key={contentIndex}>
+                              <div className="navbtn">
                                  {content}
                               </div>
                            </Link>

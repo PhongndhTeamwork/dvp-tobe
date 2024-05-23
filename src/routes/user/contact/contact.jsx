@@ -65,7 +65,11 @@ const Contact = () => {
 
             <div className="wrapper-flex">
                <div className="rectangle-100 inspiration__img">
-                  <Image src={ContactImage1} />
+                  <Image
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${story?.images?.slice(0, 1)}`}
+                  />
                </div>
 
                <div className="rectangle-0 rectangle-pc-50 inspiration__img-2">

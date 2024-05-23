@@ -5,12 +5,12 @@ import { Link, useParams } from "react-router-dom";
 
 import axios from "axios";
 
-import Cataloge1 from "../../../assets/images/cateloge/cataloge1.png";
-import Cataloge2 from "../../../assets/images/cateloge/cataloge2.png";
-import Cataloge3 from "../../../assets/images/cateloge/cataloge3.png";
-import Cataloge4 from "../../../assets/images/cateloge/cataloge4.png";
-import Cataloge5 from "../../../assets/images/cateloge/cataloge5.png";
-import Cataloge6 from "../../../assets/images/cateloge/cataloge6.png";
+// import Cataloge1 from "../../../assets/images/cateloge/cataloge1.png";
+// import Cataloge2 from "../../../assets/images/cateloge/cataloge2.png";
+// import Cataloge3 from "../../../assets/images/cateloge/cataloge3.png";
+// import Cataloge4 from "../../../assets/images/cateloge/cataloge4.png";
+// import Cataloge5 from "../../../assets/images/cateloge/cataloge5.png";
+// import Cataloge6 from "../../../assets/images/cateloge/cataloge6.png";
 import CatalogeProject from "../../../components/cataloge-project/cataloge-project";
 
 const Cataloge = () => {
@@ -81,43 +81,41 @@ const Cataloge = () => {
          <div className="wrapper wrapper-top wrapper-bottom project">
             <div className="wrapper__header">
                <h4 className="wrapper__header-sub--heading text-uppercase">
-                  {project.subTitle}
+                  {project?.subTitle}
                </h4>
                <h1 className="wrapper__header-heading">
-                  {project.title} <br /> {project.categoryName}
+                  {project?.title} <br /> {project?.categoryName}
                </h1>
                <h4 className="project__sub-heading">
-                  {project.categoryName}
+                  {project?.categoryName}
                   <span className="line"></span>
-                  {new Date(project.finishDate)
-                     ? new Date(project.finishDate).getFullYear()
-                     : project.categoryName}
+                  {new Date(project?.finishDate)
+                     ? new Date(project?.finishDate).getFullYear()
+                     : project?.categoryName}
                </h4>
             </div>
 
             <div className="wrapper-flex">
                <Image
                   className="img-1 rectangle-100"
-                  src={
-                     urlRegex.test(project?.images?.slice(0, 1))
-                        ? project?.images[0]
-                        : Cataloge1
-                  }
+                  src={`${
+                     process.env.REACT_APP_BASE_IMAGE_URL
+                  }/${project?.images?.slice(0, 1)}`}
                   alt=""
                />
             </div>
 
             <div className="wrapper-flex project__des">
                <div className="rectangle-100 project__des-title">
-                  {project.desTitle}
+                  {project?.desTitle}
                </div>
 
                <div className="rectangle-100 rectangle-tab-50 project__des-text">
-                  {project.desText1}
+                  {project?.desText1}
                </div>
 
                <div className="rectangle-100 rectangle-tab-50 project__des-text">
-                  {project.dexText2}
+                  {project?.dexText2}
                </div>
             </div>
 
@@ -125,55 +123,45 @@ const Cataloge = () => {
                <div className="rectangle-100">
                   <Image
                      className="w-100 img-1"
-                     src={
-                        urlRegex.test(project?.images?.slice(1, 1))
-                           ? project?.images[1]
-                           : Cataloge2
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${project?.images?.slice(1, 1)}`}
                      alt=""
                   />
                </div>
                <div className="rectangle-100 rectangle-tab-50">
                   <Image
                      className="w-100 img-2"
-                     src={
-                        urlRegex.test(project?.images?.slice(2, 1))
-                           ? project?.images[2]
-                           : Cataloge3
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${project?.images?.slice(2, 1)}`}
                      alt=""
                   />
                </div>
                <div className="rectangle-100 rectangle-tab-50">
                   <Image
                      className="w-100 img-2"
-                     src={
-                        urlRegex.test(project?.images?.slice(3, 1))
-                           ? project?.images[3]
-                           : Cataloge4
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${project?.images?.slice(3, 1)}`}
                      alt=""
                   />
                </div>
                <div className="rectangle-100">
                   <Image
                      className="w-100 img-1"
-                     src={
-                        urlRegex.test(project?.images?.slice(4, 1))
-                           ? project?.images[4]
-                           : Cataloge5
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${project?.images?.slice(4, 1)}`}
                      alt=""
                   />
                </div>
                <div className="rectangle-100 rectangle-tab-50">
                   <Image
                      className="w-100 img-3"
-                     src={
-                        urlRegex.test(project?.images?.slice(5, 1))
-                           ? project?.images[5]
-                           : Cataloge6
-                     }
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${project?.images?.slice(5, 1)}`}
                      alt=""
                   />
                </div>
@@ -181,22 +169,18 @@ const Cataloge = () => {
                   <div className="rectangle-100">
                      <Image
                         className="w-100 img-2"
-                        src={
-                           urlRegex.test(project?.images?.slice(6, 1))
-                              ? project?.images[6]
-                              : Cataloge3
-                        }
+                        src={`${
+                           process.env.REACT_APP_BASE_IMAGE_URL
+                        }/${project?.images?.slice(6, 1)}`}
                         alt=""
                      />
                   </div>
                   <div className="rectangle-100">
                      <Image
                         className="w-100 img-2"
-                        src={
-                           urlRegex.test(project?.images?.slice(7, 1))
-                              ? project?.images[7]
-                              : Cataloge2
-                        }
+                        src={`${
+                           process.env.REACT_APP_BASE_IMAGE_URL
+                        }/${project?.images?.slice(7, 1)}`}
                         alt=""
                      />
                   </div>
@@ -216,7 +200,7 @@ const Cataloge = () => {
                   <div className="project__info-customer">
                      <h6 className="title">Khách hàng</h6>
                      <h4 className="name text-uppercase">
-                        {project.customerName}
+                        {project?.customerName}
                      </h4>
                   </div>
                   <div className="project__info-category">
@@ -232,16 +216,16 @@ const Cataloge = () => {
                         className="name text-uppercase"
                         id="project-complete-date"
                      >
-                        {project.finishDate}
+                        {project?.finishDate}
                      </h4>
                   </div>
                   <div className="project__info-more">
                      <h6 className="title">Xem thêm tại</h6>
                      <Link
-                        to={project.linkDemo}
+                        to={project?.linkDemo}
                         className="name text-uppercase project-link"
                      >
-                        {project.linkDemo}
+                        {project?.linkDemo}
                         <i className="fa-solid fa-arrow-right-long"></i>
                      </Link>
                   </div>

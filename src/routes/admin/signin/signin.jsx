@@ -1,16 +1,28 @@
 import "./signin.css";
 
-import { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
-import { Image } from "react-bootstrap";
+import { Fragment, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/notification/notification";
+import { login } from "../../../app/features/userLoginSlice";
+import { Spinner } from "react-bootstrap";
 
 const Signin = () => {
+   const dispatch = useDispatch();
+   const { userInfo, loading, error } = useSelector((state) => state.userLogin);
+
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
 
    const [usernameErrorMessage, setUsernameErrorMessage] = useState("");
    const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+
+   const navigate = useNavigate();
+
+   useEffect(() => {
+      console.log(userInfo);
+      console.log(error);
+   }, [userInfo, error]);
 
    const handleChangeUsername = (e) => {
       if (e.target.value === "") {
@@ -23,13 +35,27 @@ const Signin = () => {
    const handleChangePassword = (e) => {
       if (e.target.value === "") {
          setPasswordErrorMessage("Vui lòng nhập mật khẩu!");
-      } else if (e.target.value.length < 8) {
-         setPasswordErrorMessage("Vui lòng nhập tối thiểu 8 kí tự!");
       } else {
          setPasswordErrorMessage("");
       }
       setPassword(e.target.value);
    };
+
+   useEffect(() => {
+      if (error) {
+         setUsernameErrorMessage("Tài khoản hoặc mật khẩu lỗi!");
+         setPasswordErrorMessage("Tài khoản hoặc mật khẩu lỗi!");
+      } else {
+         setUsernameErrorMessage("");
+         setPasswordErrorMessage("");
+      }
+   }, [error]);
+
+   useEffect(() => {
+      if (userInfo) {
+         navigate("/admin/dashboard");
+      }
+   }, [userInfo, navigate]);
 
    const handleSubmit = (e) => {
       e.preventDefault();
@@ -40,24 +66,25 @@ const Signin = () => {
       }
       if (password === "") {
          setPasswordErrorMessage("Vui lòng nhập mật khẩu!");
-      } else if (password.length < 8) {
-         setPasswordErrorMessage("Vui lòng nhập tối thiểu 8 kí tự!");
       } else {
          setPasswordErrorMessage("");
       }
+      dispatch(login({ username, password }));
    };
 
    return (
       <Fragment>
          {/* <!-- Pop up to show notifications --> */}
-
-         <Notification />
-
-         {/* <!-- Loading animation --> */}
-         <div id="popup-loader">
-            <div className="circle"></div>
-         </div>
-
+         {loading ? (
+            <div className="signin__spinner">
+               <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+               </Spinner>
+            </div>
+         ) : (
+            ""
+         )}
+         <div className="signin__background"></div>
          <div className="container">
             <div id="form-signin" className="form">
                <h2>Đăng nhập quản trị viên</h2>

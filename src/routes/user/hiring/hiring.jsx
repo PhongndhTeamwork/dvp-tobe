@@ -75,12 +75,17 @@ const Hiring = () => {
    return (
       <Fragment>
          {/* <!-- Banner --> */}
-         <div class="banner">
-            <div class="banner__bg">
-               <div class="banner__bg-eclipse1"></div>
-               <div class="banner__bg-eclipse2"></div>
-               <div class="banner__bg-eclipse3"></div>
+         <div className={`banner ${banner.image ? "banner-image-active" : ""}`}>
+            <div className="banner__bg">
+               <div className="banner__bg-eclipse1"></div>
+               <div className="banner__bg-eclipse2"></div>
+               <div className="banner__bg-eclipse3"></div>
             </div>
+            {banner.images ? (
+               <Image className="banner__img" src={banner.image} />
+            ) : (
+               ""
+            )}
 
             <div class="banner__text">
                <div class="d-flex justify-content-center align-items-center flex-column flex-md-row">
@@ -114,7 +119,12 @@ const Hiring = () => {
                </div>
 
                <div class="rectangle-100 rectangle-pc-50 story__content-img">
-                  <Image src={HiringIluImage} alt="" />
+                  <Image
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${story?.images?.slice(0, 1)}`}
+                     alt=""
+                  />
                </div>
             </div>
          </div>
@@ -134,8 +144,11 @@ const Hiring = () => {
                   return (
                      <AccordionService
                         hasJob={true}
-                        title={job.jobname}
-                        job={{ description: job.description, gmail : job.contactMail }}
+                        title={job.jobName}
+                        job={{
+                           description: job.description,
+                           gmail: job.contactMail,
+                        }}
                         key={index}
                      />
                   );
