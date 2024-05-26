@@ -125,7 +125,7 @@ const Cataloge = () => {
                      className="w-100 img-1"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${project?.images?.slice(1, 1)}`}
+                     }/${project?.images?.slice(1, 2)}`}
                      alt=""
                   />
                </div>
@@ -134,7 +134,7 @@ const Cataloge = () => {
                      className="w-100 img-2"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${project?.images?.slice(2, 1)}`}
+                     }/${project?.images?.slice(2, 3)}`}
                      alt=""
                   />
                </div>
@@ -143,7 +143,7 @@ const Cataloge = () => {
                      className="w-100 img-2"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${project?.images?.slice(3, 1)}`}
+                     }/${project?.images?.slice(3, 4)}`}
                      alt=""
                   />
                </div>
@@ -152,7 +152,7 @@ const Cataloge = () => {
                      className="w-100 img-1"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${project?.images?.slice(4, 1)}`}
+                     }/${project?.images?.slice(4, 5)}`}
                      alt=""
                   />
                </div>
@@ -171,7 +171,7 @@ const Cataloge = () => {
                         className="w-100 img-2"
                         src={`${
                            process.env.REACT_APP_BASE_IMAGE_URL
-                        }/${project?.images?.slice(6, 1)}`}
+                        }/${project?.images?.slice(6, 7)}`}
                         alt=""
                      />
                   </div>
@@ -180,7 +180,7 @@ const Cataloge = () => {
                         className="w-100 img-2"
                         src={`${
                            process.env.REACT_APP_BASE_IMAGE_URL
-                        }/${project?.images?.slice(7, 1)}`}
+                        }/${project?.images?.slice(7, 8)}`}
                         alt=""
                      />
                   </div>

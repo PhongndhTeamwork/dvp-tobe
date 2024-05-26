@@ -258,14 +258,14 @@ const About = () => {
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${secondStory?.images?.slice(1, 1)}`}
+                     }/${secondStory?.images?.slice(1, 2)}`}
                      alt=""
                   />
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${secondStory?.images?.slice(2, 1)}`}
+                     }/${secondStory?.images?.slice(2, 3)}`}
                      alt=""
                   />
                </div>
@@ -282,14 +282,14 @@ const About = () => {
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${secondStory?.images?.slice(3, 1)}`}
+                     }/${secondStory?.images?.slice(3, 4)}`}
                      alt=""
                   />
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${secondStory?.images?.slice(4, 1)}`}
+                     }/${secondStory?.images?.slice(4, 5)}`}
                      alt=""
                   />
                </div>

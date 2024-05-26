@@ -1,7 +1,8 @@
 import "./quote.css";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import ContactForm from "../../../components/contact-form/contact-form";
 import RamenImage from "../../../assets/images/others/ramen.png";
 import OfficeBackground from "../../../assets/images/others/ex-office.jpg";
@@ -16,6 +17,13 @@ import BannerQuoteImage from "../../../assets/images/others/banner-quote.png";
 
 const Quote = () => {
    const [banner, setBanner] = useState({});
+   const [services, setServices] = useState({});
+
+   useEffect(() => {
+      axios.get("/api/info/services").then(({ data }) => {
+         setServices(data.services.serviceQuotes);
+      });
+   });
 
    return (
       <Fragment>
