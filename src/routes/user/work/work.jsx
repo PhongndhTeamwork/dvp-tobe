@@ -1,17 +1,17 @@
 import "./work.css";
 import { Fragment, useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import axios from "axios";
 
-import RamenImage from "../../../assets/images/others/ramen.png";
-import ProjectImage1 from "../../../assets/images/projects/project-1.png";
-import ProjectImage2 from "../../../assets/images/projects/project-2.jpg";
-import ProjectImage3 from "../../../assets/images/projects/project-3.jpg";
-import ProjectImage4 from "../../../assets/images/projects/project-4.jpg";
-import ProjectImage5 from "../../../assets/images/projects/project-5.jpg";
-import ProjectImage6 from "../../../assets/images/projects/project-6.png";
+// import RamenImage from "../../../assets/images/others/ramen.png";
+// import ProjectImage1 from "../../../assets/images/projects/project-1.png";
+// import ProjectImage2 from "../../../assets/images/projects/project-2.jpg";
+// import ProjectImage3 from "../../../assets/images/projects/project-3.jpg";
+// import ProjectImage4 from "../../../assets/images/projects/project-4.jpg";
+// import ProjectImage5 from "../../../assets/images/projects/project-5.jpg";
+// import ProjectImage6 from "../../../assets/images/projects/project-6.png";
 import ContactIcon1 from "../../../assets/images/contact/contact_icon1.png";
 import ContactIcon2 from "../../../assets/images/contact/contact_icon2.png";
 
@@ -132,11 +132,6 @@ const Work = () => {
                   </div>
                </div>
             </nav>
-
-            {/* {projects.length > 0 &&
-               projects.map((project) => {
-                  return <WorkProject project={project} />;
-               })} */}
             <WorkProject projects={projects} />
          </div>
 

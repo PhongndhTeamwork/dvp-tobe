@@ -13,6 +13,7 @@ import ProjectImage5 from "../../assets/images/projects/project-5.jpg";
 import ProjectImage6 from "../../assets/images/projects/project-6.png";
 
 const WorkProject = ({ projects }) => {
+   console.log(projects);
    return (
       <div className="work__content">
          <div className="wrapper-flex">
@@ -25,9 +26,7 @@ const WorkProject = ({ projects }) => {
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
-                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
-                                 projects?.slice(0, 1)?.thumbnailSquare
-                              }`}
+                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[0]?.thumbnailSquare}`}
                               alt="black and white image"
                            />
                         </div>
@@ -56,9 +55,7 @@ const WorkProject = ({ projects }) => {
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
-                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
-                                 projects?.slice(1, 2)?.thumbnailSquare
-                              }`}
+                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[1]?.thumbnailSquare}`}
                               alt="black and white image"
                            />
                         </div>
@@ -89,9 +86,7 @@ const WorkProject = ({ projects }) => {
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
-                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
-                                 projects?.slice(2, 3)?.thumbnailSquare
-                              }`}
+                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[2]?.thumbnailSquare}`}
                               alt="black and white image"
                            />
                         </div>
@@ -120,9 +115,7 @@ const WorkProject = ({ projects }) => {
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
-                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
-                                 projects?.slice(3, 4)?.thumbnailSquare
-                              }`}
+                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[3]?.thumbnailSquare}`}
                               alt="black and white image"
                            />
                         </div>
@@ -152,9 +145,7 @@ const WorkProject = ({ projects }) => {
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
-                              projects?.slice(4, 5)?.thumbnailSquare
-                           }`}
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[4]?.thumbnailSquare}`}
                            alt="black and white image"
                         />
                      </div>
@@ -186,9 +177,7 @@ const WorkProject = ({ projects }) => {
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
-                              projects?.slice(5, 6)?.thumbnailRect
-                           }`}
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[5]?.thumbnailRect}`}
                            alt="black and white image"
                         />
                      </div>
@@ -219,9 +208,7 @@ const WorkProject = ({ projects }) => {
                         <Fragment>
                            <div className="img-grayscale">
                               <Image
-                                 src={`${
-                                    process.env.REACT_APP_BASE_IMAGE_URL
-                                 }/${projects?.slice(6, 7)?.thumbnailSquare}`}
+                                 src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[6]?.thumbnailSquare}`}
                                  alt="black and white image"
                               />
                            </div>
@@ -250,9 +237,7 @@ const WorkProject = ({ projects }) => {
                         <Fragment>
                            <div className="img-grayscale">
                               <Image
-                                 src={`${
-                                    process.env.REACT_APP_BASE_IMAGE_URL
-                                 }/${projects?.slice(7, 8)?.thumbnailSquare}`}
+                                 src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[7]?.thumbnailSquare}`}
                                  alt="black and white image"
                               />
                            </div>
@@ -285,9 +270,7 @@ const WorkProject = ({ projects }) => {
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
-                              projects?.slice(8, 9)?.thumbnailSquare
-                           }`}
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[8]?.thumbnailSquare}`}
                            alt="black and white image"
                         />
                      </div>
@@ -316,9 +299,7 @@ const WorkProject = ({ projects }) => {
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
-                              projects?.slice(9, 10)?.thumbnailSquare
-                           }`}
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[9]?.thumbnailSquare}`}
                            alt="black and white image"
                         />
                      </div>
@@ -347,9 +328,7 @@ const WorkProject = ({ projects }) => {
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
-                              projects?.slice(10, 11)?.thumbnailSquare
-                           }`}
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[10]?.thumbnailSquare}`}
                            alt="black and white image"
                         />
                      </div>
@@ -378,9 +357,7 @@ const WorkProject = ({ projects }) => {
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
-                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
-                              projects?.slice(11, 12)?.thumbnailSquare
-                           }`}
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[11]?.thumbnailSquare}`}
                            alt="black and white image"
                         />
                      </div>

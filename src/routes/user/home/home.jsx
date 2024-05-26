@@ -190,8 +190,8 @@ const Home = () => {
          <div className="reels">
             <video
                id="video-auto-play"
-               // src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${video}`}
-               src={HomeVideo}
+               src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${video}`}
+               // src={HomeVideo}
                ref={videoRef}
                muted={isMuted}
                onClick={handleVideoClick}

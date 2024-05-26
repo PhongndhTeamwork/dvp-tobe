@@ -1,5 +1,5 @@
 import "./quote.css";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -17,39 +17,53 @@ import BannerQuoteImage from "../../../assets/images/others/banner-quote.png";
 
 const Quote = () => {
    const [banner, setBanner] = useState({});
-   const [services, setServices] = useState({});
+   const [services, setServices] = useState([]);
+   const [contactForm, setContactForm] = useState({});
+   const [currentService, setCurrentService] = useState(0);
+   const [currentServiceCategory, setCurrentServiceCategory] = useState(0);
 
-   const [projects, setProjects] = useState({});
-   
+   const [projects, setProjects] = useState([]);
+   const [story, setStory] = useState([]);
+
+   const tableMobileRef = useRef(null);
+
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   }, []);
 
    useEffect(() => {
       axios.get("/api/info/services").then(({ data }) => {
-         setServices(data.services.serviceQuotes);
+         setServices(data.services);
       });
    });
-
-   useEffect(() => {
-      axios
-         .get("/api/work")
-         .then(({ data }) => {})
-         .catch((error) => {
-            throw new Error(error);
-         });
-   }, []);
 
    useEffect(() => {
       axios
          .get("/api/quote")
          .then(({ data }) => {
             setProjects(data.projects);
+            setBanner(data.banner);
+            setStory(data.story);
+            setContactForm(data.contactForm);
          })
          .catch((error) => {
             throw new Error(error);
          });
    }, []);
 
+   useEffect(() => {
+      const tableContent = document.querySelector(
+         ".quote .quote__detail-table .table-mobile .table-wrap"
+      );
+      const tableContentWidth = tableContent.offsetWidth;
+
+      tableMobileRef.current.style.transform = `translateX(-${
+         currentServiceCategory * tableContentWidth
+      }px)`;
+   }, [currentServiceCategory]);
+
    return (
-      <Fragment>
+      <div className="quote">
          {/* <!-- Banner --> */}
          <div className={`quote-banner banner banner-image-active`}>
             <div className="banner__bg">
@@ -58,23 +72,24 @@ const Quote = () => {
                <div className="banner__bg-eclipse3"></div>
             </div>
 
-            <Image className="banner__img" src={BannerQuoteImage} />
+            <Image
+               className="banner__img"
+               src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${banner?.image}`}
+            />
 
-            <div class="banner__text">
-               <div class="banner__text-top">
-                  <div class="text-stroke text-center"></div>
-                  <div class="text-uppercase text-center">
-                     Chúng tôi làm thiết kế <br /> Sáng tạo không ngừng nghỉ
+            <div className="banner__text">
+               <div className="banner__text-top">
+                  <div className="text-stroke text-center"></div>
+                  <div className="text-uppercase text-center">
+                     {banner?.textuppercase1}
                   </div>
                </div>
 
-               <div class="banner__text-bot">
-                  <div class="text-uppercase text-center">
-                     Lorem Ipsum is simply dummy text of the printing and
-                     typesetting industry. Lorem Ipsum is simply dummy text of
-                     the printing and typesetting industry.
+               <div className="banner__text-bot">
+                  <div className="text-uppercase text-center">
+                     {banner?.textuppercase2}
                   </div>
-                  <div class="text-stroke text-center"></div>
+                  <div className="text-stroke text-center"></div>
                </div>
             </div>
          </div>
@@ -84,43 +99,27 @@ const Quote = () => {
          <div className="wrapper wrapper-top wrapper-bottom story">
             <div className="wrapper__header">
                <h4 className="wrapper__header-sub--heading text-uppercase">
-                  The story of DVP
+                  {story?.subtitle}
                </h4>
                <h1 className="wrapper__header-heading text-capitalize">
-                  Các gói dịch vụ
+                  {story?.title}
                </h1>
             </div>
 
             <div className="wrapper-flex">
                <div className="rectangle-100 rectangle-pc-50 story__content-text">
-                  <p>
-                     Lorem Ipsum is simply dummy text of the printing and
-                     typesetting industry. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book.
-                  </p>
-                  <p>
-                     Lorem Ipsum is simply dummy text of the printing and
-                     typesetting industry. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book.
-                  </p>
-                  <p>
-                     Lorem Ipsum is simply dummy text of the printing and
-                     typesetting industry. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book.
-                  </p>
+                  <p>{story?.text1}</p>
+                  <p>{story?.text2}</p>
+                  <p>{story?.text3}</p>
                </div>
 
                <div className="rectangle-100 rectangle-pc-50 story__content-img">
-                  <Image src={OfficeBackground} alt="office" />
+                  <Image
+                     src={`${
+                        process.env.REACT_APP_BASE_IMAGE_URL
+                     }/${story?.images?.slice(0, 1)}`}
+                     alt="office"
+                  />
                </div>
             </div>
          </div>
@@ -130,196 +129,97 @@ const Quote = () => {
          <div className="wrapper wrapper-top wrapper-bottom quote">
             <div className="quote__nav">
                <div className="d-flex flex-nowrap quote__nav-wrap">
-                  <div className="quote__nav-item active">
-                     Thiết kế logo nhận diện
-                  </div>
-                  <div className="quote__nav-item">
-                     Tư vấn xây dựng branding
-                  </div>
-                  <div className="quote__nav-item">Văn phòng ĐT thiết ké</div>
-                  <div className="quote__nav-item">
-                     Thiết kế website chuẩn SEO
-                  </div>
-                  <div className="quote__nav-item">Media fullstack</div>
-                  <div className="quote__nav-item">POD</div>
+                  {services.map((service, index) => (
+                     <div
+                        key={index}
+                        className={`quote__nav-item ${
+                           index === currentService ? "active" : ""
+                        }`}
+                        onClick={() => {
+                           setCurrentService(index);
+                           setCurrentServiceCategory(0);
+                        }}
+                     >
+                        {service.serviceName}
+                     </div>
+                  ))}
                </div>
             </div>
 
             <div className="quote__content">
                <div className="wrapper-flex justify-content-center">
-                  <div className="rectangle-100 rectangle-tab-50 order-1 rectangle-pc-25 quote__content-item">
-                     <div className="pack">
-                        <div className="pack__header d-flex justify-content-center flex-wrap">
-                           <Image src={BasicImage} alt="icon pack" />
-                           <div className="pack__header-info">
-                              <h4>Gói Basic</h4>
-                              <span className="d-flex price">
-                                 <p className="mb-0">Từ</p>
-                                 <p className="mb-0">3.000.000</p>
-                                 <label>vnd</label>
-                              </span>
-                           </div>
-                           <div className="pack__header-text">
-                              Lựa chọn thư viện có sẵn website giới thiệu doanh
-                              nghiệp
-                           </div>
-                        </div>
-                        <div className="pack__content">
-                           <ul>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet consectetur adipisicing elit.
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <span className="line"></span>
-                              </li>
-                              <li>
-                                 <span className="line"></span>
-                              </li>
-                              <li>
-                                 <span className="line"></span>
-                              </li>
-                           </ul>
-                        </div>
-                        <div className="pack__btn">
-                           <Link to="#quote-details">Xem thêm</Link>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div className="rectangle-100 rectangle-tab-50 order-2 order-md-3 order-xxl-2 rectangle-pc-25 quote__content-item">
-                     <div className="pack">
-                        <div className="pack__header d-flex justify-content-center flex-wrap">
-                           <Image src={BusinessImage} alt="icon pack" />
-                           <div className="pack__header-info">
-                              <h4>Gói business</h4>
-                              <span className="d-flex price">
-                                 <p className="mb-0">Từ</p>
-                                 <p className="mb-0">12.000.000</p>
-                                 <label>vnd</label>
-                              </span>
-                           </div>
-                           <div className="pack__header-text">
-                              Lựa chọn thư viện có sẵn website giới thiệu doanh
-                              nghiệp
+                  {services[currentService]?.serviceQuotes?.map(
+                     (serviceQuote, index) => (
+                        <div
+                           key={index}
+                           className="rectangle-100 rectangle-tab-50 order-1 rectangle-pc-25 quote__content-item"
+                        >
+                           <div className="pack">
+                              <div className="pack__header d-flex justify-content-center flex-wrap">
+                                 <Image
+                                    src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${serviceQuote?.icon}`}
+                                    alt="icon pack"
+                                 />
+                                 <div className="pack__header-info">
+                                    <h4>{serviceQuote?.name}</h4>
+                                    <span className="d-flex price">
+                                       <p className="mb-0">Từ</p>
+                                       <p className="mb-0">
+                                          {serviceQuote?.price
+                                             ?.toString()
+                                             .replace(
+                                                /\B(?=(\d{3})+(?!\d))/g,
+                                                "."
+                                             )}
+                                       </p>
+                                       <label>vnd</label>
+                                    </span>
+                                 </div>
+                                 <div className="pack__header-text">
+                                    {serviceQuote?.title}
+                                 </div>
+                              </div>
+                              <div className="pack__content">
+                                 <ul>
+                                    <li>
+                                       <div className="icon"></div>Lorem ipsum
+                                       dolor sit amet consectetur adipisicing
+                                       elit.
+                                    </li>
+                                    <li>
+                                       <div className="icon"></div>Lorem ipsum
+                                       dolor sit amet
+                                    </li>
+                                    <li>
+                                       <div className="icon"></div>Lorem ipsum
+                                       dolor sit amet
+                                    </li>
+                                    <li>
+                                       <div className="icon"></div>Lorem ipsum
+                                       dolor sit amet
+                                    </li>
+                                    <li>
+                                       <div className="icon"></div>Lorem ipsum
+                                       dolor sit amet
+                                    </li>
+                                    <li>
+                                       <span className="line"></span>
+                                    </li>
+                                    <li>
+                                       <span className="line"></span>
+                                    </li>
+                                    <li>
+                                       <span className="line"></span>
+                                    </li>
+                                 </ul>
+                              </div>
+                              <div className="pack__btn">
+                                 <Link to="#quote-details">Xem thêm</Link>
+                              </div>
                            </div>
                         </div>
-                        <div className="pack__content">
-                           <ul>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet consectetur adipisicing elit.
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <span className="line"></span>
-                              </li>
-                              <li>
-                                 <span className="line"></span>
-                              </li>
-                              <li>
-                                 <span className="line"></span>
-                              </li>
-                           </ul>
-                        </div>
-                        <div className="pack__btn">
-                           <Link to="#quote-details">Xem thêm</Link>
-                        </div>
-                     </div>
-                  </div>
-
-                  <div className="rectangle-100 rectangle-tab-50 order-3 order-md-2 order-xxl-3 rectangle-pc-25 quote__content-item">
-                     <div className="pack">
-                        <div className="pack__header d-flex justify-content-center flex-wrap">
-                           <Image src={OmiPlusImage} alt="icon pack" />
-                           <div className="pack__header-info">
-                              <h4>Gói Omni plus</h4>
-                              <span className="d-flex price">
-                                 <p className="mb-0">Từ</p>
-                                 <p className="mb-0">20.000.000</p>
-                                 <label>vnd</label>
-                              </span>
-                           </div>
-                           <div className="pack__header-text">
-                              Lựa chọn thư viện có sẵn website giới thiệu doanh
-                              nghiệp
-                           </div>
-                        </div>
-                        <div className="pack__content">
-                           <ul>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet consectetur adipisicing elit.
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <div className="icon"></div>Lorem ipsum dolor
-                                 sit amet
-                              </li>
-                              <li>
-                                 <span className="line"></span>
-                              </li>
-                           </ul>
-                        </div>
-                        <div className="pack__btn">
-                           <Link to="#quote-details">Xem thêm</Link>
-                        </div>
-                     </div>
-                  </div>
+                     )
+                  )}
                </div>
             </div>
 
@@ -512,24 +412,30 @@ const Quote = () => {
                {/* <!-- Table on mobile and tablet --> */}
                <div className="quote__detail-table mobile d-xl-none">
                   <div className="wrapper-flex table__header">
-                     <div className="rectangle-33 py-0">
-                        <div className="table__header-item active h-100">
-                           Gói Basic
-                        </div>
-                     </div>
-                     <div className="rectangle-33 p-0">
-                        <div className="table__header-item h-100">
-                           Gói Business
-                        </div>
-                     </div>
-                     <div className="rectangle-33 py-0">
-                        <div className="table__header-item h-100">
-                           Gói Omni Plus
-                        </div>
-                     </div>
+                     {services[currentService]?.serviceCategories.map(
+                        (serviceCategory, index) => (
+                           <div
+                              key={index}
+                              className="rectangle-33 py-0"
+                              onClick={() => {
+                                 setCurrentServiceCategory(index);
+                              }}
+                           >
+                              <div
+                                 className={`table__header-item h-100 ${
+                                    currentServiceCategory === index
+                                       ? "active"
+                                       : ""
+                                 }`}
+                              >
+                                 {serviceCategory.name}
+                              </div>
+                           </div>
+                        )
+                     )}
                   </div>
 
-                  <div className="table-mobile">
+                  <div className="table-mobile" ref={tableMobileRef}>
                      <div className="table-wrap">
                         <div className="wrapper-flex table__row">
                            <div className="rectangle-50 py-0">
@@ -703,7 +609,7 @@ const Quote = () => {
          {/* <!-- Contact form --> */}
          <div className="wrapper wrapper-top wrapper-bottom contact">
             <div className="rectangle-100 d-none d-md-block d-xl-none text-center quote__heading-top">
-               Để lại thông tin của bạn
+               {contactForm?.title}
             </div>
 
             <div className="rectangle-100 py-0">
@@ -711,30 +617,16 @@ const Quote = () => {
                   <div className="wrapper-flex-item d-none d-md-block rectangle-tab-50 p-0">
                      <div className="quote">
                         <div className="quote__heading d-none d-xl-block">
-                           Để lại thông tin của bạn
+                           {contactForm?.title}
                         </div>
 
                         <div className="quote__text d-flex justify-content-between align-items-start">
                            <Image src={ContactIcon1} alt="icon 1" />
-                           <p>
-                              Lorem Ipsum is simply dummy text of the printing
-                              and typesetting industry. Lorem Ipsum has been the
-                              industry's standard dummy text ever since the
-                              1500s, when an unknown printer took a galley of
-                              type and scrambled it to make a type specimen
-                              book.
-                           </p>
+                           <p>{contactForm?.text1}</p>
                         </div>
                         <div className="quote__text d-flex justify-content-between align-items-start">
                            <Image src={ContactIcon2} alt="icon 2" />
-                           <p>
-                              Lorem Ipsum is simply dummy text of the printing
-                              and typesetting industry. Lorem Ipsum has been the
-                              industry's standard dummy text ever since the
-                              1500s, when an unknown printer took a galley of
-                              type and scrambled it to make a type specimen
-                              book.
-                           </p>
+                           <p>{contactForm?.text2}</p>
                         </div>
                      </div>
                   </div>
@@ -759,7 +651,7 @@ const Quote = () => {
             </div>
 
             <div className="work__content wrapper-flex">
-               {projects.map((project, index) => (
+               {projects?.map((project, index) => (
                   <div
                      key={index}
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-25"
@@ -800,7 +692,7 @@ const Quote = () => {
             </div>
          </div>
          {/* <!-- End: Work --></div> */}
-      </Fragment>
+      </div>
    );
 };
 

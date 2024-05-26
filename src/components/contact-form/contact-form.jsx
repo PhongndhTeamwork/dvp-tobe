@@ -30,7 +30,6 @@ const ContactForm = () => {
 
    const [companyInfos, setCompanyInfos] = useState({});
 
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
    const [serviceItems, setServiceItems] = useState([]);
 
    useEffect(() => {

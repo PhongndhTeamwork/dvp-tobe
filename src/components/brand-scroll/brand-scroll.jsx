@@ -25,7 +25,6 @@ const BrandScroll = ({ homePage }) => {
    const [isMouseDown, setIsMouseDown] = useState(false);
    const [mouseMoveX, setMouseMoveX] = useState(0);
 
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    const [partners, setPartners] = useState({});
 
@@ -137,11 +136,9 @@ const BrandScroll = ({ homePage }) => {
                         key={slideIndex}
                      >
                         <Image
-                           src={
-                              urlRegex.test(partners[2 * slideIndex]?.image)
-                                 ? partners[2 * slideIndex]?.image
-                                 : PartnerSVG1
-                           }
+                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                              partners[2 * slideIndex]?.image
+                           }`}
                            alt="partner-01"
                            style={{
                               marginBottom: homePage ? "0" : `1.875rem`,
@@ -149,13 +146,9 @@ const BrandScroll = ({ homePage }) => {
                         />
                         {2 * slideIndex + 1 <= partners?.length - 1 ? (
                            <Image
-                              src={
-                                 urlRegex.test(
-                                    partners[2 * slideIndex + 1]?.image
-                                 )
-                                    ? partners[2 * slideIndex + 1]?.image
-                                    : PartnerSVG2
-                              }
+                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${
+                                 partners[2 * slideIndex + 1]?.image
+                              }`}
                               alt="partner-02"
                               style={{
                                  marginTop: homePage ? "0" : "1.875rem",

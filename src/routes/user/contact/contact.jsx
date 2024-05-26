@@ -107,28 +107,29 @@ const Contact = () => {
                      src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${companyInfos?.locationImage}`}
                      alt="office"
                   />
-                  <iframe
+                  {companyInfos?.companyLocation}
+                  {/* <iframe
                      className="location__img-map"
                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d232.7824199424376!2d105.8175071671402!3d21.01192097903609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab9d54df9633%3A0xc6669ca3a3fd9129!2zS8OtbmggTeG6r3QgSMOgIFRow6BuaA!5e0!3m2!1svi!2sus!4v1714187539680!5m2!1svi!2sus"
                      allowfullscreen=""
                      loading="lazy"
                      referrerpolicy="no-referrer-when-downgrade"
                      title="Location Map"
-                  ></iframe>
+                  ></iframe> */}
                </div>
 
                <div className="location__address">
                   <div className="location__address-noise"></div>
                   <div className="location__address-text">
+                     <h5>{companyInfos?.companyAddress}</h5>
+                     <h5>{companyInfos?.companyPhone}</h5>
+                     <h5>{companyInfos?.companyEmail}</h5>
                      <h5>
-                        Số 67 phố Láng Hạ, quận Đống Đa, <br />
-                        Tp Hà Nội
-                     </h5>
-                     <h5>+84 988 123 456</h5>
-                     <h5>dvp.media@gmail.com</h5>
-                     <h5>
-                        <Link to="" style={{ color: "black" }}>
-                           www.dvpmedia.com
+                        <Link
+                           to={contactForm?.companyWebsite}
+                           style={{ color: "black" }}
+                        >
+                           {contactForm?.companyWebsite}
                         </Link>
                      </h5>
                   </div>
@@ -143,12 +144,12 @@ const Contact = () => {
                      <div className="carousel-inner">
                         <div className="carousel-item active">
                            <h1 className="text-uppercase heading">
-                              DVP HA NOI
+                              {companyInfos?.companyName}
                            </h1>
                         </div>
                         <div className="carousel-item">
                            <h1 className="text-uppercase heading text-stroke">
-                              DVP HA NOI
+                              {companyInfos?.companyName}
                            </h1>
                         </div>
                      </div>

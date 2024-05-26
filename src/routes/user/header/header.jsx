@@ -37,7 +37,8 @@ const Header = () => {
       if (
          location.pathname.includes("work") ||
          location.pathname.includes("contact") ||
-         location.pathname.includes("cataloge")
+         location.pathname.includes("cataloge") ||
+         location.pathname.includes("quote")
       ) {
          setIsHeaderActive(true);
       } else {
@@ -55,7 +56,8 @@ const Header = () => {
          if (scrollY >= bannerH) {
             setIsHeaderActive(true);
          } else {
-            setIsHeaderActive(false);
+            if(!location.pathname.includes("quote"))
+               setIsHeaderActive(false);
          }
       };
 

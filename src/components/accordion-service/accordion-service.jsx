@@ -108,11 +108,7 @@ const AccordionService = ({
                                     <Carousel.Item key={index}>
                                        <Image
                                           className="d-block w-100"
-                                          src={
-                                             urlRegex.test(image)
-                                                ? image
-                                                : Carousel1
-                                          }
+                                          src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${image}`}
                                           alt="Slide"
                                        />
                                     </Carousel.Item>

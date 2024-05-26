@@ -298,7 +298,7 @@ const About = () => {
          {/* <!-- End: Culture --> */}
 
          {/* <!-- Staff --> */}
-         <div className="wrapper wrapper-top wrapper-bottom staff">
+         {/* <div className="wrapper wrapper-top wrapper-bottom staff">
             <div className="wrapper__header">
                <h4 className="wrapper__header-sub--heading text-uppercase">
                   Resources staff
@@ -369,7 +369,7 @@ const About = () => {
                   );
                })}
             </div>
-         </div>
+         </div> */}
          {/* <!-- End: Staff --></div> */}
       </Fragment>
    );
