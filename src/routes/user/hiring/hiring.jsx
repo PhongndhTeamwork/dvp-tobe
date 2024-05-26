@@ -131,7 +131,7 @@ const Hiring = () => {
          {/* <!-- End: Story --> */}
 
          {/* <!-- Expertise --> */}
-         <div class="wrapper wrapper-top wrapper-bottom ">
+         <div class="hiring__expertise wrapper wrapper-top wrapper-bottom ">
             <div class="wrapper__header">
                <h4 class="wrapper__header-sub--heading text-uppercase">
                   The mottos

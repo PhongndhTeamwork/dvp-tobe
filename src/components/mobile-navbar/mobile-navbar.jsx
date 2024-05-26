@@ -228,6 +228,9 @@ const MobileNavbar = () => {
                <Link to="/work" className="menu__link">
                   Công việc
                </Link>
+               <Link to="/quote" className="menu__link">
+                  Dịch vụ
+               </Link>
                <Link to="/hiring" className="menu__link">
                   Tuyển dụng
                </Link>

@@ -205,7 +205,7 @@ const Cataloge = () => {
                   </div>
                   <div className="project__info-category">
                      <h6 className="title">Thể loại</h6>
-                     <h4 className="name text-uppercase">Web design</h4>
+                     <h4 className="name text-uppercase">{project?.categoryName}</h4>
                   </div>
                </div>
 
@@ -216,7 +216,9 @@ const Cataloge = () => {
                         className="name text-uppercase"
                         id="project-complete-date"
                      >
-                        {project?.finishDate}
+                        {new Date(project?.finishDate).toLocaleDateString(
+                           "en-GB"
+                        )}
                      </h4>
                   </div>
                   <div className="project__info-more">
@@ -225,7 +227,7 @@ const Cataloge = () => {
                         to={project?.linkDemo}
                         className="name text-uppercase project-link"
                      >
-                        {project?.linkDemo}
+                        {project?.linkDemoName}
                         <i className="fa-solid fa-arrow-right-long"></i>
                      </Link>
                   </div>

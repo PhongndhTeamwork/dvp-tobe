@@ -19,11 +19,34 @@ const Quote = () => {
    const [banner, setBanner] = useState({});
    const [services, setServices] = useState({});
 
+   const [projects, setProjects] = useState({});
+   
+
    useEffect(() => {
       axios.get("/api/info/services").then(({ data }) => {
          setServices(data.services.serviceQuotes);
       });
    });
+
+   useEffect(() => {
+      axios
+         .get("/api/work")
+         .then(({ data }) => {})
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
+
+   useEffect(() => {
+      axios
+         .get("/api/quote")
+         .then(({ data }) => {
+            setProjects(data.projects);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
 
    return (
       <Fragment>
@@ -736,102 +759,37 @@ const Quote = () => {
             </div>
 
             <div className="work__content wrapper-flex">
-               <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <Link
-                     className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     to="./cataloge.html"
+               {projects.map((project, index) => (
+                  <div
+                     key={index}
+                     className="rectangle-100 rectangle-tab-50 rectangle-pc-25"
                   >
-                     <div className="img-grayscale">
-                        <Image src={RamenImage} alt="black and white image" />
-                     </div>
-
-                     <div className="project__des">
-                        <div className="project__des-text">
-                           Lorem Ipsum dolor sit amet, textef
+                     <Link
+                        className="project img-grayscale-hover arrow-right-translate-hover d-block"
+                        to={`/cataloge/${project?.id}`}
+                     >
+                        <div className="img-grayscale">
+                           <Image
+                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
+                              alt="black and white image"
+                           />
                         </div>
 
-                        <div className="project__des-icon">
-                           <div className="arrow-right-translate">
-                              <div className="arrow-right-translate__line"></div>
-                              <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                        <div className="project__des">
+                           <div className="project__des-text">
+                              {project.title}
+                           </div>
+
+                           <div className="project__des-icon">
+                              <div className="arrow-right-translate">
+                                 <div className="arrow-right-translate__line"></div>
+                                 <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                              </div>
                            </div>
                         </div>
-                     </div>
-                  </Link>
-               </div>
-
-               <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <Link
-                     className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     to="./cataloge.html"
-                  >
-                     <div className="img-grayscale">
-                        <Image src={RamenImage} alt="black and white image" />
-                     </div>
-
-                     <div className="project__des">
-                        <div className="project__des-text">
-                           Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit
-                           amet, ipsum
-                        </div>
-
-                        <div className="project__des-icon">
-                           <div className="arrow-right-translate">
-                              <div className="arrow-right-translate__line"></div>
-                              <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
-                           </div>
-                        </div>
-                     </div>
-                  </Link>
-               </div>
-
-               <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <Link
-                     className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     to="./cataloge.html"
-                  >
-                     <div className="img-grayscale">
-                        <Image src={RamenImage} alt="black and white image" />
-                     </div>
-
-                     <div className="project__des">
-                        <div className="project__des-text">
-                           Lorem Ipsum dolor sit amet, text
-                        </div>
-
-                        <div className="project__des-icon">
-                           <div className="arrow-right-translate">
-                              <div className="arrow-right-translate__line"></div>
-                              <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
-                           </div>
-                        </div>
-                     </div>
-                  </Link>
-               </div>
-
-               <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
-                  <Link
-                     className="project img-grayscale-hover arrow-right-translate-hover d-block"
-                     to="./cataloge.html"
-                  >
-                     <div className="img-grayscale">
-                        <Image src={RamenImage} alt="black and white image" />
-                     </div>
-
-                     <div className="project__des">
-                        <div className="project__des-text">
-                           Lorem Ipsum dolor sit amet, text
-                        </div>
-
-                        <div className="project__des-icon">
-                           <div className="arrow-right-translate">
-                              <div className="arrow-right-translate__line"></div>
-                              <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
-                           </div>
-                        </div>
-                     </div>
-                  </Link>
-               </div>
+                     </Link>
+                  </div>
+               ))}
             </div>
 
             <div className="work__link d-flex justify-content-center align-items-center">

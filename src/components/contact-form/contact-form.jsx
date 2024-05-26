@@ -42,7 +42,7 @@ const ContactForm = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   });
+   },[]);
 
 
    useEffect(() => {

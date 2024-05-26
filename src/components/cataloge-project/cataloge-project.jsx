@@ -43,7 +43,6 @@ const CatalogeProject = ({ activeIndex, projects }) => {
    const [isMobile, setIsMobile] = useState(false);
    const [isTablet, setIsTablet] = useState(false);
 
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    console.log(projects);
 

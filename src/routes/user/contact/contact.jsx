@@ -73,23 +73,22 @@ const Contact = () => {
                </div>
 
                <div className="rectangle-0 rectangle-pc-50 inspiration__img-2">
-                  <Image className="w-100" src={ContactImage2} />
+                  <Image
+                     className="w-100"
+                     src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${companyInfos?.companyImage}`}
+                  />
                </div>
 
                <div className="rectangle-100 rectangle-pc-50 inspiration__info">
-                  <h2 className="heading">{companyInfos.companyName}</h2>
+                  <h2 className="heading">{companyInfos?.companyName}</h2>
                   <h4 className="sub-heading">
-                     Lorem Ipsum is simply dummy text of the printing and
-                     typesetting industry. Lorem Ipsum has been the industry's
-                     standard dummy text ever since the 1500s, when an unknown
-                     printer took a galley of type and scrambled it to make a
-                     type specimen book.
+                     {companyInfos?.companyDescription}
                   </h4>
 
-                  <p>{companyInfos.companyName}</p>
-                  <p>GCNĐKKD: {companyInfos.licenseCode}</p>
-                  <p>Cấp ngày: {companyInfos.licenseDate}</p>
-                  <p>Nơi cấp: {companyInfos.licenseAddress}</p>
+                  <p>{companyInfos?.companyName}</p>
+                  <p>GCNĐKKD: {companyInfos?.licenseCode}</p>
+                  <p>Cấp ngày: {companyInfos?.licenseDate}</p>
+                  <p>Nơi cấp: {companyInfos?.licenseAddress}</p>
                </div>
             </div>
          </div>
@@ -105,7 +104,7 @@ const Contact = () => {
                <div className="location__img">
                   <Image
                      className="location__img-bg"
-                     src={OfficeBackground}
+                     src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${companyInfos?.locationImage}`}
                      alt="office"
                   />
                   <iframe
@@ -128,7 +127,9 @@ const Contact = () => {
                      <h5>+84 988 123 456</h5>
                      <h5>dvp.media@gmail.com</h5>
                      <h5>
-                        <Link to="">www.dvpmedia.com</Link>
+                        <Link to="" style={{ color: "black" }}>
+                           www.dvpmedia.com
+                        </Link>
                      </h5>
                   </div>
                </div>
