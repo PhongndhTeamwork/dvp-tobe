@@ -2,46 +2,75 @@ import "./admin-nav.css";
 import { Accordion } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
 const AdminNav = () => {
    const categories = [
       {
          title: "Trang chủ",
          contents: ["Banner", "Video", "Story", "Dịch vụ"],
-         link: "/admin/home",
+         link: "/admin/dashboard/home",
+         subLinks: [
+            "/admin/dashboard/home/banner",
+            "/admin/dashboard/home/video",
+            "/admin/dashboard/home/story",
+            "/admin/dashboard/home/service",
+         ],
       },
       {
          title: "Giới thiệu",
          contents: ["Banner", "Story", "Phương châm", "Văn hóa", "Nhân sự"],
-         link: "/admin/about",
+         link: "/admin/dashboard/about",
+         subLinks: [
+            "/admin/dashboard/about/banner",
+            "/admin/dashboard/about/story",
+            "/admin/dashboard/about/motto",
+            "/admin/dashboard/about/culture",
+            "/admin/dashboard/about/staff",
+         ],
       },
       {
          title: "Công việc",
          contents: ["Story", "Dự án", "Danh mục dự án"],
-         link: "/admin/work",
+         subLinks: [
+            "/admin/dashboard/work/story",
+            "/admin/dashboard/work/project",
+            "/admin/dashboard/work/project-category",
+         ],
+         link: "/admin/dashboard/work",
       },
       {
          title: "Tuyển dụng",
          contents: ["Banner", "Story", "Vị trí tuyển dụng", "Link gmail"],
-         link: "/admin/hiring",
+         link: "/admin/dashboard/hiring",
+         subLinks: [
+            "/admin/dashboard/hiring/banner",
+            "/admin/dashboard/hiring/story",
+            "/admin/dashboard/hiring/job",
+            "/admin/dashboard/hiring/gmail",
+         ],
       },
       {
          title: "Liên hệ",
          contents: ["Story", "Ảnh location", "Đoạn văn tiêu đề"],
          link: "/admin/contact",
+         subLinks: [
+            "/admin/dashboard/contact/story",
+            "/admin/dashboard/contact/location",
+            "/admin/dashboard/contact/paragraph",
+         ],
       },
       {
          title: "Thông tin công ty",
          contents: ["Chung"],
-         link: "/admin/company",
+         link: "/admin/dashboard/company",
+         subLinks: ["/admin/dashboard/company"],
       },
       {
          title: "Tư vấn khách hàng",
          contents: ["Thông tin"],
-         link: "/admin/company",
+         link: "/admin/dashboard/customer",
+         subLinks: ["/admin/dashboard/customer/info"],
       },
    ];
-
 
    return (
       <div className="admin-header">
@@ -64,13 +93,11 @@ const AdminNav = () => {
                      <Accordion.Body>
                         {category.contents.map((content, contentIndex) => (
                            <Link
-                              to={category.link}
+                              to={category.subLinks[contentIndex]}
                               className="text-decoration-none"
                               key={contentIndex}
                            >
-                              <div className="navbtn">
-                                 {content}
-                              </div>
+                              <div className="navbtn">{content}</div>
                            </Link>
                         ))}
                      </Accordion.Body>

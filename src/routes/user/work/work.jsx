@@ -33,6 +33,7 @@ const Work = () => {
 
    const [story, setStory] = useState({});
    const [categories, setCategories] = useState([]);
+   const [categoryIndex, setCategoryIndex] = useState(-1);
    const [projects, setProjects] = useState([]);
    const [contactForm, setContactForm] = useState({});
 
@@ -52,6 +53,8 @@ const Work = () => {
 
    const handleAllCategoriesClick = () => {
       setActiveCategory("all");
+      setCategoryIndex(-1);
+      setActiveFilter(-1);
    };
 
    const handleCategoryClick = (category) => {
@@ -65,6 +68,28 @@ const Work = () => {
    useEffect(() => {
       window.scrollTo(0, 0);
    }, []);
+
+   useEffect(() => {
+      if (categoryIndex === -1) {
+         axios
+            .get("/api/work")
+            .then(({ data }) => {
+               setProjects(data.projects);
+            })
+            .catch((error) => {
+               throw new Error(error);
+            });
+      } else {
+         axios
+            .get(`/api/work/search?category=${categoryIndex}`)
+            .then(({ data }) => {
+               setProjects(data.projects);
+            })
+            .catch((error) => {
+               throw new Error(error);
+            });
+      }
+   }, [categoryIndex]);
 
    return (
       <Fragment>
@@ -123,7 +148,10 @@ const Work = () => {
                               className={`nav-filter__item ${
                                  activeFilter === index + 1 ? "active" : ""
                               }`}
-                              onClick={() => handleFilterClick(index + 1)}
+                              onClick={() => {
+                                 handleFilterClick(index + 1);
+                                 setCategoryIndex(filterItem.id);
+                              }}
                            >
                               {filterItem.name}
                            </div>
