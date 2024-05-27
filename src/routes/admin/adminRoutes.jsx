@@ -17,6 +17,7 @@ import AdminNav from "../../components/admin-nav/admin-nav";
 
 import { AdminContext } from "./adminContext";
 import { useContext } from "react";
+import PageNotFound from "../page-not-found";
 
 const AdminRoutes = () => {
    const location = useLocation();

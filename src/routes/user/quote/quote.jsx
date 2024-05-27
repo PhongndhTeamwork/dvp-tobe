@@ -181,36 +181,14 @@ const Quote = () => {
                               </div>
                               <div className="pack__content">
                                  <ul>
-                                    <li>
-                                       <div className="icon"></div>Lorem ipsum
-                                       dolor sit amet consectetur adipisicing
-                                       elit.
-                                    </li>
-                                    <li>
-                                       <div className="icon"></div>Lorem ipsum
-                                       dolor sit amet
-                                    </li>
-                                    <li>
-                                       <div className="icon"></div>Lorem ipsum
-                                       dolor sit amet
-                                    </li>
-                                    <li>
-                                       <div className="icon"></div>Lorem ipsum
-                                       dolor sit amet
-                                    </li>
-                                    <li>
-                                       <div className="icon"></div>Lorem ipsum
-                                       dolor sit amet
-                                    </li>
-                                    <li>
-                                       <span className="line"></span>
-                                    </li>
-                                    <li>
-                                       <span className="line"></span>
-                                    </li>
-                                    <li>
-                                       <span className="line"></span>
-                                    </li>
+                                    {serviceQuote?.descriptions?.map(
+                                       (description, index) => (
+                                          <li key={index}>
+                                             <div className="icon"></div>
+                                             {description}
+                                          </li>
+                                       )
+                                    )}
                                  </ul>
                               </div>
                               <div className="pack__btn">
@@ -230,11 +208,7 @@ const Quote = () => {
                   Chi tiết cụ thể từng gói
                </div>
                <div className="quote__detail-des">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Praesentium, consequatur placeat perferendis consequuntur quos
-                  ea voluptatibus repudiandae maxime, esse est, harum molestiae
-                  enim atque consectetur eligendi. Praesentium dolorum quo
-                  excepturi!
+                  {services[currentService]?.description}
                </div>
 
                {/* <!-- Table on pc --> */}
@@ -243,169 +217,69 @@ const Quote = () => {
                      <div className="rectangle-25 py-0">
                         <div className="table__header-item h-100">Danh mục</div>
                      </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__header-item h-100">
-                           <Image src={BasicImage} alt="Basic" />
-                           Gói Basic
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__header-item h-100">
-                           <Image src={BusinessImage} alt="business" />
-                           Gói Business
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__header-item h-100">
-                           <Image src={OmiPlusImage} alt="omni-plus" />
-                           Gói Omni Plus
-                        </div>
-                     </div>
+                     {services[currentService]?.serviceQuotes?.map(
+                        (serviceQuote, index) => (
+                           <div className="rectangle-25 py-0" key={index}>
+                              <div className="table__header-item h-100">
+                                 <Image
+                                    src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${serviceQuote?.icon}`}
+                                    alt=""
+                                 />
+                                 {serviceQuote?.name}
+                              </div>
+                           </div>
+                        )
+                     )}
                   </div>
-
-                  <div className="wrapper-flex table__row">
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Lorem ipsum dolor sit amet consectetur, adipisicing
-                           elit.
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Nội dung demo sẽ như này
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={UncheckSVG} alt="unchecked" />
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={CheckSVG} alt="checked" />
-                        </div>
-                     </div>
-                  </div>
-
-                  <div className="wrapper-flex table__row">
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Lorem ipsum dolor sit amet consectetur, adipisicing
-                           elit.
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Lorem ipsum dolor sit amet consectetur, adipisicing
-                           elit.
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={CheckSVG} alt="checked" />
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={UncheckSVG} alt="unchecked" />
-                        </div>
-                     </div>
-                  </div>
-
-                  <div className="wrapper-flex table__row">
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Nội dung demo sẽ như này
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={UncheckSVG} alt="unchecked" />
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={CheckSVG} alt="checked" />
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Nội dung demo sẽ như này
-                        </div>
-                     </div>
-                  </div>
-
-                  <div className="wrapper-flex table__row">
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Lorem ipsum dolor sit amet consectetur, adipisicing
-                           elit.
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={UncheckSVG} alt="unchecked" />
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={CheckSVG} alt="checked" />
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Nội dung demo sẽ như này
-                        </div>
-                     </div>
-                  </div>
-
-                  <div className="wrapper-flex table__row">
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Nội dung demo sẽ như này
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={CheckSVG} alt="checked" />
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={UncheckSVG} alt="unchecked" />
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Lorem ipsum dolor sit amet consectetur, adipisicing
-                           elit.
-                        </div>
-                     </div>
-                  </div>
-
-                  <div className="wrapper-flex table__row">
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Nội dung demo sẽ như này
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={CheckSVG} alt="checked" />
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100">
-                           Lorem ipsum dolor sit amet consectetur, adipisicing
-                           elit.
-                        </div>
-                     </div>
-                     <div className="rectangle-25 py-0">
-                        <div className="table__row-item h-100 item-check">
-                           <Image src={UncheckSVG} alt="unchecked" />
-                        </div>
-                     </div>
-                  </div>
+                  {services[currentService]?.serviceCategories?.map(
+                     (currentService, index) => {
+                        return (
+                           <div key={index} className="wrapper-flex table__row">
+                              <div className="rectangle-25 py-0">
+                                 <div className="table__row-item h-100">
+                                    {currentService?.name}
+                                 </div>
+                              </div>
+                              <div className="rectangle-25 py-0">
+                                 <div className="table__row-item h-100">
+                                    {currentService?.quote1 === "check" ? (
+                                       <Image src={CheckSVG} alt="check" />
+                                    ) : currentService?.quote1 ===
+                                      "uncheck" ? (
+                                       <Image src={UncheckSVG} alt="uncheck" />
+                                    ) : (
+                                       currentService?.quote1
+                                    )}
+                                 </div>
+                              </div>
+                              <div className="rectangle-25 py-0">
+                                 <div className="table__row-item h-100 item-check">
+                                 {currentService?.quote2 === "check" ? (
+                                       <Image src={CheckSVG} alt="check" />
+                                    ) : currentService?.quote2 ===
+                                      "uncheck" ? (
+                                       <Image src={UncheckSVG} alt="uncheck" />
+                                    ) : (
+                                       currentService?.quote2
+                                    )}
+                                 </div>
+                              </div>
+                              <div className="rectangle-25 py-0">
+                                 <div className="table__row-item h-100 item-check">
+                                 {currentService?.quote3 === "check" ? (
+                                       <Image src={CheckSVG} alt="check" />
+                                    ) : currentService?.quote3 ===
+                                      "uncheck" ? (
+                                       <Image src={UncheckSVG} alt="uncheck" />
+                                    ) : (
+                                       currentService?.quote3
+                                    )}
+                                 </div>
+                              </div>
+                           </div>
+                        );
+                     }
+                  )}
                </div>
                {/* <!-- End: Table on pc --> */}
 
