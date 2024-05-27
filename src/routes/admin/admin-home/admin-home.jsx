@@ -79,18 +79,22 @@ const AdminHome = () => {
    const handleSubmitBanner = () => {
       const config = {
          headers: {
-            // Your request headers here
             Authorization: userInfo,
-            "Content-Type": "application/json",
+            // "Content-Type": "application/x-www-form-urlencoded",
          },
       };
 
       const data = { ...banner, position: "home" };
 
-      console.log(data);
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+         formData.append(key, data[key]);
+      });
+
+      console.log(formData);
 
       axios
-         .post("/api/admin/home/banner/save", data, config)
+         .post("http://localhost:8000/api/admin/home/banner/save", formData, config)
          .then((response) => {
             console.log(response);
          })

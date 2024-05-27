@@ -50,7 +50,7 @@ const AdminRoutes = () => {
             </div>
          </header>
          <Routes>
-            <Route path="/signin" element={<Signin />} />
+            <Route path="/" element={<Signin />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/work" element={<AdminWork />} />
             <Route path="/home" element={<AdminHome />} />

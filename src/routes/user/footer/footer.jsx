@@ -82,15 +82,11 @@ const Footer = () => {
                         <h3 className="heading">Bản đồ</h3>
                      </div>
                      <div className="info__content location__map">
-                        {companyInfos.companyLocation}
-                        {/* <iframe
-                           title="Google Map Location"
-                           className="location__map-link"
-                           src={companyInfos.companyLocation}
-                           allowFullScreen=""
-                           loading="lazy"
-                           referrerPolicy="no-referrer-when-downgrade"
-                        ></iframe> */}
+                        <div
+                           dangerouslySetInnerHTML={{
+                              __html: companyInfos?.companyLocation,
+                           }}
+                        />
                      </div>
                   </div>
 

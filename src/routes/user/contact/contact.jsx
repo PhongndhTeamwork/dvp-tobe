@@ -107,7 +107,11 @@ const Contact = () => {
                      src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${companyInfos?.locationImage}`}
                      alt="office"
                   />
-                  {companyInfos?.companyLocation}
+                  <div
+                     dangerouslySetInnerHTML={{
+                        __html: companyInfos?.companyLocation,
+                     }}
+                  />
                </div>
 
                <div className="location__address">
@@ -128,9 +132,7 @@ const Contact = () => {
                   >
                      <div className="carousel-inner">
                         <div className="carousel-item active">
-                           <h1 className="text-uppercase heading">
-                              DVP HANOI
-                           </h1>
+                           <h1 className="text-uppercase heading">DVP HANOI</h1>
                         </div>
                         <div className="carousel-item">
                            <h1 className="text-uppercase heading text-stroke">
