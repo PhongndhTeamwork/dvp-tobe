@@ -1,7 +1,3 @@
-.banner .banner__text {
-   width: 100%;
-}
-
 .banner .banner__text .text-uppercase {
    text-transform: capitalize !important;
    margin: 0;

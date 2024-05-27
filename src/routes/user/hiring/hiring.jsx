@@ -81,18 +81,21 @@ const Hiring = () => {
                <div className="banner__bg-eclipse2"></div>
                <div className="banner__bg-eclipse3"></div>
             </div>
-            {banner.images ? (
-               <Image className="banner__img" src={banner.image} />
+            {banner.image ? (
+               <Image className="banner__img" src={banner?.image} />
             ) : (
                ""
             )}
 
-            <div class="banner__text">
-               <div class="d-flex justify-content-center align-items-center flex-column flex-md-row">
-                  <div class="text-stroke text-capitalize">
-                     {banner.textstroke1}
-                  </div>
-                  <div class="text-uppercase">{banner.textuppercase1}</div>
+            <div className="banner__text">
+               <div className="banner__text-top pe-0">
+                  <div className="text-stroke text-center">{banner.textstroke1}</div>
+                  <div className="text-uppercase text-center">{banner.textuppercase1}</div>
+               </div>
+
+               <div className="banner__text-bot">
+                  <div className="text-uppercase text-center">{banner.textstroke2}</div>
+                  <div className="text-stroke text-center">{banner.textuppercase2}</div>
                </div>
             </div>
          </div>

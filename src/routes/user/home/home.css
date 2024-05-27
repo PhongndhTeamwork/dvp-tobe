@@ -1,13 +1,3 @@
-/* Banner */
-.banner .banner__text .banner__text-top,
-.banner .banner__text .banner__text-bot {
-   flex-direction: column;
-   align-items: center;
-}
-
-.banner .banner__text .banner__text-bot .text-stroke {
-   order: -1;
-}
 
 /* Video autoplay */
 .reels {
@@ -182,24 +172,6 @@
 }
 
 @media (min-width: 768px) {
-   .banner .banner__text .banner__text-top {
-      padding-right: 3rem;
-   }
-
-   .banner .banner__text .banner__text-top,
-   .banner .banner__text .banner__text-bot {
-      flex-direction: row;
-   }
-
-   .banner .banner__text .banner__text-top .text-stroke,
-   .banner .banner__text .banner__text-bot .text-uppercase {
-      margin-right: 0.625rem;
-   }
-
-   .banner .banner__text .banner__text-bot .text-stroke {
-      order: 1;
-   }
-
    .story .story__content .label {
       padding: 1.25rem 5rem 6.25rem 0;
    }
@@ -259,19 +231,11 @@
 }
 
 @media (min-width: 900px) {
-   .banner .banner__text .banner__text-top {
-      padding-right: 6.25rem;
-   }
 
-   .banner .banner__text .banner__text-bot {
-      padding-right: 1.875rem;
-   }
 }
 
 @media (min-width: 1200px) {
-   .banner .banner__text-padding {
-      padding-left: 7rem;
-   }
+
    .partners .wrapper {
       padding-left: 1.5rem;
       padding-right: 1.5rem;

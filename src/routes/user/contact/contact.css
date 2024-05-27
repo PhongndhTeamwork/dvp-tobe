@@ -105,7 +105,7 @@
    cursor: pointer;
 }
 
-.location .location__img-map {
+.location iframe {
    position: absolute;
    top: calc(-16.66665% - 0.1875rem);
    left: calc(-16.66665% - 0.1875rem);
@@ -248,7 +248,7 @@
       height: 37.5rem;
    }
 
-   .location .location__img-map {
+   .location iframe {
       top: 100%;
       left: -0.125rem;
       width: calc(100% + 0.25rem);
@@ -256,7 +256,7 @@
       transform: scale(1);
    }
 
-   .location .content:hover .location__img-map {
+   .location .content:hover iframe {
       top: -0.125rem;
    }
 

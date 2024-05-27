@@ -145,7 +145,7 @@ const About = () => {
                <div className="banner__bg-eclipse2"></div>
                <div className="banner__bg-eclipse3"></div>
             </div>
-            {banner.images ? (
+            {banner.image ? (
                <Image className="banner__img" src={banner?.image} />
             ) : (
                ""
@@ -153,15 +153,13 @@ const About = () => {
 
             <div className="banner__text">
                <div className="banner__text-top pe-0">
-                  <div className="text-stroke text-center"></div>
-                  <div className="text-uppercase text-center">
-                     {banner.textuppercase1}
-                  </div>
+                  <div className="text-stroke text-center">{banner.textstroke1}</div>
+                  <div className="text-uppercase text-center">{banner.textuppercase1}</div>
                </div>
 
                <div className="banner__text-bot">
-                  <div className="text-uppercase text-center"></div>
-                  <div className="text-stroke text-center"></div>
+                  <div className="text-uppercase text-center">{banner.textstroke2}</div>
+                  <div className="text-stroke text-center">{banner.textuppercase2}</div>
                </div>
             </div>
          </div>

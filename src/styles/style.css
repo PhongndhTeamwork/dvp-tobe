@@ -29,6 +29,7 @@ header .header__logo img {
 
 header .header__nav {
    height: 2.625rem;
+   padding-left: 0;
 }
 
 header .header__nav .header__nav-link {
