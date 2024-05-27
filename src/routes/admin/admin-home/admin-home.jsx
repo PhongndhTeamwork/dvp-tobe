@@ -1,6 +1,6 @@
 import "./admin-home.css";
 
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Image, Carousel } from "react-bootstrap";
 
@@ -12,9 +12,12 @@ import Notification from "../../../components/notification/notification";
 
 import { AdminContext } from "../adminContext";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const AdminHome = () => {
    const { fullView } = useContext(AdminContext);
+
+   const { userInfo } = useSelector((state) => state.userLogin);
 
    const [bannerImage, setBannerImage] = useState();
 
@@ -23,6 +26,8 @@ const AdminHome = () => {
    const [story, setStory] = useState({});
    const [project, setProject] = useState({});
    const [services, setServices] = useState({});
+
+   const bannerImageInputRef = useRef(null);
 
    useEffect(() => {
       axios.get("/api/home").then(({ data }) => {
@@ -36,14 +41,14 @@ const AdminHome = () => {
    }, []);
 
    useEffect(() => {
-      axios.get("api/info/services").then(({ data }) => {
+      axios.get("/api/info/services").then(({ data }) => {
          setServices(data.services);
       });
    });
 
-   useEffect(() => {
-      console.log(banner);
-   }, [banner]);
+   // useEffect(() => {
+   //    console.log(banner);
+   // }, [banner]);
 
    const handleChangeBannerImage = (e) => {
       const file = e.target.files[0];
@@ -60,6 +65,38 @@ const AdminHome = () => {
          };
          reader.readAsDataURL(file);
       }
+   };
+
+   const handleDeSelectBannerImage = () => {
+      setBannerImage(null);
+      setBanner({
+         ...banner,
+         image: null,
+      });
+      bannerImageInputRef.current.value = null;
+   };
+
+   const handleSubmitBanner = () => {
+      const config = {
+         headers: {
+            // Your request headers here
+            Authorization: userInfo,
+            "Content-Type": "application/json",
+         },
+      };
+
+      const data = { ...banner, position: "home" };
+
+      console.log(data);
+
+      axios
+         .post("/api/admin/home/banner/save", data, config)
+         .then((response) => {
+            console.log(response);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
    };
 
    return (
@@ -91,7 +128,7 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder={banner?.textstroke1}
+                              defaultValue={banner?.textstroke1}
                               onChange={(e) => {
                                  setBanner({
                                     ...banner,
@@ -105,7 +142,7 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder={banner?.textstroke2}
+                              defaultValue={banner?.textstroke2}
                               onChange={(e) => {
                                  setBanner({
                                     ...banner,
@@ -119,7 +156,7 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder={banner?.textuppercase1}
+                              defaultValue={banner?.textuppercase1}
                               onChange={(e) => {
                                  setBanner({
                                     ...banner,
@@ -133,7 +170,7 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder={banner?.textuppercase2}
+                              defaultValue={banner?.textuppercase2}
                               onChange={(e) => {
                                  setBanner({
                                     ...banner,
@@ -149,7 +186,10 @@ const AdminHome = () => {
                               className="banner__img w-50 my-4 border"
                               style={{ display: "block" }}
                            >
-                              <i className="fa-solid fa-xmark"></i>
+                              <i
+                                 className="fa-solid fa-xmark"
+                                 onClick={handleDeSelectBannerImage}
+                              ></i>
                               <Image
                                  className="w-100"
                                  src={bannerImage}
@@ -164,18 +204,21 @@ const AdminHome = () => {
                               onChange={(e) => {
                                  handleChangeBannerImage(e);
                               }}
+                              ref={bannerImageInputRef}
                            />
                            <br />
 
                            <button
                               className="btn btn-primary px-4 fs-4 mt-5"
                               type="button"
+                              onClick={handleSubmitBanner}
                            >
                               Submit
                            </button>
                            <button
                               className="btn btn-danger px-4 fs-4 mt-5"
                               type="button"
+                              // onClick={onSubmitBanner}
                            >
                               Hủy
                            </button>
@@ -229,7 +272,7 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder="The story of DVP"
+                              defaultValue="The story of DVP"
                               onChange={(e) => {
                                  setStory({
                                     ...story,
@@ -243,7 +286,7 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder="Câu chuyện về DVP"
+                              defaultValue="Câu chuyện về DVP"
                               onChange={(e) => {
                                  setStory({ ...story, title: e.target.value });
                               }}
@@ -413,7 +456,7 @@ const AdminHome = () => {
                            <input
                               type="text"
                               className="w-100"
-                              placeholder="Branding"
+                              defaultValue="Branding"
                            />
                            <br />
                            <label htmlFor="">Carousel</label>
