@@ -19,6 +19,15 @@ export const login = createAsyncThunk("USER_LOGIN", async (info, thunkAPI) => {
    }
 });
 
+export const logout = createAsyncThunk("USER_LOGOUT", async (thunkAPI) => {
+   try {
+      localStorage.removeItem("userInfo");
+      return true;
+   } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+   }
+});
+
 export const userLoginSlice = createSlice({
    name: "user",
    initialState: {
@@ -45,6 +54,19 @@ export const userLoginSlice = createSlice({
             state.loading = false;
             state.error = action.payload;
             state.userInfo = null;
+         })
+         .addCase(logout.pending, (state) => {
+            state.loading = true;
+            state.error = null;
+         })
+         .addCase(logout.fulfilled, (state) => {
+            state.loading = false;
+            state.error = null;
+            state.userInfo = null;
+         })
+         .addCase(logout.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload;
          });
    },
 });

@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom";
-import { Image } from "react-bootstrap";
 
-import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
-
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
 const AdminHiringStory = () => {
    return (
       <div className="story">

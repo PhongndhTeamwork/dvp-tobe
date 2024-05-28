@@ -5,8 +5,27 @@ import CarouselImage1 from "../../../assets/images/carousel/carousel-1.png";
 import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
 import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
 import Video from "../../../assets/images/others/video-auto.mp4";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const AdminHomeService = () => {
+   const [services, setServices] = useState([]);
+
+   useEffect(() => {
+      axios.get("/api/info/services").then(({ data }) => {
+         setServices(
+            data.services?.map((service) => {
+               return {
+                  ...service,
+                  carouselImages: service.carouselImages?.map(
+                     (image) =>
+                        process.env.REACT_APP_BASE_IMAGE_URL + "/" + image
+                  ),
+               };
+            })
+         );
+      });
+   }, []);
    return (
       <div className="service">
          <h4 className="mt-5 mb-4">Chỉnh sửa danh sách dịch vụ</h4>
@@ -16,92 +35,44 @@ const AdminHomeService = () => {
          <br />
 
          <div className="service-list border px-3">
-            <div className="service__item row py-4 align-items-center">
-               <div className="col-12 col-md-5">
-                  <Carousel interval={1000}>
-                     <Carousel.Item className="carousel-item">
-                        <Image
-                           src={CarouselImage1}
-                           className="w-100"
-                           alt="carousel-img-1"
-                        />
-                     </Carousel.Item>
-                     <Carousel.Item className="carousel-item">
-                        <Image
-                           src={CarouselImage2}
-                           className="w-100"
-                           alt="carousel-img-2"
-                        />
-                     </Carousel.Item>
-                     <Carousel.Item className="carousel-item">
-                        <Image
-                           src={CarouselImage3}
-                           className="w-100"
-                           alt="carousel-img-3"
-                        />
-                     </Carousel.Item>
-                  </Carousel>
-               </div>
+            {services.map((service, serviceIndex) => (
+               <div
+                  key={serviceIndex}
+                  className="service__item row py-4 align-items-center"
+               >
+                  <div className="col-12 col-md-5">
+                     <Carousel interval={1000}>
+                        {service?.Carousel?.map((image, imageIndex) => (
+                           <Carousel.Item
+                              className="carousel-item"
+                              key={imageIndex}
+                           >
+                              <Image
+                                 src={image}
+                                 className="w-100"
+                                 alt="carousel-img-1"
+                              />
+                           </Carousel.Item>
+                        ))}
+                     </Carousel>
+                  </div>
 
-               <div className="col-12 col-md-5">
-                  <h6>Logo</h6>
-                  <h6>Ấn phẩm văn phòng</h6>
-                  <h6>Broucher, Cataloge</h6>
-                  <h6>Capacity profile - Company profile</h6>
-               </div>
+                  <div className="col-12 col-md-5">
+                     {service.serviceInfos?.map((serviceInfo, index) => (
+                        <h6 key={index}>{serviceInfo}</h6>
+                     ))}
+                  </div>
 
-               <div className="col-1">
-                  <Link to="">Sửa</Link>
+                  <div className="col-1">
+                     <Link to="">Sửa</Link>
+                  </div>
+                  <div className="col-1">
+                     <Link className="text-danger" to="">
+                        Xóa
+                     </Link>
+                  </div>
                </div>
-               <div className="col-1">
-                  <Link className="text-danger" to="">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
-            <div className="service__item row py-4 align-items-center">
-               <div className="col-12 col-md-5">
-                  <Carousel interval={1000}>
-                     <Carousel.Item className="carousel-item">
-                        <Image
-                           src={CarouselImage1}
-                           className="w-100"
-                           alt="carousel-img-1"
-                        />
-                     </Carousel.Item>
-                     <Carousel.Item className="carousel-item">
-                        <Image
-                           src={CarouselImage2}
-                           className="w-100"
-                           alt="carousel-img-2"
-                        />
-                     </Carousel.Item>
-                     <Carousel.Item className="carousel-item">
-                        <Image
-                           src={CarouselImage3}
-                           className="w-100"
-                           alt="carousel-img-3"
-                        />
-                     </Carousel.Item>
-                  </Carousel>
-               </div>
-
-               <div className="col-12 col-md-5">
-                  <h6>Logo</h6>
-                  <h6>Ấn phẩm văn phòng</h6>
-                  <h6>Broucher, Cataloge</h6>
-                  <h6>Capacity profile - Company profile</h6>
-               </div>
-
-               <div className="col-1">
-                  <Link to="">Sửa</Link>
-               </div>
-               <div className="col-1">
-                  <Link className="text-danger" to="">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
+            ))}
          </div>
 
          <h4 className="mt-5">Thêm dịch vụ mới</h4>

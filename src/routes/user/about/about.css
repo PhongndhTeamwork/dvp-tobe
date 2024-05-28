@@ -1,5 +1,5 @@
 .banner .banner__text .text-uppercase {
-   text-transform: capitalize !important;
+   text-transform: capitalize ;
    margin: 0;
 }
 

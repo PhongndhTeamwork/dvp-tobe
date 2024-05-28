@@ -1,7 +1,7 @@
 import "./admin-about.css";
 
 import { Fragment, useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
 import Notification from "../../../components/notification/notification";
@@ -21,6 +21,8 @@ import axios from "axios";
 
 import { Outlet } from "react-router-dom";
 
+import { useDispatch, useSelector } from "react-redux";
+
 const AdminAbout = () => {
    const { fullView } = useContext(AdminContext);
 
@@ -31,7 +33,12 @@ const AdminAbout = () => {
    const [secondStory, setSecondStory] = useState({});
    const [expertise, setExpertise] = useState({});
 
-
+   const { userInfo } = useSelector((state) => state.userLogin);
+   useEffect(() => {
+      if (userInfo === null) {
+         redirect("/admin");
+      }
+   }, [userInfo]);
    useEffect(() => {
       axios.get("/api/about").then(({ data }) => {
          setBanner(data.banner);
@@ -63,24 +70,24 @@ const AdminAbout = () => {
                   <div className="row">
                      <div className="col-12 col-lg-10 col-xl-8 col-xxl-6">
                         {/* <!-- Banner --> */}
-                        <Outlet/>
-                        
+                        <Outlet />
+
                         {/* <!-- End: Banner --> */}
 
                         {/* <!-- Story --> */}
-                        
+
                         {/* <!-- End: Story --> */}
 
                         {/* <!-- Motto --> */}
-                        
+
                         {/* <!-- End: Motto --> */}
 
                         {/* <!-- Culture --> */}
-                        
+
                         {/* <!-- End: Culture --> */}
 
                         {/* <!-- Staff --> */}
-                        
+
                         {/* <!-- End: Staff --> */}
                      </div>
                   </div>

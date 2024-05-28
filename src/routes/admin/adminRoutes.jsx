@@ -51,9 +51,7 @@ const AdminRoutes = () => {
       <div className="admin-routes">
          <header
             style={{
-               display: location.pathname.includes("admin/signin")
-                  ? "none"
-                  : "",
+               display: location.pathname === "/admin" ? "none" : "",
             }}
          >
             <AdminHeader />

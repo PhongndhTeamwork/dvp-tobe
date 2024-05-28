@@ -10,7 +10,7 @@ import { Spinner } from "react-bootstrap";
 const Signin = () => {
    const dispatch = useDispatch();
    const { userInfo, loading, error } = useSelector((state) => state.userLogin);
-
+   
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
 
@@ -19,10 +19,10 @@ const Signin = () => {
 
    const navigate = useNavigate();
 
-   useEffect(() => {
-      console.log(userInfo);
-      console.log(error);
-   }, [userInfo, error]);
+   // useEffect(() => {
+   //    console.log(userInfo);
+   //    console.log(error);
+   // }, [userInfo, error]);
 
    const handleChangeUsername = (e) => {
       if (e.target.value === "") {

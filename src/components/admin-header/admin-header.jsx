@@ -1,10 +1,19 @@
-import { Link } from "react-router-dom";
+import "./admin-header.css";
+import { Link, useNavigate } from "react-router-dom";
 
 import { AdminContext } from "../../routes/admin/adminContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../app/features/userLoginSlice";
 
 const AdminHeader = () => {
+   const dispatch = useDispatch();
+   const { userInfo } = useSelector((state) => state.userLogin);
    const { fullView, setFullView } = useContext(AdminContext);
+
+   const [isShowNavDropdown, setIsShowNavDropdown] = useState(false);
+
+   const navigate = useNavigate();
 
    return (
       <nav className="navbar navbar-expand fixed-top navbar-dark bg-dark">
@@ -28,37 +37,58 @@ const AdminHeader = () => {
          {/* <!-- Navbar--> */}
          <ul className="navbar-nav ms-auto me-3 me-lg-4">
             <li className="nav-item dropdown">
-               <Link
+               <div
                   className="nav-link dropdown-toggle"
                   id="navbarDropdown"
                   to=""
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
+                  onClick={() => {
+                     setIsShowNavDropdown(!isShowNavDropdown);
+                  }}
                >
                   <i className="fas fa-user fa-fw"></i>
-               </Link>
+               </div>
                <ul
                   className="dropdown-menu dropdown-menu-end"
                   aria-labelledby="navbarDropdown"
+                  style={{ display: isShowNavDropdown ? "block" : "none" }}
+                  onClick={() => {
+                     setIsShowNavDropdown(!isShowNavDropdown);
+                  }}
                >
                   <li>
-                     <Link className="dropdown-item" to="#!">
+                     <div
+                        style={{
+                           borderTopLeftRadius: "0.5rem",
+                           borderTopRightRadius: "0.5rem",
+                        }}
+                        className="dropdown-item"
+                     >
                         Cài đặt
-                     </Link>
+                     </div>
                   </li>
                   <li>
-                     <Link className="dropdown-item" to="#!">
-                        Tài khoản
-                     </Link>
+                     <div className="dropdown-item">Tài khoản</div>
                   </li>
                   <li>
                      <hr className="dropdown-divider" />
                   </li>
                   <li>
-                     <Link className="dropdown-item" to="#!">
+                     <div
+                        style={{
+                           borderBottomLeftRadius: "0.5rem",
+                           borderBottomRightRadius: "0.5rem",
+                        }}
+                        className="dropdown-item"
+                        onClick={async () => {
+                           await dispatch(logout());
+                           navigate("/admin");
+                        }}
+                     >
                         Đăng xuất
-                     </Link>
+                     </div>
                   </li>
                </ul>
             </li>

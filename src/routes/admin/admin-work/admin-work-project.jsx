@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import CatalogeImage1 from "../../../assets/images/cateloge/cataloge1.png";
 import CatalogeImage2 from "../../../assets/images/cateloge/cataloge2.png";
 import CatalogeImage3 from "../../../assets/images/cateloge/cataloge3.png";

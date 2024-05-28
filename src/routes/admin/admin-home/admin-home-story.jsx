@@ -1,105 +1,49 @@
-import { Link } from "react-router-dom";
-import { Image, Carousel } from "react-bootstrap";
+// import CarouselImage1 from "../../../assets/images/carousel/carousel-1.png";
+// import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
+// import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
+// import Video from "../../../assets/images/others/video-auto.mp4";
 
-import CarouselImage1 from "../../../assets/images/carousel/carousel-1.png";
-import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
-import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
-import Video from "../../../assets/images/others/video-auto.mp4";
-
-import { AdminContext } from "../adminContext";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Fragment, useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const AdminHomeStory = () => {
-   const { fullView } = useContext(AdminContext);
-
    const { userInfo } = useSelector((state) => state.userLogin);
 
-   const [bannerImage, setBannerImage] = useState();
-
-   const [banner, setBanner] = useState({});
-   const [video, setVideo] = useState("");
    const [story, setStory] = useState({});
-   const [project, setProject] = useState({});
-   const [services, setServices] = useState({});
 
-   const bannerImageInputRef = useRef(null);
    useEffect(() => {
       axios.get("/api/home").then(({ data }) => {
-         setBanner(data.banner);
-         setVideo(data.video);
          setStory(data.story);
-         setProject(data.projects);
-
-         setBannerImage(data.banner.image);
       });
    }, []);
 
-   useEffect(() => {
-      axios.get("/api/info/services").then(({ data }) => {
-         setServices(data.services);
-      });
-   });
-
-   // useEffect(() => {
-   //    console.log(banner);
-   // }, [banner]);
-
-   const handleChangeBannerImage = (e) => {
-      const file = e.target.files[0];
-      if (file) {
-         setBanner({
-            ...banner,
-            image: e.target.files[0],
-         });
-
-         const reader = new FileReader();
-         reader.onloadend = () => {
-            // Update the state with the newly selected image
-            setBannerImage(reader.result);
-         };
-         reader.readAsDataURL(file);
-      }
-   };
-
-   const handleDeSelectBannerImage = () => {
-      setBannerImage(null);
-      setBanner({
-         ...banner,
-         image: null,
-      });
-      bannerImageInputRef.current.value = null;
-   };
-
-   const handleSubmitBanner = () => {
+   const handleSubmitStory = () => {
       const config = {
          headers: {
             Authorization: userInfo,
-            // "Content-Type": "application/x-www-form-urlencoded",
          },
       };
 
-      const data = { ...banner, position: "home" };
+      const { images, ...remainingData } = story;
+      const data = { ...remainingData };
+
+      // console.log(data);
 
       const formData = new FormData();
       Object.keys(data).forEach((key) => {
          formData.append(key, data[key]);
       });
 
-      console.log(formData);
+      // console.log(formData);
 
       axios
-         .post(
-            "http://localhost:8000/api/admin/home/banner/save",
-            formData,
-            config
-         )
-         .then((response) => {
-            console.log(response);
+         .post("/api/admin/home/story/save", formData, config)
+         .then(({data}) => {
+            console.log(data.message);
          })
          .catch((error) => {
-            console.log(error);
+            console.log(error.message);
          });
    };
    return (
@@ -111,7 +55,7 @@ const AdminHomeStory = () => {
          <input
             type="text"
             className="w-100"
-            defaultValue="The story of DVP"
+            defaultValue={story?.subtitle}
             onChange={(e) => {
                setStory({
                   ...story,
@@ -125,7 +69,7 @@ const AdminHomeStory = () => {
          <input
             type="text"
             className="w-100"
-            defaultValue="Câu chuyện về DVP"
+            defaultValue={story?.title}
             onChange={(e) => {
                setStory({ ...story, title: e.target.value });
             }}
@@ -139,9 +83,9 @@ const AdminHomeStory = () => {
             id=""
             rows="3"
             onChange={(e) => {
-               setStory({ ...story, tex1: e.target.value });
+               setStory({ ...story, text1: e.target.value });
             }}
-            defaultValue="Đoạn văn chữ thường"
+            defaultValue={story?.text1}
          ></textarea>
          <br />
          <label htmlFor="">Đoạn văn 2</label>
@@ -152,9 +96,9 @@ const AdminHomeStory = () => {
             id=""
             rows="3"
             onChange={(e) => {
-               setStory({ ...story, tex2: e.target.value });
+               setStory({ ...story, text2: e.target.value });
             }}
-            defaultValue="Đoạn văn chữ thường"
+            defaultValue={story?.text2}
          ></textarea>
          <br />
          <label htmlFor="">Đoạn văn 3</label>
@@ -165,18 +109,24 @@ const AdminHomeStory = () => {
             id=""
             rows="3"
             onChange={(e) => {
-               setStory({ ...story, tex3: e.target.value });
+               setStory({ ...story, text3: e.target.value });
             }}
-            defaultValue="Đoạn văn chữ in đậm"
+            defaultValue={story?.text3}
          ></textarea>
          <br />
 
-         <button className="btn btn-primary px-4 fs-4 mt-5" type="button">
+         <button
+            onClick={() => {
+               handleSubmitStory();
+            }}
+            className="btn btn-primary px-4 fs-4 mt-5"
+            type="button"
+         >
             Submit
          </button>
-         <button className="btn btn-danger px-4 fs-4 mt-5" type="button">
+         {/* <button className="btn btn-danger px-4 fs-4 mt-5" type="button">
             Hủy
-         </button>
+         </button> */}
       </div>
    );
 };

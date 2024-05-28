@@ -1,13 +1,28 @@
 import "./dashboard.css";
 
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Notification from "../../../components/notification/notification";
 
 import { AdminContext } from "../adminContext";
+import axios from "axios";
 
 const Dashboard = () => {
    const { fullView } = useContext(AdminContext);
+
+   const [customers, setCustomers] = useState([]);
+   const [currentCustomer, setCurrentCustomer] = useState(-1);
+
+   useEffect(() => {
+      axios
+         .get("/api/admin/company/customer")
+         .then(({ data }) => {
+            setCustomers(data.customers);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
 
    return (
       <Fragment>
@@ -22,7 +37,6 @@ const Dashboard = () => {
             className="content d-flex"
             style={{ width: fullView ? "100vw" : "82.5vw" }}
          >
-           
             <div className="vh-100 content-wrapper px-2 px-lg-4">
                <h1 className="p-3 ps-lg-0 fs-4 text-light fw-semibold">
                   Các khách hàng mới
@@ -39,149 +53,39 @@ const Dashboard = () => {
                            <br />
 
                            <div className="list-customer">
-                              <Link
-                                 to=""
-                                 className="customer-item mt-3 pb-2 border-bottom d-flex align-items-center"
-                              >
-                                 <input
-                                    className="ms3 me-4"
-                                    style={{
-                                       width: "width: 20px; height: 20px; cursor: pointer;",
-                                    }}
-                                    type="checkbox"
-                                    name=""
-                                    id=""
-                                 />
-                                 <div className="">
-                                    <h5>Ngyễn Văn A</h5>
-                                    <p className="mb-0">
-                                       Dịch vụ quan tâm: <span>Branding</span>
-                                    </p>
-                                 </div>
-                                 <span className="ms-auto me-4">
-                                    14:30 12/05/2024
-                                 </span>
-                              </Link>
-
-                              <Link
-                                 to=""
-                                 className="customer-item mt-3 pb-2 border-bottom d-flex align-items-center"
-                              >
-                                 <input
-                                    className="ms3 me-4"
-                                    style={{
-                                       width: "width: 20px; height: 20px; cursor: pointer;",
-                                    }}
-                                    type="checkbox"
-                                    name=""
-                                    id=""
-                                 />
-                                 <div className="">
-                                    <h5>Ngyễn Văn A</h5>
-                                    <p className="mb-0">
-                                       Dịch vụ quan tâm: <span>Branding</span>
-                                    </p>
-                                 </div>
-                                 <span className="ms-auto me-4">
-                                    14:30 12/05/2024
-                                 </span>
-                              </Link>
-
-                              <Link
-                                 to=""
-                                 className="customer-item mt-3 pb-2 border-bottom d-flex align-items-center"
-                              >
-                                 <input
-                                    className="ms3 me-4"
-                                    style={{
-                                       width: "width: 20px; height: 20px; cursor: pointer;",
-                                    }}
-                                    type="checkbox"
-                                    name=""
-                                    id=""
-                                 />
-                                 <div className="">
-                                    <h5>Ngyễn Văn A</h5>
-                                    <p className="mb-0">
-                                       Dịch vụ quan tâm: <span>Branding</span>
-                                    </p>
-                                 </div>
-                                 <span className="ms-auto me-4">
-                                    14:30 12/05/2024
-                                 </span>
-                              </Link>
-
-                              <Link
-                                 to=""
-                                 className="customer-item mt-3 pb-2 border-bottom d-flex align-items-center"
-                              >
-                                 <input
-                                    className="ms3 me-4"
-                                    style={{
-                                       width: "width: 20px; height: 20px; cursor: pointer;",
-                                    }}
-                                    type="checkbox"
-                                    name=""
-                                    id=""
-                                 />
-                                 <div className="">
-                                    <h5>Ngyễn Văn A</h5>
-                                    <p className="mb-0">
-                                       Dịch vụ quan tâm: <span>Branding</span>
-                                    </p>
-                                 </div>
-                                 <span className="ms-auto me-4">
-                                    14:30 12/05/2024
-                                 </span>
-                              </Link>
-
-                              <Link
-                                 to=""
-                                 className="customer-item mt-3 pb-2 border-bottom d-flex align-items-center"
-                              >
-                                 <input
-                                    className="ms3 me-4"
-                                    style={{
-                                       width: "width: 20px; height: 20px; cursor: pointer;",
-                                    }}
-                                    type="checkbox"
-                                    name=""
-                                    id=""
-                                 />
-                                 <div className="">
-                                    <h5>Ngyễn Văn A</h5>
-                                    <p className="mb-0">
-                                       Dịch vụ quan tâm: <span>Branding</span>
-                                    </p>
-                                 </div>
-                                 <span className="ms-auto me-4">
-                                    14:30 12/05/2024
-                                 </span>
-                              </Link>
-
-                              <Link
-                                 to=""
-                                 className="customer-item mt-3 pb-2 border-bottom d-flex align-items-center"
-                              >
-                                 <input
-                                    className="ms3 me-4"
-                                    style={{
-                                       width: "width: 20px; height: 20px; cursor: pointer;",
-                                    }}
-                                    type="checkbox"
-                                    name=""
-                                    id=""
-                                 />
-                                 <div className="">
-                                    <h5>Ngyễn Văn A</h5>
-                                    <p className="mb-0">
-                                       Dịch vụ quan tâm: <span>Branding</span>
-                                    </p>
-                                 </div>
-                                 <span className="ms-auto me-4">
-                                    14:30 12/05/2024
-                                 </span>
-                              </Link>
+                              {customers?.map((customer, index) => (
+                                 <label
+                                    htmlFor={`customer-${customer?.id}`}
+                                    key={index}
+                                    className="customer-item mt-3 pb-2 border-bottom d-flex align-items-center"
+                                 >
+                                    <input
+                                       style={{
+                                          backgroundColor: "transparent",
+                                       }}
+                                       type="radio"
+                                       id={`customer-${customer?.id}`}
+                                       name="customer"
+                                       className="me-4"
+                                       onChange={() => {
+                                          console.log(index);
+                                          setCurrentCustomer(index);
+                                       }}
+                                    ></input>
+                                    <div className="">
+                                       <h5>{customer?.fullname}</h5>
+                                       <p className="mb-0">
+                                          Dịch vụ quan tâm :
+                                          <span>
+                                             &nbsp;{customer?.serviceName}
+                                          </span>
+                                       </p>
+                                    </div>
+                                    <span className="ms-auto me-4">
+                                       {customer?.phone}
+                                    </span>
+                                 </label>
+                              ))}
                            </div>
 
                            <div className="customer-info w-75 mt-5">
@@ -190,22 +94,40 @@ const Dashboard = () => {
                               </h4>
                               <br />
 
-                              <div className="row border p-3">
-                                 <div className="col-6">Họ và tên</div>
-                                 <div className="col-6">Nguyễn Văn An</div>
+                              {currentCustomer < 0 ? (
+                                 ""
+                              ) : (
+                                 <div className="row border p-3">
+                                    <div className="col-6">Họ và tên</div>
+                                    <div className="col-6">
+                                       {customers[currentCustomer]?.fullname}
+                                    </div>
 
-                                 <div className="col-6">Danh xưng</div>
-                                 <div className="col-6">Ông</div>
+                                    <div className="col-6">Email</div>
+                                    <div className="col-6">
+                                       {customers[currentCustomer]?.email}
+                                    </div>
 
-                                 <div className="col-6">Email</div>
-                                 <div className="col-6">an@gmail.com</div>
+                                    <div className="col-6">Số điện thoại</div>
+                                    <div className="col-6">
+                                       {customers[currentCustomer]?.phone}
+                                    </div>
 
-                                 <div className="col-6">Số điện thoại</div>
-                                 <div className="col-6">0123656789</div>
+                                    <div className="col-6">Trạng thái</div>
+                                    <div className="col-6">
+                                       {customers[currentCustomer]?.status === 0
+                                          ? "Chưa tư vấn"
+                                          : "Đã tư vấn"}
+                                    </div>
 
-                                 <div className="col-6">Dịch vụ quan tâm</div>
-                                 <div className="col-6">Branding</div>
-                              </div>
+                                    <div className="col-6">
+                                       Dịch vụ quan tâm
+                                    </div>
+                                    <div className="col-6">
+                                       {customers[currentCustomer]?.serviceName}
+                                    </div>
+                                 </div>
+                              )}
 
                               <button
                                  type="button"

@@ -1,0 +1,12 @@
+.dropdown-item:hover {
+   cursor: pointer!important;
+}
+
+
+
+@media only screen and (min-width: 1200px) {
+   .dropdown-menu.dropdown-menu-end{
+      position: relative;
+      right: 1rem;
+   }
+}

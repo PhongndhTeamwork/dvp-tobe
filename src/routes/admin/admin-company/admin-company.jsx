@@ -11,6 +11,10 @@ import OfficeBackground from "../../../assets/images/others/office-bg.jpg";
 
 import { AdminContext } from "../adminContext";
 
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const AdminCompany = () => {
    const { fullView } = useContext(AdminContext);
    return (

@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Fragment, useEffect, useState } from "react";
+import axios from "axios";
 
 const AdminAboutMotto = () => {
+   const { userInfo } = useSelector((state) => state.userLogin);
+
+   const [expertise, setExpertise] = useState([]);
+
+   useEffect(() => {
+      axios.get("/api/about").then(({ data }) => {
+         setExpertise(data.expertises);
+      });
+   }, []);
+
    return (
       <div className="motto">
          <h4 className="mt-5 mb-4">Chỉnh sửa danh sách phương châm</h4>
@@ -10,62 +23,33 @@ const AdminAboutMotto = () => {
          <br />
 
          <div className="motto__list border">
-            <div className="motto-item row w-100 align-items-center border-bottom py-3 ps-4">
-               <div className="col-10">
-                  <h6>Tiêu đề</h6>
-                  <p className="mb-0">Mô tả</p>
+            {expertise.map((ex, index) => (
+               <div key={index} className="motto-item row w-100 align-items-center border-bottom py-3 ps-4">
+                  <div className="col-10">
+                     <input
+                        type="text"
+                        className="w-100"
+                        defaultValue={ex?.title}
+                     />
+                     <textarea
+                        type="text"
+                        className="w-100 mt-3 p-2"
+                        defaultValue={ex?.description}
+                        rows="4"
+                     />
+                  </div>
+                  <div className="col-1">
+                     <Link to="" className="">
+                        Sửa
+                     </Link>
+                  </div>
+                  <div className="col-1">
+                     <Link to="" className="text-danger">
+                        Xóa
+                     </Link>
+                  </div>
                </div>
-               <div className="col-1">
-                  <Link to="" className="">
-                     Sửa
-                  </Link>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="text-danger">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
-
-            <div className="motto-item row w-100 align-items-center border-bottom py-3 ps-4">
-               <div className="col-10">
-                  <h6>Tiêu đề</h6>
-                  <p className="mb-0">
-                     Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                     Quos aspernatur incidunt veniam animi officiis,
-                     voluptatibus aut placeat reprehenderit similique dolorem
-                     corrupti, laborum ab eius! Eaque, sequi? Eius nostrum
-                     dolorem similique.
-                  </p>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="">
-                     Sửa
-                  </Link>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="text-danger">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
-
-            <div className="motto-item row w-100 align-items-center border-bottom py-3 ps-4">
-               <div className="col-10">
-                  <h6>Tiêu đề</h6>
-                  <p className="mb-0">Mô tả</p>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="">
-                     Sửa
-                  </Link>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="text-danger">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
+            ))}
          </div>
 
          <h4 className="mt-5">Thêm phương châm mới</h4>
