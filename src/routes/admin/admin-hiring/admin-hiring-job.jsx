@@ -2,9 +2,47 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { Button } from "react-bootstrap";
 
 const AdminHiringJob = () => {
+   const { userInfo } = useSelector((state) => state.userLogin);
+
+   const [jobs, setJobs] = useState([]);
+
+   useEffect(() => {
+      axios.get("/api/hiring").then(({ data }) => {
+         setJobs(data.jobs);
+      });
+   }, []);
+
+   const handleUpdateJob = (index) => {
+      const config = {
+         headers: {
+            Authorization: userInfo,
+         },
+      };
+
+      // console.log(jobs);
+
+      const data = { ...jobs[index] };
+
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+         formData.append(key, data[key]);
+      });
+
+      // console.log(formData);
+
+      axios
+         .post("/api/admin/hiring/job/save", formData, config)
+         .then(({ data }) => {
+            console.log(data.message);
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
+
    return (
       <div className="job">
          <h4 className="mt-5">Chỉnh sửa danh sách công việc đang tuyển dụng</h4>
@@ -14,71 +52,61 @@ const AdminHiringJob = () => {
          <br />
 
          <div className="list-job p-3 pt-1 my-4 border">
-            <div className="job-item row w-100 align-items-center mt-3 border-bottom pb-2">
-               <div className="col-10">
-                  <h5 className="fw-medium">Designer</h5>
-                  <p className="mb-0 fs-6">
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                     Placeat consequatur neque
-                  </p>
-               </div>
+            {jobs?.map((job, index) => (
+               <div
+                  key={index}
+                  className="job-item row w-100 align-items-center mt-3 border-bottom pb-2"
+               >
+                  <div className="col-10">
+                     <input
+                        className="fw-medium w-100"
+                        defaultValue={job?.jobName}
+                        onChange={(e) => {
+                           let jobsTemp = [...jobs];
+                           jobsTemp[index].jobName = e.target.value;
+                           setJobs(jobsTemp);
+                        }}
+                     />
+                     <textarea
+                        className="fw-medium w-100 mt-3 p-2"
+                        defaultValue={job?.description}
+                        rows={4}
+                        onChange={(e) => {
+                           let jobsTemp = [...jobs];
+                           jobsTemp[index].description = e.target.value;
+                           setJobs(jobsTemp);
+                        }}
+                     />
+                     <input
+                        className="fw-medium w-100 mt-3"
+                        defaultValue={job?.contactMail}
+                        onChange={(e) => {
+                           let jobsTemp = [...jobs];
+                           jobsTemp[index].contactMail = e.target.value;
+                           setJobs(jobsTemp);
+                        }}
+                     />
+                  </div>
 
-               <div className="col-1">
-                  <Link to="" className="">
-                     Sửa
-                  </Link>
+                  <div className="col-2 d-flex flex-column">
+                     <Button
+                        variant="success"
+                        onClick={() => {
+                           handleUpdateJob(index);
+                        }}
+                        className="mb-2"
+                     >
+                        Sửa
+                     </Button>
+                     <Button variant="danger" className="mt-2">
+                        Xóa
+                     </Button>
+                  </div>
                </div>
-               <div className="col-1">
-                  <Link to="" className="text-danger">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
-
-            <div className="job-item row w-100 align-items-center mt-3 border-bottom pb-2">
-               <div className="col-10">
-                  <h5 className="fw-medium">Designer</h5>
-                  <p className="mb-0 fs-6">
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                     Placeat consequatur neque
-                  </p>
-               </div>
-
-               <div className="col-1">
-                  <Link to="" className="">
-                     Sửa
-                  </Link>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="text-danger">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
-
-            <div className="job-item row w-100 align-items-center mt-3 border-bottom pb-2">
-               <div className="col-10">
-                  <h5 className="fw-medium">Designer</h5>
-                  <p className="mb-0 fs-6">
-                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                     Placeat consequatur neque
-                  </p>
-               </div>
-
-               <div className="col-1">
-                  <Link to="" className="">
-                     Sửa
-                  </Link>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="text-danger">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
+            ))}
          </div>
 
-         <h4 className="mt-5">Thêm vị trí tuyển dụng mới</h4>
+         {/* <h4 className="mt-5">Thêm vị trí tuyển dụng mới</h4>
          <label htmlFor="">Vị trí tuyển dụng</label>
          <br />
          <input
@@ -109,14 +137,14 @@ const AdminHiringJob = () => {
             placeholder="Câu chuyện về DVP"
             value=""
          />
-         <br />
+         <br /> */}
 
-         <button className="btn btn-primary px-4 fs-4 mt-5" type="button">
+         {/* <button className="btn btn-primary px-4 fs-4 mt-5" type="button">
             Submit
-         </button>
-         <button className="btn btn-danger px-4 fs-4 mt-5" type="button">
+         </button> */}
+         {/* <button className="btn btn-danger px-4 fs-4 mt-5" type="button">
             Hủy
-         </button>
+         </button> */}
       </div>
    );
 };

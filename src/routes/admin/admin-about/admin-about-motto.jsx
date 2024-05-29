@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Fragment, useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import axios from "axios";
 
 const AdminAboutMotto = () => {
@@ -14,6 +15,36 @@ const AdminAboutMotto = () => {
       });
    }, []);
 
+   const handleUpdateMotto = (index) => {
+      const config = {
+         headers: {
+            Authorization: userInfo,
+         },
+      };
+
+      let data = {
+         ...expertise[index],
+         name: expertise[index]?.title,
+         text: expertise[index]?.description,
+      };
+
+      // console.log(data);
+
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+         formData.append(key, data[key]);
+      });
+
+      axios
+         .post("/api/admin/about/expertise/save", formData, config)
+         .then(({ data }) => {
+            console.log(data.message);
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
+
    return (
       <div className="motto">
          <h4 className="mt-5 mb-4">Chỉnh sửa danh sách phương châm</h4>
@@ -24,29 +55,46 @@ const AdminAboutMotto = () => {
 
          <div className="motto__list border">
             {expertise.map((ex, index) => (
-               <div key={index} className="motto-item row w-100 align-items-center border-bottom py-3 ps-4">
+               <div
+                  key={index}
+                  className="motto-item row w-100 align-items-center border-bottom py-3 ps-4"
+               >
                   <div className="col-10">
                      <input
                         type="text"
                         className="w-100"
                         defaultValue={ex?.title}
+                        onChange={(e) => {
+                           let expertiseTemp = [...expertise];
+                           expertiseTemp[index].title = e.target.value;
+                           setExpertise(expertiseTemp);
+                        }}
                      />
                      <textarea
                         type="text"
                         className="w-100 mt-3 p-2"
                         defaultValue={ex?.description}
                         rows="4"
+                        onChange={(e) => {
+                           let expertiseTemp = [...expertise];
+                           expertiseTemp[index].description = e.target.value;
+                           setExpertise(expertiseTemp);
+                        }}
                      />
                   </div>
-                  <div className="col-1">
-                     <Link to="" className="">
+                  <div className="col-2 d-flex flex-column">
+                     <Button
+                        variant="success"
+                        className="mb-2"
+                        onClick={() => {
+                           handleUpdateMotto(index);
+                        }}
+                     >
                         Sửa
-                     </Link>
-                  </div>
-                  <div className="col-1">
-                     <Link to="" className="text-danger">
+                     </Button>
+                     <Button variant="danger" className="mt-2">
                         Xóa
-                     </Link>
+                     </Button>
                   </div>
                </div>
             ))}
@@ -65,9 +113,9 @@ const AdminAboutMotto = () => {
          <button className="btn btn-primary px-4 fs-4 mt-5" type="button">
             Submit
          </button>
-         <button className="btn btn-danger px-4 fs-4 mt-5" type="button">
+         {/* <button className="btn btn-danger px-4 fs-4 mt-5" type="button">
             Hủy
-         </button>
+         </button> */}
       </div>
    );
 };

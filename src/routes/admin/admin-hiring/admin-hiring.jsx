@@ -34,7 +34,7 @@ const AdminHiring = () => {
 
                <div className="content-body px-0 py-4 px-md-4">
                   <div className="row">
-                     <div className="col-12 col-lg-10 col-xl-8 col-xxl-6">
+                     <div className="col-12 col-lg-12 col-xl-12 col-xxl-12">
                         <Outlet/>
                      </div>
                   </div>

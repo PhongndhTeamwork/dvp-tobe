@@ -182,9 +182,9 @@
    background-color: black !important;
 }
 
-.admin-routes .btn-danger {
+/* .admin-routes .btn-danger {
    margin-left: 2rem !important;
-}
+} */
 
 .admin-routes .btn:hover {
    opacity: 0.9 !important;

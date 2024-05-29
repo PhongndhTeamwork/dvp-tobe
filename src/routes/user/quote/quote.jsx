@@ -189,6 +189,12 @@ const Quote = () => {
                                           </li>
                                        )
                                     )}
+                                    {serviceQuote?.descriptions?.length < 8 &&
+                                       Array.from({ length: 8 -  serviceQuote?.descriptions?.length}, (_, index) => (
+                                          <li key={index}>
+                                             <span className="line"></span>
+                                          </li>
+                                       ))}
                                  </ul>
                               </div>
                               <div className="pack__btn">
@@ -219,8 +225,8 @@ const Quote = () => {
                      </div>
                      {services[currentService]?.serviceQuotes?.map(
                         (serviceQuote, index) => (
-                           <div className="rectangle-25 py-0" key={index}>
-                              <div className="table__header-item h-100">
+                           <div className="rectangle-25 py-0 " key={index}>
+                              <div className="table__header-item h-100 ">
                                  <Image
                                     src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${serviceQuote?.icon}`}
                                     alt=""
@@ -241,11 +247,10 @@ const Quote = () => {
                                  </div>
                               </div>
                               <div className="rectangle-25 py-0">
-                                 <div className="table__row-item h-100">
+                                 <div className="table__row-item h-100 d-flex justify-content-center">
                                     {currentService?.quote1 === "check" ? (
                                        <Image src={CheckSVG} alt="check" />
-                                    ) : currentService?.quote1 ===
-                                      "uncheck" ? (
+                                    ) : currentService?.quote1 === "uncheck" ? (
                                        <Image src={UncheckSVG} alt="uncheck" />
                                     ) : (
                                        currentService?.quote1
@@ -254,10 +259,9 @@ const Quote = () => {
                               </div>
                               <div className="rectangle-25 py-0">
                                  <div className="table__row-item h-100 item-check">
-                                 {currentService?.quote2 === "check" ? (
+                                    {currentService?.quote2 === "check" ? (
                                        <Image src={CheckSVG} alt="check" />
-                                    ) : currentService?.quote2 ===
-                                      "uncheck" ? (
+                                    ) : currentService?.quote2 === "uncheck" ? (
                                        <Image src={UncheckSVG} alt="uncheck" />
                                     ) : (
                                        currentService?.quote2
@@ -266,10 +270,9 @@ const Quote = () => {
                               </div>
                               <div className="rectangle-25 py-0">
                                  <div className="table__row-item h-100 item-check">
-                                 {currentService?.quote3 === "check" ? (
+                                    {currentService?.quote3 === "check" ? (
                                        <Image src={CheckSVG} alt="check" />
-                                    ) : currentService?.quote3 ===
-                                      "uncheck" ? (
+                                    ) : currentService?.quote3 === "uncheck" ? (
                                        <Image src={UncheckSVG} alt="uncheck" />
                                     ) : (
                                        currentService?.quote3
