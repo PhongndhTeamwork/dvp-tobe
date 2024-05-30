@@ -53,6 +53,23 @@ body {
     box-shadow: 0 0.0625rem 0.25rem 0 var(--color-shadow);
 }
 
+.admin-routes textarea {
+    padding: 0.5rem 0;
+    border: 0.0625rem solid var(--color-border);
+    border-radius: 0.5rem;
+    text-indent: 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: all ease 0.2s;
+}
+
+.admin-routes textarea:focus {
+    outline: none;
+    border-color: var(--color-border);
+    box-shadow: 0 0.0625rem 0.25rem 0 var(--color-shadow);
+}
+
 .admin-routes a {
     text-decoration: none;
     transition: all linear 0.2s;
