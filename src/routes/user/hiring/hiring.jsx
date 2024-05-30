@@ -4,7 +4,7 @@ import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import HiringIluImage from "../../../assets/images/others/hiring_ilu.png";
+// import HiringIluImage from "../../../assets/images/others/hiring_ilu.png";
 import AccordionService from "../../../components/accordion-service/accordion-service";
 
 const Hiring = () => {
@@ -82,20 +82,31 @@ const Hiring = () => {
                <div className="banner__bg-eclipse3"></div>
             </div>
             {banner.image ? (
-               <Image className="banner__img" src={banner?.image} />
+               <Image
+                  className="banner__img"
+                  src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${banner?.image}`}
+               />
             ) : (
                ""
             )}
 
             <div className="banner__text">
                <div className="banner__text-top pe-0">
-                  <div className="text-stroke text-center">{banner.textstroke1}</div>
-                  <div className="text-uppercase text-center">{banner.textuppercase1}</div>
+                  <div className="text-stroke text-center">
+                     {banner.textstroke1}
+                  </div>
+                  <div className="text-uppercase text-center">
+                     {banner.textuppercase1}
+                  </div>
                </div>
 
                <div className="banner__text-bot">
-                  <div className="text-uppercase text-center">{banner.textstroke2}</div>
-                  <div className="text-stroke text-center">{banner.textuppercase2}</div>
+                  <div className="text-uppercase text-center">
+                     {banner.textstroke2}
+                  </div>
+                  <div className="text-stroke text-center">
+                     {banner.textuppercase2}
+                  </div>
                </div>
             </div>
          </div>

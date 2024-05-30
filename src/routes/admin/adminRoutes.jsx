@@ -11,7 +11,7 @@ import AdminContact from "./admin-contact/admin-contact";
 import AdminCompany from "./admin-company/admin-company";
 import AdminAbout from "./admin-about/admin-about";
 
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import AdminHeader from "../../components/admin-header/admin-header";
 import AdminNav from "../../components/admin-nav/admin-nav";
 
@@ -41,6 +41,9 @@ import AdminHomeBanner from "./admin-home/admin-home-banner";
 import AdminHomeService from "./admin-home/admin-home-service";
 import AdminHomeStory from "./admin-home/admin-home-story";
 import AdminHomeVideo from "./admin-home/admin-home-video";
+import AdminCompanyInfo from "./admin-company/admin-company-info";
+import AdminCompanyPartner from "./admin-company/admin-company-partner";
+import AdminCompanyService from "./admin-company/admin-company-service";
 
 const AdminRoutes = () => {
    const location = useLocation();
@@ -51,7 +54,7 @@ const AdminRoutes = () => {
       <div className="admin-routes">
          <header
             style={{
-               display: location.pathname === "/admin" ? "none" : "",
+               display: location.pathname.includes("dashboard") ? "" : "none",
             }}
          >
             <AdminHeader />
@@ -95,7 +98,11 @@ const AdminRoutes = () => {
                <Route path="paragraph" element={<AdminContactParagraph />} />
                <Route path="story" element={<AdminContactStory />} />
             </Route>
-            <Route path="/dashboard/company" element={<AdminCompany />} />
+            <Route path="/dashboard/company" element={<AdminCompany />}>
+               <Route path="info" element={<AdminCompanyInfo />} />
+               <Route path="partner" element={<AdminCompanyPartner />} />
+               <Route path="service" element={<AdminCompanyService />} />
+            </Route>
             <Route path="/dashboard/about" element={<AdminAbout />}>
                <Route path="banner" element={<AdminAboutBanner />} />
                <Route path="story" element={<AdminAboutStory />} />
@@ -103,6 +110,7 @@ const AdminRoutes = () => {
                <Route path="staff" element={<AdminAboutStaff />} />
                <Route path="motto" element={<AdminAboutMotto />} />
             </Route>
+            <Route path="*" element={<Navigate to="/admin" replace />} />
          </Routes>
       </div>
    );

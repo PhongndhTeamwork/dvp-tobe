@@ -1,0 +1,126 @@
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Button, Image } from "react-bootstrap";
+
+import DemoImage from "../../../assets/images/culture/culture1.png";
+
+const AdminCompanyPartner = () => {
+   const [partners, setPartners] = useState([]);
+   const [partnerImage, setPartnerImages] = useState([]);
+
+   const { userInfo } = useSelector((state) => state.userLogin);
+
+
+   useEffect(() => {
+      axios.get("/api/info/partners").then(({ data }) => {
+         setPartners(
+            data.partners.map((partner) => {
+               return {
+                  ...partner,
+                  image:
+                     process.env.REACT_APP_BASE_IMAGE_URL + "/" + partner.image,
+               };
+            })
+         );
+         setPartnerImages(
+            data.partners.map(
+               (partner) =>
+                  process.env.REACT_APP_BASE_IMAGE_URL + "/" + partner.image
+            )
+         );
+      });
+   }, []);
+
+   const handleChangePartnerImage = (e, index) => {
+      const file = e.target.files[0];
+      if (file) {
+         let partnersTemp = [...partners];
+         partnersTemp[index].image = file;
+         setPartners(partnersTemp);
+
+         const reader = new FileReader();
+         reader.onloadend = () => {
+            let partnerImagesTemp = [...partnerImage];
+            partnerImagesTemp[index] = reader.result;
+            setPartnerImages(partnerImagesTemp);
+         };
+         reader.readAsDataURL(file);
+      }
+   };
+
+   const handleUpdatePartner = (index) => {
+      const config = {
+         headers: {
+            Authorization: userInfo,
+         },
+      };
+
+      let data = { ...partners[index] };
+
+      const formData = new FormData();
+
+      Object.keys(data).forEach((key) => {
+         formData.append(key, data[key]);
+      });
+
+      axios
+         .post("/api/admin/about/banner/save", formData, config)
+         .then(({ data }) => {
+            console.log(data.message);
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
+
+   return (
+      <div className="list-job p-3 pt-1 my-4 border">
+         {partners?.map((partner, index) => (
+            <div
+               key={index}
+               className="job-item row w-100 align-items-center mt-3 pb-5 mb-5 border-bottom pb-2"
+            >
+               <div className="col-10">
+                  <input
+                     className="fw-medium w-100"
+                     defaultValue={partner?.name}
+                  />
+                  <div
+                     className="banner__img w-50 my-4 border"
+                     style={{ display: "block" }}
+                  >
+                     {/* <i className="fa-solid fa-xmark"></i> */}
+                     <Image src={partnerImage[index]} width="100%" />
+                  </div>
+                  <input
+                     type="file"
+                     onChange={(e) => {
+                        handleChangePartnerImage(e, index);
+                     }}
+                  />
+               </div>
+
+               <div className="col-2 d-flex flex-column">
+                  <Button
+                     variant="success"
+                     onClick={() => {
+                        if (typeof partner.image === "object")
+                           handleUpdatePartner(index);
+                     }}
+                     className="mb-2"
+                  >
+                     Sửa
+                  </Button>
+                  {/* <Button variant="danger" className="mt-2">
+                     Xóa
+                  </Button> */}
+               </div>
+            </div>
+         ))}
+         
+      </div>
+   );
+};
+
+export default AdminCompanyPartner;

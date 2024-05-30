@@ -3,8 +3,46 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Button } from "react-bootstrap";
 
 const AdminWorkCategory = () => {
+   const { userInfo } = useSelector((state) => state.userLogin);
+
+   const [categories, setCategories] = useState([]);
+
+   useEffect(() => {
+      axios.get("/api/work").then(({ data }) => {
+         setCategories(data.categories);
+      });
+   },[]);
+
+   const handleUpdate = (index) => {
+      const config = {
+         headers: {
+            Authorization: userInfo,
+         },
+      };
+
+      let data = { ...categories[index] };
+      console.log(data);
+
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+         formData.append(key, data[key]);
+      });
+
+      // console.log(formData);
+
+      axios
+         .post("/api/admin/work/category/save", formData, config)
+         .then(({ data }) => {
+            console.log(data.message);
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
+
    return (
       <div className="category">
          <h4 className="mt-5">Chỉnh sửa các danh mục dự án</h4>
@@ -13,55 +51,38 @@ const AdminWorkCategory = () => {
          </button>
 
          <div className="motto__list border">
-            <div className="row w-100 align-items-center border-bottom py-3 ps-4">
-               <div className="col-10">
-                  <p className="mb-0">Mô tả</p>
+            {categories?.map((category, index) => (
+               <div
+                  key={index}
+                  className="row w-100 align-items-center border-bottom py-3 ps-4"
+               >
+                  <div className="col-10">
+                     <input
+                        className="mb-0 w-100"
+                        defaultValue={category.name}
+                        onChange={(e) => {
+                           let categoriesTemp = [...categories];
+                           categoriesTemp[index].name = e.target.value;
+                           setCategories(categoriesTemp);
+                        }}
+                     />
+                  </div>
+                  <div className="col-2">
+                     <Button
+                     className="mx-1 my-1"
+                        variant="success"
+                        onClick={() => {
+                           handleUpdate(index);
+                        }}
+                     >
+                        Sửa
+                     </Button>
+                     <Button variant="danger" className="mx-1 my-1">
+                        Xóa
+                     </Button>
+                  </div>
                </div>
-               <div className="col-1">
-                  <Link to="" className="">
-                     Sửa
-                  </Link>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="text-danger">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
-
-            <div className="row w-100 align-items-center border-bottom py-3 ps-4">
-               <div className="col-10">
-                  <p className="mb-0">
-                     Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  </p>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="">
-                     Sửa
-                  </Link>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="text-danger">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
-
-            <div className="row w-100 align-items-center border-bottom py-3 ps-4">
-               <div className="col-10">
-                  <p className="mb-0">Mô tả</p>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="">
-                     Sửa
-                  </Link>
-               </div>
-               <div className="col-1">
-                  <Link to="" className="text-danger">
-                     Xóa
-                  </Link>
-               </div>
-            </div>
+            ))}
          </div>
 
          <h4 className="mt-4">Thêm danh mục dự án mới</h4>

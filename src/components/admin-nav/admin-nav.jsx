@@ -60,9 +60,13 @@ const AdminNav = () => {
       },
       {
          title: "Thông tin công ty",
-         contents: ["Chung"],
+         contents: ["Chung","Đối tác","Dịch vụ"],
          link: "/admin/dashboard/company",
-         subLinks: ["/admin/dashboard/company"],
+         subLinks: [
+            "/admin/dashboard/company/info",
+            "/admin/dashboard/company/partner",
+            "/admin/dashboard/company/service",
+         ],
       },
       {
          title: "Tư vấn khách hàng",

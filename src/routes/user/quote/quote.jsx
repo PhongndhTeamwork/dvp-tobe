@@ -189,8 +189,14 @@ const Quote = () => {
                                           </li>
                                        )
                                     )}
-                                    {serviceQuote?.descriptions?.length < 8 &&
+                                    {index !== 2 && serviceQuote?.descriptions?.length < 8 &&
                                        Array.from({ length: 8 -  serviceQuote?.descriptions?.length}, (_, index) => (
+                                          <li key={index}>
+                                             <span className="line"></span>
+                                          </li>
+                                       ))}
+                                    {index === 2 && serviceQuote?.descriptions?.length < 9 &&
+                                       Array.from({ length: 9 -  serviceQuote?.descriptions?.length}, (_, index) => (
                                           <li key={index}>
                                              <span className="line"></span>
                                           </li>
