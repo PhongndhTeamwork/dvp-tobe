@@ -118,7 +118,6 @@ const Quote = () => {
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
                      }/${story?.images?.slice(0, 1)}`}
-                     alt="office"
                   />
                </div>
             </div>
