@@ -1,13 +1,14 @@
 import "./dashboard.css";
 
 import { Fragment, useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Notification from "../../../components/notification/notification";
 
 import { AdminContext } from "../adminContext";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
+import { logout } from "../../../app/features/userLoginSlice";
 
 const Dashboard = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
@@ -15,6 +16,10 @@ const Dashboard = () => {
 
    const [customers, setCustomers] = useState([]);
    const [currentCustomer, setCurrentCustomer] = useState(-1);
+
+   const dispatch = useDispatch();
+
+   const navigate = useNavigate();
 
    useEffect(() => {
       const config = {
@@ -28,10 +33,12 @@ const Dashboard = () => {
          .then(({ data }) => {
             setCustomers(data.customers);
          })
-         .catch((error) => {
-            throw new Error(error);
+         .catch(async (error) => {
+            console.log(error);
+            await dispatch(logout());
+            navigate("/admin");
          });
-   }, [userInfo]);
+   }, [userInfo, dispatch, navigate]);
 
    const handleChangeStatus = (id) => {
       const config = {

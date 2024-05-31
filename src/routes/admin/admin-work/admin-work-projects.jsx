@@ -1,26 +1,62 @@
 import { Link } from "react-router-dom";
-import { Col, Image, Row } from "react-bootstrap";
+import { Button, Col, Image, Row } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Fragment } from "react";
+import CatalogeProject from "../../../components/cataloge-project/cataloge-project";
 
-import CatalogeImage1 from "../../../assets/images/cateloge/cataloge1.png";
-import CatalogeImage2 from "../../../assets/images/cateloge/cataloge2.png";
-import CatalogeImage3 from "../../../assets/images/cateloge/cataloge3.png";
-import CatalogeImage4 from "../../../assets/images/cateloge/cataloge4.png";
-import CatalogeImage5 from "../../../assets/images/cateloge/cataloge5.png";
-import CatalogeImage6 from "../../../assets/images/cateloge/cataloge6.png";
-import ProjectImage1 from "../../../assets/images/cateloge/project-1.png";
+import CatalogeImage1 from "../../../assets/images/cataloge/cataloge1.png";
+import CatalogeImage2 from "../../../assets/images/cataloge/cataloge2.png";
+import CatalogeImage3 from "../../../assets/images/cataloge/cataloge3.png";
+import CatalogeImage4 from "../../../assets/images/cataloge/cataloge4.png";
+import CatalogeImage5 from "../../../assets/images/cataloge/cataloge5.png";
+import CatalogeImage6 from "../../../assets/images/cataloge/cataloge6.png";
+import ProjectImage1 from "../../../assets/images/cataloge/project-1.png";
 
 import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
 import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
 
-import { Fragment } from "react";
-
-const AdminWorkProject = () => {
+const AdminWorkProjects = () => {
+   const { userInfo } = useSelector((state) => state.userLogin);
    const [projects, setProject] = useState([]);
-   const [isAddPage, setIsAddPage] = useState(false);
+   const [slideQuantity, setSlideQuantity] = useState(0);
+
+   const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
+
+   useEffect(() => {
+      const handleResize = () => {
+         const width = window.innerWidth;
+         if (width < 768) {
+            setSlideQuantity(projects.length);
+         } else if (width >= 768 && width < 1200) {
+            setSlideQuantity(Math.ceil(projects.length / 2));
+         } else {
+            setSlideQuantity(Math.ceil(projects.length / 4));
+         }
+         setActiveCarouselIndex(0);
+      };
+      handleResize();
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+         window.removeEventListener("resize", handleResize);
+      };
+   }, [projects]);
+
+   const handleNext = () => {
+      setActiveCarouselIndex(
+         activeCarouselIndex === slideQuantity - 1 ? 0 : activeCarouselIndex + 1
+      );
+   };
+
+   const handlePrev = () => {
+      setActiveCarouselIndex(
+         activeCarouselIndex === 0 ? slideQuantity - 1 : activeCarouselIndex - 1
+      );
+   };
 
    useEffect(() => {
       axios
@@ -35,29 +71,19 @@ const AdminWorkProject = () => {
    }, []);
    return (
       <Fragment>
-         <div className="projects">
-            <h4 className="mt-0">Project</h4>
-            <Row className="">
-               {projects.map((project, index) => (
-                  <Col
-                     key={index}
-                     xs={12}
-                     sm={12}
-                     md={12}
-                     lg={4}
-                     xl={4}
-                     xxl={4}
-                     className="d-flex mb-4 p-0"
-                  >
-                     <Image src={ProjectImage1} alt="" width="100%" />
-                     <div>
+         <h4 className="mt-0">Các dự án</h4>
 
-                     </div>
-                  </Col>
-               ))}
-            </Row>
+         <div className="admin-projects">
+            <CatalogeProject
+               activeIndex={activeCarouselIndex}
+               projects={projects}
+            />
          </div>
+         <div className="d-flex justify-content-center">
+            <Button variant="dark" onClick={handlePrev} className="mx-2"><i class="fa-solid fa-left-long"></i></Button>
+            <Button variant="dark" onClick={handleNext} className="mx-2"><i class="fa-solid fa-right-long"></i></Button>
 
+         </div>
          {/* <div className="add-project">
             <h4 className="mt-5">Thêm dự án mới</h4>
 
@@ -234,4 +260,4 @@ const AdminWorkProject = () => {
    );
 };
 
-export default AdminWorkProject;
+export default AdminWorkProjects;

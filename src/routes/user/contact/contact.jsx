@@ -11,6 +11,8 @@ import ContactIcon1 from "../../../assets/images/contact/contact_icon1.png";
 import ContactIcon2 from "../../../assets/images/contact/contact_icon2.png";
 import ContactForm from "../../../components/contact-form/contact-form";
 
+import { Carousel } from "react-bootstrap";
+
 const Contact = () => {
    const [story, setStory] = useState({});
    const [contactForm, setContactForm] = useState({});
@@ -100,7 +102,7 @@ const Contact = () => {
                <div className="location__header-heading">DVP Location</div>
             </div>
 
-            <div className="content">
+            <div className="content" style={{ cursor: "pointer" }}>
                <div className="location__img">
                   <Image
                      className="location__img-bg"
@@ -125,22 +127,16 @@ const Contact = () => {
                </div>
 
                <div className="location__carousel">
-                  <div
-                     className="carousel slide touch"
-                     data-bs-ride="carousel"
-                     data-bs-interval="1800"
-                  >
-                     <div className="carousel-inner">
-                        <div className="carousel-item active">
-                           <h1 className="text-uppercase heading">DVP HANOI</h1>
-                        </div>
-                        <div className="carousel-item">
-                           <h1 className="text-uppercase heading text-stroke">
-                              DVP HANOI
-                           </h1>
-                        </div>
-                     </div>
-                  </div>
+                  <Carousel interval={1000}>
+                     <Carousel.Item>
+                        <h1 className="text-uppercase heading">DVP HANOI</h1>
+                     </Carousel.Item>
+                     <Carousel.Item>
+                        <h1 className="text-uppercase heading text-stroke">
+                           DVP HANOI
+                        </h1>
+                     </Carousel.Item>
+                  </Carousel>
                </div>
             </div>
          </div>

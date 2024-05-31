@@ -32,7 +32,7 @@ const AdminNav = () => {
          contents: ["Story", "Dự án", "Danh mục dự án"],
          subLinks: [
             "/admin/dashboard/work/story",
-            "/admin/dashboard/work/project",
+            "/admin/dashboard/work/projects",
             "/admin/dashboard/work/project-category",
          ],
          link: "/admin/dashboard/work",

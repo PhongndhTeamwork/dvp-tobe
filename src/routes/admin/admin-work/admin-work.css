@@ -1,3 +1,23 @@
-.admin-work__projects-list .carousel-control-prev{
-   background-color: black;
+.admin-projects {
+   img {
+      width: 100% !important;
+   }
+
+   .project__des {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+   }
+}
+
+.admin-projects img {
+   width: 100% !important;
+}
+
+.admin-projects .project__des {
+   margin-top: 1rem;
+   margin-bottom: 1rem;
+}
+
+.admin-projects .project__des-icon {
+   display: none;
 }

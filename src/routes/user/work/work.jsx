@@ -1,6 +1,6 @@
 import "./work.css";
 import { Fragment, useEffect, useState } from "react";
-import { Image } from "react-bootstrap";
+import { Col, Image, Row } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 
 import axios from "axios";
@@ -18,6 +18,7 @@ import ContactIcon2 from "../../../assets/images/contact/contact_icon2.png";
 import ContactForm from "../../../components/contact-form/contact-form";
 import BrandScroll from "../../../components/brand-scroll/brand-scroll";
 import WorkProject from "../../../components/work-project/work-project";
+import { Link } from "react-router-dom";
 
 const Work = () => {
    // const filterItems = [
@@ -45,6 +46,8 @@ const Work = () => {
             setCategories(data.categories);
             setProjects(data.projects);
             setContactForm(data.contactForm);
+            setCategoryIndex(-1);
+            setActiveFilter(-1);
          })
          .catch((error) => {
             throw new Error(error);
@@ -160,7 +163,49 @@ const Work = () => {
                   </div>
                </div>
             </nav>
-            <WorkProject projects={projects} />
+            {activeFilter === -1 ? (
+               <WorkProject projects={projects} />
+            ) : (
+               <Row>
+                  {projects.map((project, index) => {
+                     return (
+                        <Col xs={12} sm={12} md={6} lg={4} xl={3} xxl={3}>
+                           <div
+                              key={index}
+                              // className="rectangle-100 rectangle-tab-50 rectangle-pc-25 p-0"
+                           >
+                              <Link
+                                 className="project img-grayscale-hover arrow-right-translate-hover d-block"
+                                 to={`/cataloge/${project?.id ?? 1}`}
+                              >
+                                 <Fragment>
+                                    <div className="img-grayscale">
+                                       <Image
+                                          src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
+                                          alt="black and white image"
+                                       />
+                                    </div>
+
+                                    <div className="project__des">
+                                       <div className="project__des-text">
+                                          {project?.title}
+                                       </div>
+
+                                       <div className="project__des-icon">
+                                          <div className="arrow-right-translate">
+                                             <div className="arrow-right-translate__line"></div>
+                                             <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </Fragment>
+                              </Link>
+                           </div>
+                        </Col>
+                     );
+                  })}
+               </Row>
+            )}
          </div>
 
          {/* <!-- End: Work --> */}

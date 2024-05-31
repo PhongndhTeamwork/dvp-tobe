@@ -26,16 +26,13 @@ const Quote = () => {
    const [story, setStory] = useState([]);
 
    const tableMobileRef = useRef(null);
-
-   useEffect(() => {
-      window.scrollTo(0, 0);
-   }, []);
+   const detailTextRef = useRef(null);
 
    useEffect(() => {
       axios.get("/api/info/services").then(({ data }) => {
          setServices(data.services);
       });
-   });
+   }, []);
 
    useEffect(() => {
       axios
@@ -62,10 +59,21 @@ const Quote = () => {
       }px)`;
    }, [currentServiceCategory]);
 
+   const scrollToView = () => {
+      detailTextRef.current.scrollIntoView({
+         behavior: "smooth",
+         block: "center",
+      });
+   };
+
    return (
       <div className="quote">
          {/* <!-- Banner --> */}
-         <div className={`quote-banner banner banner-image-active`}>
+         <div
+            className={`quote-banner banner ${
+               banner?.image ? "banner-image-active" : ""
+            }`}
+         >
             <div className="banner__bg">
                <div className="banner__bg-eclipse1"></div>
                <div className="banner__bg-eclipse2"></div>
@@ -151,7 +159,13 @@ const Quote = () => {
                      (serviceQuote, index) => (
                         <div
                            key={index}
-                           className="rectangle-100 rectangle-tab-50 order-1 rectangle-pc-25 quote__content-item"
+                           className={`rectangle-100 rectangle-tab-50 ${
+                              index === 0 ? "order-1" : ""
+                           } order-xxl-${
+                              index === 1 ? "2" : index === 2 ? "3" : ""
+                           } order-md-${
+                              index === 1 ? "3" : index === 2 ? "2" : ""
+                           } rectangle-pc-25 quote__content-item`}
                         >
                            <div className="pack">
                               <div className="pack__header d-flex justify-content-center flex-wrap">
@@ -188,22 +202,40 @@ const Quote = () => {
                                           </li>
                                        )
                                     )}
-                                    {index !== 2 && serviceQuote?.descriptions?.length < 8 &&
-                                       Array.from({ length: 8 -  serviceQuote?.descriptions?.length}, (_, index) => (
-                                          <li key={index}>
-                                             <span className="line"></span>
-                                          </li>
-                                       ))}
-                                    {index === 2 && serviceQuote?.descriptions?.length < 9 &&
-                                       Array.from({ length: 9 -  serviceQuote?.descriptions?.length}, (_, index) => (
-                                          <li key={index}>
-                                             <span className="line"></span>
-                                          </li>
-                                       ))}
+                                    {index !== 1 &&
+                                       serviceQuote?.descriptions?.length < 8 &&
+                                       Array.from(
+                                          {
+                                             length:
+                                                8 -
+                                                serviceQuote?.descriptions
+                                                   ?.length,
+                                          },
+                                          (_, index) => (
+                                             <li key={index}>
+                                                <span className="line"></span>
+                                             </li>
+                                          )
+                                       )}
+                                    {index === 1 &&
+                                       serviceQuote?.descriptions?.length < 9 &&
+                                       Array.from(
+                                          {
+                                             length:
+                                                9 -
+                                                serviceQuote?.descriptions
+                                                   ?.length,
+                                          },
+                                          (_, index) => (
+                                             <li key={index}>
+                                                <span className="line"></span>
+                                             </li>
+                                          )
+                                       )}
                                  </ul>
                               </div>
                               <div className="pack__btn">
-                                 <Link to="#quote-details">Xem thêm</Link>
+                                 <Link onClick={scrollToView}>Xem thêm</Link>
                               </div>
                            </div>
                         </div>
@@ -215,7 +247,7 @@ const Quote = () => {
             <div id="quote-details" className="w-100"></div>
 
             <div className="quote__detail">
-               <div className="quote__detail-heading">
+               <div className="quote__detail-heading" ref={detailTextRef}>
                   Chi tiết cụ thể từng gói
                </div>
                <div className="quote__detail-des">

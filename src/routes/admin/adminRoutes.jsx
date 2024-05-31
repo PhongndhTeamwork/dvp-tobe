@@ -25,7 +25,7 @@ import AdminAboutStaff from "./admin-about/admin-about-staff";
 import AdminAboutMotto from "./admin-about/admin-about-motto";
 
 import AdminWorkCategory from "./admin-work/admin-work-category";
-import AdminWorkProject from "./admin-work/admin-work-project";
+import AdminWorkProjects from "./admin-work/admin-work-projects";
 import AdminWorkStory from "./admin-work/admin-work-story";
 
 import AdminContactLocation from "./admin-contact/admin-contact-location";
@@ -78,7 +78,7 @@ const AdminRoutes = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/work" element={<AdminWork />}>
                <Route path="project-category" element={<AdminWorkCategory />} />
-               <Route path="project" element={<AdminWorkProject />} />
+               <Route path="projects" element={<AdminWorkProjects />} />
                <Route path="story" element={<AdminWorkStory />} />
             </Route>
             <Route path="/dashboard/home" element={<AdminHome />}>

@@ -2,7 +2,7 @@ import "./cataloge-project.css";
 
 import { Carousel, Image, Row, Col } from "react-bootstrap";
 
-import CatalogeProjectImage1 from "../../assets/images/cateloge/project-1.png";
+import CatalogeProjectImage1 from "../../assets/images/cataloge/project-2.jpg";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -43,8 +43,7 @@ const CatalogeProject = ({ activeIndex, projects }) => {
    const [isMobile, setIsMobile] = useState(false);
    const [isTablet, setIsTablet] = useState(false);
 
-
-   console.log(projects);
+   // console.log(projects);
 
    useEffect(() => {
       const handleResize = () => {
@@ -91,7 +90,8 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                                    >
                                       <div className="project__img">
                                          <Image
-                                            src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
+                                            src={CatalogeProjectImage1}
+                                            //   src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
                                          />
                                       </div>
 
@@ -127,7 +127,8 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                              >
                                 <div className="project__img">
                                    <Image
-                                      src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
+                                      src={CatalogeProjectImage1}
+                                      //   src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
                                    />
                                 </div>
 
@@ -166,7 +167,8 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                                    >
                                       <div className="project__img">
                                          <Image
-                                            src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
+                                            src={CatalogeProjectImage1}
+                                            //   src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
                                          />
                                       </div>
 
