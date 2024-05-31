@@ -4,8 +4,6 @@ import { Accordion, Carousel } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import Carousel1 from "../../assets/images/carousel/carousel-1.png";
-
 import axios from "axios";
 
 const AccordionService = ({

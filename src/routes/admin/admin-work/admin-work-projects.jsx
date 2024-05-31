@@ -7,6 +7,7 @@ import axios from "axios";
 import { Fragment } from "react";
 import CatalogeProject from "../../../components/cataloge-project/cataloge-project";
 
+<<<<<<< HEAD:src/routes/admin/admin-work/admin-work-projects.jsx
 import CatalogeImage1 from "../../../assets/images/cataloge/cataloge1.png";
 import CatalogeImage2 from "../../../assets/images/cataloge/cataloge2.png";
 import CatalogeImage3 from "../../../assets/images/cataloge/cataloge3.png";
@@ -14,9 +15,18 @@ import CatalogeImage4 from "../../../assets/images/cataloge/cataloge4.png";
 import CatalogeImage5 from "../../../assets/images/cataloge/cataloge5.png";
 import CatalogeImage6 from "../../../assets/images/cataloge/cataloge6.png";
 import ProjectImage1 from "../../../assets/images/cataloge/project-1.png";
+=======
+// import CatalogeImage1 from "../../../assets/images/cateloge/cataloge1.png";
+// import CatalogeImage2 from "../../../assets/images/cateloge/cataloge2.png";
+// import CatalogeImage3 from "../../../assets/images/cateloge/cataloge3.png";
+// import CatalogeImage4 from "../../../assets/images/cateloge/cataloge4.png";
+// import CatalogeImage5 from "../../../assets/images/cateloge/cataloge5.png";
+// import CatalogeImage6 from "../../../assets/images/cateloge/cataloge6.png";
+// import ProjectImage1 from "../../../assets/images/cateloge/project-1.png";
+>>>>>>> 3fbc48e66722f56493396b7433835ba16a6592ff:src/routes/admin/admin-work/admin-work-project.jsx
 
-import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
-import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
+// import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
+// import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
 
 const AdminWorkProjects = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
@@ -71,7 +81,26 @@ const AdminWorkProjects = () => {
    }, []);
    return (
       <Fragment>
+<<<<<<< HEAD:src/routes/admin/admin-work/admin-work-projects.jsx
          <h4 className="mt-0">Các dự án</h4>
+=======
+         <div className="projects">
+            <h4 className="mt-0">Project</h4>
+            <Row className="">
+               {projects.map((project, index) => (
+                  <Col
+                     key={index}
+                     xs={12}
+                     sm={12}
+                     md={12}
+                     lg={4}
+                     xl={4}
+                     xxl={4}
+                     className="d-flex mb-4 p-0"
+                  >
+                     {/* <Image src={ProjectImage1} alt="" width="100%" /> */}
+                     <div>
+>>>>>>> 3fbc48e66722f56493396b7433835ba16a6592ff:src/routes/admin/admin-work/admin-work-project.jsx
 
          <div className="admin-projects">
             <CatalogeProject

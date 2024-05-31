@@ -4,13 +4,6 @@ import { Image } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 
 import axios from "axios";
-
-// import Cataloge1 from "../../../assets/images/cateloge/cataloge1.png";
-// import Cataloge2 from "../../../assets/images/cateloge/cataloge2.png";
-// import Cataloge3 from "../../../assets/images/cateloge/cataloge3.png";
-// import Cataloge4 from "../../../assets/images/cateloge/cataloge4.png";
-// import Cataloge5 from "../../../assets/images/cateloge/cataloge5.png";
-// import Cataloge6 from "../../../assets/images/cateloge/cataloge6.png";
 import CatalogeProject from "../../../components/cataloge-project/cataloge-project";
 
 const Cataloge = () => {

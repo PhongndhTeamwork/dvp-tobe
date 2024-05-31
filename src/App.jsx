@@ -6,7 +6,6 @@ import Header from "./routes/user/header/header";
 import Footer from "./routes/user/footer/footer";
 import UserRoutes from "./routes/user/userRoutes";
 import AdminRoutes from "./routes/admin/adminRoutes";
-// import AdminRoutes from "./routes/admin/adminRoutes";
 
 const App = () => {
    return (

@@ -5,11 +5,6 @@ import { login } from "../../../app/features/userLoginSlice";
 import { Fragment } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import HomeVideo from "../../../assets/images/others/video-auto.mp4";
-import Carousel1 from "../../../assets/images/carousel/carousel-1.png";
-import Carousel2 from "../../../assets/images/carousel/carousel-2.png";
-import Carousel3 from "../../../assets/images/carousel/carousel-3.png";
-import RamenImage from "../../../assets/images/others/ramen.png";
 import axios from "axios";
 
 import AccordionService from "../../../components/accordion-service/accordion-service";

@@ -1,19 +1,13 @@
 import "./quote.css";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ContactForm from "../../../components/contact-form/contact-form";
-import RamenImage from "../../../assets/images/others/ramen.png";
-import OfficeBackground from "../../../assets/images/others/ex-office.jpg";
-import BasicImage from "../../../assets/images/others/basic.png";
-import BusinessImage from "../../../assets/images/others/business.png";
-import OmiPlusImage from "../../../assets/images/others/omni-plus.png";
 import UncheckSVG from "../../../assets/images/svg/unchecked.svg";
 import CheckSVG from "../../../assets/images/svg/checked.svg";
 import ContactIcon1 from "../../../assets/images/contact/contact_icon1.png";
 import ContactIcon2 from "../../../assets/images/contact/contact_icon2.png";
-import BannerQuoteImage from "../../../assets/images/others/banner-quote.png";
 
 const Quote = () => {
    const [banner, setBanner] = useState({});
@@ -121,13 +115,13 @@ const Quote = () => {
                   <p>{story?.text3}</p>
                </div>
 
-               <div className="rectangle-100 rectangle-pc-50 story__content-img">
-                  <Image
-                     src={`${
-                        process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${story?.images?.slice(0, 1)}`}
-                  />
-               </div>
+               {
+                  story.images && story.images.length > 0 ? (
+                     <div className="rectangle-100 rectangle-pc-50 story__content-img">
+                        <Image src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${story?.images?.slice(0, 1)}`} />
+                     </div>
+                  ) : ("")
+               }
             </div>
          </div>
          {/* <!-- End: Story --> */}
