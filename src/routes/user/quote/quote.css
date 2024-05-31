@@ -484,8 +484,8 @@
 
 @media (min-width: 768px) {
    .quote-banner.banner {
-       margin-top: 6.25rem !important;
-       height: calc(100vh - 6.25rem) !important;
+       margin-top: 6.25rem;
+       height: calc(100vh - 6.25rem);
    }
 
    .quote .story .story__content-img {

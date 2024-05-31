@@ -5,16 +5,16 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import CatalogeImage1 from "../../../assets/images/cateloge/cataloge1.png";
-import CatalogeImage2 from "../../../assets/images/cateloge/cataloge2.png";
-import CatalogeImage3 from "../../../assets/images/cateloge/cataloge3.png";
-import CatalogeImage4 from "../../../assets/images/cateloge/cataloge4.png";
-import CatalogeImage5 from "../../../assets/images/cateloge/cataloge5.png";
-import CatalogeImage6 from "../../../assets/images/cateloge/cataloge6.png";
-import ProjectImage1 from "../../../assets/images/cateloge/project-1.png";
+// import CatalogeImage1 from "../../../assets/images/cateloge/cataloge1.png";
+// import CatalogeImage2 from "../../../assets/images/cateloge/cataloge2.png";
+// import CatalogeImage3 from "../../../assets/images/cateloge/cataloge3.png";
+// import CatalogeImage4 from "../../../assets/images/cateloge/cataloge4.png";
+// import CatalogeImage5 from "../../../assets/images/cateloge/cataloge5.png";
+// import CatalogeImage6 from "../../../assets/images/cateloge/cataloge6.png";
+// import ProjectImage1 from "../../../assets/images/cateloge/project-1.png";
 
-import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
-import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
+// import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
+// import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
 
 import { Fragment } from "react";
 
@@ -49,7 +49,7 @@ const AdminWorkProject = () => {
                      xxl={4}
                      className="d-flex mb-4 p-0"
                   >
-                     <Image src={ProjectImage1} alt="" width="100%" />
+                     {/* <Image src={ProjectImage1} alt="" width="100%" /> */}
                      <div>
 
                      </div>
