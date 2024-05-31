@@ -4,20 +4,6 @@ import { Image } from "react-bootstrap";
 import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-import PartnerSVG1 from "../../assets/images/svg/partner/Untitled-1-01.svg";
-import PartnerSVG2 from "../../assets/images/svg/partner/Untitled-1-02.svg";
-import PartnerSVG3 from "../../assets/images/svg/partner/Untitled-1-03.svg";
-import PartnerSVG4 from "../../assets/images/svg/partner/Untitled-1-04.svg";
-import PartnerSVG5 from "../../assets/images/svg/partner/Untitled-1-05.svg";
-import PartnerSVG6 from "../../assets/images/svg/partner/Untitled-1-06.svg";
-import PartnerSVG7 from "../../assets/images/svg/partner/Untitled-1-07.svg";
-import PartnerSVG8 from "../../assets/images/svg/partner/Untitled-1-08.svg";
-import PartnerSVG9 from "../../assets/images/svg/partner/Untitled-1-09.svg";
-import PartnerSVG10 from "../../assets/images/svg/partner/Untitled-1-10.svg";
-import PartnerSVG11 from "../../assets/images/svg/partner/Untitled-1-11.svg";
-import PartnerSVG12 from "../../assets/images/svg/partner/Untitled-1-12.svg";
-import PartnerSVG14 from "../../assets/images/svg/partner/Untitled-1-14.svg";
-
 const BrandScroll = ({ homePage }) => {
    const [activeDot, setActiveDot] = useState(0);
    const scrollWrapperRef = useRef(null);

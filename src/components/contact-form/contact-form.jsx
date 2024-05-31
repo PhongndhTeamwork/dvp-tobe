@@ -16,17 +16,6 @@ import ZaloGraySVG from "../../assets/images/svg/social/zalo-gray.svg";
 import axios from "axios";
 
 const ContactForm = () => {
-   const services = [
-      "Nhận diện thương hiệu",
-      "Fanpage - Digital maketing",
-      "Xây dựng - Thiết kế website",
-      "POD Design",
-      "In ấn - Ấn phẩm văn phòng",
-      "TVC - Video marketing",
-      "None",
-      "None",
-      "None",
-   ];
 
    const [companyInfos, setCompanyInfos] = useState({});
 
@@ -183,40 +172,40 @@ const ContactForm = () => {
             <Link to={companyInfos.companyInstagram} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
-                     <Image src={InstagramGraySVG} alt="social icon gray" />
+                     <Image src={InstagramGraySVG} alt="instagram" />
                   </span>
                   <span className="social__link-icon">
-                     <Image src={InstagramSVG} alt="social icon" />
+                     <Image src={InstagramSVG} alt="instagram" />
                   </span>
                </Fragment>
             </Link>
             <Link to={companyInfos.companyFacebook} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
-                     <Image src={FacebookGraySVG} alt="social icon gray" />
+                     <Image src={FacebookGraySVG} alt="facebook" />
                   </span>
                   <span className="social__link-icon">
-                     <Image src={FacebookSVG} alt="social icon" />
+                     <Image src={FacebookSVG} alt="facebook" />
                   </span>
                </Fragment>
             </Link>
             <Link to={companyInfos.companyYoutube} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
-                     <Image src={YoutubeGraySVG} alt="social icon gray" />
+                     <Image src={YoutubeGraySVG} alt="youtube" />
                   </span>
                   <span className="social__link-icon">
-                     <Image src={YoutubeSVG} alt="social icon" />
+                     <Image src={YoutubeSVG} alt="youtube" />
                   </span>
                </Fragment>
             </Link>
             <Link to={companyInfos.companyZalo} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
-                     <Image src={ZaloGraySVG} alt="social icon gray" />
+                     <Image src={ZaloGraySVG} alt="zalo" />
                   </span>
                   <span className="social__link-icon">
-                     <Image src={ZaloSVG} alt="social icon" />
+                     <Image src={ZaloSVG} alt="zalo" />
                   </span>
                </Fragment>
             </Link>

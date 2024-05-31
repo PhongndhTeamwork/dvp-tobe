@@ -1,12 +1,8 @@
 import "./contact.css";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import axios from "axios";
 
-import ContactImage1 from "../../../assets/images/contact/contact1.png";
-import ContactImage2 from "../../../assets/images/contact/contact2.png";
-import OfficeBackground from "../../../assets/images/others/office-bg.jpg";
 import ContactIcon1 from "../../../assets/images/contact/contact_icon1.png";
 import ContactIcon2 from "../../../assets/images/contact/contact_icon2.png";
 import ContactForm from "../../../components/contact-form/contact-form";
@@ -55,9 +51,6 @@ const Contact = () => {
                   {story.subtitle}
                </h4>
                <h1 className="wrapper__header-heading">{story.title}</h1>
-               {/* <p>{story.text1}</p>
-               <p>{story.text2}</p>
-               <p>{story.text3}</p> */}
                <h4 className="inspiration__sub-heading">
                   Liên hệ <span className="line"></span> Hợp tác
                </h4>

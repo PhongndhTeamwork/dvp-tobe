@@ -2,49 +2,12 @@ import "./cataloge-project.css";
 
 import { Carousel, Image, Row, Col } from "react-bootstrap";
 
-import CatalogeProjectImage1 from "../../assets/images/cateloge/project-1.png";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const CatalogeProject = ({ activeIndex, projects }) => {
-   // const projects = [
-   //    {
-   //       image: CatalogeProjectImage1,
-   //       description:
-   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-   //    },
-   //    {
-   //       image: CatalogeProjectImage2,
-   //       description:
-   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-   //    },
-   //    {
-   //       image: CatalogeProjectImage3,
-   //       description:
-   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-   //    },
-   //    {
-   //       image: CatalogeProjectImage4,
-   //       description:
-   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-   //    },
-   //    {
-   //       image: CatalogeProjectImage5,
-   //       description:
-   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-   //    },
-   //    {
-   //       image: RamenImage,
-   //       description:
-   //          "Lorem Ipsum dolor sit amet, Lorem Ipsum dolor sit amet, ipsum",
-   //    },
-   // ];
-
    const [isMobile, setIsMobile] = useState(false);
    const [isTablet, setIsTablet] = useState(false);
-
-
-   console.log(projects);
 
    useEffect(() => {
       const handleResize = () => {

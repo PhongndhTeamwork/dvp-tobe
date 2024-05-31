@@ -1,99 +1,12 @@
 import "./about.css";
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useEffect } from "react";
 import { Image } from "react-bootstrap";
 import { useState } from "react";
 import AccordionService from "../../../components/accordion-service/accordion-service";
 import BrandScroll from "../../../components/brand-scroll/brand-scroll";
 import axios from "axios";
 
-import ExOfficeImage from "../../../assets/images/others/ex-office.jpg";
-import CultureImage1 from "../../../assets/images/culture/culture1.png";
-import CultureImage2 from "../../../assets/images/culture/culture2.png";
-import CultureImage3 from "../../../assets/images/culture/culture3.png";
-import CultureImage4 from "../../../assets/images/culture/culture4.png";
-import CultureImage5 from "../../../assets/images/culture/culture5.png";
-import Avatar1 from "../../../assets/images/avatar/1.png";
-import Avatar2 from "../../../assets/images/avatar/2.png";
-import Avatar3 from "../../../assets/images/avatar/3.png";
-import Avatar4 from "../../../assets/images/avatar/4.png";
-import Avatar5 from "../../../assets/images/avatar/5.png";
-import Avatar6 from "../../../assets/images/avatar/6.png";
-
 const About = () => {
-   const staffs = [
-      {
-         avatar: Avatar1,
-         description: "30 tuổi - độc thân",
-         position: "CEO - Art Director",
-         motto: "Không làm thì thôi, đã làm là phải giỏi nhất",
-         name: "Trần Ngọc Minh",
-         role: "UI - UX Designe",
-      },
-      {
-         avatar: Avatar2,
-         description: "30 tuổi - độc thân",
-         position: "CEO - Art Director",
-         motto: "Không làm thì thôi, đã làm là phải giỏi nhất",
-         name: "Trần Ngọc Minh",
-         role: "UI - UX Designe",
-      },
-      {
-         avatar: Avatar3,
-         description: "30 tuổi - độc thân",
-         position: "CEO - Art Director",
-         motto: "Không làm thì thôi, đã làm là phải giỏi nhất",
-         name: "Trần Ngọc Minh",
-         role: "UI - UX Designe",
-      },
-      {
-         avatar: Avatar4,
-         description: "30 tuổi - độc thân",
-         position: "CEO - Art Director",
-         motto: "Không làm thì thôi, đã làm là phải giỏi nhất",
-         name: "Trần Ngọc Minh",
-         role: "UI - UX Designe",
-      },
-      {
-         avatar: Avatar5,
-         description: "30 tuổi - độc thân",
-         position: "CEO - Art Director",
-         motto: "Không làm thì thôi, đã làm là phải giỏi nhất",
-         name: "Trần Ngọc Minh",
-         role: "UI - UX Designe",
-      },
-      {
-         avatar: Avatar6,
-         description: "30 tuổi - độc thân",
-         position: "CEO - Art Director",
-         motto: "Không làm thì thôi, đã làm là phải giỏi nhất",
-         name: "Trần Ngọc Minh",
-         role: "UI - UX Designe",
-      },
-   ];
-
-   // const services = [
-   //    {
-   //       title: "Sáng tạo là không giới hạn",
-   //       description:
-   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-   //    },
-   //    {
-   //       title: "Giá trị cốt lõi",
-   //       description:
-   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-   //    },
-   //    {
-   //       title: "Lắng nghe khách hàng",
-   //       description:
-   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-   //    },
-   //    {
-   //       title: "Almost before we knew it, we had left the ground.",
-   //       description:
-   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-   //    },
-   // ];
-
    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    // const [isActive, setIsActive] = useState(false);
@@ -182,15 +95,15 @@ const About = () => {
                   <p>{firstStory.text2}</p>
                   <p>{firstStory.text3}</p>
                </div>
-
-               <div className="rectangle-100 rectangle-pc-50 story__content-img">
-                  <Image
-                     src={`${
-                        process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${firstStory?.images?.slice(0, 1)}`}
-                     alt="office"
-                  />
-               </div>
+               
+               {
+                  firstStory.images && firstStory.images.length > 0 ? (
+                     <div className="rectangle-100 rectangle-pc-50 story__content-img">
+                        <Image src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${firstStory?.images?.slice(0, 1)}`} />
+                     </div>
+                  ) : ("")
+               }
+               
             </div>
          </div>
          {/* <!-- End: Story --> */}
@@ -257,14 +170,14 @@ const About = () => {
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
                      }/${secondStory?.images?.slice(1, 2)}`}
-                     alt=""
+                     alt="culture image"
                   />
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
                      }/${secondStory?.images?.slice(2, 3)}`}
-                     alt=""
+                     alt="culture image"
                   />
                </div>
                <div className="rectangle-100 rectangle-pc-50">
@@ -272,7 +185,7 @@ const About = () => {
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
                      }/${secondStory?.images?.slice(0, 1)}`}
-                     alt=""
+                     alt="culture image"
                   />
                </div>
                <div className="rectangle-100 rectangle-pc-25 wrapper-flex m-0 p-0">
@@ -281,14 +194,14 @@ const About = () => {
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
                      }/${secondStory?.images?.slice(3, 4)}`}
-                     alt=""
+                     alt="culture image"
                   />
                   <Image
                      className="rectangle-100 rectangle-tab-50 rectangle-pc-100"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
                      }/${secondStory?.images?.slice(4, 5)}`}
-                     alt=""
+                     alt="culture image"
                   />
                </div>
             </div>

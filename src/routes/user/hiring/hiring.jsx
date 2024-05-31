@@ -4,52 +4,9 @@ import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-import HiringIluImage from "../../../assets/images/others/hiring_ilu.png";
 import AccordionService from "../../../components/accordion-service/accordion-service";
 
 const Hiring = () => {
-   // const jobs = [
-   //    {
-   //       name: "Branding",
-   //       description:
-   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-   //       instruction:
-   //          "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
-   //       gmail: "Minhlinkin@gmail.com",
-   //    },
-   //    {
-   //       name: "Branding",
-   //       description:
-   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-   //       instruction:
-   //          "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
-   //       gmail: "Minhlinkin@gmail.com",
-   //    },
-   //    {
-   //       name: "Branding",
-   //       description:
-   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-   //       instruction:
-   //          "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
-   //       gmail: "Minhlinkin@gmail.com",
-   //    },
-   //    {
-   //       name: "Branding",
-   //       description:
-   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-   //       instruction:
-   //          "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
-   //       gmail: "Minhlinkin@gmail.com",
-   //    },
-   //    {
-   //       name: "Branding",
-   //       description:
-   //          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-   //       instruction:
-   //          "Hãy gửi mail cho chúng tôi, nội dung bắt buộc (Tiêu đề mail - Vị trí ứng tuyển - Họ và tên - Cách thức liên lạc, gửi CV và portfolio của bản thân).",
-   //       gmail: "Minhlinkin@gmail.com",
-   //    },
-   // ];
 
    const [banner, setBanner] = useState("");
    const [story, setStory] = useState("");
