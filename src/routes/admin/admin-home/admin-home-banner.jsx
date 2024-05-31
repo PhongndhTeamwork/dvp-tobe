@@ -13,8 +13,6 @@ const AdminHomeBanner = () => {
 
    const [bannerImage, setBannerImage] = useState();
 
-   const [initialBannerImage, setInitialBannerImage] = useState();
-
    const [banner, setBanner] = useState({});
 
    const bannerImageInputRef = useRef(null);
@@ -23,9 +21,6 @@ const AdminHomeBanner = () => {
          setBanner(data.banner);
 
          setBannerImage(
-            process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.banner.image
-         );
-         setInitialBannerImage(
             process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.banner.image
          );
       });
@@ -63,11 +58,19 @@ const AdminHomeBanner = () => {
          },
       };
 
-      let data = {...banner}
+      let data = { ...banner };
 
-      if (bannerImage === initialBannerImage) {
+
+      if (typeof data.image !== "object") {
          delete banner.image;
          data = { ...banner, deleteImage: false };
+      }else {
+         data = { ...banner, deleteImage: false };
+      }
+
+      if(bannerImage === null) {
+         delete banner.image;
+         data = { ...banner, deleteImage: true };
       }
 
       const formData = new FormData();

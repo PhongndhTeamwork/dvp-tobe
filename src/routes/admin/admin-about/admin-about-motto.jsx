@@ -7,7 +7,18 @@ import axios from "axios";
 const AdminAboutMotto = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
 
+   const config = {
+      headers: {
+         Authorization: userInfo,
+      },
+   };
+
    const [expertise, setExpertise] = useState([]);
+
+   const [newExpertise, setNewExpertise] = useState({
+      name: "",
+      text: "",
+   });
 
    useEffect(() => {
       axios.get("/api/about").then(({ data }) => {
@@ -16,19 +27,11 @@ const AdminAboutMotto = () => {
    }, []);
 
    const handleUpdateMotto = (index) => {
-      const config = {
-         headers: {
-            Authorization: userInfo,
-         },
-      };
-
       let data = {
          ...expertise[index],
          name: expertise[index]?.title,
          text: expertise[index]?.description,
       };
-
-      // console.log(data);
 
       const formData = new FormData();
       Object.keys(data).forEach((key) => {
@@ -45,16 +48,42 @@ const AdminAboutMotto = () => {
          });
    };
 
+   const handleAddMotto = () => {
+      if (newExpertise.name === "" || newExpertise.text === "") return;
+      let data = {
+         ...newExpertise,
+      };
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+         formData.append(key, data[key]);
+      });
+      axios
+         .post("/api/admin/about/expertise/save", formData, config)
+         .then(({ data }) => {
+            console.log(data.message);
+            setNewExpertise({
+               name: "",
+               text: "",
+            });
+            axios.get("/api/about").then(({ data }) => {
+               setExpertise(data.expertises);
+            });
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
+
    return (
       <div className="motto">
          <h4 className="mt-5 mb-4">Chỉnh sửa danh sách phương châm</h4>
-         <button className="btn btn-primary px-4 fs-5 mb-4" type="button">
+         {/* <button className="btn btn-primary px-4 fs-5 mb-4" type="button">
             Thêm mới
-         </button>
+         </button> */}
          <br />
 
          <div className="motto__list border">
-            {expertise.map((ex, index) => (
+            {expertise?.map((ex, index) => (
                <div
                   key={index}
                   className="motto-item row w-100 align-items-center border-bottom py-3 ps-4"
@@ -104,14 +133,37 @@ const AdminAboutMotto = () => {
 
          <label htmlFor="">Tiêu đề</label>
          <br />
-         <input type="text" className="w-100" placeholder="Branding" value="" />
+         <input
+            type="text"
+            className="w-100"
+            placeholder="Branding"
+            value={newExpertise.name}
+            onChange={(e) => {
+               setNewExpertise({ ...newExpertise, name: e.target.value });
+            }}
+         />
          <br />
          <label htmlFor="">Mô tả</label>
          <br />
-         <textarea className="w-100 p-3" name="" id="" rows="4"></textarea>
+         <textarea
+            className="w-100 p-3"
+            name=""
+            id=""
+            rows="4"
+            value={newExpertise.text}
+            onChange={(e) => {
+               setNewExpertise({ ...newExpertise, text: e.target.value });
+            }}
+         ></textarea>
 
-         <button className="btn btn-primary px-4 fs-4 mt-5" type="button">
-            Submit
+         <button
+            className="btn btn-primary px-4 fs-4 mt-3"
+            type="button"
+            onClick={() => {
+               handleAddMotto();
+            }}
+         >
+            Thêm
          </button>
          {/* <button className="btn btn-danger px-4 fs-4 mt-5" type="button">
             Hủy

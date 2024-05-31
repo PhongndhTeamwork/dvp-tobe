@@ -3,6 +3,7 @@ import { Fragment, useEffect } from "react";
 import { useState, useRef } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import FacebookSVG from "../../assets/images/svg/social/facebook.svg";
 import FacebookGraySVG from "../../assets/images/svg/social/facebook-gray.svg";
@@ -16,10 +17,17 @@ import ZaloGraySVG from "../../assets/images/svg/social/zalo-gray.svg";
 import axios from "axios";
 
 const ContactForm = () => {
-
    const [companyInfos, setCompanyInfos] = useState({});
-
    const [serviceItems, setServiceItems] = useState([]);
+   const { userInfo } = useSelector((state) => state.userLogin);
+
+   const [customer, setCustomer] = useState({
+      fullname: "",
+      name: "",
+      email: "",
+      phone: "",
+      serviceId: -1,
+   });
 
    useEffect(() => {
       axios
@@ -30,8 +38,7 @@ const ContactForm = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   },[]);
-
+   }, []);
 
    useEffect(() => {
       axios
@@ -83,22 +90,51 @@ const ContactForm = () => {
       );
    };
 
-   const handleChangeServiceValue = (value) => {
-      setCategoryValue(value);
+   const handleChangeServiceValue = (service) => {
       setTimeout(() => {
          serviceCategoryRef.current.style.display = "none";
          serviceCategoryRef.current.classList.remove("active");
       }, 100);
       setIsServiceCategoryRevealed(true);
+      setCategoryValue(service.serviceName);
    };
+
+   const handleSaveCustomer = () => {
+      let data = {
+         ...customer,
+      };
+
+      if(data.email === "" || data.fullname === "" || data.name === "" || data.phone === "" ||  data.serviceId === -1) return;
+
+      const formData = new FormData();
+
+      console.log(data);
+
+      Object.keys(data).forEach((key) => {
+         formData.append(key, data[key]);
+      });
+
+      axios
+         .post("/api/info/customer/submit", formData)
+         .then(({ data }) => {
+            console.log(data.message);
+         })
+         .catch((error) => {
+            console.log(error);
+         });
+   };
+
    return (
-      <form action="#" className="contact__form">
+      <form className="contact__form">
          <label htmlFor="fullname">Họ và tên</label>
          <input
             type="text"
             id="fullname"
             name="fullname"
             placeholder="VD: Trần Ngọc Minh"
+            onChange={(e) => {
+               setCustomer({ ...customer, fullname: e.target.value });
+            }}
          />
 
          <label htmlFor="name">Danh xưng</label>
@@ -107,13 +143,32 @@ const ContactForm = () => {
             id="name"
             name="name"
             placeholder="VD: Ông, bà,.."
+            onChange={(e) => {
+               setCustomer({ ...customer, name: e.target.value });
+            }}
          />
 
          <label htmlFor="email">Email</label>
-         <input type="email" id="email" name="email" placeholder="Email" />
+         <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+            onChange={(e) => {
+               setCustomer({ ...customer, email: e.target.value });
+            }}
+         />
 
          <label htmlFor="phone">Số điện thoại</label>
-         <input type="number" id="phone" name="phone" placeholder="+84" />
+         <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+84"
+            onChange={(e) => {
+               setCustomer({ ...customer, phone: e.target.value });
+            }}
+         />
 
          <div className="category">
             <button
@@ -150,7 +205,10 @@ const ContactForm = () => {
                      <div
                         key={index}
                         className="services__item"
-                        onClick={() => handleChangeServiceValue(service)}
+                        onClick={() => {
+                           handleChangeServiceValue(service);
+                           setCustomer({ ...customer, serviceId: service.id });
+                        }}
                      >
                         {service.serviceName}
                      </div>
@@ -160,7 +218,13 @@ const ContactForm = () => {
          </div>
 
          <div className="contact__form-submit w-100 d-flex align-items-center justify-content-center">
-            <button id="contact__form-submit">
+            <button
+               id="contact__form-submit"
+               onClick={() => {
+                  handleSaveCustomer();
+               }}
+               type="button"
+            >
                <div className="arrow-right-link">
                   <div className="arrow-right-link__text">Button demo 1</div>
                   <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
@@ -172,40 +236,40 @@ const ContactForm = () => {
             <Link to={companyInfos.companyInstagram} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
-                     <Image src={InstagramGraySVG} alt="instagram" />
+                     <Image src={InstagramGraySVG} alt="social icon gray" />
                   </span>
                   <span className="social__link-icon">
-                     <Image src={InstagramSVG} alt="instagram" />
+                     <Image src={InstagramSVG} alt="social icon" />
                   </span>
                </Fragment>
             </Link>
             <Link to={companyInfos.companyFacebook} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
-                     <Image src={FacebookGraySVG} alt="facebook" />
+                     <Image src={FacebookGraySVG} alt="social icon gray" />
                   </span>
                   <span className="social__link-icon">
-                     <Image src={FacebookSVG} alt="facebook" />
+                     <Image src={FacebookSVG} alt="social icon" />
                   </span>
                </Fragment>
             </Link>
             <Link to={companyInfos.companyYoutube} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
-                     <Image src={YoutubeGraySVG} alt="youtube" />
+                     <Image src={YoutubeGraySVG} alt="social icon gray" />
                   </span>
                   <span className="social__link-icon">
-                     <Image src={YoutubeSVG} alt="youtube" />
+                     <Image src={YoutubeSVG} alt="social icon" />
                   </span>
                </Fragment>
             </Link>
             <Link to={companyInfos.companyZalo} className="social__link">
                <Fragment>
                   <span className="social__link-icon icon-gray">
-                     <Image src={ZaloGraySVG} alt="zalo" />
+                     <Image src={ZaloGraySVG} alt="social icon gray" />
                   </span>
                   <span className="social__link-icon">
-                     <Image src={ZaloSVG} alt="zalo" />
+                     <Image src={ZaloSVG} alt="social icon" />
                   </span>
                </Fragment>
             </Link>

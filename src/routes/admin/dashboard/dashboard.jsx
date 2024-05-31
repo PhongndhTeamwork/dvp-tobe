@@ -6,23 +6,56 @@ import Notification from "../../../components/notification/notification";
 
 import { AdminContext } from "../adminContext";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { Button } from "react-bootstrap";
 
 const Dashboard = () => {
+   const { userInfo } = useSelector((state) => state.userLogin);
    const { fullView } = useContext(AdminContext);
 
    const [customers, setCustomers] = useState([]);
    const [currentCustomer, setCurrentCustomer] = useState(-1);
 
    useEffect(() => {
+      const config = {
+         headers: {
+            Authorization: userInfo,
+         },
+      };
+
       axios
-         .get("/api/admin/company/customer")
+         .get("/api/admin/company/customer", config)
          .then(({ data }) => {
             setCustomers(data.customers);
          })
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [userInfo]);
+
+   const handleChangeStatus = (id) => {
+      const config = {
+         headers: {
+            Authorization: userInfo,
+         },
+      };
+      axios
+         .post(`/api/admin/company/customer/update?id=${id}`, {}, config)
+         .then(({ data }) => {
+            console.log(data.message);
+            let customersTemp = [...customers];
+
+            let index = customersTemp.findIndex(
+               (customer) => customer.id === id
+            );
+            customersTemp[index].status = 1;
+
+            setCustomers(customersTemp);
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
 
    return (
       <Fragment>
@@ -114,10 +147,28 @@ const Dashboard = () => {
                                     </div>
 
                                     <div className="col-6">Trạng thái</div>
-                                    <div className="col-6">
+                                    <div className="col-6 d-flex">
                                        {customers[currentCustomer]?.status === 0
                                           ? "Chưa tư vấn"
                                           : "Đã tư vấn"}
+                                       {customers[currentCustomer]?.status ===
+                                       0 ? (
+                                          <Button
+                                             className="ms-4 d-flex align-items-center"
+                                             variant="success"
+                                             style={{ height: "1.5rem" }}
+                                             onClick={() => {
+                                                handleChangeStatus(
+                                                   customers[currentCustomer]
+                                                      ?.id
+                                                );
+                                             }}
+                                          >
+                                             Đã tư vấn
+                                          </Button>
+                                       ) : (
+                                          ""
+                                       )}
                                     </div>
 
                                     <div className="col-6">

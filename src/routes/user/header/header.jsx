@@ -14,10 +14,9 @@ import axios from "axios";
 const Header = () => {
    const [isHeaderActive, setIsHeaderActive] = useState(false);
    const [currentPathname, setCurrentPathname] = useState("");
+   const [isHeaderColorChangeable, setIsHeaderColorChangeable] = useState(true);
    const location = useLocation();
    // console.log(location.pathname);
-
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    const [companyInfos, setCompanyInfos] = useState({});
 
@@ -33,15 +32,17 @@ const Header = () => {
    }, []);
 
    useEffect(() => {
-      if (location.pathname === currentPathname) return;
+      // if (location.pathname === currentPathname) return;
       if (
          location.pathname.includes("work") ||
          location.pathname.includes("contact") ||
          location.pathname.includes("cataloge") ||
          location.pathname.includes("quote")
       ) {
+         setIsHeaderColorChangeable(false);
          setIsHeaderActive(true);
       } else {
+         setIsHeaderColorChangeable(true);
          setIsHeaderActive(false);
       }
       setCurrentPathname(location.pathname);
@@ -49,6 +50,7 @@ const Header = () => {
 
    useEffect(() => {
       const handleScroll = () => {
+         // if(!isHeaderColorChangeable) return;
          const banner = document.querySelector(".banner");
          const bannerH = banner ? banner.offsetHeight : 0;
          const scrollY = window.scrollY;
@@ -56,8 +58,7 @@ const Header = () => {
          if (scrollY >= bannerH) {
             setIsHeaderActive(true);
          } else {
-            if(!location.pathname.includes("quote"))
-               setIsHeaderActive(false);
+            if (!location.pathname.includes("quote")) setIsHeaderActive(false);
          }
       };
 
@@ -66,7 +67,7 @@ const Header = () => {
       return () => {
          window.removeEventListener("scroll", handleScroll);
       };
-   }, []);
+   }, [isHeaderColorChangeable,location]);
 
    return (
       <div

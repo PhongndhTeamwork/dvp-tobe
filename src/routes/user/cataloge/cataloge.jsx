@@ -14,7 +14,6 @@ const Cataloge = () => {
    const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
    const [slideQuantity, setSlideQuantity] = useState(0);
 
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    useEffect(() => {
       const handleResize = () => {

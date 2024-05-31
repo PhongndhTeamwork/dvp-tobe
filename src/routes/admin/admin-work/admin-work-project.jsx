@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Image } from "react-bootstrap";
+import { Col, Image, Row } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -15,93 +15,50 @@ import ProjectImage1 from "../../../assets/images/cateloge/project-1.png";
 
 import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
 import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
+
 import { Fragment } from "react";
 
 const AdminWorkProject = () => {
+   const [projects, setProject] = useState([]);
+   const [isAddPage, setIsAddPage] = useState(false);
+
+   useEffect(() => {
+      axios
+         .get("/api/home")
+         .then(({ data }) => {
+            setProject(data.projects);
+            console.log(data.projects);
+         })
+         .catch((error) => {
+            throw new Error(error);
+         });
+   }, []);
    return (
       <Fragment>
          <div className="projects">
-            <h4 className="mt-5">Chỉnh sửa danh sách dự án</h4>
-            <button type="button" className="btn btn-primary mt-4">
-               Thêm mới
-            </button>
+            <h4 className="mt-0">Project</h4>
+            <Row className="">
+               {projects.map((project, index) => (
+                  <Col
+                     key={index}
+                     xs={12}
+                     sm={12}
+                     md={12}
+                     lg={4}
+                     xl={4}
+                     xxl={4}
+                     className="d-flex mb-4 p-0"
+                  >
+                     <Image src={ProjectImage1} alt="" width="100%" />
+                     <div>
 
-            <div className="list-project mt-4 border pe-3">
-               <div className="w-100 p-3 border-bottom">
-                  <div className="row align-items-center">
-                     <div className="col-2">
-                        <Image src={ProjectImage1} alt="" className="w-75" />
                      </div>
-                     <div className="col-8">Dự án xây dựng website Bumindo</div>
-                     <div className="col-1">
-                        <Link to="">Sửa</Link>
-                     </div>
-                     <div className="col-1">
-                        <Link to="" className="text-danger">
-                           Xóa
-                        </Link>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="w-100 p-3 border-bottom">
-                  <div className="row align-items-center">
-                     <div className="col-2">
-                        <Image
-                           src="../assets/img/projects/project-1.png"
-                           alt=""
-                           className="w-75"
-                        />
-                     </div>
-                     <div className="col-8">Dự án xây dựng website Bumindo</div>
-                     <div className="col-1">
-                        <Link to="">Sửa</Link>
-                     </div>
-                     <div className="col-1">
-                        <Link to="" className="text-danger">
-                           Xóa
-                        </Link>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="w-100 p-3 border-bottom">
-                  <div className="row align-items-center">
-                     <div className="col-2">
-                        <Image src={ProjectImage1} alt="" className="w-75" />
-                     </div>
-                     <div className="col-8">Dự án xây dựng website Bumindo</div>
-                     <div className="col-1">
-                        <Link to="">Sửa</Link>
-                     </div>
-                     <div className="col-1">
-                        <Link to="" className="text-danger">
-                           Xóa
-                        </Link>
-                     </div>
-                  </div>
-               </div>
-
-               <div className="w-100 p-3 border-bottom">
-                  <div className="row align-items-center">
-                     <div className="col-2">
-                        <Image src={ProjectImage1} alt="" className="w-75" />
-                     </div>
-                     <div className="col-8">Dự án xây dựng website Bumindo</div>
-                     <div className="col-1">
-                        <Link to="">Sửa</Link>
-                     </div>
-                     <div className="col-1">
-                        <Link to="" className="text-danger">
-                           Xóa
-                        </Link>
-                     </div>
-                  </div>
-               </div>
-            </div>
+                  </Col>
+               ))}
+            </Row>
          </div>
 
-         <div className="add-project">
+         {/* <div className="add-project">
             <h4 className="mt-5">Thêm dự án mới</h4>
 
             <label htmlFor="">Thumbnail</label>
@@ -272,7 +229,7 @@ const AdminWorkProject = () => {
             <button className="btn btn-danger px-4 fs-5 mt-4" type="button">
                Hủy
             </button>
-         </div>
+         </div> */}
       </Fragment>
    );
 };
