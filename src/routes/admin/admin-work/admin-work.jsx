@@ -5,7 +5,6 @@ import { Link, Outlet } from "react-router-dom";
 import { Image } from "react-bootstrap";
 import Notification from "../../../components/notification/notification";
 
-<<<<<<< HEAD
 import CatalogeImage1 from "../../../assets/images/cataloge/cataloge1.png";
 import CatalogeImage2 from "../../../assets/images/cataloge/cataloge2.png";
 import CatalogeImage3 from "../../../assets/images/cataloge/cataloge3.png";
@@ -13,18 +12,7 @@ import CatalogeImage4 from "../../../assets/images/cataloge/cataloge4.png";
 import CatalogeImage5 from "../../../assets/images/cataloge/cataloge5.png";
 import CatalogeImage6 from "../../../assets/images/cataloge/cataloge6.png";
 import ProjectImage1 from "../../../assets/images/cataloge/project-1.png";
-=======
-// import CatalogeImage1 from "../../../assets/images/cateloge/cataloge1.png";
-// import CatalogeImage2 from "../../../assets/images/cateloge/cataloge2.png";
-// import CatalogeImage3 from "../../../assets/images/cateloge/cataloge3.png";
-// import CatalogeImage4 from "../../../assets/images/cateloge/cataloge4.png";
-// import CatalogeImage5 from "../../../assets/images/cateloge/cataloge5.png";
-// import CatalogeImage6 from "../../../assets/images/cateloge/cataloge6.png";
-// import ProjectImage1 from "../../../assets/images/cateloge/project-1.png";
->>>>>>> 3fbc48e66722f56493396b7433835ba16a6592ff
 
-// import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
-// import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
 
 import { AdminContext } from "../adminContext";
 
