@@ -5,7 +5,7 @@ import { Carousel, Image, Row, Col } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const CatalogeProject = ({ activeIndex, projects }) => {
+const CatalogeProject = ({ activeIndex, projects, isAdmin }) => {
    const [isMobile, setIsMobile] = useState(false);
    const [isTablet, setIsTablet] = useState(false);
 
@@ -46,7 +46,11 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                                 .map((project, index) => (
                                    <Link
                                       className="rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                                      to={`/cataloge/${project?.id}`}
+                                      to={
+                                         !isAdmin
+                                            ? `/cataloge/${project?.id}`
+                                            : `/admin/dashboard/work/project/${project?.id}`
+                                      }
                                       key={index}
                                       onClick={() => {
                                          window.scrollTo(0, 0);
@@ -54,8 +58,8 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                                    >
                                       <div className="project__img">
                                          <Image
-                                          //   src={CatalogeProjectImage1}
-                                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
+                                            //   src={CatalogeProjectImage1}
+                                            src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
                                          />
                                       </div>
 
@@ -83,7 +87,11 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                           <div className="wrapper-flex">
                              <Link
                                 className="rectangle-100 rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                                to={`/cataloge/${project?.id}`}
+                                to={
+                                   !isAdmin
+                                      ? `/cataloge/${project?.id}`
+                                      : `/admin/dashboard/work/project/${project?.id}`
+                                }
                                 key={index}
                                 onClick={() => {
                                    window.scrollTo(0, 0);
@@ -91,8 +99,8 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                              >
                                 <div className="project__img">
                                    <Image
-                                    //   src={CatalogeProjectImage1}
-                                        src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
+                                      //   src={CatalogeProjectImage1}
+                                      src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
                                    />
                                 </div>
 
@@ -123,7 +131,11 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                                 .map((project, index) => (
                                    <Link
                                       className="rectangle-tab-50 rectangle-pc-25 project arrow-right-translate-hover d-block"
-                                      to={`/cataloge/${project?.id}`}
+                                      to={
+                                         !isAdmin
+                                            ? `/cataloge/${project?.id}`
+                                            : `/admin/dashboard/work/project/${project?.id}`
+                                      }
                                       key={index}
                                       onClick={() => {
                                          window.scrollTo(0, 0);
@@ -131,8 +143,8 @@ const CatalogeProject = ({ activeIndex, projects }) => {
                                    >
                                       <div className="project__img">
                                          <Image
-                                          //   src={CatalogeProjectImage1}
-                                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
+                                            //   src={CatalogeProjectImage1}
+                                            src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
                                          />
                                       </div>
 

@@ -44,6 +44,7 @@ import AdminHomeVideo from "./admin-home/admin-home-video";
 import AdminCompanyInfo from "./admin-company/admin-company-info";
 import AdminCompanyPartner from "./admin-company/admin-company-partner";
 import AdminCompanyService from "./admin-company/admin-company-service";
+import AdminWorkProject from "./admin-work/admin-word-project";
 
 const AdminRoutes = () => {
    const location = useLocation();
@@ -80,6 +81,7 @@ const AdminRoutes = () => {
                <Route path="project-category" element={<AdminWorkCategory />} />
                <Route path="projects" element={<AdminWorkProjects />} />
                <Route path="story" element={<AdminWorkStory />} />
+               <Route path="project/:id" element={<AdminWorkProject />} />
             </Route>
             <Route path="/dashboard/home" element={<AdminHome />}>
                <Route path="banner" element={<AdminHomeBanner />} />

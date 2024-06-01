@@ -21,3 +21,15 @@
 .admin-projects .project__des-icon {
    display: none;
 }
+
+.order-container {
+   background-color: black;
+   color: white;
+   border-radius: 50%;
+   width: 2.5rem;
+   height: 2.5rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right : 1rem
+}
