@@ -89,14 +89,13 @@ const Hiring = () => {
                   </div>
                </div>
 
-               <div className="rectangle-100 rectangle-pc-50 story__content-img">
-                  <Image
-                     src={`${
-                        process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${story?.images?.slice(0, 1)}`}
-                     alt=""
-                  />
-               </div>
+               {
+                  story.images && story.images.length > 0 ? (
+                     <div className="rectangle-100 rectangle-pc-50 story__content-img">
+                        <Image src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${story?.images?.slice(0, 1)}`} />
+                     </div>
+                  ) : ("")
+               }
             </div>
          </div>
          {/* <!-- End: Story --> */}

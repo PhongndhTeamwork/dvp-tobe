@@ -11,59 +11,6 @@ import AccordionService from "../../../components/accordion-service/accordion-se
 import BrandScroll from "../../../components/brand-scroll/brand-scroll";
 
 const Home = () => {
-   // const services = [
-   //    {
-   //       name: "Branding",
-   //       images: [Carousel1, Carousel2, Carousel3],
-   //       contents: [
-   //          "Logos",
-   //          "Ấn phẩm văn phòng",
-   //          "Broucher, Cataloge",
-   //          "Capacity profile - Company profile",
-   //       ],
-   //    },
-   //    {
-   //       name: "Branding",
-   //       images: [Carousel1, Carousel2, Carousel3],
-   //       contents: [
-   //          "Logos",
-   //          "Ấn phẩm văn phòng",
-   //          "Broucher, Cataloge",
-   //          "Capacity profile - Company profile",
-   //       ],
-   //    },
-   //    {
-   //       name: "Branding",
-   //       images: [Carousel1, Carousel2, Carousel3],
-   //       contents: [
-   //          "Logos",
-   //          "Ấn phẩm văn phòng",
-   //          "Broucher, Cataloge",
-   //          "Capacity profile - Company profile",
-   //       ],
-   //    },
-   //    {
-   //       name: "Branding",
-   //       images: [Carousel1, Carousel2, Carousel3],
-   //       contents: [
-   //          "Logos",
-   //          "Ấn phẩm văn phòng",
-   //          "Broucher, Cataloge",
-   //          "Capacity profile - Company profile",
-   //       ],
-   //    },
-   //    {
-   //       name: "Branding",
-   //       images: [Carousel1, Carousel2, Carousel3],
-   //       contents: [
-   //          "Logos",
-   //          "Ấn phẩm văn phòng",
-   //          "Broucher, Cataloge",
-   //          "Capacity profile - Company profile",
-   //       ],
-   //    },
-   // ];
-
    //? Banner
    const [banner, setBanner] = useState({});
 

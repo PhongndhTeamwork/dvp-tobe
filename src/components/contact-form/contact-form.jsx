@@ -182,7 +182,7 @@ const ContactForm = () => {
                onClick={toggleServiceCategory}
             >
                <h5
-                  className="category-service__name"
+                  className="category-service__name mb-0"
                   id="service-selected"
                   value={categoryValue}
                >
@@ -226,7 +226,7 @@ const ContactForm = () => {
                type="button"
             >
                <div className="arrow-right-link">
-                  <div className="arrow-right-link__text">Button demo 1</div>
+                  <div className="arrow-right-link__text">Gửi đi</div>
                   <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
                </div>
             </button>
