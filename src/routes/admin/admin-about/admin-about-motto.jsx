@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 
@@ -42,11 +41,30 @@ const AdminAboutMotto = () => {
          .post("/api/admin/about/expertise/save", formData, config)
          .then(({ data }) => {
             console.log(data.message);
+            axios.get("/api/about").then(({ data }) => {
+               setExpertise(data.expertises);
+            });
          })
          .catch((error) => {
             console.log(error.message);
          });
    };
+
+   const handleDeleteMotto =(index) => {
+      const result = window.confirm('Bạn có chắc chắn muốn xóa ?');
+      if(!result) return;
+      axios
+         .delete(`/api/admin/about/expertise/delete?id=${expertise[index].id}`, config)
+         .then(({data} ) => {
+            console.log(data);
+            axios.get("/api/about").then(({ data }) => {
+               setExpertise(data.expertises);
+            });
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   }
 
    const handleAddMotto = () => {
       if (newExpertise.name === "" || newExpertise.text === "") return;
@@ -121,7 +139,9 @@ const AdminAboutMotto = () => {
                      >
                         Sửa
                      </Button>
-                     <Button variant="danger" className="mt-2">
+                     <Button variant="danger" className="mt-2" onClick={() => {
+                        handleDeleteMotto(index)
+                     }}>
                         Xóa
                      </Button>
                   </div>
@@ -136,7 +156,7 @@ const AdminAboutMotto = () => {
          <input
             type="text"
             className="w-100"
-            placeholder="Branding"
+            // placeholder="Branding"
             value={newExpertise.name}
             onChange={(e) => {
                setNewExpertise({ ...newExpertise, name: e.target.value });

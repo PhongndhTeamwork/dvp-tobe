@@ -99,6 +99,22 @@ const AdminCompanyPartner = () => {
          });
    };
 
+   const handleDeletePartner = (id) => {
+      const result = window.confirm('Bạn có chắc chắn muốn xóa ?');
+      if(!result) return;
+      axios
+         .delete(`/api/admin/company/partner/delete?id=${id}`, config)
+         .then(({data} ) => {
+            console.log(data);
+            axios.get("/api/about").then(({ data }) => {
+               getPartners();
+            });
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
+
    const getPartners = () => {
       axios.get("/api/info/partners").then(({ data }) => {
          setPartners(
@@ -158,9 +174,15 @@ const AdminCompanyPartner = () => {
                      >
                         Sửa
                      </Button>
-                     {/* <Button variant="danger" className="mt-2">
-                     Xóa
-                  </Button> */}
+                     <Button
+                        variant="danger"
+                        className="mt-2"
+                        onClick={() => {
+                           handleDeletePartner(partner.id);
+                        }}
+                     >
+                        Xóa
+                     </Button>
                   </div>
                </div>
             ))}

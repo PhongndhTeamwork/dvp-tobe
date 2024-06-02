@@ -61,6 +61,22 @@ const AdminWorkCategory = () => {
          });
    };
 
+   const handleDeleteCategory = (id) => {
+      const result = window.confirm("Bạn có chắc chắn muốn xóa ?");
+      if (!result) return;
+      axios
+         .delete(`/api/admin/work/category/delete?id=${id}`, config)
+         .then(({ data }) => {
+            console.log(data);
+            axios.get("/api/work").then(({ data }) => {
+               setCategories(data.categories);
+            });
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
+
    return (
       <div className="category">
          <h4 className="mt-0">Chỉnh sửa các danh mục dự án</h4>
@@ -95,7 +111,13 @@ const AdminWorkCategory = () => {
                      >
                         Sửa
                      </Button>
-                     <Button variant="danger" className="mx-1 my-1">
+                     <Button
+                        variant="danger"
+                        className="mx-1 my-1"
+                        onClick={() => {
+                           handleDeleteCategory(category.id);
+                        }}
+                     >
                         Xóa
                      </Button>
                   </div>

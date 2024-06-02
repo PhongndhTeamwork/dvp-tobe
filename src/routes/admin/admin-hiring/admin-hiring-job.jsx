@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -6,8 +5,18 @@ import { Button } from "react-bootstrap";
 
 const AdminHiringJob = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
+   const config = {
+      headers: {
+         Authorization: userInfo,
+      },
+   };
 
    const [jobs, setJobs] = useState([]);
+   const [newJob, setNewJob] = useState({
+      jobName: "",
+      description: "",
+      contactMail: "",
+   });
 
    useEffect(() => {
       axios.get("/api/hiring").then(({ data }) => {
@@ -16,23 +25,12 @@ const AdminHiringJob = () => {
    }, []);
 
    const handleUpdateJob = (index) => {
-      const config = {
-         headers: {
-            Authorization: userInfo,
-         },
-      };
-
-      // console.log(jobs);
-
       const data = { ...jobs[index] };
 
       const formData = new FormData();
       Object.keys(data).forEach((key) => {
          formData.append(key, data[key]);
       });
-
-      // console.log(formData);
-
       axios
          .post("/api/admin/hiring/job/save", formData, config)
          .then(({ data }) => {
@@ -43,19 +41,65 @@ const AdminHiringJob = () => {
          });
    };
 
+   const handleAddJob = () => {
+      if (
+         newJob.contactMail === "" ||
+         newJob.description === "" ||
+         newJob.jobName === ""
+      ) {
+         return;
+      }
+      let data = { ...newJob };
+
+      const formData = new FormData();
+
+      Object.keys(data).forEach((key) => {
+         formData.append(key, data[key]);
+      });
+
+      axios
+         .post("/api/admin/hiring/job/save", formData, config)
+         .then(({ data }) => {
+            console.log(data.message);
+            axios.get("/api/hiring").then(({ data }) => {
+               setJobs(data.jobs);
+            });
+            setNewJob({
+               jobName: "",
+               description: "",
+               contactMail: "",
+            });
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
+
+   const handleDeleteJob = (id) => {
+      const result = window.confirm("Bạn có chắc chắn muốn xóa ?");
+      if (!result) return;
+      axios
+         .delete(`/api/admin/hiring/job/delete?id=${id}`, config)
+         .then(({ data }) => {
+            console.log(data);
+            axios.get("/api/hiring").then(({ data }) => {
+               setJobs(data.jobs);
+            });
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
+
    return (
       <div className="job">
-         <h4 className="mt-5">Chỉnh sửa danh sách công việc đang tuyển dụng</h4>
-         <button className="btn btn-primary px-4 fs-5 mt-4 mb-2" type="button">
-            Thêm mới
-         </button>
+         <h4 className="mt-0">Chỉnh sửa danh sách công việc đang tuyển dụng</h4>
          <br />
-
-         <div className="list-job p-3 pt-1 my-4 border">
+         <div className="list-job p-3 pt-1 my-2 border">
             {jobs?.map((job, index) => (
                <div
                   key={index}
-                  className="job-item row w-100 align-items-center mt-3 border-bottom pb-2"
+                  className="job-item row w-100 align-items-center mt-3 border-bottom pb-2 mb-5 pt-2"
                >
                   <div className="col-10">
                      <input
@@ -68,7 +112,7 @@ const AdminHiringJob = () => {
                         }}
                      />
                      <textarea
-                        className="fw-medium w-100 mt-3 p-2"
+                        className="fw-medium w-100 mt-3"
                         defaultValue={job?.description}
                         rows={4}
                         onChange={(e) => {
@@ -98,50 +142,62 @@ const AdminHiringJob = () => {
                      >
                         Sửa
                      </Button>
-                     <Button variant="danger" className="mt-2">
+                     <Button
+                        variant="danger"
+                        className="mt-2"
+                        onClick={() => {
+                           handleDeleteJob(job.id);
+                        }}
+                     >
                         Xóa
                      </Button>
                   </div>
                </div>
             ))}
          </div>
-
-         {/* <h4 className="mt-5">Thêm vị trí tuyển dụng mới</h4>
-         <label htmlFor="">Vị trí tuyển dụng</label>
-         <br />
-         <input
-            type="text"
-            className="w-100"
-            placeholder="The story of DVP"
-            value=""
-         />
          <br />
 
-         <label htmlFor="">Mô tả công việc</label>
+         <h4 className="mt-5">Thêm công việc</h4>
          <br />
-         <textarea className="w-100 p-2" name="" id="" rows="3">
-            Đoạn văn chữ thường
-         </textarea>
-         <br />
-         <label htmlFor="">Hướng dẫn ứng tuyển</label>
-         <br />
-         <textarea className="w-100 p-2" name="" id="" rows="3">
-            Đoạn văn chữ thường
-         </textarea>
-         <br />
-         <label htmlFor="">Email liên hệ</label>
-         <br />
-         <input
-            type="text"
-            className="w-100"
-            placeholder="Câu chuyện về DVP"
-            value=""
-         />
-         <br /> */}
+         <div className="job-item row w-100 align-items-center mt-3 border-bottom pb-2">
+            <div className="col-10">
+               <input
+                  className="fw-medium w-100"
+                  placeholder="Name"
+                  value={newJob?.jobName}
+                  onChange={(e) => {
+                     setNewJob({ ...newJob, jobName: e.target.value });
+                  }}
+               />
+               <textarea
+                  className="fw-medium w-100 mt-3"
+                  rows={4}
+                  placeholder="Description"
+                  value={newJob?.description}
+                  onChange={(e) => {
+                     setNewJob({ ...newJob, description: e.target.value });
+                  }}
+               />
+               <input
+                  className="fw-medium w-100 mt-3"
+                  placeholder="Contact Mail"
+                  value={newJob?.contactMail}
+                  onChange={(e) => {
+                     setNewJob({ ...newJob, contactMail: e.target.value });
+                  }}
+               />
+            </div>
+         </div>
 
-         {/* <button className="btn btn-primary px-4 fs-4 mt-5" type="button">
-            Submit
-         </button> */}
+         <button
+            className="btn btn-primary px-4 fs-4 mt-5"
+            type="button"
+            onClick={() => {
+               handleAddJob();
+            }}
+         >
+            Thêm
+         </button>
          {/* <button className="btn btn-danger px-4 fs-4 mt-5" type="button">
             Hủy
          </button> */}

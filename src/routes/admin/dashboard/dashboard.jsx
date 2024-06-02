@@ -1,6 +1,6 @@
 import "./dashboard.css";
 
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import Notification from "../../../components/notification/notification";
 
@@ -11,6 +11,14 @@ import { Button } from "react-bootstrap";
 
 const Dashboard = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
+   const config = useMemo(() => {
+      return {
+         headers: {
+            Authorization: userInfo,
+         },
+      };
+   }, [userInfo]);
+
    const { fullView } = useContext(AdminContext);
 
    const [customers, setCustomers] = useState([]);
@@ -21,12 +29,6 @@ const Dashboard = () => {
    const navigate = useNavigate();
 
    useEffect(() => {
-      const config = {
-         headers: {
-            Authorization: userInfo,
-         },
-      };
-
       axios
          .get("/api/admin/company/customer", config)
          .then(async ({ data }) => {
@@ -35,14 +37,9 @@ const Dashboard = () => {
          .catch(async (error) => {
             console.log(error);
          });
-   }, [userInfo, dispatch, navigate]);
+   }, [userInfo, dispatch, navigate, config]);
 
    const handleChangeStatus = (id) => {
-      const config = {
-         headers: {
-            Authorization: userInfo,
-         },
-      };
       axios
          .post(`/api/admin/company/customer/update?id=${id}`, {}, config)
          .then(({ data }) => {
@@ -55,6 +52,23 @@ const Dashboard = () => {
             customersTemp[index].status = 1;
 
             setCustomers(customersTemp);
+         })
+         .catch((error) => {
+            console.log(error.message);
+         });
+   };
+
+   const handleDeleteCustomer = (id) => {
+      const result = window.confirm("Bạn có chắc chắn muốn xóa ?");
+      if (!result) return;
+      axios
+         .delete(`/api/admin/company/customer/delete?id=${id}`, config)
+         .then(({ data }) => {
+            console.log(data);
+            axios.get("/api/admin/company/customer", config).then(({ data }) => {
+               setCustomers(data.customers);
+               if (currentCustomer.id === id) setCurrentCustomer(-1);
+            });
          })
          .catch((error) => {
             console.log(error.message);
@@ -119,7 +133,16 @@ const Dashboard = () => {
                                        </p>
                                     </div>
                                     <span className="ms-auto me-4">
-                                       {customer?.phone}
+                                       {/* {customer?.phone} */}
+                                       <Button
+                                          variant="danger"
+                                          className="mt-2"
+                                          onClick={() => {
+                                             handleDeleteCustomer(customer.id);
+                                          }}
+                                       >
+                                          Xóa
+                                       </Button>
                                     </span>
                                  </label>
                               ))}

@@ -42,7 +42,7 @@ const AdminAboutStory = () => {
    };
    return (
       <div className="story">
-         <h4 className="mt-5">Chỉnh sửa câu chuyện trang giới thiệu</h4>
+         <h4 className="mt-0">Chỉnh sửa câu chuyện trang giới thiệu</h4>
 
          <label htmlFor="">Sub title</label>
          <br />
