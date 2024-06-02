@@ -114,7 +114,7 @@ const AdminRoutes = () => {
             </Route>
             <Route path="/dashboard/home" element={<AdminHome />}>
                <Route path="banner" element={<AdminHomeBanner />} />
-               <Route path="service" element={<AdminHomeService />} />
+               {/* <Route path="service" element={<AdminHomeService />} /> */}
                <Route path="story" element={<AdminHomeStory />} />
                <Route path="video" element={<AdminHomeVideo />} />
             </Route>
@@ -122,10 +122,10 @@ const AdminRoutes = () => {
                <Route path="job" element={<AdminHiringJob />} />
                <Route path="banner" element={<AdminHiringBanner />} />
                <Route path="story" element={<AdminHiringStory />} />
-               <Route path="gmail" element={<AdminHiringGmail />} />
+               {/* <Route path="gmail" element={<AdminHiringGmail />} /> */}
             </Route>
             <Route path="/dashboard/contact" element={<AdminContact />}>
-               <Route path="location" element={<AdminContactLocation />} />
+               {/* <Route path="location" element={<AdminContactLocation />} /> */}
                <Route path="paragraph" element={<AdminContactParagraph />} />
                <Route path="story" element={<AdminContactStory />} />
             </Route>

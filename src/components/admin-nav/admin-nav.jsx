@@ -6,13 +6,13 @@ const AdminNav = () => {
    const categories = [
       {
          title: "Trang chủ",
-         contents: ["Banner", "Video", "Story", "Dịch vụ"],
+         contents: ["Banner", "Video", "Story"],
          link: "/admin/dashboard/home",
          subLinks: [
             "/admin/dashboard/home/banner",
             "/admin/dashboard/home/video",
             "/admin/dashboard/home/story",
-            "/admin/dashboard/home/service",
+            // "/admin/dashboard/home/service",
          ],
       },
       {
@@ -39,22 +39,22 @@ const AdminNav = () => {
       },
       {
          title: "Tuyển dụng",
-         contents: ["Banner", "Story", "Vị trí tuyển dụng", "Link gmail"],
+         contents: ["Banner", "Story", "Vị trí tuyển dụng"],
          link: "/admin/dashboard/hiring",
          subLinks: [
             "/admin/dashboard/hiring/banner",
             "/admin/dashboard/hiring/story",
             "/admin/dashboard/hiring/job",
-            "/admin/dashboard/hiring/gmail",
+            // "/admin/dashboard/hiring/gmail",
          ],
       },
       {
          title: "Liên hệ",
-         contents: ["Story", "Ảnh location", "Đoạn văn tiêu đề"],
+         contents: ["Story", "Đoạn văn tiêu đề"],
          link: "/admin/contact",
          subLinks: [
             "/admin/dashboard/contact/story",
-            "/admin/dashboard/contact/location",
+            // "/admin/dashboard/contact/location",
             "/admin/dashboard/contact/paragraph",
          ],
       },

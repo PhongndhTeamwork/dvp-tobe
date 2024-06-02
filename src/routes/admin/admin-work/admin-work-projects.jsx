@@ -8,7 +8,6 @@ import CatalogeProject from "../../../components/cataloge-project/cataloge-proje
 
 import DatePicker from "react-datepicker";
 
-
 const AdminWorkProjects = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
    const [projects, setProjects] = useState([]);
@@ -83,7 +82,6 @@ const AdminWorkProjects = () => {
    }, []);
 
    const checkHasValidated = () => {
-      console.log(newProjectInfo);
       if (
          newProjectInfo.subTitle === "" ||
          newProjectInfo.title === "" ||
@@ -105,12 +103,12 @@ const AdminWorkProjects = () => {
          return false;
       }
       if (categoriesId.length < 1) {
-         console.log(3);
+         console.log(4);
          return false;
       }
 
       if (newProjectInfo.images.length !== 8) {
-         console.log(4);
+         console.log(5);
          return false;
       }
       return !newProjectInfo.images.some((element) => {
@@ -168,7 +166,7 @@ const AdminWorkProjects = () => {
 
       let data = { ...newProjectInfo };
 
-      let date = new Date(data.finishDate);
+      let date = data.finishDate ? new Date(data.finishDate) : new Date();
 
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -184,8 +182,24 @@ const AdminWorkProjects = () => {
       const formData = new FormData();
 
       Object.keys(data).forEach((key) => {
-         formData.append(key, data[key]);
+         if (key !== "images" && key !== "categoryId") {
+            formData.append(key, data[key]);
+         }
       });
+
+      data.images.forEach((image, index) => {
+         formData.append("images", image);
+         // formData.append("images[" + index + "]", image);
+      });
+
+      data.categoryIds.forEach((categoryId, index) => {
+         formData.append("categoryIds", categoryId);
+         // formData.append("categoryIds[" + index + "]", categoryId);
+      });
+
+      for (const pair of formData.entries()) {
+         console.log(pair[0] + ", " + pair[1]);
+      }
 
       axios
          .post("/api/admin/work/project/save", formData, config)
@@ -209,10 +223,10 @@ const AdminWorkProjects = () => {
          </div>
          <div className="d-flex justify-content-center">
             <Button variant="dark" onClick={handlePrev} className="mx-2">
-               <i class="fa-solid fa-left-long"></i>
+               <i className="fa-solid fa-left-long"></i>
             </Button>
             <Button variant="dark" onClick={handleNext} className="mx-2">
-               <i class="fa-solid fa-right-long"></i>
+               <i className="fa-solid fa-right-long"></i>
             </Button>
          </div>
          <div className="add-project">
@@ -269,12 +283,14 @@ const AdminWorkProjects = () => {
                         name=""
                         id={`list-category-${index}`}
                         onChange={() => {
-                           if (categoriesId.includes(index)) {
-                              var categoryIdIndex = categoriesId.indexOf(index);
+                           if (categoriesId.includes(category.id)) {
+                              var categoryIdIndex = categoriesId.indexOf(
+                                 category.id
+                              );
 
                               categoriesId.splice(categoryIdIndex, 1);
                            } else {
-                              categoriesId.push(index);
+                              categoriesId.push(category.id);
                            }
                            setCategoriesId(categoriesId);
                         }}
@@ -473,7 +489,7 @@ const AdminWorkProjects = () => {
                      <div className="col-12 py-2">
                         <Image
                            className="w-100"
-                           src={newProjectImages[7]}
+                           src={newProjectImages[6]}
                            alt=""
                            srcset=""
                         />

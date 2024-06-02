@@ -8,9 +8,6 @@ import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
 import { Image, Carousel } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-
-
-
 const AdminCompanyService = () => {
    const [services, setServices] = useState([]);
 
@@ -24,12 +21,20 @@ const AdminCompanyService = () => {
                      (image) =>
                         process.env.REACT_APP_BASE_IMAGE_URL + "/" + image
                   ),
+                  serviceQuotes: service.serviceQuotes.map((quote) => {
+                     return {
+                        ...quote,
+                        icon:
+                           process.env.REACT_APP_BASE_IMAGE_URL +
+                           "/" +
+                           quote.icon,
+                     };
+                  }),
                };
             })
          );
       });
-   }, []);
-
+   },[]);
 
    return (
       <div className="service">
@@ -122,6 +127,6 @@ const AdminCompanyService = () => {
          </button>
       </div>
    );
-}
+};
 
 export default AdminCompanyService;

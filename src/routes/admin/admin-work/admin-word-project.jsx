@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
 import DatePicker from "react-datepicker";
@@ -16,10 +16,11 @@ const AdminWorkProject = () => {
    const [categoryList, setCategoryList] = useState([]);
    const [projectImages, setProjectImages] = useState([]);
 
-   const [imageIndexes, setImageIndexes] = useState([]);
    const [newThumbnailImages, setNewThumbnailImages] = useState({});
    const [categoriesId, setCategoriesId] = useState([]);
    const [newProjectImages, setNewProjectImages] = useState([]);
+
+   const listCategoryRef = useRef(null);
 
    useEffect(() => {
       axios
@@ -45,12 +46,13 @@ const AdminWorkProject = () => {
                   (image) => process.env.REACT_APP_BASE_IMAGE_URL + "/" + image
                )
             );
+            setCategoriesId(projectsData.categories.map((c) => c.id));
          })
 
          .catch((error) => {
             throw new Error(error);
          });
-   }, [id,project]);
+   }, [id]);
 
    useEffect(() => {
       axios
@@ -61,7 +63,22 @@ const AdminWorkProject = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   });
+   }, []);
+
+   useEffect(() => {
+      const updateCheckedState = () => {
+         const inputs = listCategoryRef.current.querySelectorAll(
+            'input[type="checkbox"]'
+         );
+         inputs.forEach((input) => {
+            const categoryId = parseInt(input.id.split("-")[2]);
+            input.checked = categoriesId.includes(categoryId);
+         });
+      };
+      updateCheckedState();
+      const timeoutId = setTimeout(updateCheckedState, 300);
+      return () => clearTimeout(timeoutId);
+   }, [categoriesId]);
 
    const handleSelectThumbnail = (e, type) => {
       const file = e.target.files[0];
@@ -102,6 +119,67 @@ const AdminWorkProject = () => {
          };
          reader.readAsDataURL(file);
       }
+   };
+
+   const handleSubmit = () => {
+      const config = {
+         headers: {
+            Authorization: userInfo,
+         },
+      };
+
+      let data = { ...project };
+
+      let date = new Date(data.finishDate);
+
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+
+      const formattedDate = `${year}-${month}-${day}`;
+
+      let filterProjectImage = [];
+      let imageIndexes = [];
+
+      for (var i = 0; i < projectImages.length; i++) {
+         if (typeof projectImages[i] === "object") {
+            filterProjectImage.push(projectImages[i]);
+            imageIndexes.push(i);
+         }
+      }
+
+      data.categoryIds = categoriesId;
+      data.finishDate = formattedDate;
+      data.images = filterProjectImage;
+      data.indexImage = imageIndexes;
+      if (typeof data.thumbnailRect !== "object") delete data.thumbnailRect;
+      if (typeof data.thumbnailSquare !== "object") delete data.thumbnailSquare;
+
+      const formData = new FormData();
+
+      console.log(data);
+
+      Object.keys(data).forEach((key) => {
+         if (key !== "images") formData.append(key, data[key]);
+      });
+
+      data.images.forEach((image, index) => {
+         formData.append("images", image);
+         // formData.append("images[" + index + "]", image);
+      });
+
+      // for (const pair of formData.entries()) {
+      //    console.log(pair[0] + ", " + pair[1]);
+      // }
+
+      // axios
+      //    .post("/api/admin/work/project/save", formData, config)
+      //    .then(({ data }) => {
+      //       console.log(data.message);
+      //    })
+      //    .catch((error) => {
+      //       console.log(error.message);
+      //    });
    };
 
    return (
@@ -158,29 +236,31 @@ const AdminWorkProject = () => {
 
                <label htmlFor="">Danh mục sản phẩm</label>
                <br />
-               <div className="list-category">
+               <div className="list-category" ref={listCategoryRef}>
                   {categoryList?.map((category, index) => (
                      <label
                         key={index}
                         className="category-item d-flex align-items-center p-2 mt-0 mb-0"
-                        htmlFor={`list-category-${index}`}
+                        htmlFor={`list-category-${category.id}`}
                      >
                         <input
                            type="checkbox"
-                           name=""
-                           id={`list-category-${index}`}
-                           checked={project.categories.includes(
-                              (c) => c.id === category.id
-                           )}
-                           onChange={() => {
-                              if (categoriesId.includes(index)) {
-                                 var categoryIdIndex =
-                                    categoriesId.indexOf(index);
-
+                           name="list-category"
+                           id={`list-category-${category.id}`}
+                           onChange={(e) => {
+                              const checked = e.target.checked;
+                              if (!checked) {
+                                 var categoryIdIndex = categoriesId.indexOf(
+                                    category.id
+                                 );
                                  categoriesId.splice(categoryIdIndex, 1);
                               } else {
-                                 categoriesId.push(index);
+                                 categoriesId.push(category.id);
                               }
+                              if (categoriesId.includes(category.id)) {
+                              } else {
+                              }
+                              console.log(categoriesId);
                               setCategoriesId(categoriesId);
                            }}
                         />
@@ -518,7 +598,8 @@ const AdminWorkProject = () => {
                   className="btn btn-primary px-4 fs-5 mt-4"
                   type="button"
                   onClick={() => {
-                     // if (checkHasValidated()) handleSubmit();
+                     // if (checkHasValidated())
+                     handleSubmit();
                   }}
                >
                   Thêm
