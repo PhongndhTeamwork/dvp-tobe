@@ -3,10 +3,10 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
-import HomeIcon from "../../assets/images/others/home-icon.png";
-import MessageIcon from "../../assets/images/others/message-icon.png";
-import LinkIcon from "../../assets/images/others/link-icon.png";
-import PhoneIcon from "../../assets/images/others/phone-icon.png";
+import HomeIcon from "../../assets/svg/mobile-icon/home-icon-nav.svg";
+import MessageIcon from "../../assets/svg/mobile-icon/form-icon-nav.svg";
+import LinkIcon from "../../assets/svg/mobile-icon/social-icon-nav.svg";
+import PhoneIcon from "../../assets/svg/mobile-icon/phone-icon-nav.svg";
 import axios from "axios";
 import ContactForm from "../contact-form/contact-form";
 

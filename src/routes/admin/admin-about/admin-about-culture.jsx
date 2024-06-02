@@ -1,10 +1,5 @@
 import { Image } from "react-bootstrap";
 
-import CultureImage1 from "../../../assets/images/culture/culture1.png";
-import CultureImage2 from "../../../assets/images/culture/culture2.png";
-import CultureImage3 from "../../../assets/images/culture/culture3.png";
-import CultureImage4 from "../../../assets/images/culture/culture4.png";
-import CultureImage5 from "../../../assets/images/culture/culture5.png";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";

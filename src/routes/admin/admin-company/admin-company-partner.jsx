@@ -3,8 +3,6 @@ import { Fragment, useEffect, useState } from "react";
 import axios from "axios";
 import { Button, Image } from "react-bootstrap";
 
-// import DemoImage from "../../../assets/images/culture/culture1.png";
-
 const AdminCompanyPartner = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
    const config = {

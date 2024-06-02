@@ -5,14 +5,14 @@ import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import FacebookSVG from "../../assets/images/svg/social/facebook.svg";
-import FacebookGraySVG from "../../assets/images/svg/social/facebook-gray.svg";
-import InstagramSVG from "../../assets/images/svg/social/instagram.svg";
-import InstagramGraySVG from "../../assets/images/svg/social/instagram-gray.svg";
-import YoutubeSVG from "../../assets/images/svg/social/youtube.svg";
-import YoutubeGraySVG from "../../assets/images/svg/social/youtube-gray.svg";
-import ZaloSVG from "../../assets/images/svg/social/zalo.svg";
-import ZaloGraySVG from "../../assets/images/svg/social/zalo-gray.svg";
+import FacebookSVG from "../../assets/svg/social/fb.svg";
+import FacebookGraySVG from "../../assets/svg/social/fb-line.svg";
+import InstagramSVG from "../../assets/svg/social/ins.svg";
+import InstagramGraySVG from "../../assets/svg/social/ins-line.svg";
+import YoutubeSVG from "../../assets/svg/social/you-tube.svg";
+import YoutubeGraySVG from "../../assets/svg/social/you-yube-line.svg";
+import ZaloSVG from "../../assets/svg/social/zalo.svg";
+import ZaloGraySVG from "../../assets/svg/social/zalo-line.svg";
 
 import axios from "axios";
 

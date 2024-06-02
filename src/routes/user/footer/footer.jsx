@@ -4,7 +4,7 @@ import "../../../styles/base.css";
 import "../../../styles/font.css";
 import "../../../styles/style.css";
 import "../../../styles/bootstrap.min.css";
-import CopyrightIcon from "../../../assets/images/svg/copyright.svg";
+import CopyrightIcon from "../../../assets/svg/element-in-web/copyright.svg";
 import { Image } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";

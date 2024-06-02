@@ -11,8 +11,7 @@ const AdminNav = () => {
          subLinks: [
             "/admin/dashboard/home/banner",
             "/admin/dashboard/home/video",
-            "/admin/dashboard/home/story",
-            // "/admin/dashboard/home/service",
+            "/admin/dashboard/home/story"
          ],
       },
       {
@@ -44,8 +43,7 @@ const AdminNav = () => {
          subLinks: [
             "/admin/dashboard/hiring/banner",
             "/admin/dashboard/hiring/story",
-            "/admin/dashboard/hiring/job",
-            // "/admin/dashboard/hiring/gmail",
+            "/admin/dashboard/hiring/job"
          ],
       },
       {
@@ -54,7 +52,6 @@ const AdminNav = () => {
          link: "/admin/contact",
          subLinks: [
             "/admin/dashboard/contact/story",
-            // "/admin/dashboard/contact/location",
             "/admin/dashboard/contact/paragraph",
          ],
       },

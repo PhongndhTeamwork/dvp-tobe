@@ -1,10 +1,6 @@
 import { Link } from "react-router-dom";
 import { Image, Carousel } from "react-bootstrap";
 
-import CarouselImage1 from "../../../assets/images/carousel/carousel-1.png";
-import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
-import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
-import Video from "../../../assets/images/others/video-auto.mp4";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -86,15 +82,15 @@ const AdminHomeService = () => {
          <div className="carousel__imgs my-4 py-2 border w-100">
             <div className="img w-25 mx-2 border">
                <i className="fa-solid fa-xmark"></i>
-               <Image className="w-100" src={CarouselImage1} />
+               <Image className="w-100" src={""} />
             </div>
             <div className="img w-25 mx-2 border">
                <i className="fa-solid fa-xmark"></i>
-               <Image className="w-100" src={CarouselImage2} />
+               <Image className="w-100" src={""} />
             </div>
             <div className="img w-25 mx-2 border">
                <i className="fa-solid fa-xmark"></i>
-               <Image className="w-100" src={CarouselImage3} />
+               <Image className="w-100" src={""} />
             </div>
          </div>
          <input type="file" multiple name="" id="" />

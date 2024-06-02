@@ -4,10 +4,10 @@ import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ContactForm from "../../../components/contact-form/contact-form";
-import UncheckSVG from "../../../assets/images/svg/unchecked.svg";
-import CheckSVG from "../../../assets/images/svg/checked.svg";
-import ContactIcon1 from "../../../assets/images/contact/contact_icon1.png";
-import ContactIcon2 from "../../../assets/images/contact/contact_icon2.png";
+import UncheckSVG from "../../../assets/svg/element-in-web/un-check-icon-svg.svg";
+import CheckSVG from "../../../assets/svg/element-in-web/check-icon-svg.svg";
+import ContactIcon1 from "../../../assets/svg/element-in-web/form-icon-1-svg.svg";
+import ContactIcon2 from "../../../assets/svg/element-in-web/form-icon-2-svg.svg";
 
 const Quote = () => {
    const [banner, setBanner] = useState({});

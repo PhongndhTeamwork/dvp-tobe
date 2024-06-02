@@ -3,8 +3,8 @@ import { Fragment, useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
 import axios from "axios";
 
-import ContactIcon1 from "../../../assets/images/contact/contact_icon1.png";
-import ContactIcon2 from "../../../assets/images/contact/contact_icon2.png";
+import ContactIcon1 from "../../../assets/svg/element-in-web/form-icon-1-svg.svg";
+import ContactIcon2 from "../../../assets/svg/element-in-web/form-icon-2-svg.svg";
 import ContactForm from "../../../components/contact-form/contact-form";
 
 import { Carousel } from "react-bootstrap";

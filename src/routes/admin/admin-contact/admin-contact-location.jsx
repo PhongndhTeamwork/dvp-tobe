@@ -1,4 +1,3 @@
-// import OfficeBackground from "../../../assets/images/others/office-bg.jpg";
 import { Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
