@@ -167,7 +167,7 @@ const WorkProject = ({ projects }) => {
                   style={{ aspectRatio: "auto" }}
                >
                   <Fragment>
-                     <div className="img-grayscale" style={{ height: "100%" }}>
+                     <div className="img-grayscale" style={{ height: "100%", aspectRatio: "auto" }}>
                         <Image
                            src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[5]?.thumbnailRect}`}
                            alt="project image"

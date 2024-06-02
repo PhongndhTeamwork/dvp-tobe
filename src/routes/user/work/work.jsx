@@ -159,14 +159,11 @@ const Work = () => {
             {activeFilter === -1 ? (
                <WorkProject projects={projects} />
             ) : (
-               <Row>
-                  {projects.map((project, index) => {
-                     return (
-                        <Col xs={12} sm={12} md={6} lg={4} xl={3} xxl={3}>
-                           <div
-                              key={index}
-                              // className="rectangle-100 rectangle-tab-50 rectangle-pc-25 p-0"
-                           >
+               <div className="work__content">
+                  <div className="wrapper-flex">
+                     {projects.map((project, index) => {
+                        return (
+                           <div key={index} className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
                               <Link
                                  className="project img-grayscale-hover arrow-right-translate-hover d-block"
                                  to={`/cataloge/${project?.id ?? 1}`}
@@ -175,7 +172,7 @@ const Work = () => {
                                     <div className="img-grayscale">
                                        <Image
                                           src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
-                                          alt="black and white image"
+                                          alt="project image"
                                        />
                                     </div>
 
@@ -194,10 +191,10 @@ const Work = () => {
                                  </Fragment>
                               </Link>
                            </div>
-                        </Col>
-                     );
-                  })}
-               </Row>
+                        );
+                     })}
+                  </div>
+               </div>
             )}
          </div>
 
