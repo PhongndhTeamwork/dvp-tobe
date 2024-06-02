@@ -1,18 +1,12 @@
 import "./admin-hiring.css";
 
-import { Fragment, useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
-import { Image } from "react-bootstrap";
-
-import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
-
-import Notification from "../../../components/notification/notification";
+import { Fragment, useContext, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
 import { AdminContext } from "../adminContext";
 
 const AdminHiring = () => {
    const { fullView } = useContext(AdminContext);
-
    return (
       <Fragment>
          {/* <!-- Pop up to show notifications --> */}

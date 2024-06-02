@@ -1,19 +1,7 @@
 import "./admin-work.css";
 
 import { Fragment, useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
-import { Image } from "react-bootstrap";
-import Notification from "../../../components/notification/notification";
-
-import CatalogeImage1 from "../../../assets/images/cataloge/cataloge1.png";
-import CatalogeImage2 from "../../../assets/images/cataloge/cataloge2.png";
-import CatalogeImage3 from "../../../assets/images/cataloge/cataloge3.png";
-import CatalogeImage4 from "../../../assets/images/cataloge/cataloge4.png";
-import CatalogeImage5 from "../../../assets/images/cataloge/cataloge5.png";
-import CatalogeImage6 from "../../../assets/images/cataloge/cataloge6.png";
-import ProjectImage1 from "../../../assets/images/cataloge/project-1.png";
-
-
+import { Outlet } from "react-router-dom";
 import { AdminContext } from "../adminContext";
 
 const AdminWork = () => {
@@ -21,9 +9,6 @@ const AdminWork = () => {
 
    return (
       <Fragment>
-         {/* <Notification /> */}
-
-         {/* <!-- Loading animation --> */}
          <div id="popup-loader">
             <div className="circle"></div>
          </div>
@@ -40,7 +25,7 @@ const AdminWork = () => {
                <div className="content-body px-3 py-4 px-md-4">
                   <div className="row">
                      <div className="col-12 col-lg-12 col-xl-12 col-xxl-12">
-                        <Outlet/>
+                        <Outlet />
                      </div>
                   </div>
                </div>

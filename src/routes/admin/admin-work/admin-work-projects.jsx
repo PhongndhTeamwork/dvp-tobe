@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import { Button, Col, Form, Image, Row } from "react-bootstrap";
+import { Button, Form, Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -7,18 +6,8 @@ import axios from "axios";
 import { Fragment } from "react";
 import CatalogeProject from "../../../components/cataloge-project/cataloge-project";
 
-import CatalogeImage1 from "../../../assets/images/cataloge/cataloge1.png";
-import CatalogeImage2 from "../../../assets/images/cataloge/cataloge2.png";
-import CatalogeImage3 from "../../../assets/images/cataloge/cataloge3.png";
-import CatalogeImage4 from "../../../assets/images/cataloge/cataloge4.png";
-import CatalogeImage5 from "../../../assets/images/cataloge/cataloge5.png";
-import CatalogeImage6 from "../../../assets/images/cataloge/cataloge6.png";
-import ProjectImage1 from "../../../assets/images/cataloge/project-1.png";
-
 import DatePicker from "react-datepicker";
 
-// import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
-// import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
 
 const AdminWorkProjects = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
@@ -615,7 +604,7 @@ const AdminWorkProjects = () => {
                   if (checkHasValidated()) handleSubmit();
                }}
             >
-               Submit
+               Thêm
             </button>
             {/* <button className="btn btn-danger px-4 fs-5 mt-4" type="button">
                Hủy

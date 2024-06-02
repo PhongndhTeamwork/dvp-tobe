@@ -1,30 +1,14 @@
 import "./admin-home.css";
 
-import { Fragment, useContext, useEffect, useRef, useState } from "react";
+import { Fragment, useContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-// import { Image, Carousel } from "react-bootstrap";
-
-// import CarouselImage1 from "../../../assets/images/carousel/carousel-1.png";
-// import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
-// import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
-// import Video from "../../../assets/images/others/video-auto.mp4";
-// import Notification from "../../../components/notification/notification";
 
 import { AdminContext } from "../adminContext";
-import axios from "axios";
-import { useSelector } from "react-redux";
 
 const AdminHome = () => {
    const { fullView } = useContext(AdminContext);
-
-   const { userInfo } = useSelector((state) => state.userLogin);
-
-
    return (
       <Fragment>
-         {/* <Notification /> */}
-
-         {/* <!-- Loading animation --> */}
          <div id="popup-loader">
             <div className="circle"></div>
          </div>

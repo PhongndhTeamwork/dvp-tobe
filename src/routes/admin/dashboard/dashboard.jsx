@@ -1,14 +1,13 @@
 import "./dashboard.css";
 
 import { Fragment, useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Notification from "../../../components/notification/notification";
+import { useNavigate } from "react-router-dom";
+// import Notification from "../../../components/notification/notification";
 
 import { AdminContext } from "../adminContext";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
-import { logout } from "../../../app/features/userLoginSlice";
 
 const Dashboard = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
@@ -30,13 +29,11 @@ const Dashboard = () => {
 
       axios
          .get("/api/admin/company/customer", config)
-         .then(({ data }) => {
+         .then(async ({ data }) => {
             setCustomers(data.customers);
          })
          .catch(async (error) => {
             console.log(error);
-            await dispatch(logout());
-            navigate("/admin");
          });
    }, [userInfo, dispatch, navigate]);
 

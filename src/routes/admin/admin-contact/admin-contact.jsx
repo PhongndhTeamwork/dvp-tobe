@@ -2,20 +2,12 @@ import "./admin-contact.css";
 
 import { Fragment, useContext } from "react";
 import { Outlet } from "react-router-dom";
-
-import Notification from "../../../components/notification/notification";
-
 import { AdminContext } from "../adminContext";
-
 const AdminContact = () => {
    const { fullView } = useContext(AdminContext);
 
    return (
       <Fragment>
-         {/* <!-- Pop up to show notifications --> */}
-         {/* <Notification /> */}
-
-         {/* <!-- Loading animation --> */}
          <div id="popup-loader">
             <div className="circle"></div>
          </div>

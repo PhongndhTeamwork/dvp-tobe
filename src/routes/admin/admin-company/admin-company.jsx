@@ -1,22 +1,12 @@
 import "./admin-company.css";
 
-import { Fragment, useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
-import { Image } from "react-bootstrap";
-
-import Notification from "../../../components/notification/notification";
-
-import RamenImage from "../../../assets/images/others/ramen.png";
-import OfficeBackground from "../../../assets/images/others/office-bg.jpg";
-
+import { Fragment, useContext, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import { AdminContext } from "../adminContext";
-
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 const AdminCompany = () => {
    const { fullView } = useContext(AdminContext);
+
    return (
       <Fragment>
          {/* <Notification /> */}
@@ -38,7 +28,7 @@ const AdminCompany = () => {
                <div className="content-body px-0 py-4 px-md-4">
                   <div className="row">
                      <div className="col-12 col-lg-12 col-xl-12 col-xxl-12">
-                        <Outlet/>
+                        <Outlet />
                      </div>
                   </div>
                </div>

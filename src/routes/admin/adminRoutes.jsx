@@ -11,12 +11,15 @@ import AdminContact from "./admin-contact/admin-contact";
 import AdminCompany from "./admin-company/admin-company";
 import AdminAbout from "./admin-about/admin-about";
 
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import AdminHeader from "../../components/admin-header/admin-header";
 import AdminNav from "../../components/admin-nav/admin-nav";
 
 import { AdminContext } from "./adminContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../app/features/userLoginSlice";
 
 import AdminAboutBanner from "./admin-about/admin-about-banner";
 import AdminAboutStory from "./admin-about/admin-about-story";
@@ -50,6 +53,32 @@ const AdminRoutes = () => {
    const location = useLocation();
 
    const { fullView } = useContext(AdminContext);
+   const { userInfo } = useSelector((state) => state.userLogin);
+   const dispatch = useDispatch();
+
+   const navigate = useNavigate();
+
+   useEffect(() => {
+      const config = {
+         headers: {
+            Authorization: userInfo,
+         },
+      };
+
+      axios
+         .get("/api/admin/company/customer", config)
+         .then(async ({ data }) => {
+            if(data.success === false){
+               await dispatch(logout());
+               navigate("/admin");
+            }
+         })
+         .catch(async (error) => {
+            console.log(error);
+            await dispatch(logout());
+            navigate("/admin");
+         });
+   }, [userInfo, dispatch, navigate]);
 
    return (
       <div className="admin-routes">
