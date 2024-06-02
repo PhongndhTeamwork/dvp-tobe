@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-// import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
 
 import { Image } from "react-bootstrap";
 import axios from "axios";

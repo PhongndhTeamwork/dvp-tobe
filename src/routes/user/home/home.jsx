@@ -247,7 +247,7 @@ const Home = () => {
                            <Fragment>
                               <div className="img-grayscale">
                                  <Image
-                                    src={project?.thumbnailSquare}
+                                    src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${project?.thumbnailSquare}`}
                                     alt="black and white image"
                                  />
                               </div>

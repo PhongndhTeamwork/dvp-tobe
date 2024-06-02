@@ -1,8 +1,3 @@
-// import CarouselImage1 from "../../../assets/images/carousel/carousel-1.png";
-// import CarouselImage2 from "../../../assets/images/carousel/carousel-2.png";
-// import CarouselImage3 from "../../../assets/images/carousel/carousel-3.png";
-// import Video from "../../../assets/images/others/video-auto.mp4";
-
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";

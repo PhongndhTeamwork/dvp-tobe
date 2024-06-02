@@ -4,7 +4,6 @@ import { Fragment, useContext, useEffect, useState } from "react";
 import { AdminContext } from "../adminContext";
 import { Outlet } from "react-router-dom";
 
-
 const AdminAbout = () => {
    const { fullView } = useContext(AdminContext);
 

@@ -1,6 +1,5 @@
 import { Image } from "react-bootstrap";
 
-import Avatar1 from "../../../assets/images/avatar/1.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -18,7 +17,7 @@ const AdminAboutStaff = () => {
          <div className="list-staff my-4 border p-3">
             <div className="staff-item d-flex align-items-center row">
                <div className="col-2">
-                  <Image className="w-100" src={Avatar1} alt="" />
+                  <Image className="w-100" src={""} alt="" />
                </div>
                <div className="col-8">
                   <h6 className="fw-bold fs-5">Giám đốc</h6>
@@ -45,7 +44,7 @@ const AdminAboutStaff = () => {
 
             <div className="staff-item d-flex align-items-center mt-3 row">
                <div className="col-2">
-                  <Image className="w-100" src={Avatar1} alt="" />
+                  <Image className="w-100" src={""} alt="" />
                </div>
                <div className="col-8">
                   <h6 className="fw-bold fs-5">Giám đốc</h6>

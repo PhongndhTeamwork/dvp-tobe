@@ -1,4 +1,3 @@
-import OfficeBackground from "../../../assets/images/others/office-bg.jpg";
 import { AdminContext } from "../adminContext";
 import { Image } from "react-bootstrap";
 
