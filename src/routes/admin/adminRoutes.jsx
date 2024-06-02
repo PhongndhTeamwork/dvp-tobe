@@ -48,6 +48,7 @@ import AdminCompanyInfo from "./admin-company/admin-company-info";
 import AdminCompanyPartner from "./admin-company/admin-company-partner";
 import AdminCompanyService from "./admin-company/admin-company-service";
 import AdminWorkProject from "./admin-work/admin-word-project";
+import AdminCompanyServices from "./admin-company/admin-company-services";
 
 const AdminRoutes = () => {
    const location = useLocation();
@@ -132,7 +133,8 @@ const AdminRoutes = () => {
             <Route path="/dashboard/company" element={<AdminCompany />}>
                <Route path="info" element={<AdminCompanyInfo />} />
                <Route path="partner" element={<AdminCompanyPartner />} />
-               <Route path="service" element={<AdminCompanyService />} />
+               <Route path="services" element={<AdminCompanyServices />} />
+               <Route path="service/:id" element={<AdminCompanyService />} />
             </Route>
             <Route path="/dashboard/about" element={<AdminAbout />}>
                <Route path="banner" element={<AdminAboutBanner />} />

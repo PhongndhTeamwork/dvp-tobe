@@ -2,6 +2,45 @@
    width: 100% !important;
 }
 
-.react-datepicker-wrapper input{
+.react-datepicker-wrapper input
+{
    width: 100% !important;
+}
+
+
+.admin-company-service__quote-col{
+   border-radius: 0.25rem;
+   border: 1px solid grey;
+   padding: 1rem;
+}
+
+.admin-company-service__category-col{
+   border-radius: 0.25rem;
+   border: 1px solid grey;
+   padding: 1rem;
+}
+
+.admin-company-service__list{
+   width: 100%;
+   padding: 1rem;
+   border: 1px solid black;
+   max-height: 60vh;
+   overflow: scroll;
+}
+
+.admin-company-service__body{
+   padding : 1rem;
+   border: 1px solid grey;
+   border-radius: 0.5rem;
+   margin : 1rem 0;
+}
+
+.admin-company-service__body:hover{
+   cursor: pointer;
+   opacity: 0.8;
+}
+
+.admin-company-service__body:active{
+   cursor: pointer;
+   opacity: 0.6;
 }

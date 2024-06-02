@@ -62,7 +62,7 @@ const AdminNav = () => {
          subLinks: [
             "/admin/dashboard/company/info",
             "/admin/dashboard/company/partner",
-            "/admin/dashboard/company/service",
+            "/admin/dashboard/company/services",
          ],
       },
       {
