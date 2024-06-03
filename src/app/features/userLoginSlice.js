@@ -13,9 +13,11 @@ export const login = createAsyncThunk("USER_LOGIN", async (info, thunkAPI) => {
             "Content-Type": "application/json",
          },
       };
+      console.log(info);
       const data = await axios.post(preApi+`/api/auth/login`, info, config);
       return data.headers.authorization;
    } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(
          error.response && error.response.data.detail
             ? error.response.data.detail
