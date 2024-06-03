@@ -58,9 +58,13 @@ const AdminCompanyPartner = () => {
       axios
          .post(preApi+"/api/admin/about/banner/save", formData, config)
          .then(({ data }) => {
-            console.log(data.message);
+            if (data.success)
+               alert("Lưu thành công");
+            else 
+               alert("Lưu thất bại", data.message);
          })
          .catch((error) => {
+            alert("Lưu thất bại", error.message);
             console.log(error.message);
          });
    };

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
+import { Image } from "react-bootstrap";
 
 const AdminAboutStory = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
@@ -27,24 +28,30 @@ const AdminAboutStory = () => {
       };
 
       const data = { ...story };
-
-      console.log(data);
-
       const formData = new FormData();
+
       Object.keys(data).forEach((key) => {
-         formData.append(key, data[key]);
+         if (key === "images") {
+            formData.append("images", data.images[0]);
+         } else {
+            formData.append(key, data[key]);
+         }
       });
 
-      console.log(data);
+      formData.append("position", "about1");
 
-      // axios
-      //    .post("/api/admin/home/story/save", formData, config)
-      //    .then((response) => {
-      //       console.log(response);
-      //    })
-      //    .catch((error) => {
-      //       console.log(error);
-      //    });
+      axios
+         .post("/api/admin/about/story/save", formData, config)
+         .then(({ data }) => {
+            if (data.success)
+               alert("Lưu thành công");
+            else
+               alert("Lỗi ", data.message);
+         })
+         .catch((error) => {
+            console.log(error);
+            alert(error.message);
+         });
    };
    return (
       <div className="story">
@@ -104,7 +111,7 @@ const AdminAboutStory = () => {
          <label htmlFor="">Đoạn văn 3</label>
          <br />
          <textarea
-            className="w-100 p-2"
+            className="w-100 p-2 mb-5"
             name=""
             id=""
             rows="3"
@@ -115,6 +122,12 @@ const AdminAboutStory = () => {
          ></textarea>
          <br />
 
+         {story.images && story.images.length > 0 && story.images[0] instanceof File && (
+            <Image className="w-25 my-4" src={URL.createObjectURL(story.images[0])}/>
+         )}
+         <br/>
+         <input type="file" onChange={(e) => {setStory({...story, images: [e.target.files[0]]})}}/><br/>
+
          <button
             onClick={() => {
                handleSubmitStory();
@@ -124,9 +137,6 @@ const AdminAboutStory = () => {
          >
             Submit
          </button>
-         {/* <button className="btn btn-danger px-4 fs-4 mt-5" type="button">
-            Hủy
-         </button> */}
       </div>
    );
 };

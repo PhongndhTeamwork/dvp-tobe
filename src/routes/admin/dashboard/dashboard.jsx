@@ -77,6 +77,7 @@ const Dashboard = () => {
             });
          })
          .catch((error) => {
+            alert("lưu thất bại");
             console.log(error.message);
          });
    };

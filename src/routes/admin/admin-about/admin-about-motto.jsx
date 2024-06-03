@@ -46,12 +46,13 @@ const AdminAboutMotto = () => {
       axios
          .post("/api/admin/about/expertise/save", formData, config)
          .then(({ data }) => {
-            console.log(data.message);
+            alert("Lưu thành công");
             axios.get("/api/about").then(({ data }) => {
                setExpertise(data.expertises);
             });
          })
          .catch((error) => {
+            alert("Lưu thất bại ", error.message);
             console.log(error.message);
          });
    };
@@ -62,12 +63,14 @@ const AdminAboutMotto = () => {
       axios
          .delete(`/api/admin/about/expertise/delete?id=${expertise[index].id}`, config)
          .then(({data} ) => {
-            console.log(data);
+            alert("Lưu thành công");
+
             axios.get("/api/about").then(({ data }) => {
                setExpertise(data.expertises);
             });
          })
          .catch((error) => {
+            alert("Lưu thất bại");
             console.log(error.message);
          });
    }
@@ -84,7 +87,8 @@ const AdminAboutMotto = () => {
       axios
          .post("/api/admin/about/expertise/save", formData, config)
          .then(({ data }) => {
-            console.log(data.message);
+            alert("Lưu thành công");
+            
             setNewExpertise({
                name: "",
                text: "",
@@ -94,6 +98,7 @@ const AdminAboutMotto = () => {
             });
          })
          .catch((error) => {
+            alert("Lưu thất bại");
             console.log(error.message);
          });
    };
