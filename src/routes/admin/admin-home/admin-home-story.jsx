@@ -23,21 +23,21 @@ const AdminHomeStory = () => {
       const { images, ...remainingData } = story;
       const data = { ...remainingData };
 
-      // console.log(data);
-
       const formData = new FormData();
       Object.keys(data).forEach((key) => {
          formData.append(key, data[key]);
       });
 
-      // console.log(formData);
-
       axios
          .post("/api/admin/home/story/save", formData, config)
-         .then(({data}) => {
-            console.log(data.message);
+         .then(({ data }) => {
+            if (data.success)
+               alert("Lưu thành công");
+            else 
+               alert("Lưu thất bại", data.message);
          })
          .catch((error) => {
+            alert("Lưu thất bại", error.message);
             console.log(error.message);
          });
    };

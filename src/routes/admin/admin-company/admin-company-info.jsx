@@ -22,7 +22,7 @@ const AdminCompanyInfo = () => {
          setCompanyInfo({
             ...data.company,
             logoImage:
-               process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.company.logo,
+               process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.company.logoImage,
             companyImage:
                process.env.REACT_APP_BASE_IMAGE_URL +
                "/" +
@@ -35,7 +35,7 @@ const AdminCompanyInfo = () => {
 
          setImages({
             logoImage:
-               process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.company.logo,
+               process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.company.logoImage,
             companyImage:
                process.env.REACT_APP_BASE_IMAGE_URL +
                "/" +
@@ -53,7 +53,7 @@ const AdminCompanyInfo = () => {
       const reader = new FileReader();
       if (file) {
          switch (type) {
-            case "logo":
+            case "logoImage":
                setCompanyInfo({ ...companyInfo, logoImage: file });
                reader.onloadend = () => {
                   setImages({ ...images, logoImage: reader.result });
@@ -118,10 +118,14 @@ const AdminCompanyInfo = () => {
       axios
          .post("/api/admin/company/info/save", formData, config)
          .then(({ data }) => {
-            console.log(data.message);
+            if (data.success)
+               alert("Lưu thành công");
+            else 
+               alert("Lưu thất bại", data.message);
          })
          .catch((error) => {
-            console.log(error);
+            alert("Lưu thất bại", error.message);
+            console.log(error.message);
          });
    };
 
@@ -134,7 +138,7 @@ const AdminCompanyInfo = () => {
          <input
             type="file"
             onChange={(e) => {
-               handleChangeImage(e, "logo");
+               handleChangeImage(e, "logoImage");
             }}
          />
          <br />

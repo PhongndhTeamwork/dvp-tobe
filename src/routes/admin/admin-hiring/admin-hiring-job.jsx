@@ -34,9 +34,13 @@ const AdminHiringJob = () => {
       axios
          .post("/api/admin/hiring/job/save", formData, config)
          .then(({ data }) => {
-            console.log(data.message);
+            if (data.success)
+               alert("Lưu thành công");
+            else 
+               alert("Lưu thất bại", data.message);
          })
          .catch((error) => {
+            alert("Lưu thất bại", error.message);
             console.log(error.message);
          });
    };
@@ -60,7 +64,8 @@ const AdminHiringJob = () => {
       axios
          .post("/api/admin/hiring/job/save", formData, config)
          .then(({ data }) => {
-            console.log(data.message);
+            alert("Lưu thành công");
+
             axios.get("/api/hiring").then(({ data }) => {
                setJobs(data.jobs);
             });
@@ -71,6 +76,7 @@ const AdminHiringJob = () => {
             });
          })
          .catch((error) => {
+            alert("Lưu thất bại");
             console.log(error.message);
          });
    };
@@ -81,12 +87,14 @@ const AdminHiringJob = () => {
       axios
          .delete(`/api/admin/hiring/job/delete?id=${id}`, config)
          .then(({ data }) => {
+            alert("Lưu thành công");
             console.log(data);
             axios.get("/api/hiring").then(({ data }) => {
                setJobs(data.jobs);
             });
          })
          .catch((error) => {
+            alert("Lưu thất bại");
             console.log(error.message);
          });
    };

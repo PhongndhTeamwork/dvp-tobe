@@ -64,13 +64,15 @@ const Dashboard = () => {
       axios
          .delete(`/api/admin/company/customer/delete?id=${id}`, config)
          .then(({ data }) => {
-            console.log(data);
+            alert("Lưu thành công");
+
             axios.get(`/api/admin/company/customer`, config).then(({ data }) => {
                setCustomers(data.customers);
                if (currentCustomer.id === id) setCurrentCustomer(-1);
             });
          })
          .catch((error) => {
+            alert("lưu thất bại");
             console.log(error.message);
          });
    };
