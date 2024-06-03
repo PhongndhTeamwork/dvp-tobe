@@ -1,10 +1,16 @@
 import { useSelector } from "react-redux";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { Button, Image } from "react-bootstrap";
 
 const AdminCompanyPartner = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
+
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    const config = {
       headers: {
          Authorization: userInfo,
@@ -50,7 +56,7 @@ const AdminCompanyPartner = () => {
       });
 
       axios
-         .post("/api/admin/about/banner/save", formData, config)
+         .post(preApi+"/api/admin/about/banner/save", formData, config)
          .then(({ data }) => {
             console.log(data.message);
          })
@@ -84,7 +90,7 @@ const AdminCompanyPartner = () => {
       });
 
       axios
-         .post("/api/admin/company/partner/save", formData, config)
+         .post(preApi+"/api/admin/company/partner/save", formData, config)
          .then(({ data }) => {
             console.log(data.message);
             setNewPartner({
@@ -103,10 +109,10 @@ const AdminCompanyPartner = () => {
       const result = window.confirm('Bạn có chắc chắn muốn xóa ?');
       if(!result) return;
       axios
-         .delete(`/api/admin/company/partner/delete?id=${id}`, config)
+         .delete(preApi+`/api/admin/company/partner/delete?id=${id}`, config)
          .then(({data} ) => {
             console.log(data);
-            axios.get("/api/about").then(({ data }) => {
+            axios.get(preApi+"/api/about").then(({ data }) => {
                getPartners();
             });
          })
@@ -116,7 +122,7 @@ const AdminCompanyPartner = () => {
    };
 
    const getPartners = () => {
-      axios.get("/api/info/partners").then(({ data }) => {
+      axios.get(preApi+"/api/info/partners").then(({ data }) => {
          setPartners(
             data.partners.map((partner) => {
                return {

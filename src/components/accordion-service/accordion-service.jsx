@@ -1,10 +1,9 @@
 import "./accordion-service.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Accordion, Carousel } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-import axios from "axios";
 
 const AccordionService = ({
    title,

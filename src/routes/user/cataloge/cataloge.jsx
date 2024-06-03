@@ -1,5 +1,5 @@
 import "./cataloge.css";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { Image } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 
@@ -7,8 +7,12 @@ import axios from "axios";
 import CatalogeProject from "../../../components/cataloge-project/cataloge-project";
 
 const Cataloge = () => {
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    const { id } = useParams();
-   console.log(id);
    const [project, setProject] = useState([]);
    const [projectSuggestion, setProjectSuggestion] = useState([]);
    const [activeCarouselIndex, setActiveCarouselIndex] = useState(0);
@@ -50,7 +54,7 @@ const Cataloge = () => {
 
    useEffect(() => {
       axios
-         .get("/api/catalog/" + id)
+         .get(preApi+"/api/catalog/" + id)
          .then(({ data }) => {
             setProject(data.project);
             setProjectSuggestion(data.projectSuggestion);
@@ -59,7 +63,7 @@ const Cataloge = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   }, [id]);
+   }, [id,preApi]);
 
    useEffect(() => {
       window.scrollTo(0, 0);

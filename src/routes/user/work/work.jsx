@@ -1,6 +1,6 @@
 import "./work.css";
-import { Fragment, useEffect, useState } from "react";
-import { Col, Image, Row } from "react-bootstrap";
+import { Fragment, useEffect, useMemo, useState } from "react";
+import {  Image } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 
 import axios from "axios";
@@ -14,13 +14,11 @@ import WorkProject from "../../../components/work-project/work-project";
 import { Link } from "react-router-dom";
 
 const Work = () => {
-   // const filterItems = [
-   //    "Nhận diện thương hiệu",
-   //    "POD Design",
-   //    "Quay dựng thiết kế video",
-   // ];
-
-   // const [showAllCategories, setShowAllCategories] = useState(true);
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    const [activeCategory, setActiveCategory] = useState("all");
    const [activeFilter, setActiveFilter] = useState(0);
@@ -33,7 +31,7 @@ const Work = () => {
 
    useEffect(() => {
       axios
-         .get("/api/work")
+         .get(preApi+"/api/work")
          .then(({ data }) => {
             setStory(data.story);
             setCategories(data.categories);
@@ -45,7 +43,7 @@ const Work = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    const handleAllCategoriesClick = () => {
       setActiveCategory("all");
@@ -68,7 +66,7 @@ const Work = () => {
    useEffect(() => {
       if (categoryIndex === -1) {
          axios
-            .get("/api/work")
+            .get(preApi+"/api/work")
             .then(({ data }) => {
                setProjects(data.projects);
             })
@@ -77,7 +75,7 @@ const Work = () => {
             });
       } else {
          axios
-            .get(`/api/work/search?category=${categoryIndex}`)
+            .get(preApi+`/api/work/search?category=${categoryIndex}`)
             .then(({ data }) => {
                setProjects(data.projects);
             })
@@ -85,7 +83,7 @@ const Work = () => {
                throw new Error(error);
             });
       }
-   }, [categoryIndex]);
+   }, [categoryIndex,preApi]);
 
    return (
       <Fragment>

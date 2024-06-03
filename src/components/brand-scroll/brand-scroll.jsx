@@ -1,10 +1,15 @@
 import "./brand-scroll.css";
 
 import { Image } from "react-bootstrap";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import axios from "axios";
 
 const BrandScroll = ({ homePage }) => {
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    const [activeDot, setActiveDot] = useState(0);
    const scrollWrapperRef = useRef(null);
    const scrollWrapperContentRef = useRef(null);
@@ -16,14 +21,14 @@ const BrandScroll = ({ homePage }) => {
 
    useEffect(() => {
       axios
-         .get("/api/info/partners")
+         .get(preApi+"/api/info/partners")
          .then(({ data }) => {
             setPartners(data.partners);
          })
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    const getCurrentTranslateX = (scrollWrapperContent) => {
       const style = window.getComputedStyle(scrollWrapperContent);

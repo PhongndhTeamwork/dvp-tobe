@@ -19,6 +19,12 @@ const Dashboard = () => {
       };
    }, [userInfo]);
 
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
+
    const { fullView } = useContext(AdminContext);
 
    const [customers, setCustomers] = useState([]);
@@ -30,18 +36,18 @@ const Dashboard = () => {
 
    useEffect(() => {
       axios
-         .get(`/api/admin/company/customer`, config)
+         .get(preApi+`/api/admin/company/customer`, config)
          .then(async ({ data }) => {
             setCustomers(data.customers);
          })
          .catch(async (error) => {
             console.log(error);
          });
-   }, [userInfo, dispatch, navigate, config]);
+   }, [userInfo, dispatch, navigate, config, preApi]);
 
    const handleChangeStatus = (id) => {
       axios
-         .post(`/api/admin/company/customer/update?id=${id}`, {}, config)
+         .post(preApi+`/api/admin/company/customer/update?id=${id}`, {}, config)
          .then(({ data }) => {
             console.log(data.message);
             let customersTemp = [...customers];
@@ -62,10 +68,10 @@ const Dashboard = () => {
       const result = window.confirm("Bạn có chắc chắn muốn xóa ?");
       if (!result) return;
       axios
-         .delete(`/api/admin/company/customer/delete?id=${id}`, config)
+         .delete(preApi+`/api/admin/company/customer/delete?id=${id}`, config)
          .then(({ data }) => {
             console.log(data);
-            axios.get(`/api/admin/company/customer`, config).then(({ data }) => {
+            axios.get(preApi+`/api/admin/company/customer`, config).then(({ data }) => {
                setCustomers(data.customers);
                if (currentCustomer.id === id) setCurrentCustomer(-1);
             });

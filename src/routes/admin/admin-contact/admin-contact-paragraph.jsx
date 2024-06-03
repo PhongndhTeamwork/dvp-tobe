@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useMemo, useState } from "react";
 
 const AdminContactParagraph = () => {
    const [contactForm, setContactForm] = useState({});
 
    const { userInfo } = useSelector((state) => state.userLogin);
-
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    const handleSubmit = () => {
       const config = {
          headers: {
@@ -22,7 +25,7 @@ const AdminContactParagraph = () => {
       });
 
       // axios
-      //    .post("/api/admin/contact/contact-form/save", formData, config)
+      //    .post(preApi+"/api/admin/contact/contact-form/save", formData, config)
       //    .then((response) => {
       //       console.log("Success");
       //    })

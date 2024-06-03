@@ -1,10 +1,16 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 
 const AdminAboutMotto = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
+
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    const config = {
       headers: {
@@ -20,10 +26,10 @@ const AdminAboutMotto = () => {
    });
 
    useEffect(() => {
-      axios.get("/api/about").then(({ data }) => {
+      axios.get(preApi+"/api/about").then(({ data }) => {
          setExpertise(data.expertises);
       });
-   }, []);
+   }, [preApi]);
 
    const handleUpdateMotto = (index) => {
       let data = {

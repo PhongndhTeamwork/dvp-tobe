@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 
@@ -11,6 +11,12 @@ const AdminHiringJob = () => {
       },
    };
 
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
+
    const [jobs, setJobs] = useState([]);
    const [newJob, setNewJob] = useState({
       jobName: "",
@@ -19,10 +25,10 @@ const AdminHiringJob = () => {
    });
 
    useEffect(() => {
-      axios.get("/api/hiring").then(({ data }) => {
+      axios.get(preApi+"/api/hiring").then(({ data }) => {
          setJobs(data.jobs);
       });
-   }, []);
+   }, [preApi]);
 
    const handleUpdateJob = (index) => {
       const data = { ...jobs[index] };
@@ -32,7 +38,7 @@ const AdminHiringJob = () => {
          formData.append(key, data[key]);
       });
       axios
-         .post("/api/admin/hiring/job/save", formData, config)
+         .post(preApi+"/api/admin/hiring/job/save", formData, config)
          .then(({ data }) => {
             console.log(data.message);
          })
@@ -58,10 +64,10 @@ const AdminHiringJob = () => {
       });
 
       axios
-         .post("/api/admin/hiring/job/save", formData, config)
+         .post(preApi+"/api/admin/hiring/job/save", formData, config)
          .then(({ data }) => {
             console.log(data.message);
-            axios.get("/api/hiring").then(({ data }) => {
+            axios.get(preApi+"/api/hiring").then(({ data }) => {
                setJobs(data.jobs);
             });
             setNewJob({
@@ -79,10 +85,10 @@ const AdminHiringJob = () => {
       const result = window.confirm("Bạn có chắc chắn muốn xóa ?");
       if (!result) return;
       axios
-         .delete(`/api/admin/hiring/job/delete?id=${id}`, config)
+         .delete(preApi+`/api/admin/hiring/job/delete?id=${id}`, config)
          .then(({ data }) => {
             console.log(data);
-            axios.get("/api/hiring").then(({ data }) => {
+            axios.get(preApi+"/api/hiring").then(({ data }) => {
                setJobs(data.jobs);
             });
          })

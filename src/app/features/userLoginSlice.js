@@ -2,13 +2,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const login = createAsyncThunk("USER_LOGIN", async (info, thunkAPI) => {
+   const preApi =
+      process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+
    try {
       const config = {
          headers: {
             "Content-Type": "application/json",
          },
       };
-      const data = await axios.post(`/api/auth/login`, info, config);
+      const data = await axios.post(preApi+`/api/auth/login`, info, config);
       return data.headers.authorization;
    } catch (error) {
       return thunkAPI.rejectWithValue(

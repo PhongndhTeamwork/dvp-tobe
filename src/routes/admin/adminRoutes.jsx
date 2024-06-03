@@ -30,6 +30,7 @@ import AdminAboutMotto from "./admin-about/admin-about-motto";
 import AdminWorkCategory from "./admin-work/admin-work-category";
 import AdminWorkProjects from "./admin-work/admin-work-projects";
 import AdminWorkStory from "./admin-work/admin-work-story";
+import AdminWorkProject from "./admin-work/admin-work-project";
 
 import AdminContactParagraph from "./admin-contact/admin-contact-paragraph";
 import AdminContactStory from "./admin-contact/admin-contact-story";
@@ -42,9 +43,9 @@ import AdminHomeBanner from "./admin-home/admin-home-banner";
 import AdminHomeStory from "./admin-home/admin-home-story";
 import AdminHomeVideo from "./admin-home/admin-home-video";
 import AdminCompanyInfo from "./admin-company/admin-company-info";
+
 import AdminCompanyPartner from "./admin-company/admin-company-partner";
 import AdminCompanyService from "./admin-company/admin-company-service";
-import AdminWorkProject from "./admin-work/admin-word-project";
 import AdminCompanyServices from "./admin-company/admin-company-services";
 
 const AdminRoutes = () => {

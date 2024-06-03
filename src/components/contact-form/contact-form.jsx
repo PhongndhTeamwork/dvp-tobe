@@ -1,9 +1,9 @@
 import "./contact-form.css";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useMemo } from "react";
 import { useState, useRef } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 import FacebookSVG from "../../assets/svg/social/fb.svg";
 import FacebookGraySVG from "../../assets/svg/social/fb-line.svg";
@@ -19,7 +19,13 @@ import axios from "axios";
 const ContactForm = () => {
    const [companyInfos, setCompanyInfos] = useState({});
    const [serviceItems, setServiceItems] = useState([]);
-   const { userInfo } = useSelector((state) => state.userLogin);
+   // const { userInfo } = useSelector((state) => state.userLogin);
+
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    const [customer, setCustomer] = useState({
       fullname: "",
@@ -31,25 +37,25 @@ const ContactForm = () => {
 
    useEffect(() => {
       axios
-         .get("/api/info/services")
+         .get(preApi+"/api/info/services")
          .then(({ data }) => {
             setServiceItems(data.services);
          })
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    useEffect(() => {
       axios
-         .get("/api/info/company")
+         .get(preApi+"/api/info/company")
          .then(({ data }) => {
             setCompanyInfos(data.company);
          })
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    const [isServiceCategoryRevealed, setIsServiceCategoryRevealed] =
       useState(false);
@@ -115,7 +121,7 @@ const ContactForm = () => {
       });
 
       axios
-         .post("/api/info/customer/submit", formData)
+         .post(preApi+"/api/info/customer/submit", formData)
          .then(({ data }) => {
             console.log(data.message);
          })

@@ -3,12 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { AdminContext } from "../../routes/admin/adminContext";
 import { useContext, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../../app/features/userLoginSlice";
 
 const AdminHeader = () => {
    const dispatch = useDispatch();
-   const { userInfo } = useSelector((state) => state.userLogin);
+   // const { userInfo } = useSelector((state) => state.userLogin);
    const { fullView, setFullView } = useContext(AdminContext);
 
    const [isShowNavDropdown, setIsShowNavDropdown] = useState(false);

@@ -1,5 +1,5 @@
 import "./hiring.css";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -7,6 +7,11 @@ import axios from "axios";
 import AccordionService from "../../../components/accordion-service/accordion-service";
 
 const Hiring = () => {
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    const [banner, setBanner] = useState("");
    const [story, setStory] = useState("");
@@ -18,7 +23,7 @@ const Hiring = () => {
 
    useEffect(() => {
       axios
-         .get("/api/hiring")
+         .get(preApi+"/api/hiring")
          .then(({ data }) => {
             setBanner(data.banner);
             setStory(data.story);
@@ -27,7 +32,7 @@ const Hiring = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    return (
       <Fragment>

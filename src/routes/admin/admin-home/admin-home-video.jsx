@@ -1,28 +1,32 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import CustomAlert from "../../../components/custom-alert/custom-alert";
 
 const AdminHomeVideo = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
-
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    const [video, setVideo] = useState();
    const [initialVideo, setInitialVideo] = useState();
 
    const containerRef = useRef(null);
 
    const [message, setMessage] = useState({ message: "", type: "" });
-   const [showAlert, setShowAlert] = useState(false);
+   // const [showAlert, setShowAlert] = useState(false);
 
    useEffect(() => {
-      axios.get("/api/home").then(({ data }) => {
+      axios.get(preApi+"/api/home").then(({ data }) => {
          setVideo(process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.video);
          setInitialVideo(
             process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.video
          );
       });
-   }, []);
+   }, [preApi]);
 
    const handleSubmitVideo = () => {
       const config = {
@@ -39,7 +43,7 @@ const AdminHomeVideo = () => {
       });
 
       axios
-         .post("/api/admin/home/video/save", formData, config)
+         .post(preApi+"/api/admin/home/video/save", formData, config)
          .then(({data}) => {
             setMessage({
                message: data.message,

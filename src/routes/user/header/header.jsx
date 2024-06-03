@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./header.css";
 import "../../../styles/animation.css";
 import "../../../styles/base.css";
@@ -12,6 +12,11 @@ import MobileNavbar from "../../../components/mobile-navbar/mobile-navbar";
 import axios from "axios";
 
 const Header = () => {
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    const [isHeaderActive, setIsHeaderActive] = useState(false);
    const [currentPathname, setCurrentPathname] = useState("");
    const [isHeaderColorChangeable, setIsHeaderColorChangeable] = useState(true);
@@ -22,14 +27,14 @@ const Header = () => {
 
    useEffect(() => {
       axios
-         .get("/api/info/company")
+         .get(preApi+"/api/info/company")
          .then(({ data }) => {
             setCompanyInfos(data.company);
          })
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    useEffect(() => {
       // if (location.pathname === currentPathname) return;

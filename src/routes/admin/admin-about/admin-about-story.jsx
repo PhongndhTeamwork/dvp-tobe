@@ -1,17 +1,23 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
 const AdminAboutStory = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
 
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
+
    const [story, setStory] = useState({});
 
    useEffect(() => {
-      axios.get("/api/about").then(({ data }) => {
+      axios.get(preApi+"/api/about").then(({ data }) => {
          setStory(data.story1);
       });
-   }, []);
+   }, [preApi]);
 
    const handleSubmitStory = () => {
       const config = {

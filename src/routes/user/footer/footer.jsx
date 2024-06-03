@@ -7,27 +7,31 @@ import "../../../styles/bootstrap.min.css";
 import CopyrightIcon from "../../../assets/svg/element-in-web/copyright.svg";
 import { Image } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import axios from "axios";
 
 const Footer = () => {
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    const location = useLocation();
 
    const [companyInfos, setCompanyInfos] = useState({});
 
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    useEffect(() => {
       axios
-         .get("/api/info/company")
+         .get(preApi + "/api/info/company")
          .then(({ data }) => {
             setCompanyInfos(data.company);
          })
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    return (
       <footer
@@ -40,23 +44,23 @@ const Footer = () => {
                   <div className="rectangle-100 rectangle-tab-50 rectangle-pc-25 info">
                      <div className="info__header">
                         <h1 className="info__header-logo">
-                           {urlRegex.test(companyInfos.logo) ? (
-                              <Image src={companyInfos.logo} />
+                           {companyInfos?.logo ? (
+                              <Image src={companyInfos?.logo} />
                            ) : (
-                              "Logo"
+                              <div>Logo</div>
                            )}
                         </h1>
                      </div>
                      <div className="info__content">
-                        <h6 className="text">{companyInfos.companyName}</h6>
+                        <h6 className="text">{companyInfos?.companyName}</h6>
                         <h6 className="text">
-                           GCNĐKKD: {companyInfos.licenseCode}
+                           GCNĐKKD: {companyInfos?.licenseCode}
                         </h6>
                         <h6 className="text">
-                           Cấp ngày: {companyInfos.licenseDate}
+                           Cấp ngày: {companyInfos?.licenseDate}
                         </h6>
                         <h6 className="text">
-                           Nơi cấp: {companyInfos.licenseAddress}
+                           Nơi cấp: {companyInfos?.licenseAddress}
                         </h6>
                      </div>
                   </div>
@@ -66,12 +70,12 @@ const Footer = () => {
                         <h3 className="heading">Hà Nội</h3>
                      </div>
                      <div className="info__content">
-                        <h6 className="text">{companyInfos.companyAddress}</h6>
-                        <h6 className="text">{companyInfos.companyPhone}</h6>
-                        <h6 className="text">{companyInfos.companyEmail}</h6>
+                        <h6 className="text">{companyInfos?.companyAddress}</h6>
+                        <h6 className="text">{companyInfos?.companyPhone}</h6>
+                        <h6 className="text">{companyInfos?.companyEmail}</h6>
                         <h6 className="text">
                            <Link to="" className="website-link">
-                              {companyInfos.companyWebsite}
+                              {companyInfos?.companyWebsite}
                            </Link>
                         </h6>
                      </div>
@@ -96,25 +100,25 @@ const Footer = () => {
                      </div>
                      <div className="info__content">
                         <Link
-                           to={companyInfos.companyFacebook}
+                           to={companyInfos?.companyFacebook}
                            className="social-link"
                         >
                            Facebook
                         </Link>
                         <Link
-                           to={companyInfos.companyInstagram}
+                           to={companyInfos?.companyInstagram}
                            className="social-link"
                         >
                            Instagram
                         </Link>
                         <Link
-                           to={companyInfos.companyZalo}
+                           to={companyInfos?.companyZalo}
                            className="social-link"
                         >
                            Zalo
                         </Link>
                         <Link
-                           to={companyInfos.companyYoutube}
+                           to={companyInfos?.companyYoutube}
                            className="social-link"
                         >
                            Youtube

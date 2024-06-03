@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 
@@ -10,14 +10,22 @@ const AdminWorkCategory = () => {
          Authorization: userInfo,
       },
    };
+
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
+
+   
    const [categories, setCategories] = useState([]);
    const [newCategory, setNewCategory] = useState("");
 
    useEffect(() => {
-      axios.get("/api/work").then(({ data }) => {
+      axios.get(preApi+"/api/work").then(({ data }) => {
          setCategories(data.categories);
       });
-   }, []);
+   }, [preApi]);
 
    const handleUpdate = (index) => {
       let data = { ...categories[index] };
@@ -29,7 +37,7 @@ const AdminWorkCategory = () => {
       });
 
       axios
-         .post("/api/admin/work/category/save", formData, config)
+         .post(preApi+"/api/admin/work/category/save", formData, config)
          .then(({ data }) => {
             console.log(data.message);
          })
@@ -48,11 +56,11 @@ const AdminWorkCategory = () => {
       });
 
       axios
-         .post("/api/admin/work/category/save", formData, config)
+         .post(preApi+"/api/admin/work/category/save", formData, config)
          .then(({ data }) => {
             console.log(data.message);
             setNewCategory("");
-            axios.get("/api/work").then(({ data }) => {
+            axios.get(preApi+"/api/work").then(({ data }) => {
                setCategories(data.categories);
             });
          })
@@ -65,10 +73,10 @@ const AdminWorkCategory = () => {
       const result = window.confirm("Bạn có chắc chắn muốn xóa ?");
       if (!result) return;
       axios
-         .delete(`/api/admin/work/category/delete?id=${id}`, config)
+         .delete(preApi+`/api/admin/work/category/delete?id=${id}`, config)
          .then(({ data }) => {
             console.log(data);
-            axios.get("/api/work").then(({ data }) => {
+            axios.get(preApi+"/api/work").then(({ data }) => {
                setCategories(data.categories);
             });
          })

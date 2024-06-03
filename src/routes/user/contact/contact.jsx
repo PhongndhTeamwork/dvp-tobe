@@ -1,5 +1,5 @@
 import "./contact.css";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { Image } from "react-bootstrap";
 import axios from "axios";
 
@@ -10,23 +10,27 @@ import ContactForm from "../../../components/contact-form/contact-form";
 import { Carousel } from "react-bootstrap";
 
 const Contact = () => {
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    const [story, setStory] = useState({});
    const [contactForm, setContactForm] = useState({});
 
    const [companyInfos, setCompanyInfos] = useState({});
 
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    useEffect(() => {
       axios
-         .get("/api/info/company")
+         .get(preApi+"/api/info/company")
          .then(({ data }) => {
             setCompanyInfos(data.company);
          })
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    useEffect(() => {
       axios

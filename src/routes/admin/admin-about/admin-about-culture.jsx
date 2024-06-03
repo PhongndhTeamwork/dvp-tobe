@@ -1,12 +1,18 @@
 import { Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
 const AdminAboutCulture = () => {
    // story2
    const { userInfo } = useSelector((state) => state.userLogin);
+
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    const [culture, setCulture] = useState({});
    const [images, setImages] = useState(["", "", "", "", ""]);
@@ -30,7 +36,7 @@ const AdminAboutCulture = () => {
    };
 
    useEffect(() => {
-      axios.get("/api/about").then(({ data }) => {
+      axios.get(preApi+"/api/about").then(({ data }) => {
          const images = data.story2.images.map(
             (image) => `${process.env.REACT_APP_BASE_IMAGE_URL}/${image}`
          );
@@ -40,7 +46,7 @@ const AdminAboutCulture = () => {
          });
          setInitialImages(images);
       });
-   }, []);
+   }, [preApi]);
    return (
       <div className="culture">
          <h4 className="mt-5">Chỉnh sửa văn hóa trang giới thiệu</h4>

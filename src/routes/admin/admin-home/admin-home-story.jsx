@@ -1,17 +1,23 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const AdminHomeStory = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
 
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
+
    const [story, setStory] = useState({});
 
    useEffect(() => {
-      axios.get("/api/home").then(({ data }) => {
+      axios.get(preApi+"/api/home").then(({ data }) => {
          setStory(data.story);
       });
-   }, []);
+   }, [preApi]);
 
    const handleSubmitStory = () => {
       const config = {
@@ -33,7 +39,7 @@ const AdminHomeStory = () => {
       // console.log(formData);
 
       axios
-         .post("/api/admin/home/story/save", formData, config)
+         .post(preApi+"/api/admin/home/story/save", formData, config)
          .then(({data}) => {
             console.log(data.message);
          })

@@ -1,5 +1,5 @@
 import "./quote.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -10,6 +10,11 @@ import ContactIcon1 from "../../../assets/svg/element-in-web/form-icon-1-svg.svg
 import ContactIcon2 from "../../../assets/svg/element-in-web/form-icon-2-svg.svg";
 
 const Quote = () => {
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    const [banner, setBanner] = useState({});
    const [services, setServices] = useState([]);
    const [contactForm, setContactForm] = useState({});
@@ -23,14 +28,14 @@ const Quote = () => {
    const detailTextRef = useRef(null);
 
    useEffect(() => {
-      axios.get("/api/info/services").then(({ data }) => {
+      axios.get(preApi+"/api/info/services").then(({ data }) => {
          setServices(data.services);
       });
-   }, []);
+   }, [preApi]);
 
    useEffect(() => {
       axios
-         .get("/api/quote")
+         .get(preApi+"/api/quote")
          .then(({ data }) => {
             setProjects(data.projects);
             setBanner(data.banner);
@@ -40,7 +45,7 @@ const Quote = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    useEffect(() => {
       const tableContent = document.querySelector(

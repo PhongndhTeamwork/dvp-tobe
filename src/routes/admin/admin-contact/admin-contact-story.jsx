@@ -2,11 +2,17 @@ import { AdminContext } from "../adminContext";
 import { Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
 const AdminContactStory = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
+
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    const [story, setStory] = useState({});
    const [storyImage, setStoryImage] = useState([]);

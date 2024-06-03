@@ -1,5 +1,5 @@
 import "./mobile-navbar.css";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
@@ -11,24 +11,29 @@ import axios from "axios";
 import ContactForm from "../contact-form/contact-form";
 
 const MobileNavbar = () => {
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
+
    const [activeItemIndex, setActiveItemIndex] = useState(0);
    const [isChanged, setIsChange] = useState(true);
    const homeIconRef = useRef(null);
 
    const [companyInfos, setCompanyInfos] = useState({});
 
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
    useEffect(() => {
       axios
-         .get("/api/info/company")
+         .get(preApi+"/api/info/company")
          .then(({ data }) => {
             setCompanyInfos(data.company);
          })
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    const handleActivateItemIndex = (index) => {
       let currentItems = document.querySelectorAll(`.navbar__item`);

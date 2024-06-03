@@ -1,7 +1,5 @@
 import "./home.css";
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect, useRef } from "react";
-import { login } from "../../../app/features/userLoginSlice";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { Fragment } from "react";
 import { Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -26,9 +24,16 @@ const Home = () => {
    //? Project
    const [projects, setProjects] = useState([]);
 
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
+
    useEffect(() => {
+      console.log(process.env.NODE_ENV);
       axios
-         .get("/api/home")
+         .get(preApi + "/api/home")
          .then(({ data }) => {
             setBanner(data.banner);
             setVideo(data.video);
@@ -39,11 +44,11 @@ const Home = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    useEffect(() => {
       axios
-         .get("/api/info/services")
+         .get(preApi + "/api/info/services")
          .then(({ data }) => {
             setServiceItems(data.services);
             // console.log(data.services);
@@ -51,7 +56,7 @@ const Home = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    //?Effect
    const videoRef = useRef(null);

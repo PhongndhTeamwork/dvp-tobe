@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 import { Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
@@ -14,11 +14,17 @@ import { Form } from "react-bootstrap";
 const AdminCompanyInfo = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
 
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
+
    const [companyInfo, setCompanyInfo] = useState({});
    const [images, setImages] = useState([]);
 
    useEffect(() => {
-      axios.get("/api/info/company").then(({ data }) => {
+      axios.get(preApi+"/api/info/company").then(({ data }) => {
          setCompanyInfo({
             ...data.company,
             logoImage:
@@ -46,7 +52,7 @@ const AdminCompanyInfo = () => {
                data.company.locationImage,
          });
       });
-   }, []);
+   }, [preApi]);
 
    const handleChangeImage = (e, type) => {
       const file = e.target.files[0];
@@ -116,7 +122,7 @@ const AdminCompanyInfo = () => {
       });
 
       axios
-         .post("/api/admin/company/info/save", formData, config)
+         .post(preApi+"/api/admin/company/info/save", formData, config)
          .then(({ data }) => {
             console.log(data.message);
          })

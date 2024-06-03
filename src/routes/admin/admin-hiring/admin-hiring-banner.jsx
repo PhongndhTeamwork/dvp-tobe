@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 
 const AdminHiringBanner = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    const [bannerImage, setBannerImage] = useState();
 
@@ -15,14 +19,14 @@ const AdminHiringBanner = () => {
 
    const bannerImageInputRef = useRef(null);
    useEffect(() => {
-      axios.get("/api/hiring").then(({ data }) => {
+      axios.get(preApi+"/api/hiring").then(({ data }) => {
          setBanner(data.banner);
 
          setBannerImage(
             process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.banner.image
          );
       });
-   }, []);
+   }, [preApi]);
 
    const handleChangeBannerImage = (e) => {
       const file = e.target.files[0];
@@ -78,7 +82,7 @@ const AdminHiringBanner = () => {
       });
 
       axios
-         .post("/api/admin/hiring/banner/save", formData, config)
+         .post(preApi+"/api/admin/hiring/banner/save", formData, config)
          .then(({ data }) => {
             console.log(data.message);
          })

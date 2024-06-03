@@ -2,13 +2,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button, Form, Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 
 import DatePicker from "react-datepicker";
 
 const AdminWorkProject = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
+
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    const { id } = useParams();
    const navigate = useNavigate();
@@ -24,7 +30,7 @@ const AdminWorkProject = () => {
 
    useEffect(() => {
       axios
-         .get("/api/catalog/" + id)
+         .get(preApi+"/api/catalog/" + id)
          .then(({ data }) => {
             let projectsData = data.project;
             setProject({
@@ -52,18 +58,18 @@ const AdminWorkProject = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   }, [id]);
+   }, [id, preApi]);
 
    useEffect(() => {
       axios
-         .get("/api/work")
+         .get(preApi+"/api/work")
          .then(({ data }) => {
             setCategoryList(data.categories);
          })
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    useEffect(() => {
       const updateCheckedState = () => {

@@ -1,9 +1,8 @@
 import "./signin.css";
 
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Notification from "../../../components/notification/notification";
 import { login } from "../../../app/features/userLoginSlice";
 import { Spinner } from "react-bootstrap";
 
@@ -19,10 +18,11 @@ const Signin = () => {
 
    const navigate = useNavigate();
 
-   // useEffect(() => {
-   //    console.log(userInfo);
-   //    console.log(error);
-   // }, [userInfo, error]);
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    const handleChangeUsername = (e) => {
       if (e.target.value === "") {

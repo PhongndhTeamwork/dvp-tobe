@@ -1,5 +1,5 @@
 import "./about.css";
-import { Fragment, useEffect } from "react";
+import { Fragment, useEffect, useMemo } from "react";
 import { Image } from "react-bootstrap";
 import { useState } from "react";
 import AccordionService from "../../../components/accordion-service/accordion-service";
@@ -7,10 +7,14 @@ import BrandScroll from "../../../components/brand-scroll/brand-scroll";
 import axios from "axios";
 
 const About = () => {
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    // const [isActive, setIsActive] = useState(false);
-   const [staffIndexes, setStaffIndexes] = useState([]);
+   // const [staffIndexes, setStaffIndexes] = useState([]);
 
    const [banner, setBanner] = useState({});
    const [firstStory, setFirstStory] = useState({});
@@ -25,7 +29,7 @@ const About = () => {
 
    useEffect(() => {
       axios
-         .get("/api/about")
+         .get(preApi+"/api/about")
          .then(({ data }) => {
             setBanner(data.banner);
 
@@ -37,17 +41,17 @@ const About = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
-   const toggleActive = (index) => {
-      if (staffIndexes.includes(index)) {
-         var removalElementIndex = staffIndexes.indexOf(index);
-         staffIndexes.splice(removalElementIndex, 1);
-         setStaffIndexes([...staffIndexes]);
-      } else {
-         setStaffIndexes([...staffIndexes, index]);
-      }
-   };
+   // const toggleActive = (index) => {
+   //    if (staffIndexes.includes(index)) {
+   //       var removalElementIndex = staffIndexes.indexOf(index);
+   //       staffIndexes.splice(removalElementIndex, 1);
+   //       setStaffIndexes([...staffIndexes]);
+   //    } else {
+   //       setStaffIndexes([...staffIndexes, index]);
+   //    }
+   // };
 
    return (
       <Fragment>

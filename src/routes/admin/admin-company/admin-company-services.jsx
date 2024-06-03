@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { Image, Row, Col, Table, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -7,6 +7,12 @@ import { useNavigate } from "react-router-dom";
 
 const AdminCompanyServices = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
+
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    const [services, setServices] = useState([]);
 
@@ -45,7 +51,7 @@ const AdminCompanyServices = () => {
    const [quoteCategoryQuantity, setQuoteCategoryQuantity] = useState(3);
 
    useEffect(() => {
-      axios.get("/api/info/services").then(({ data }) => {
+      axios.get(preApi+"/api/info/services").then(({ data }) => {
          setServices(
             data.services?.map((service) => {
                return {
@@ -67,7 +73,7 @@ const AdminCompanyServices = () => {
             })
          );
       });
-   }, []);
+   }, [preApi]);
 
    const handleChangeCarouselImages = (e, index) => {
       const file = e.target.files[0];
@@ -271,7 +277,7 @@ const AdminCompanyServices = () => {
       }
 
       axios
-         .post("/api/admin/company/service/save", formData, config)
+         .post(preApi+"/api/admin/company/service/save", formData, config)
          .then(({ data }) => {
             console.log(data.message);
          })

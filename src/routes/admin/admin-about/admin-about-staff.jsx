@@ -2,10 +2,15 @@ import { Image } from "react-bootstrap";
 
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
 const AdminAboutStaff = () => {
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    return (
       <div className="staff">
          <h4 className="mt-5">Chỉnh sửa nhân viên trang giới thiệu</h4>
