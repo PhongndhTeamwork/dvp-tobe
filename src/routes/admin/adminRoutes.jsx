@@ -64,7 +64,7 @@ const AdminRoutes = () => {
       };
 
       axios
-         .get("/api/admin/company/customer", config)
+         .get(`/api/admin/company/customer`, config)
          .then(async ({ data }) => {
             if(data.success === false){
                await dispatch(logout());

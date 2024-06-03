@@ -8,7 +8,7 @@ export const login = createAsyncThunk("USER_LOGIN", async (info, thunkAPI) => {
             "Content-Type": "application/json",
          },
       };
-      const data = await axios.post("/api/auth/login/", info, config);
+      const data = await axios.post(`/api/auth/login`, info, config);
       return data.headers.authorization;
    } catch (error) {
       return thunkAPI.rejectWithValue(
