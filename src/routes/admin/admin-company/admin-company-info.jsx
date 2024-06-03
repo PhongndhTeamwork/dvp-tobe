@@ -21,7 +21,7 @@ const AdminCompanyInfo = () => {
       axios.get("/api/info/company").then(({ data }) => {
          setCompanyInfo({
             ...data.company,
-            logo:
+            logoImage:
                process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.company.logo,
             companyImage:
                process.env.REACT_APP_BASE_IMAGE_URL +
@@ -34,7 +34,7 @@ const AdminCompanyInfo = () => {
          });
 
          setImages({
-            logo:
+            logoImage:
                process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.company.logo,
             companyImage:
                process.env.REACT_APP_BASE_IMAGE_URL +
@@ -54,9 +54,9 @@ const AdminCompanyInfo = () => {
       if (file) {
          switch (type) {
             case "logo":
-               setCompanyInfo({ ...companyInfo, logo: file });
+               setCompanyInfo({ ...companyInfo, logoImage: file });
                reader.onloadend = () => {
-                  setImages({ ...images, logo: reader.result });
+                  setImages({ ...images, logoImage: reader.result });
                };
                reader.readAsDataURL(file);
                break;
@@ -102,11 +102,12 @@ const AdminCompanyInfo = () => {
 
       data.licenseDate = formattedDate;
 
-      if (typeof data.logo !== "object") delete data.logo;
+      if (typeof data.logoImage !== "object") delete data.logoImage;
       if (typeof data.companyImage !== "object") delete data.companyImage;
       if (typeof data.locationImage !== "object") delete data.locationImage;
+      delete data.logo;
 
-      // console.log(data);
+      console.log(data);
 
       const formData = new FormData();
 
@@ -128,7 +129,7 @@ const AdminCompanyInfo = () => {
       <Fragment>
          <label htmlFor="">Logo công ty</label>
          <br />
-         <Image className="w-25 my-4" src={images?.logo} alt="" />
+         <Image className="w-25 my-4" src={images?.logoImage} alt="" />
          <br />
          <input
             type="file"
