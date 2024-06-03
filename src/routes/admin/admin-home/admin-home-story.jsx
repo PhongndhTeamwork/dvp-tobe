@@ -35,7 +35,7 @@ const AdminHomeStory = () => {
       });
 
       axios
-         .post("/api/admin/home/story/save", formData, config)
+         .post(preApi+"/api/admin/home/story/save", formData, config)
          .then(({ data }) => {
             if (data.success)
                alert("Lưu thành công");

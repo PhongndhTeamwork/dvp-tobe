@@ -19,7 +19,7 @@ const AdminContactStory = () => {
    const [initialStoryImage, setInitialStoryImage] = useState();
 
    useEffect(() => {
-      axios.get("/api/contact").then(({ data }) => {
+      axios.get(preApi+"/api/contact").then(({ data }) => {
          setStory(data.story);
          console.log(data.story)
          setStoryImage(
@@ -29,7 +29,7 @@ const AdminContactStory = () => {
             process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.story.images[0]
          );
       });
-   }, []);
+   }, [preApi]);
 
    const handleChangeImage = (e) => {
       const file = e.target.files[0];

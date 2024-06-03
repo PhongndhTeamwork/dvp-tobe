@@ -1,12 +1,18 @@
 import { Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { Fragment } from "react";
 
 const AdminWorkProjects = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
+
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    const config = {
       headers: {
          Authorization: userInfo,
@@ -15,10 +21,10 @@ const AdminWorkProjects = () => {
    const [categories, setCategories] = useState([]);
 
    useEffect(() => {
-      axios.get(`/api/work`).then(({ data }) => {
+      axios.get(preApi +`/api/work`).then(({ data }) => {
          setCategories(data.categories);
       });
-   }, []);
+   }, [preApi]);
 
    const [formData, setFormData] = useState({
       subTitle: '',
@@ -88,7 +94,7 @@ const AdminWorkProjects = () => {
       }
 
       axios
-         .post(`/api/admin/work/project/save`, data, config)
+         .post(preApi+`/api/admin/work/project/save`, data, config)
          .then(({ data }) => {
             if (data.success)
                alert("Thêm dự án mới thành công");

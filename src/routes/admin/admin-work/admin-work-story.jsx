@@ -2,10 +2,15 @@ import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
 const AdminWorkStory = () => {
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
    return (
       <div className="story">
          <h4 className="mt-4">Chỉnh sửa câu chuyện trang công việc</h4>
