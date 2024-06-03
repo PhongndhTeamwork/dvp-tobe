@@ -29,7 +29,7 @@ const AdminContactStory = () => {
             process.env.REACT_APP_BASE_IMAGE_URL + "/" + data.story.images[0]
          );
       });
-   }, []);
+   }, [preApi]);
 
    const handleChangeImage = (e) => {
       const file = e.target.files[0];

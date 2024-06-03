@@ -47,7 +47,7 @@ const AdminAboutMotto = () => {
          .post(preApi + "/api/admin/about/expertise/save", formData, config)
          .then(({ data }) => {
             alert("Lưu thành công");
-            axios.get("/api/about").then(({ data }) => {
+            axios.get(preApi+"/api/about").then(({ data }) => {
                setExpertise(data.expertises);
             });
          })
@@ -65,7 +65,7 @@ const AdminAboutMotto = () => {
          .then(({data} ) => {
             alert("Lưu thành công");
 
-            axios.get("/api/about").then(({ data }) => {
+            axios.get(preApi+"/api/about").then(({ data }) => {
                setExpertise(data.expertises);
             });
          })

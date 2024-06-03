@@ -1,12 +1,13 @@
 import { Image } from "react-bootstrap";
 
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { Fragment } from "react";
 
 const AdminWorkProjects = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
+
    const config = {
       headers: {
          Authorization: userInfo,
@@ -22,7 +23,7 @@ const AdminWorkProjects = () => {
       axios.get(preApi + `/api/work`).then(({ data }) => {
          setCategories(data.categories);
       });
-   }, []);
+   }, [preApi]);
 
    const [formData, setFormData] = useState({
       subTitle: '',

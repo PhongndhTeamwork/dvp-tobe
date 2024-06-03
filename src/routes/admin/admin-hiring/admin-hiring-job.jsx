@@ -72,7 +72,7 @@ const AdminHiringJob = () => {
          .then(({ data }) => {
             alert("Lưu thành công");
 
-            axios.get("/api/hiring").then(({ data }) => {
+            axios.get(preApi+"/api/hiring").then(({ data }) => {
                setJobs(data.jobs);
             });
             setNewJob({
