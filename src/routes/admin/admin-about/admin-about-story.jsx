@@ -41,7 +41,7 @@ const AdminAboutStory = () => {
       formData.append("position", "about1");
 
       axios
-         .post("/api/admin/about/story/save", formData, config)
+         .post(preApi + "/api/admin/about/story/save", formData, config)
          .then(({ data }) => {
             if (data.success)
                alert("Lưu thành công");

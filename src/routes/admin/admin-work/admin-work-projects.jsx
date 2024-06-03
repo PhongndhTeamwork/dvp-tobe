@@ -12,10 +12,14 @@ const AdminWorkProjects = () => {
          Authorization: userInfo,
       },
    };
+   const preApi =
+      process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
    const [categories, setCategories] = useState([]);
 
    useEffect(() => {
-      axios.get(`/api/work`).then(({ data }) => {
+      axios.get(preApi + `/api/work`).then(({ data }) => {
          setCategories(data.categories);
       });
    }, []);
@@ -88,7 +92,7 @@ const AdminWorkProjects = () => {
       }
 
       axios
-         .post(`/api/admin/work/project/save`, data, config)
+         .post(preApi + `/api/admin/work/project/save`, data, config)
          .then(({ data }) => {
             if (data.success)
                alert("Thêm dự án mới thành công");

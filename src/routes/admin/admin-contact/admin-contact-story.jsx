@@ -19,7 +19,7 @@ const AdminContactStory = () => {
    const [initialStoryImage, setInitialStoryImage] = useState();
 
    useEffect(() => {
-      axios.get("/api/contact").then(({ data }) => {
+      axios.get(preApi + "/api/contact").then(({ data }) => {
          setStory(data.story);
          console.log(data.story)
          setStoryImage(
