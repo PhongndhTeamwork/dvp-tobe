@@ -8,20 +8,19 @@ import { Fragment } from "react";
 const AdminWorkProjects = () => {
    const { userInfo } = useSelector((state) => state.userLogin);
 
-   const preApi = useMemo(() => {
-      return process.env.NODE_ENV === "production"
-         ? process.env.REACT_APP_BASE_IMAGE_URL
-         : "";
-   }, []);
    const config = {
       headers: {
          Authorization: userInfo,
       },
    };
+   const preApi =
+      process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
    const [categories, setCategories] = useState([]);
 
    useEffect(() => {
-      axios.get(preApi +`/api/work`).then(({ data }) => {
+      axios.get(preApi + `/api/work`).then(({ data }) => {
          setCategories(data.categories);
       });
    }, [preApi]);
@@ -94,7 +93,7 @@ const AdminWorkProjects = () => {
       }
 
       axios
-         .post(preApi+`/api/admin/work/project/save`, data, config)
+         .post(preApi + `/api/admin/work/project/save`, data, config)
          .then(({ data }) => {
             if (data.success)
                alert("Thêm dự án mới thành công");

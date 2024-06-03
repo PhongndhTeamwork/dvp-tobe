@@ -34,7 +34,7 @@ const Contact = () => {
 
    useEffect(() => {
       axios
-         .get("/api/contact")
+         .get(preApi + "/api/contact")
          .then(({ data }) => {
             setStory(data.story);
             setContactForm(data.contactForm);
@@ -42,7 +42,7 @@ const Contact = () => {
          .catch((error) => {
             throw new Error(error);
          });
-   }, []);
+   }, [preApi]);
 
    useEffect(() => {
       window.scrollTo(0, 0);

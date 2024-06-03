@@ -50,6 +50,10 @@ import AdminCompanyServices from "./admin-company/admin-company-services";
 
 const AdminRoutes = () => {
    const location = useLocation();
+   const preApi =
+      process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
 
    const { fullView } = useContext(AdminContext);
    const { userInfo } = useSelector((state) => state.userLogin);
@@ -65,7 +69,7 @@ const AdminRoutes = () => {
       };
 
       axios
-         .get(`/api/admin/company/customer`, config)
+         .get(preApi + `/api/admin/company/customer`, config)
          .then(async ({ data }) => {
             if(data.success === false){
                await dispatch(logout());

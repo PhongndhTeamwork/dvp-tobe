@@ -44,7 +44,7 @@ const AdminAboutMotto = () => {
       });
 
       axios
-         .post(preApi+"/api/admin/about/expertise/save", formData, config)
+         .post(preApi + "/api/admin/about/expertise/save", formData, config)
          .then(({ data }) => {
             alert("Lưu thành công");
             axios.get(preApi+"/api/about").then(({ data }) => {
@@ -61,7 +61,7 @@ const AdminAboutMotto = () => {
       const result = window.confirm('Bạn có chắc chắn muốn xóa ?');
       if(!result) return;
       axios
-         .delete(preApi+`/api/admin/about/expertise/delete?id=${expertise[index].id}`, config)
+         .delete(preApi + `/api/admin/about/expertise/delete?id=${expertise[index].id}`, config)
          .then(({data} ) => {
             alert("Lưu thành công");
 
@@ -85,7 +85,7 @@ const AdminAboutMotto = () => {
          formData.append(key, data[key]);
       });
       axios
-         .post(preApi+"/api/admin/about/expertise/save", formData, config)
+         .post(preApi + "/api/admin/about/expertise/save", formData, config)
          .then(({ data }) => {
             alert("Lưu thành công");
             
@@ -93,7 +93,7 @@ const AdminAboutMotto = () => {
                name: "",
                text: "",
             });
-            axios.get(preApi+"/api/about").then(({ data }) => {
+            axios.get(preApi + "/api/about").then(({ data }) => {
                setExpertise(data.expertises);
             });
          })
