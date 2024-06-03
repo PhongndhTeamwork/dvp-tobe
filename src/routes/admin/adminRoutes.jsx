@@ -31,17 +31,14 @@ import AdminWorkCategory from "./admin-work/admin-work-category";
 import AdminWorkProjects from "./admin-work/admin-work-projects";
 import AdminWorkStory from "./admin-work/admin-work-story";
 
-import AdminContactLocation from "./admin-contact/admin-contact-location";
 import AdminContactParagraph from "./admin-contact/admin-contact-paragraph";
 import AdminContactStory from "./admin-contact/admin-contact-story";
 
 import AdminHiringStory from "./admin-hiring/admin-hiring-story";
 import AdminHiringJob from "./admin-hiring/admin-hiring-job";
 import AdminHiringBanner from "./admin-hiring/admin-hiring-banner";
-import AdminHiringGmail from "./admin-hiring/admin-hiring-gmail";
 
 import AdminHomeBanner from "./admin-home/admin-home-banner";
-import AdminHomeService from "./admin-home/admin-home-service";
 import AdminHomeStory from "./admin-home/admin-home-story";
 import AdminHomeVideo from "./admin-home/admin-home-video";
 import AdminCompanyInfo from "./admin-company/admin-company-info";
@@ -67,7 +64,7 @@ const AdminRoutes = () => {
       };
 
       axios
-         .get("/api/admin/company/customer", config)
+         .get(`/api/admin/company/customer`, config)
          .then(async ({ data }) => {
             if(data.success === false){
                await dispatch(logout());

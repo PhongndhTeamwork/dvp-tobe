@@ -30,7 +30,7 @@ const Dashboard = () => {
 
    useEffect(() => {
       axios
-         .get("/api/admin/company/customer", config)
+         .get(`/api/admin/company/customer`, config)
          .then(async ({ data }) => {
             setCustomers(data.customers);
          })
@@ -65,7 +65,7 @@ const Dashboard = () => {
          .delete(`/api/admin/company/customer/delete?id=${id}`, config)
          .then(({ data }) => {
             console.log(data);
-            axios.get("/api/admin/company/customer", config).then(({ data }) => {
+            axios.get(`/api/admin/company/customer`, config).then(({ data }) => {
                setCustomers(data.customers);
                if (currentCustomer.id === id) setCurrentCustomer(-1);
             });
