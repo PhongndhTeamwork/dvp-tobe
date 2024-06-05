@@ -57,7 +57,11 @@ const Footer = () => {
                         <h1 className="info__header-logo">
                            {companyInfos?.logo ? (
                               <div
-                                 style={{ width: "100%" }}
+                                 style={{
+                                    width: "60%",
+                                    position: "relative",
+                                    left: "-14px",
+                                 }}
                                  className="d-flex align-items-center justify-content-start"
                                  dangerouslySetInnerHTML={{
                                     __html: svgComponent,

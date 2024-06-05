@@ -1,6 +1,6 @@
 .header__logo {
-   width: 4.25rem;
-   height: 4.25rem;
+   width: 5.25rem;
+   height: 5.25rem;
 }
 
 .header__logo g:last-child .st1:nth-last-child(-n+2) {
