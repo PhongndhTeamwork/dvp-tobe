@@ -10,7 +10,6 @@ import { Link, useLocation } from "react-router-dom";
 import MobileNavbar from "../../../components/mobile-navbar/mobile-navbar";
 import axios from "axios";
 
-
 const Header = () => {
    const preApi = useMemo(() => {
       return process.env.NODE_ENV === "production"
@@ -45,14 +44,14 @@ const Header = () => {
          location.pathname.includes("quote")
       ) {
          const svgElement = logoRef.current.querySelector("svg");
-         svgElement.style.fill = "black";
+         if (svgElement) svgElement.style.fill = "black";
          setIsHeaderColorChangeable(false);
          setIsHeaderActive(true);
       } else {
          setIsHeaderColorChangeable(true);
          setIsHeaderActive(false);
          const svgElement = logoRef.current.querySelector("svg");
-         svgElement.style.fill = "white";
+         if (svgElement) svgElement.style.fill = "white";
       }
       setCurrentPathname(location.pathname);
    }, [location, currentPathname]);
@@ -67,12 +66,12 @@ const Header = () => {
          if (scrollY >= bannerH) {
             setIsHeaderActive(true);
             const svgElement = logoRef.current.querySelector("svg");
-            svgElement.style.fill = "black";
+            if (svgElement) svgElement.style.fill = "black";
          } else {
             if (!location.pathname.includes("quote")) {
                setIsHeaderActive(false);
                const svgElement = logoRef.current.querySelector("svg");
-               svgElement.style.fill = "white";
+               if (svgElement) svgElement.style.fill = "white";
             }
          }
       };
