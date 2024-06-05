@@ -23,6 +23,7 @@ const Header = () => {
    const logoRef = useRef(null);
 
    const [companyInfos, setCompanyInfos] = useState({});
+   const [svgComponent, setSvgComponent] = useState("");
 
    useEffect(() => {
       axios
@@ -83,6 +84,17 @@ const Header = () => {
       };
    }, [isHeaderColorChangeable, location]);
 
+   useEffect(() => {
+      const getTheSvg = async (url) => {
+         const res = await fetch(url);
+         return await res.text();
+      };
+
+      getTheSvg(companyInfos?.logo).then((res) => {
+         setSvgComponent(res);
+      });
+   }, [companyInfos]);
+
    return (
       <div
          className="user-routes"
@@ -97,14 +109,22 @@ const Header = () => {
                   }}
                   className="header__logo"
                >
+                  {/* <Image
+                     ref={logoRef}
+                     style={{ width: "4.25rem", height: "4.25rem" }}
+                     className="d-flex align-items-center"
+                     src={SVG}
+                     // __html: companyInfos?.logo,
+                  /> */}
+
                   <div
                      ref={logoRef}
                      style={{ width: "4.25rem", height: "4.25rem" }}
                      className="d-flex align-items-center"
                      dangerouslySetInnerHTML={{
-                        __html: companyInfos?.logo,
+                        __html: svgComponent,
                      }}
-                  />
+                  ></div>
                </Link>
 
                <ul className="header__nav d-none d-md-flex justify-content-between align-items-center">

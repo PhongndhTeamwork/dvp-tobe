@@ -284,9 +284,9 @@ const Quote = () => {
                               </div>
                               <div className="rectangle-25 py-0">
                                  <div className="table__row-item h-100 d-flex justify-content-center">
-                                    {currentService?.quote1 === "check" ? (
+                                    {currentService?.quote1 === "1" ? (
                                        <Image src={CheckSVG} alt="check" />
-                                    ) : currentService?.quote1 === "uncheck" ? (
+                                    ) : currentService?.quote1 === "0" ? (
                                        <Image src={UncheckSVG} alt="uncheck" />
                                     ) : (
                                        currentService?.quote1
@@ -295,9 +295,9 @@ const Quote = () => {
                               </div>
                               <div className="rectangle-25 py-0">
                                  <div className="table__row-item h-100 item-check">
-                                    {currentService?.quote2 === "check" ? (
+                                    {currentService?.quote2 === "1" ? (
                                        <Image src={CheckSVG} alt="check" />
-                                    ) : currentService?.quote2 === "uncheck" ? (
+                                    ) : currentService?.quote2 === "0" ? (
                                        <Image src={UncheckSVG} alt="uncheck" />
                                     ) : (
                                        currentService?.quote2
@@ -306,9 +306,9 @@ const Quote = () => {
                               </div>
                               <div className="rectangle-25 py-0">
                                  <div className="table__row-item h-100 item-check">
-                                    {currentService?.quote3 === "check" ? (
+                                    {currentService?.quote3 === "1" ? (
                                        <Image src={CheckSVG} alt="check" />
-                                    ) : currentService?.quote3 === "uncheck" ? (
+                                    ) : currentService?.quote3 === "0" ? (
                                        <Image src={UncheckSVG} alt="uncheck" />
                                     ) : (
                                        currentService?.quote3

@@ -20,6 +20,7 @@ const Footer = () => {
    const location = useLocation();
 
    const [companyInfos, setCompanyInfos] = useState({});
+   const [svgComponent, setSvgComponent] = useState("");
 
    useEffect(() => {
       axios
@@ -31,6 +32,17 @@ const Footer = () => {
             throw new Error(error);
          });
    }, [preApi]);
+
+   useEffect(() => {
+      const getTheSvg = async (url) => {
+         const res = await fetch(url);
+         return await res.text();
+      };
+
+      getTheSvg(companyInfos?.logo).then((res) => {
+         setSvgComponent(res);
+      });
+   }, [companyInfos]);
 
    return (
       <footer
@@ -48,7 +60,7 @@ const Footer = () => {
                                  style={{ width: "100%" }}
                                  className="d-flex align-items-center justify-content-start"
                                  dangerouslySetInnerHTML={{
-                                    __html: companyInfos?.logo,
+                                    __html: svgComponent,
                                  }}
                               />
                            ) : (

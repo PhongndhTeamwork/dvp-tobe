@@ -37,7 +37,7 @@ const ContactForm = () => {
 
    useEffect(() => {
       axios
-         .get(preApi+"/api/info/services")
+         .get(preApi + "/api/info/services")
          .then(({ data }) => {
             setServiceItems(data.services);
          })
@@ -48,7 +48,7 @@ const ContactForm = () => {
 
    useEffect(() => {
       axios
-         .get(preApi+"/api/info/company")
+         .get(preApi + "/api/info/company")
          .then(({ data }) => {
             setCompanyInfos(data.company);
          })
@@ -101,7 +101,7 @@ const ContactForm = () => {
          serviceCategoryRef.current.style.display = "none";
          serviceCategoryRef.current.classList.remove("active");
       }, 100);
-      setIsServiceCategoryRevealed(true);
+      setIsServiceCategoryRevealed(false);
       setCategoryValue(service.serviceName);
    };
 
@@ -110,7 +110,14 @@ const ContactForm = () => {
          ...customer,
       };
 
-      if(data.email === "" || data.fullname === "" || data.name === "" || data.phone === "" ||  data.serviceId === -1) return;
+      if (
+         data.email === "" ||
+         data.fullname === "" ||
+         data.name === "" ||
+         data.phone === "" ||
+         data.serviceId === -1
+      )
+         return;
 
       const formData = new FormData();
 
@@ -121,9 +128,15 @@ const ContactForm = () => {
       });
 
       axios
-         .post(preApi+"/api/info/customer/submit", formData)
+         .post(preApi + "/api/info/customer/submit", formData)
          .then(({ data }) => {
             console.log(data.message);
+            setCustomer({
+               fullname: "",
+               name: "",
+               email: "",
+               phone: "",
+            });
          })
          .catch((error) => {
             console.log(error);
@@ -138,6 +151,7 @@ const ContactForm = () => {
             id="fullname"
             name="fullname"
             placeholder="VD: Trần Ngọc Minh"
+            value={customer.fullname}
             onChange={(e) => {
                setCustomer({ ...customer, fullname: e.target.value });
             }}
@@ -149,6 +163,7 @@ const ContactForm = () => {
             id="name"
             name="name"
             placeholder="VD: Ông, bà,.."
+            value={customer.name}
             onChange={(e) => {
                setCustomer({ ...customer, name: e.target.value });
             }}
@@ -160,6 +175,7 @@ const ContactForm = () => {
             id="email"
             name="email"
             placeholder="Email"
+            value={customer.email}
             onChange={(e) => {
                setCustomer({ ...customer, email: e.target.value });
             }}
@@ -171,6 +187,7 @@ const ContactForm = () => {
             id="phone"
             name="phone"
             placeholder="+84"
+            value={customer.phone}
             onChange={(e) => {
                setCustomer({ ...customer, phone: e.target.value });
             }}
@@ -214,6 +231,7 @@ const ContactForm = () => {
                         onClick={() => {
                            handleChangeServiceValue(service);
                            setCustomer({ ...customer, serviceId: service.id });
+                           
                         }}
                      >
                         {service.serviceName}

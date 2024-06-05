@@ -140,31 +140,31 @@ const Contact = () => {
          {/* <!-- End: Location --> */}
 
          {/* <!-- Contact form --> */}
-         <div class="wrapper wrapper-top wrapper-bottom contact">
-            <div class="rectangle-100 d-none d-md-block d-xl-none text-center quote__heading-top">
+         <div className="wrapper wrapper-top wrapper-bottom contact">
+            <div className="rectangle-100 d-none d-md-block d-xl-none text-center quote__heading-top">
                {contactForm.title}{" "}
             </div>
 
-            <div class="rectangle-100 py-0">
-               <div class="wrapper-flex">
-                  <div class="wrapper-flex-item d-none d-md-block rectangle-tab-50 p-0">
-                     <div class="quote">
-                        <div class="quote__heading d-none d-xl-block">
+            <div className="rectangle-100 py-0">
+               <div className="wrapper-flex">
+                  <div className="wrapper-flex-item d-none d-md-block rectangle-tab-50 p-0">
+                     <div className="quote">
+                        <div className="quote__heading d-none d-xl-block">
                            {contactForm.title}{" "}
                         </div>
 
-                        <div class="quote__text d-flex justify-content-between align-items-start">
+                        <div className="quote__text d-flex justify-content-between align-items-start">
                            <Image src={ContactIcon1} alt="icon 1" />
                            <p>{contactForm.text1}</p>
                         </div>
-                        <div class="quote__text d-flex justify-content-between align-items-start">
+                        <div className="quote__text d-flex justify-content-between align-items-start">
                            <Image src={ContactIcon2} alt="icon 2" />
                            <p>{contactForm.text2}</p>
                         </div>
                      </div>
                   </div>
 
-                  <div class="wrapper-flex-item rectangle-100 rectangle-tab-50 p-0">
+                  <div className="wrapper-flex-item rectangle-100 rectangle-tab-50 p-0">
                      <ContactForm />
                   </div>
                </div>
