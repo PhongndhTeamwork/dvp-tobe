@@ -18,8 +18,6 @@ const AccordionService = ({
    const [isButtonActive, setIsButtonActive] = useState(false);
    // const [carouselWidth, setCarouselWidth] = useState(0);
 
-   const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
-
    const carouselRef = useRef(null);
 
    // useEffect(() => {

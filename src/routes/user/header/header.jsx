@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import "./header.css";
 import "../../../styles/animation.css";
 import "../../../styles/base.css";
@@ -6,10 +6,10 @@ import "../../../styles/font.css";
 import "../../../styles/style.css";
 import "../../../styles/bootstrap.min.css";
 import { Link, useLocation } from "react-router-dom";
-import { Image } from "react-bootstrap";
 
 import MobileNavbar from "../../../components/mobile-navbar/mobile-navbar";
 import axios from "axios";
+
 
 const Header = () => {
    const preApi = useMemo(() => {
@@ -21,13 +21,13 @@ const Header = () => {
    const [currentPathname, setCurrentPathname] = useState("");
    const [isHeaderColorChangeable, setIsHeaderColorChangeable] = useState(true);
    const location = useLocation();
-   // console.log(location.pathname);
+   const logoRef = useRef(null);
 
    const [companyInfos, setCompanyInfos] = useState({});
 
    useEffect(() => {
       axios
-         .get(preApi+"/api/info/company")
+         .get(preApi + "/api/info/company")
          .then(({ data }) => {
             setCompanyInfos(data.company);
          })
@@ -44,11 +44,15 @@ const Header = () => {
          location.pathname.includes("cataloge") ||
          location.pathname.includes("quote")
       ) {
+         const svgElement = logoRef.current.querySelector("svg");
+         svgElement.style.fill = "black";
          setIsHeaderColorChangeable(false);
          setIsHeaderActive(true);
       } else {
          setIsHeaderColorChangeable(true);
          setIsHeaderActive(false);
+         const svgElement = logoRef.current.querySelector("svg");
+         svgElement.style.fill = "white";
       }
       setCurrentPathname(location.pathname);
    }, [location, currentPathname]);
@@ -62,8 +66,14 @@ const Header = () => {
 
          if (scrollY >= bannerH) {
             setIsHeaderActive(true);
+            const svgElement = logoRef.current.querySelector("svg");
+            svgElement.style.fill = "black";
          } else {
-            if (!location.pathname.includes("quote")) setIsHeaderActive(false);
+            if (!location.pathname.includes("quote")) {
+               setIsHeaderActive(false);
+               const svgElement = logoRef.current.querySelector("svg");
+               svgElement.style.fill = "white";
+            }
          }
       };
 
@@ -72,7 +82,7 @@ const Header = () => {
       return () => {
          window.removeEventListener("scroll", handleScroll);
       };
-   }, [isHeaderColorChangeable,location]);
+   }, [isHeaderColorChangeable, location]);
 
    return (
       <div
@@ -88,8 +98,13 @@ const Header = () => {
                   }}
                   className="header__logo"
                >
-                  <Image
-                     src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${companyInfos?.logo}`}
+                  <div
+                     ref={logoRef}
+                     style={{ width: "4.25rem", height: "4.25rem" }}
+                     className="d-flex align-items-center"
+                     dangerouslySetInnerHTML={{
+                        __html: companyInfos?.logo,
+                     }}
                   />
                </Link>
 

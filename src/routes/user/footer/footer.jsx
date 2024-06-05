@@ -21,7 +21,6 @@ const Footer = () => {
 
    const [companyInfos, setCompanyInfos] = useState({});
 
-
    useEffect(() => {
       axios
          .get(preApi + "/api/info/company")
@@ -45,7 +44,13 @@ const Footer = () => {
                      <div className="info__header">
                         <h1 className="info__header-logo">
                            {companyInfos?.logo ? (
-                              <Image src={companyInfos?.logo} />
+                              <div
+                                 style={{ width: "100%" }}
+                                 className="d-flex align-items-center justify-content-start"
+                                 dangerouslySetInnerHTML={{
+                                    __html: companyInfos?.logo,
+                                 }}
+                              />
                            ) : (
                               <div>Logo</div>
                            )}

@@ -10,17 +10,12 @@ import { BrowserRouter } from "react-router-dom";
 import store from "./app/store";
 import { Provider } from "react-redux";
 
-import { AdminProvider } from "./routes/admin/adminContext";
-
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
    <Provider store={store}>
-      <AdminProvider>
-         <BrowserRouter>
-            <App />
-         </BrowserRouter>
-      </AdminProvider>
+      <BrowserRouter>
+         <App />
+      </BrowserRouter>
    </Provider>
 );
 

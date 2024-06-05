@@ -111,7 +111,7 @@ const Cataloge = () => {
                </div>
 
                <div className="rectangle-100 rectangle-tab-50 project__des-text">
-                  {project?.dexText2}
+                  {project?.desText2}
                </div>
             </div>
 
@@ -157,7 +157,7 @@ const Cataloge = () => {
                      className="w-100 img-3"
                      src={`${
                         process.env.REACT_APP_BASE_IMAGE_URL
-                     }/${project?.images?.slice(5, 1)}`}
+                     }/${project?.images?.slice(5, 6)}`}
                      alt=""
                   />
                </div>

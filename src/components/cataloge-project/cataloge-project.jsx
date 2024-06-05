@@ -1,6 +1,6 @@
 import "./cataloge-project.css";
 
-import { Carousel, Image, Row, Col } from "react-bootstrap";
+import { Carousel, Image } from "react-bootstrap";
 
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
