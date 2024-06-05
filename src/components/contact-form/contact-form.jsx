@@ -121,7 +121,7 @@ const ContactForm = () => {
 
       const formData = new FormData();
 
-      console.log(data);
+      // console.log(data);
 
       Object.keys(data).forEach((key) => {
          formData.append(key, data[key]);
@@ -130,7 +130,7 @@ const ContactForm = () => {
       axios
          .post(preApi + "/api/info/customer/submit", formData)
          .then(({ data }) => {
-            console.log(data.message);
+            // console.log(data.message);
             setCustomer({
                fullname: "",
                name: "",
@@ -139,7 +139,7 @@ const ContactForm = () => {
             });
          })
          .catch((error) => {
-            console.log(error);
+            // console.log(error);
          });
    };
 

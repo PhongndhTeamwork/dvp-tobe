@@ -5,7 +5,7 @@ import { Fragment } from "react";
 import { Image } from "react-bootstrap";
 
 const WorkProject = ({ projects }) => {
-   console.log(projects);
+   // console.log(projects);
    return (
       <div className="work__content">
          <div className="wrapper-flex">

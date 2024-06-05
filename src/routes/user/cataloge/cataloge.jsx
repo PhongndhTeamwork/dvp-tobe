@@ -58,7 +58,7 @@ const Cataloge = () => {
          .then(({ data }) => {
             setProject(data.project);
             setProjectSuggestion(data.projectSuggestion);
-            console.log(data);
+            // console.log(data);
          })
          .catch((error) => {
             throw new Error(error);

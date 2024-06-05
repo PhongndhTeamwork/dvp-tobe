@@ -31,7 +31,7 @@ const Home = () => {
    }, []);
 
    useEffect(() => {
-      console.log(process.env.NODE_ENV);
+      // console.log(process.env.NODE_ENV);
       axios
          .get(preApi + "/api/home")
          .then(({ data }) => {
