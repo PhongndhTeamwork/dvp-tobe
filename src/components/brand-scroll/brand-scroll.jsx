@@ -125,7 +125,7 @@ const BrandScroll = ({ homePage }) => {
                );
          });
       }
-   }, [homePage, partners]);
+   }, [homePage, isMobile, partners]);
 
    return (
       <div className={homePage ? "" : "wrapper partners__content"}>

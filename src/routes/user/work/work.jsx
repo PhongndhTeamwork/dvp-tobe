@@ -1,5 +1,5 @@
 import "./work.css";
-import { Fragment, useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { Image } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 
@@ -28,6 +28,12 @@ const Work = () => {
    const [categoryIndex, setCategoryIndex] = useState(-1);
    const [projects, setProjects] = useState([]);
    const [contactForm, setContactForm] = useState({});
+
+   const [isMouseDown, setIsMouseDown] = useState(false);
+   const [mouseMoveX, setMouseMoveX] = useState(0);
+
+   const scrollWrapperRef = useRef(null);
+   const scrollWrapperContentRef = useRef(null);
 
    useEffect(() => {
       axios
@@ -85,6 +91,48 @@ const Work = () => {
       }
    }, [categoryIndex, preApi]);
 
+   //
+   const handleMouseDown = (e) => {
+      setIsMouseDown(true);
+      setMouseMoveX(e.clientX);
+   };
+
+   const handleMouseUp = (e) => {
+      setIsMouseDown(false);
+   };
+
+   const handleMouseLeave = (e) => {
+      setIsMouseDown(false);
+   };
+
+   const handleMouseMove = (e) => {
+      if (isMouseDown) {
+         scrollWrapperContentRef.current.style.transition = "none";
+         let newMouseMoveX = e.clientX;
+         let translateX =
+            newMouseMoveX -
+            mouseMoveX +
+            getCurrentTranslateX(scrollWrapperContentRef.current);
+         const minTranslateX =
+            scrollWrapperRef.current.offsetWidth -
+            scrollWrapperContentRef.current.offsetWidth;
+         if (translateX >= minTranslateX && translateX <= 0) {
+            scrollWrapperContentRef.current.style.transform = `translateX(${translateX}px)`;
+         }
+         setMouseMoveX(newMouseMoveX);
+      }
+   };
+
+   const getCurrentTranslateX = (scrollWrapperContent) => {
+      const style = window.getComputedStyle(scrollWrapperContent);
+      const transform = style.getPropertyValue("transform");
+      if (transform && transform !== "none") {
+         // Extracting the translateX value from the transform property
+         const matrix = new DOMMatrixReadOnly(transform);
+         return matrix.m41; // m41 is the translation in X direction
+      }
+   };
+
    return (
       <Fragment>
          {/* <!-- Work --> */}
@@ -126,15 +174,22 @@ const Work = () => {
                   </button>
                </div>
 
-               <div className="w-100 nav-filter-wrapper">
+               <div
+                  className="w-100 nav-filter-wrapper"
+                  ref={scrollWrapperRef}
+                  onMouseDown={(e) => handleMouseDown(e)}
+                  onMouseUp={(e) => handleMouseUp(e)}
+                  onMouseLeave={(e) => handleMouseLeave(e)}
+                  onMouseMove={(e) => handleMouseMove(e)}
+               >
                   <div
                      className="nav-filter"
                      id="filter"
+                     ref={scrollWrapperContentRef}
                      style={{
                         visibility:
                            activeCategory !== "all" ? "visible" : "hidden",
-                        width: "100%",
-                        overflow: "auto"
+                           transform: "translateX(0px)"
                      }}
                   >
                      {categories?.map((filterItem, index) => {
