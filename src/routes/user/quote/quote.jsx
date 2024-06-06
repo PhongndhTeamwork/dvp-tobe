@@ -413,7 +413,7 @@ const Quote = () => {
                   </div>
 
                   <div className="table-mobile" ref={tableMobileRef}>
-                     {Array(3)
+                     {Array(services[currentService]?.serviceCategories?.length ?? 4)
                         .fill(0)
                         .map((_, index) => (
                            <div className="table-wrap" key={index}>

@@ -16,6 +16,7 @@ const BrandScroll = ({ homePage }) => {
    const [isMouseDown, setIsMouseDown] = useState(false);
    const [mouseMoveX, setMouseMoveX] = useState(0);
    const [isMobile, setIsMobile] = useState(false);
+   const [isTablet, setIsTablet] = useState(false);
 
    const [partners, setPartners] = useState({});
 
@@ -24,6 +25,9 @@ const BrandScroll = ({ homePage }) => {
          const width = window.innerWidth;
          if (width < 768) {
             setIsMobile(true);
+         }
+         if (width < 1200) {
+            setIsTablet(true);
          }
       };
       handleResize();
@@ -114,7 +118,7 @@ const BrandScroll = ({ homePage }) => {
             if (isMobile) {
                images[1]?.style.setProperty(
                   "margin-top",
-                  "4.5rem",
+                  "1.875rem",
                   "important"
                );
             } else
@@ -166,7 +170,12 @@ const BrandScroll = ({ homePage }) => {
                               }`}
                               alt="partner-02"
                               style={{
-                                 marginTop: homePage ? "0" : "1.875rem",
+                                 marginTop:
+                                    homePage && isTablet
+                                       ? "1.875rem"
+                                       : homePage
+                                       ? "0"
+                                       : "1.875rem",
                               }}
                            />
                         ) : (

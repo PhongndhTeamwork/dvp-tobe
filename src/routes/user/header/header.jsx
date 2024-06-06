@@ -90,7 +90,6 @@ const Header = () => {
          return await res.text();
       };
 
-      
       getTheSvg(`${process.env.REACT_APP_BASE_IMAGE_URL}/${companyInfos?.logo}`).then((res) => {
          setSvgComponent(res);
       });
