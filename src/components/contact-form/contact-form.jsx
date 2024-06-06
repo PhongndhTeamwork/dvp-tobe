@@ -19,14 +19,9 @@ import axios from "axios";
 const ContactForm = () => {
    const [companyInfos, setCompanyInfos] = useState({});
    const [serviceItems, setServiceItems] = useState([]);
+   const [errorCategory, setErrorCategory] = useState(false);
+   const [isChoose, setIsChoose] = useState(false);
    // const { userInfo } = useSelector((state) => state.userLogin);
-
-   const preApi = useMemo(() => {
-      return process.env.NODE_ENV === "production"
-         ? process.env.REACT_APP_BASE_IMAGE_URL
-         : "";
-   }, []);
-
    const [customer, setCustomer] = useState({
       fullname: "",
       name: "",
@@ -34,6 +29,11 @@ const ContactForm = () => {
       phone: "",
       serviceId: -1,
    });
+   const preApi = useMemo(() => {
+      return process.env.NODE_ENV === "production"
+         ? process.env.REACT_APP_BASE_IMAGE_URL
+         : "";
+   }, []);
 
    useEffect(() => {
       axios
@@ -56,6 +56,14 @@ const ContactForm = () => {
             throw new Error(error);
          });
    }, [preApi]);
+
+   useEffect(() => {
+      if (customer.serviceId !== -1) {
+         setErrorCategory(false);
+      } else {
+         setErrorCategory(true);
+      }
+   }, [customer]);
 
    const [isServiceCategoryRevealed, setIsServiceCategoryRevealed] =
       useState(false);
@@ -103,9 +111,12 @@ const ContactForm = () => {
       }, 100);
       setIsServiceCategoryRevealed(false);
       setCategoryValue(service.serviceName);
+      setIsChoose(true);
    };
 
-   const handleSaveCustomer = () => {
+   const handleSaveCustomer = (e) => {
+      e.preventDefault();
+      setIsChoose(true);
       let data = {
          ...customer,
       };
@@ -144,11 +155,17 @@ const ContactForm = () => {
    };
 
    return (
-      <form className="contact__form">
+      <form
+         className="contact__form"
+         onSubmit={(e) => {
+            handleSaveCustomer(e);
+         }}
+      >
          <label htmlFor="fullname">Họ và tên</label>
          <input
             type="text"
             id="fullname"
+            required
             name="fullname"
             placeholder="VD: Trần Ngọc Minh"
             value={customer.fullname}
@@ -161,6 +178,7 @@ const ContactForm = () => {
          <input
             type="text"
             id="name"
+            required
             name="name"
             placeholder="VD: Ông, bà,.."
             value={customer.name}
@@ -173,6 +191,7 @@ const ContactForm = () => {
          <input
             type="email"
             id="email"
+            required
             name="email"
             placeholder="Email"
             value={customer.email}
@@ -184,6 +203,7 @@ const ContactForm = () => {
          <label htmlFor="phone">Số điện thoại</label>
          <input
             type="tel"
+            required
             id="phone"
             name="phone"
             placeholder="+84"
@@ -196,11 +216,11 @@ const ContactForm = () => {
          <div className="category">
             <button
                type="button"
-               className={
+               className={`${
                   isServiceCategoryRevealed
                      ? "category-service plus-rotate-icon-active"
                      : "category-service"
-               }
+               } ${errorCategory && isChoose ? "active" : ""}`}
                id="category-service-button"
                onClick={toggleServiceCategory}
             >
@@ -231,7 +251,6 @@ const ContactForm = () => {
                         onClick={() => {
                            handleChangeServiceValue(service);
                            setCustomer({ ...customer, serviceId: service.id });
-                           
                         }}
                      >
                         {service.serviceName}
@@ -245,9 +264,9 @@ const ContactForm = () => {
             <button
                id="contact__form-submit"
                onClick={() => {
-                  handleSaveCustomer();
+                  setIsChoose(true);
                }}
-               type="button"
+               type="submit"
             >
                <div className="arrow-right-link">
                   <div className="arrow-right-link__text">Gửi đi</div>

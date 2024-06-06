@@ -1,6 +1,6 @@
 import "./work.css";
 import { Fragment, useEffect, useMemo, useState } from "react";
-import {  Image } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 
 import axios from "axios";
@@ -31,7 +31,7 @@ const Work = () => {
 
    useEffect(() => {
       axios
-         .get(preApi+"/api/work")
+         .get(preApi + "/api/work")
          .then(({ data }) => {
             setStory(data.story);
             setCategories(data.categories);
@@ -66,7 +66,7 @@ const Work = () => {
    useEffect(() => {
       if (categoryIndex === -1) {
          axios
-            .get(preApi+"/api/work")
+            .get(preApi + "/api/work")
             .then(({ data }) => {
                setProjects(data.projects);
             })
@@ -75,7 +75,7 @@ const Work = () => {
             });
       } else {
          axios
-            .get(preApi+`/api/work/search?category=${categoryIndex}`)
+            .get(preApi + `/api/work/search?category=${categoryIndex}`)
             .then(({ data }) => {
                setProjects(data.projects);
             })
@@ -83,7 +83,7 @@ const Work = () => {
                throw new Error(error);
             });
       }
-   }, [categoryIndex,preApi]);
+   }, [categoryIndex, preApi]);
 
    return (
       <Fragment>
@@ -133,6 +133,8 @@ const Work = () => {
                      style={{
                         visibility:
                            activeCategory !== "all" ? "visible" : "hidden",
+                        width: "100%",
+                        overflow: "auto"
                      }}
                   >
                      {categories?.map((filterItem, index) => {
@@ -146,6 +148,7 @@ const Work = () => {
                                  handleFilterClick(index + 1);
                                  setCategoryIndex(filterItem.id);
                               }}
+                              style={{ whiteSpace: "nowrap" }}
                            >
                               {filterItem.name}
                            </div>
@@ -161,7 +164,10 @@ const Work = () => {
                   <div className="wrapper-flex">
                      {projects.map((project, index) => {
                         return (
-                           <div key={index} className="rectangle-100 rectangle-tab-50 rectangle-pc-25">
+                           <div
+                              key={index}
+                              className="rectangle-100 rectangle-tab-50 rectangle-pc-25"
+                           >
                               <Link
                                  className="project img-grayscale-hover arrow-right-translate-hover d-block"
                                  to={`/cataloge/${project?.id ?? 1}`}

@@ -28,14 +28,14 @@ const Quote = () => {
    const detailTextRef = useRef(null);
 
    useEffect(() => {
-      axios.get(preApi+"/api/info/services").then(({ data }) => {
+      axios.get(preApi + "/api/info/services").then(({ data }) => {
          setServices(data.services);
       });
    }, [preApi]);
 
    useEffect(() => {
       axios
-         .get(preApi+"/api/quote")
+         .get(preApi + "/api/quote")
          .then(({ data }) => {
             setProjects(data.projects);
             setBanner(data.banner);
@@ -51,7 +51,7 @@ const Quote = () => {
       const tableContent = document.querySelector(
          ".quote .quote__detail-table .table-mobile .table-wrap"
       );
-      const tableContentWidth = tableContent.offsetWidth;
+      const tableContentWidth = tableContent?.offsetWidth;
 
       tableMobileRef.current.style.transform = `translateX(-${
          currentServiceCategory * tableContentWidth
@@ -120,13 +120,17 @@ const Quote = () => {
                   <p>{story?.text3}</p>
                </div>
 
-               {
-                  story.images && story.images.length > 0 ? (
-                     <div className="rectangle-100 rectangle-pc-50 story__content-img">
-                        <Image src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${story?.images?.slice(0, 1)}`} />
-                     </div>
-                  ) : ("")
-               }
+               {story.images && story.images.length > 0 ? (
+                  <div className="rectangle-100 rectangle-pc-50 story__content-img">
+                     <Image
+                        src={`${
+                           process.env.REACT_APP_BASE_IMAGE_URL
+                        }/${story?.images?.slice(0, 1)}`}
+                     />
+                  </div>
+               ) : (
+                  ""
+               )}
             </div>
          </div>
          {/* <!-- End: Story --> */}
@@ -349,170 +353,77 @@ const Quote = () => {
                   </div>
 
                   <div className="table-mobile" ref={tableMobileRef}>
-                     <div className="table-wrap">
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
+                     {services[currentService]?.serviceCategories?.map(
+                        (serviceCategory, index) => (
+                           <div className="table-wrap" key={index}>
+                              <div className="wrapper-flex table__row">
+                                 <div className="rectangle-50 py-0">
+                                    <div className="table__row-item h-100">
+                                       {services[currentService]?.serviceQuotes[0]?.name}
+                                    </div>
+                                 </div>
+                                 <div className="rectangle-50 py-0">
+                                    <div className="table__row-item h-100 item-check">
+                                       {serviceCategory?.quote1 === "1" ? (
+                                          <Image src={CheckSVG} alt="check" />
+                                       ) : serviceCategory?.quote1 === "0" ? (
+                                          <Image
+                                             src={UncheckSVG}
+                                             alt="uncheck"
+                                          />
+                                       ) : (
+                                          serviceCategory?.quote1
+                                       )}
+                                    </div>
+                                 </div>
                               </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100 item-check">
-                                 <Image src={CheckSVG} alt="checked" />
-                              </div>
-                           </div>
-                        </div>
 
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
+                              <div className="wrapper-flex table__row">
+                                 <div className="rectangle-50 py-0">
+                                    <div className="table__row-item h-100">
+                                    {services[currentService]?.serviceQuotes[1]?.name}
+                                    </div>
+                                 </div>
+                                 <div className="rectangle-50 py-0">
+                                    <div className="table__row-item h-100 d-flex justify-content-center">
+                                       {serviceCategory?.quote2 === "1" ? (
+                                          <Image src={CheckSVG} alt="check" />
+                                       ) : serviceCategory?.quote2 === "0" ? (
+                                          <Image
+                                             src={UncheckSVG}
+                                             alt="uncheck"
+                                          />
+                                       ) : (
+                                          serviceCategory?.quote2
+                                       )}
+                                    </div>
+                                 </div>
                               </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                        </div>
 
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
+                              <div className="wrapper-flex table__row">
+                                 <div className="rectangle-50 py-0">
+                                    <div className="table__row-item h-100">
+                                    {services[currentService]?.serviceQuotes[2]?.name}
+                                    </div>
+                                 </div>
+                                 <div className="rectangle-50 py-0">
+                                    <div className="table__row-item h-100 item-check">
+                                       {serviceCategory?.quote3 === "1" ? (
+                                          <Image src={CheckSVG} alt="check" />
+                                       ) : serviceCategory?.quote3 === "0" ? (
+                                          <Image
+                                             src={UncheckSVG}
+                                             alt="uncheck"
+                                          />
+                                       ) : (
+                                          serviceCategory?.quote3
+                                       )}
+                                    </div>
+                                 </div>
                               </div>
                            </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100 item-check">
-                                 <Image src={UncheckSVG} alt="unchecked" />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Lorem ipsum dolor sit amet consectetur,
-                                 adipisicing elit.
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div className="table-wrap">
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100 item-check">
-                                 <Image src={CheckSVG} alt="checked" />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100 item-check">
-                                 <Image src={UncheckSVG} alt="unchecked" />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Lorem ipsum dolor sit amet consectetur,
-                                 adipisicing elit.
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-
-                     <div className="table-wrap">
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100 item-check">
-                                 <Image src={CheckSVG} alt="checked" />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100 item-check">
-                                 <Image src={UncheckSVG} alt="unchecked" />
-                              </div>
-                           </div>
-                        </div>
-
-                        <div className="wrapper-flex table__row">
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Nội dung demo sẽ như này
-                              </div>
-                           </div>
-                           <div className="rectangle-50 py-0">
-                              <div className="table__row-item h-100">
-                                 Lorem ipsum dolor sit amet consectetur,
-                                 adipisicing elit.
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                        )
+                     )}
                   </div>
                </div>
             </div>

@@ -15,13 +15,27 @@ const BrandScroll = ({ homePage }) => {
    const scrollWrapperContentRef = useRef(null);
    const [isMouseDown, setIsMouseDown] = useState(false);
    const [mouseMoveX, setMouseMoveX] = useState(0);
-
+   const [isMobile, setIsMobile] = useState(false);
 
    const [partners, setPartners] = useState({});
 
    useEffect(() => {
+      const handleResize = () => {
+         const width = window.innerWidth;
+         if (width < 768) {
+            setIsMobile(true);
+         }
+      };
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => {
+         window.removeEventListener("resize", handleResize);
+      };
+   }, []);
+
+   useEffect(() => {
       axios
-         .get(preApi+"/api/info/partners")
+         .get(preApi + "/api/info/partners")
          .then(({ data }) => {
             setPartners(data.partners);
          })
@@ -97,8 +111,18 @@ const BrandScroll = ({ homePage }) => {
                "1.875rem",
                "important"
             );
-
-            images[1]?.style.setProperty("margin-top", "1.875rem", "important");
+            if (isMobile) {
+               images[1]?.style.setProperty(
+                  "margin-top",
+                  "3rem",
+                  "important"
+               );
+            } else
+               images[1]?.style.setProperty(
+                  "margin-top",
+                  "1.875rem",
+                  "important"
+               );
          });
       }
    }, [homePage, partners]);

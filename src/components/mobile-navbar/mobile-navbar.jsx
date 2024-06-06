@@ -23,10 +23,9 @@ const MobileNavbar = () => {
 
    const [companyInfos, setCompanyInfos] = useState({});
 
-
    useEffect(() => {
       axios
-         .get(preApi+"/api/info/company")
+         .get(preApi + "/api/info/company")
          .then(({ data }) => {
             setCompanyInfos(data.company);
          })
@@ -216,7 +215,7 @@ const MobileNavbar = () => {
                         </svg>
                         Zalo
                      </div>
-                     <div className="text">companyPhone</div>
+                     <div className="text">{companyInfos?.companyPhone}</div>
                   </Fragment>
                </Link>
             </div>

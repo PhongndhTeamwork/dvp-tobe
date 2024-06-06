@@ -58,7 +58,7 @@ const Footer = () => {
                            {companyInfos?.logo ? (
                               <div
                                  style={{
-                                    width: "60%",
+                                    width: "45%",
                                     position: "relative",
                                     left: "-14px",
                                  }}

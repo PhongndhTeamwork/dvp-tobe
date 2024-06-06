@@ -6,8 +6,17 @@
    margin-top: 1.875rem!important;
 } */
 
-@media (max-width: 768px ) and (min-width: 576px) {
-   .scroll-wrapper__content-item{
+@media (max-width: 768px) {
+   /* .scroll-wrapper__content-item {
+      min-width: 12rem;
+   } */
+   /* img{
+      margin-bottom: 3rem!important;
+   } */
+}
+
+@media (max-width: 768px) and (min-width: 576px) {
+   .scroll-wrapper__content-item {
       min-width: 12rem;
    }
 }

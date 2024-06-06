@@ -120,7 +120,7 @@ const Header = () => {
                   <div
                      ref={logoRef}
                      style={{ width: "9rem", height: "9rem" }}
-                     className="d-flex align-items-center"
+                     className="d-flex align-items-center justify-content-center"
                      dangerouslySetInnerHTML={{
                         __html: svgComponent,
                      }}
