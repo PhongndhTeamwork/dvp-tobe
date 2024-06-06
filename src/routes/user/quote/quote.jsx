@@ -23,9 +23,13 @@ const Quote = () => {
 
    const [projects, setProjects] = useState([]);
    const [story, setStory] = useState([]);
+   const [isMouseDown, setIsMouseDown] = useState(false);
+   const [mouseMoveX, setMouseMoveX] = useState(0);
 
    const tableMobileRef = useRef(null);
    const detailTextRef = useRef(null);
+   const scrollWrapperRef = useRef(null);
+   const scrollWrapperContentRef = useRef(null);
 
    useEffect(() => {
       axios.get(preApi + "/api/info/services").then(({ data }) => {
@@ -63,6 +67,49 @@ const Quote = () => {
          behavior: "smooth",
          block: "center",
       });
+   };
+
+   //
+   const getCurrentTranslateX = (scrollWrapperContent) => {
+      const style = window.getComputedStyle(scrollWrapperContent);
+      const transform = style.getPropertyValue("transform");
+      if (transform && transform !== "none") {
+         // Extracting the translateX value from the transform property
+         const matrix = new DOMMatrixReadOnly(transform);
+         return matrix.m41; // m41 is the translation in X direction
+      }
+   };
+
+   const handleMouseDown = (e) => {
+      setIsMouseDown(true);
+      setMouseMoveX(e.clientX);
+   };
+
+   const handleMouseUp = (e) => {
+      setIsMouseDown(false);
+   };
+
+   const handleMouseLeave = (e) => {
+      setIsMouseDown(false);
+   };
+
+   const handleMouseMove = (e) => {
+      if (isMouseDown) {
+         scrollWrapperContentRef.current.style.transition = "none";
+         let newMouseMoveX = e.clientX;
+         let translateX =
+            newMouseMoveX -
+            mouseMoveX +
+            getCurrentTranslateX(scrollWrapperContentRef.current);
+         const minTranslateX =
+            scrollWrapperRef.current.offsetWidth -
+            scrollWrapperContentRef.current.offsetWidth;
+         if (translateX >= minTranslateX && translateX <= 0) {
+            scrollWrapperContentRef.current.style.transform = `translateX(${translateX}px)`;
+         }
+
+         setMouseMoveX(newMouseMoveX);
+      }
    };
 
    return (
@@ -137,8 +184,21 @@ const Quote = () => {
 
          {/* <!-- Quote --> */}
          <div className="wrapper wrapper-top wrapper-bottom quote">
-            <div className="quote__nav">
-               <div className="d-flex flex-nowrap quote__nav-wrap">
+            <div
+               className="quote__nav"
+               ref={scrollWrapperRef}
+               onMouseDown={(e) => handleMouseDown(e)}
+               onMouseUp={(e) => handleMouseUp(e)}
+               onMouseLeave={(e) => handleMouseLeave(e)}
+               onMouseMove={(e) => handleMouseMove(e)}
+            >
+               <div
+                  className="d-flex flex-nowrap quote__nav-wrap"
+                  ref={scrollWrapperContentRef}
+                  style={{
+                     transform: "translateX(0px)",
+                  }}
+               >
                   {services.map((service, index) => (
                      <div
                         key={index}
