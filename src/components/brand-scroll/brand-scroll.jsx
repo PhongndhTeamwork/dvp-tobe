@@ -114,7 +114,7 @@ const BrandScroll = ({ homePage }) => {
             if (isMobile) {
                images[1]?.style.setProperty(
                   "margin-top",
-                  "3rem",
+                  "4.5rem",
                   "important"
                );
             } else

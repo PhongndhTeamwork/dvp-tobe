@@ -5,7 +5,6 @@ import { Fragment } from "react";
 import { Image } from "react-bootstrap";
 
 const WorkProject = ({ projects }) => {
-   // console.log(projects);
    return (
       <div className="work__content">
          <div className="wrapper-flex">
@@ -14,28 +13,31 @@ const WorkProject = ({ projects }) => {
                   <Link
                      className="project img-grayscale-hover arrow-right-translate-hover d-block"
                      to={`/cataloge/${projects[0]?.id ?? 1}`}
+                     // style={{display:"none"}}
                   >
-                     <Fragment>
-                        <div className="img-grayscale">
-                           <Image
-                              src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[0]?.thumbnailSquare}`}
-                              alt="project image"
-                           />
-                        </div>
-
-                        <div className="project__des">
-                           <div className="project__des-text">
-                              {projects[0]?.title}
+                     {projects[0] && (
+                        <Fragment>
+                           <div className="img-grayscale">
+                              <Image
+                                 src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[0]?.thumbnailSquare}`}
+                                 alt="project image"
+                              />
                            </div>
 
-                           <div className="project__des-icon">
-                              <div className="arrow-right-translate">
-                                 <div className="arrow-right-translate__line"></div>
-                                 <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                           <div className="project__des">
+                              <div className="project__des-text">
+                                 {projects[0]?.title}
+                              </div>
+
+                              <div className="project__des-icon">
+                                 <div className="arrow-right-translate">
+                                    <div className="arrow-right-translate__line"></div>
+                                    <div className="arrow-right-translate__right fa-solid fa-angle-right"></div>
+                                 </div>
                               </div>
                            </div>
-                        </div>
-                     </Fragment>
+                        </Fragment>
+                     )}
                   </Link>
                </div>
 
@@ -44,6 +46,7 @@ const WorkProject = ({ projects }) => {
                      className="project img-grayscale-hover arrow-right-translate-hover d-block"
                      to={`/cataloge/${projects[1]?.id ?? 1}`}
                   >
+                     {projects[1] &&
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
@@ -64,7 +67,7 @@ const WorkProject = ({ projects }) => {
                               </div>
                            </div>
                         </div>
-                     </Fragment>
+                     </Fragment>}
                   </Link>
                </div>
             </div>
@@ -75,6 +78,7 @@ const WorkProject = ({ projects }) => {
                      className="project img-grayscale-hover arrow-right-translate-hover d-block"
                      to={`/cataloge/${projects[2]?.id ?? 1}`}
                   >
+                     {projects[2] &&
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
@@ -95,7 +99,7 @@ const WorkProject = ({ projects }) => {
                               </div>
                            </div>
                         </div>
-                     </Fragment>
+                     </Fragment>}
                   </Link>
                </div>
 
@@ -104,6 +108,7 @@ const WorkProject = ({ projects }) => {
                      className="project img-grayscale-hover arrow-right-translate-hover d-block"
                      to={`/cataloge/${projects[3]?.id ?? 1}`}
                   >
+                     {projects[3] &&
                      <Fragment>
                         <div className="img-grayscale">
                            <Image
@@ -124,7 +129,7 @@ const WorkProject = ({ projects }) => {
                               </div>
                            </div>
                         </div>
-                     </Fragment>
+                     </Fragment>}
                   </Link>
                </div>
             </div>
@@ -134,6 +139,7 @@ const WorkProject = ({ projects }) => {
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
                   to={`/cataloge/${projects[4]?.id ?? 1}`}
                >
+                  {projects[4] &&
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
@@ -154,7 +160,7 @@ const WorkProject = ({ projects }) => {
                            </div>
                         </div>
                      </div>
-                  </Fragment>
+                  </Fragment>}
                </Link>
             </div>
          </div>
@@ -166,8 +172,12 @@ const WorkProject = ({ projects }) => {
                   to={`/cataloge/${projects[5]?.id ?? 1}`}
                   style={{ aspectRatio: "auto" }}
                >
+                  {projects[5] &&
                   <Fragment>
-                     <div className="img-grayscale" style={{ height: "100%", aspectRatio: "auto" }}>
+                     <div
+                        className="img-grayscale"
+                        style={{ height: "100%", aspectRatio: "auto" }}
+                     >
                         <Image
                            src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[5]?.thumbnailRect}`}
                            alt="project image"
@@ -186,7 +196,7 @@ const WorkProject = ({ projects }) => {
                            </div>
                         </div>
                      </div>
-                  </Fragment>
+                  </Fragment>}
                </Link>
             </div>
 
@@ -197,6 +207,7 @@ const WorkProject = ({ projects }) => {
                         className="project img-grayscale-hover arrow-right-translate-hover d-block"
                         to={`/cataloge/${projects[6]?.id ?? 1}`}
                      >
+                        {projects[6] &&
                         <Fragment>
                            <div className="img-grayscale">
                               <Image
@@ -217,7 +228,7 @@ const WorkProject = ({ projects }) => {
                                  </div>
                               </div>
                            </div>
-                        </Fragment>
+                        </Fragment>}
                      </Link>
                   </div>
 
@@ -226,6 +237,7 @@ const WorkProject = ({ projects }) => {
                         className="project img-grayscale-hover arrow-right-translate-hover d-block"
                         to={`/cataloge/${projects[7]?.id ?? 1}`}
                      >
+                        {projects[7] &&
                         <Fragment>
                            <div className="img-grayscale">
                               <Image
@@ -246,7 +258,7 @@ const WorkProject = ({ projects }) => {
                                  </div>
                               </div>
                            </div>
-                        </Fragment>
+                        </Fragment>}
                      </Link>
                   </div>
                </div>
@@ -259,7 +271,7 @@ const WorkProject = ({ projects }) => {
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
                   to={`/cataloge/${projects[8]?.id ?? 1}`}
                >
-                  <Fragment>
+                  {projects[8] &&<Fragment>
                      <div className="img-grayscale">
                         <Image
                            src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[8]?.thumbnailSquare}`}
@@ -279,7 +291,7 @@ const WorkProject = ({ projects }) => {
                            </div>
                         </div>
                      </div>
-                  </Fragment>
+                  </Fragment>}
                </Link>
             </div>
 
@@ -288,6 +300,7 @@ const WorkProject = ({ projects }) => {
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
                   to={`/cataloge/${projects[9]?.id ?? 1}`}
                >
+                  {projects[9] &&
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
@@ -308,7 +321,7 @@ const WorkProject = ({ projects }) => {
                            </div>
                         </div>
                      </div>
-                  </Fragment>
+                  </Fragment>}
                </Link>
             </div>
 
@@ -317,6 +330,7 @@ const WorkProject = ({ projects }) => {
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
                   to={`/cataloge/${projects[10]?.id ?? 1}`}
                >
+                  {projects[10] &&
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
@@ -337,7 +351,7 @@ const WorkProject = ({ projects }) => {
                            </div>
                         </div>
                      </div>
-                  </Fragment>
+                  </Fragment>}
                </Link>
             </div>
 
@@ -346,6 +360,7 @@ const WorkProject = ({ projects }) => {
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
                   to={`/cataloge/${projects[11]?.id ?? 1}`}
                >
+                  {projects[11] &&
                   <Fragment>
                      <div className="img-grayscale">
                         <Image
@@ -366,7 +381,7 @@ const WorkProject = ({ projects }) => {
                            </div>
                         </div>
                      </div>
-                  </Fragment>
+                  </Fragment>}
                </Link>
             </div>
          </div>
