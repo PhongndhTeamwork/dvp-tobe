@@ -413,79 +413,92 @@ const Quote = () => {
                   </div>
 
                   <div className="table-mobile" ref={tableMobileRef}>
-                     {Array(services[currentService]?.serviceCategories?.length ?? 4)
+                     {Array(3)
                         .fill(0)
                         .map((_, index) => (
                            <div className="table-wrap" key={index}>
-                              <div className="wrapper-flex table__row">
-                                 <div className="rectangle-50 py-0">
-                                    <div className="table__row-item h-100">
-                                       {
-                                          services[currentService]
-                                             ?.serviceCategories[0]?.name
-                                       }
+                              {Array(
+                                 services[currentService]?.serviceCategories
+                                    ?.length
+                              )
+                                 .fill(0)
+                                 .map((_, cIndex) => (
+                                    <div className="wrapper-flex table__row" key={cIndex}>
+                                       <div className="rectangle-50 py-0">
+                                          <div className="table__row-item h-100">
+                                             {
+                                                services[currentService]
+                                                   ?.serviceCategories[cIndex]?.name
+                                             }
+                                          </div>
+                                       </div>
+                                       <div className="rectangle-50 py-0">
+                                          <div className="table__row-item h-100 item-check">
+                                             {index === 0 ? (
+                                                services[currentService]
+                                                   ?.serviceCategories[cIndex]
+                                                   ?.quote1 === "1" ? (
+                                                   <Image
+                                                      src={CheckSVG}
+                                                      alt="check"
+                                                   />
+                                                ) : services[currentService]
+                                                     ?.serviceCategories[cIndex]
+                                                     ?.quote1 === "0" ? (
+                                                   <Image
+                                                      src={UncheckSVG}
+                                                      alt="uncheck"
+                                                   />
+                                                ) : (
+                                                   services[currentService]
+                                                      ?.serviceCategories[cIndex]
+                                                      ?.quote1
+                                                )
+                                             ) : index === 1 ? (
+                                                services[currentService]
+                                                   ?.serviceCategories[cIndex]
+                                                   ?.quote2 === "1" ? (
+                                                   <Image
+                                                      src={CheckSVG}
+                                                      alt="check"
+                                                   />
+                                                ) : services[currentService]
+                                                     ?.serviceCategories[cIndex]
+                                                     ?.quote2 === "0" ? (
+                                                   <Image
+                                                      src={UncheckSVG}
+                                                      alt="uncheck"
+                                                   />
+                                                ) : (
+                                                   services[currentService]
+                                                      ?.serviceCategories[cIndex]
+                                                      ?.quote2
+                                                )
+                                             ) : services[currentService]
+                                                  ?.serviceCategories[cIndex]
+                                                  ?.quote3 === "1" ? (
+                                                <Image
+                                                   src={CheckSVG}
+                                                   alt="check"
+                                                />
+                                             ) : services[currentService]
+                                                  ?.serviceCategories[cIndex]
+                                                  ?.quote3 === "0" ? (
+                                                <Image
+                                                   src={UncheckSVG}
+                                                   alt="uncheck"
+                                                />
+                                             ) : (
+                                                services[currentService]
+                                                   ?.serviceCategories[cIndex]
+                                                   ?.quote3
+                                             )}
+                                          </div>
+                                       </div>
                                     </div>
-                                 </div>
-                                 <div className="rectangle-50 py-0">
-                                    <div className="table__row-item h-100 item-check">
-                                       {index === 0 ? (
-                                          services[currentService]
-                                             ?.serviceCategories[0]?.quote1 ===
-                                          "1" ? (
-                                             <Image
-                                                src={CheckSVG}
-                                                alt="check"
-                                             />
-                                          ) : services[currentService]
-                                               ?.serviceCategories[0]
-                                               ?.quote1 === "0" ? (
-                                             <Image
-                                                src={UncheckSVG}
-                                                alt="uncheck"
-                                             />
-                                          ) : (
-                                             services[currentService]
-                                                ?.serviceCategories[0]?.quote1
-                                          )
-                                       ) : index === 1 ? (
-                                          services[currentService]
-                                             ?.serviceCategories[0]?.quote2 ===
-                                          "1" ? (
-                                             <Image
-                                                src={CheckSVG}
-                                                alt="check"
-                                             />
-                                          ) : services[currentService]
-                                               ?.serviceCategories[0]
-                                               ?.quote2 === "0" ? (
-                                             <Image
-                                                src={UncheckSVG}
-                                                alt="uncheck"
-                                             />
-                                          ) : (
-                                             services[currentService]
-                                                ?.serviceCategories[0]?.quote2
-                                          )
-                                       ) : services[currentService]
-                                            ?.serviceCategories[0]?.quote3 ===
-                                         "1" ? (
-                                          <Image src={CheckSVG} alt="check" />
-                                       ) : services[currentService]
-                                            ?.serviceCategories[0]?.quote3 ===
-                                         "0" ? (
-                                          <Image
-                                             src={UncheckSVG}
-                                             alt="uncheck"
-                                          />
-                                       ) : (
-                                          services[currentService]
-                                             ?.serviceCategories[0]?.quote3
-                                       )}
-                                    </div>
-                                 </div>
-                              </div>
+                                 ))}
 
-                              <div className="wrapper-flex table__row">
+                              {/* <div className="wrapper-flex table__row">
                                  <div className="rectangle-50 py-0">
                                     <div className="table__row-item h-100">
                                        {
@@ -619,7 +632,7 @@ const Quote = () => {
                                        )}
                                     </div>
                                  </div>
-                              </div>
+                              </div> */}
                            </div>
                         ))}
                   </div>
