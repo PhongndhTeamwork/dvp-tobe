@@ -2,8 +2,7 @@ import "./accordion-service.css";
 import { useState, useRef } from "react";
 import { Accordion, Carousel } from "react-bootstrap";
 import { Image } from "react-bootstrap";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const AccordionService = ({
    title,
@@ -15,6 +14,7 @@ const AccordionService = ({
    images,
    contents,
 }) => {
+   const navigate = useNavigate();
    const [isButtonActive, setIsButtonActive] = useState(false);
    // const [carouselWidth, setCarouselWidth] = useState(0);
 
@@ -112,9 +112,30 @@ const AccordionService = ({
                            </Carousel>
                         </div>
                         <div className="rectangle-100 rectangle-tab-50 py-0 service__content-text cursor-default">
-                           {contents.map((content, index) => {
+                           {/* {contents?.map((content, index) => {
                               return <h6 key={index}>{content}</h6>;
-                           })}
+                           })} */}
+                           {Array(6)
+                              .fill(0)
+                              .map((_, index) => (
+                                 <h6 key={index}>
+                                    {contents[index]
+                                       ? contents[index]
+                                       : "\u00A0"}
+                                 </h6>
+                              ))}
+                           {/* <h6
+                              className="mt-0 service__button"
+                              onClick={() => {
+                                 navigate("/quote");
+                              }}
+                           ></h6> */}
+                           <div className="arrow-right-link">
+                              <h6 className="arrow-right-link__text service__button mb-0">
+                                 Xem Chi Tiết
+                              </h6>
+                              <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
+                           </div>
                         </div>
                      </div>
                   ) : hasJob ? (

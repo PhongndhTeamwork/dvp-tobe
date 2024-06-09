@@ -36,6 +36,12 @@ h6 {
    border-bottom: none !important;
 }
 
+.service__button:hover{
+   cursor: pointer;
+   color: var(--main-yellow-color-100) !important;
+   /* color:yellow; */
+}
+
 @media (min-width: 1200px) {
    .max-width-none {
       max-width: none !important;

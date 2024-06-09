@@ -32,6 +32,10 @@ const Quote = () => {
    const scrollWrapperContentRef = useRef(null);
 
    useEffect(() => {
+      window.scrollTo(0, 0);
+   }, []);
+
+   useEffect(() => {
       axios.get(preApi + "/api/info/services").then(({ data }) => {
          setServices(data.services);
       });
@@ -57,9 +61,11 @@ const Quote = () => {
       );
       const tableContentWidth = tableContent?.offsetWidth;
 
-      tableMobileRef.current.style.transform = `translateX(-${
-         currentServiceCategory * tableContentWidth
-      }px)`;
+      if (tableMobileRef.current) {
+         tableMobileRef.current.style.transform = `translateX(-${
+            currentServiceCategory * tableContentWidth
+         }px)`;
+      }
    }, [currentServiceCategory]);
 
    const scrollToView = () => {
@@ -72,7 +78,7 @@ const Quote = () => {
    //
    const getCurrentTranslateX = (scrollWrapperContent) => {
       const style = window.getComputedStyle(scrollWrapperContent);
-      const transform = style.getPropertyValue("transform");
+      const transform = style?.getPropertyValue("transform");
       if (transform && transform !== "none") {
          // Extracting the translateX value from the transform property
          const matrix = new DOMMatrixReadOnly(transform);
@@ -94,7 +100,7 @@ const Quote = () => {
    };
 
    const handleMouseMove = (e) => {
-      if (isMouseDown) {
+      if (isMouseDown && scrollWrapperContentRef) {
          scrollWrapperContentRef.current.style.transition = "none";
          let newMouseMoveX = e.clientX;
          let translateX =
@@ -318,187 +324,237 @@ const Quote = () => {
                </div>
 
                {/* <!-- Table on pc --> */}
-               <div className="quote__detail-table d-none d-xl-block">
-                  <div className="wrapper-flex table__header">
-                     <div className="rectangle-25 py-0">
-                        <div className="table__header-item h-100">Danh mục</div>
+               {services[currentService]?.serviceCategories &&
+                  services[currentService]?.serviceCategories.length > 0 && (
+                     <div className="quote__detail-table d-none d-xl-block">
+                        <div className="wrapper-flex table__header">
+                           <div className="rectangle-25 py-0">
+                              <div className="table__header-item h-100">
+                                 Danh mục
+                              </div>
+                           </div>
+                           {services[currentService]?.serviceQuotes?.map(
+                              (serviceQuote, index) => (
+                                 <div
+                                    className="rectangle-25 py-0 "
+                                    key={index}
+                                 >
+                                    <div className="table__header-item h-100 ">
+                                       <Image
+                                          src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${serviceQuote?.icon}`}
+                                          alt=""
+                                       />
+                                       {serviceQuote?.name}
+                                    </div>
+                                 </div>
+                              )
+                           )}
+                        </div>
+                        {services[currentService]?.serviceCategories?.map(
+                           (currentService, index) => {
+                              return (
+                                 <div
+                                    key={index}
+                                    className="wrapper-flex table__row"
+                                 >
+                                    <div className="rectangle-25 py-0">
+                                       <div className="table__row-item h-100">
+                                          {currentService?.name}
+                                       </div>
+                                    </div>
+                                    <div className="rectangle-25 py-0">
+                                       <div className="table__row-item h-100 d-flex justify-content-center">
+                                          {currentService?.quote1 === "1" ? (
+                                             <Image
+                                                src={CheckSVG}
+                                                alt="check"
+                                             />
+                                          ) : currentService?.quote1 === "0" ? (
+                                             <Image
+                                                src={UncheckSVG}
+                                                alt="uncheck"
+                                             />
+                                          ) : (
+                                             currentService?.quote1
+                                          )}
+                                       </div>
+                                    </div>
+                                    <div className="rectangle-25 py-0">
+                                       <div className="table__row-item h-100 item-check">
+                                          {currentService?.quote2 === "1" ? (
+                                             <Image
+                                                src={CheckSVG}
+                                                alt="check"
+                                             />
+                                          ) : currentService?.quote2 === "0" ? (
+                                             <Image
+                                                src={UncheckSVG}
+                                                alt="uncheck"
+                                             />
+                                          ) : (
+                                             currentService?.quote2
+                                          )}
+                                       </div>
+                                    </div>
+                                    <div className="rectangle-25 py-0">
+                                       <div className="table__row-item h-100 item-check">
+                                          {currentService?.quote3 === "1" ? (
+                                             <Image
+                                                src={CheckSVG}
+                                                alt="check"
+                                             />
+                                          ) : currentService?.quote3 === "0" ? (
+                                             <Image
+                                                src={UncheckSVG}
+                                                alt="uncheck"
+                                             />
+                                          ) : (
+                                             currentService?.quote3
+                                          )}
+                                       </div>
+                                    </div>
+                                 </div>
+                              );
+                           }
+                        )}
                      </div>
-                     {services[currentService]?.serviceQuotes?.map(
-                        (serviceQuote, index) => (
-                           <div className="rectangle-25 py-0 " key={index}>
-                              <div className="table__header-item h-100 ">
-                                 <Image
-                                    src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${serviceQuote?.icon}`}
-                                    alt=""
-                                 />
-                                 {serviceQuote?.name}
-                              </div>
-                           </div>
-                        )
-                     )}
-                  </div>
-                  {services[currentService]?.serviceCategories?.map(
-                     (currentService, index) => {
-                        return (
-                           <div key={index} className="wrapper-flex table__row">
-                              <div className="rectangle-25 py-0">
-                                 <div className="table__row-item h-100">
-                                    {currentService?.name}
-                                 </div>
-                              </div>
-                              <div className="rectangle-25 py-0">
-                                 <div className="table__row-item h-100 d-flex justify-content-center">
-                                    {currentService?.quote1 === "1" ? (
-                                       <Image src={CheckSVG} alt="check" />
-                                    ) : currentService?.quote1 === "0" ? (
-                                       <Image src={UncheckSVG} alt="uncheck" />
-                                    ) : (
-                                       currentService?.quote1
-                                    )}
-                                 </div>
-                              </div>
-                              <div className="rectangle-25 py-0">
-                                 <div className="table__row-item h-100 item-check">
-                                    {currentService?.quote2 === "1" ? (
-                                       <Image src={CheckSVG} alt="check" />
-                                    ) : currentService?.quote2 === "0" ? (
-                                       <Image src={UncheckSVG} alt="uncheck" />
-                                    ) : (
-                                       currentService?.quote2
-                                    )}
-                                 </div>
-                              </div>
-                              <div className="rectangle-25 py-0">
-                                 <div className="table__row-item h-100 item-check">
-                                    {currentService?.quote3 === "1" ? (
-                                       <Image src={CheckSVG} alt="check" />
-                                    ) : currentService?.quote3 === "0" ? (
-                                       <Image src={UncheckSVG} alt="uncheck" />
-                                    ) : (
-                                       currentService?.quote3
-                                    )}
-                                 </div>
-                              </div>
-                           </div>
-                        );
-                     }
                   )}
-               </div>
+
                {/* <!-- End: Table on pc --> */}
 
                {/* <!-- Table on mobile and tablet --> */}
-               <div className="quote__detail-table mobile d-xl-none">
-                  <div className="wrapper-flex table__header">
-                     {services[currentService]?.serviceQuotes.map(
-                        (serviceQuote, index) => (
-                           <div
-                              key={index}
-                              className="rectangle-33 py-0"
-                              onClick={() => {
-                                 setCurrentServiceCategory(index);
-                              }}
-                           >
-                              <div
-                                 className={`table__header-item h-100 ${
-                                    currentServiceCategory === index
-                                       ? "active"
-                                       : ""
-                                 }`}
-                              >
-                                 {serviceQuote.name}
-                              </div>
-                           </div>
-                        )
-                     )}
-                  </div>
-
-                  <div className="table-mobile" ref={tableMobileRef}>
-                     {Array(3)
-                        .fill(0)
-                        .map((_, index) => (
-                           <div className="table-wrap" key={index}>
-                              {Array(
-                                 services[currentService]?.serviceCategories
-                                    ?.length
-                              )
-                                 .fill(0)
-                                 .map((_, cIndex) => (
-                                    <div className="wrapper-flex table__row" key={cIndex}>
-                                       <div className="rectangle-50 py-0">
-                                          <div className="table__row-item h-100">
-                                             {
-                                                services[currentService]
-                                                   ?.serviceCategories[cIndex]?.name
-                                             }
-                                          </div>
-                                       </div>
-                                       <div className="rectangle-50 py-0">
-                                          <div className="table__row-item h-100 item-check">
-                                             {index === 0 ? (
-                                                services[currentService]
-                                                   ?.serviceCategories[cIndex]
-                                                   ?.quote1 === "1" ? (
-                                                   <Image
-                                                      src={CheckSVG}
-                                                      alt="check"
-                                                   />
-                                                ) : services[currentService]
-                                                     ?.serviceCategories[cIndex]
-                                                     ?.quote1 === "0" ? (
-                                                   <Image
-                                                      src={UncheckSVG}
-                                                      alt="uncheck"
-                                                   />
-                                                ) : (
-                                                   services[currentService]
-                                                      ?.serviceCategories[cIndex]
-                                                      ?.quote1
-                                                )
-                                             ) : index === 1 ? (
-                                                services[currentService]
-                                                   ?.serviceCategories[cIndex]
-                                                   ?.quote2 === "1" ? (
-                                                   <Image
-                                                      src={CheckSVG}
-                                                      alt="check"
-                                                   />
-                                                ) : services[currentService]
-                                                     ?.serviceCategories[cIndex]
-                                                     ?.quote2 === "0" ? (
-                                                   <Image
-                                                      src={UncheckSVG}
-                                                      alt="uncheck"
-                                                   />
-                                                ) : (
-                                                   services[currentService]
-                                                      ?.serviceCategories[cIndex]
-                                                      ?.quote2
-                                                )
-                                             ) : services[currentService]
-                                                  ?.serviceCategories[cIndex]
-                                                  ?.quote3 === "1" ? (
-                                                <Image
-                                                   src={CheckSVG}
-                                                   alt="check"
-                                                />
-                                             ) : services[currentService]
-                                                  ?.serviceCategories[cIndex]
-                                                  ?.quote3 === "0" ? (
-                                                <Image
-                                                   src={UncheckSVG}
-                                                   alt="uncheck"
-                                                />
-                                             ) : (
-                                                services[currentService]
-                                                   ?.serviceCategories[cIndex]
-                                                   ?.quote3
-                                             )}
-                                          </div>
-                                       </div>
+               {services[currentService]?.serviceCategories &&
+                  services[currentService]?.serviceCategories.length > 0 && (
+                     <div className="quote__detail-table mobile d-xl-none">
+                        <div className="wrapper-flex table__header">
+                           {services[currentService]?.serviceQuotes.map(
+                              (serviceQuote, index) => (
+                                 <div
+                                    key={index}
+                                    className="rectangle-33 py-0"
+                                    onClick={() => {
+                                       setCurrentServiceCategory(index);
+                                    }}
+                                 >
+                                    <div
+                                       className={`table__header-item h-100 ${
+                                          currentServiceCategory === index
+                                             ? "active"
+                                             : ""
+                                       }`}
+                                    >
+                                       {serviceQuote.name}
                                     </div>
-                                 ))}
+                                 </div>
+                              )
+                           )}
+                        </div>
 
-                              {/* <div className="wrapper-flex table__row">
+                        <div className="table-mobile" ref={tableMobileRef}>
+                           {Array(3)
+                              .fill(0)
+                              .map((_, index) => (
+                                 <div className="table-wrap" key={index}>
+                                    {Array(
+                                       services[currentService]
+                                          ?.serviceCategories?.length
+                                    )
+                                       .fill(0)
+                                       .map((_, cIndex) => (
+                                          <div
+                                             className="wrapper-flex table__row"
+                                             key={cIndex}
+                                          >
+                                             <div className="rectangle-50 py-0">
+                                                <div className="table__row-item h-100">
+                                                   {
+                                                      services[currentService]
+                                                         ?.serviceCategories[
+                                                         cIndex
+                                                      ]?.name
+                                                   }
+                                                </div>
+                                             </div>
+                                             <div className="rectangle-50 py-0">
+                                                <div className="table__row-item h-100 item-check">
+                                                   {index === 0 ? (
+                                                      services[currentService]
+                                                         ?.serviceCategories[
+                                                         cIndex
+                                                      ]?.quote1 === "1" ? (
+                                                         <Image
+                                                            src={CheckSVG}
+                                                            alt="check"
+                                                         />
+                                                      ) : services[
+                                                           currentService
+                                                        ]?.serviceCategories[
+                                                           cIndex
+                                                        ]?.quote1 === "0" ? (
+                                                         <Image
+                                                            src={UncheckSVG}
+                                                            alt="uncheck"
+                                                         />
+                                                      ) : (
+                                                         services[
+                                                            currentService
+                                                         ]?.serviceCategories[
+                                                            cIndex
+                                                         ]?.quote1
+                                                      )
+                                                   ) : index === 1 ? (
+                                                      services[currentService]
+                                                         ?.serviceCategories[
+                                                         cIndex
+                                                      ]?.quote2 === "1" ? (
+                                                         <Image
+                                                            src={CheckSVG}
+                                                            alt="check"
+                                                         />
+                                                      ) : services[
+                                                           currentService
+                                                        ]?.serviceCategories[
+                                                           cIndex
+                                                        ]?.quote2 === "0" ? (
+                                                         <Image
+                                                            src={UncheckSVG}
+                                                            alt="uncheck"
+                                                         />
+                                                      ) : (
+                                                         services[
+                                                            currentService
+                                                         ]?.serviceCategories[
+                                                            cIndex
+                                                         ]?.quote2
+                                                      )
+                                                   ) : services[currentService]
+                                                        ?.serviceCategories[
+                                                        cIndex
+                                                     ]?.quote3 === "1" ? (
+                                                      <Image
+                                                         src={CheckSVG}
+                                                         alt="check"
+                                                      />
+                                                   ) : services[currentService]
+                                                        ?.serviceCategories[
+                                                        cIndex
+                                                     ]?.quote3 === "0" ? (
+                                                      <Image
+                                                         src={UncheckSVG}
+                                                         alt="uncheck"
+                                                      />
+                                                   ) : (
+                                                      services[currentService]
+                                                         ?.serviceCategories[
+                                                         cIndex
+                                                      ]?.quote3
+                                                   )}
+                                                </div>
+                                             </div>
+                                          </div>
+                                       ))}
+
+                                    {/* <div className="wrapper-flex table__row">
                                  <div className="rectangle-50 py-0">
                                     <div className="table__row-item h-100">
                                        {
@@ -633,10 +689,11 @@ const Quote = () => {
                                     </div>
                                  </div>
                               </div> */}
-                           </div>
-                        ))}
-                  </div>
-               </div>
+                                 </div>
+                              ))}
+                        </div>
+                     </div>
+                  )}
             </div>
          </div>
          {/* <!-- End: Quote --> */}
