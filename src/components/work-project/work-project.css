@@ -1,3 +1,6 @@
-.work .work__content .project .img-grayscale {
+.work .work__content .project .img-grayscale img {
     aspect-ratio: 1/1;
+    width: 100%;
+    height: unset;
+    object-fit: cover;
 }

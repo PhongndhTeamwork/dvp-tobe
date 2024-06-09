@@ -64,6 +64,11 @@
    max-width: 100%;
 }
 
+.expertise .service .service__content .carousel-item img {
+   aspect-ratio: 41/24;
+   object-fit: cover;
+}
+
 .expertise .service .service__content-text {
    margin-top: 0.25rem;
    padding-top: 1rem !important;

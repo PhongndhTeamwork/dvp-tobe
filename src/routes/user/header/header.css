@@ -1,25 +1,12 @@
-.header__logo {
-   width: 5.25rem;
-   height: 5.25rem;
+.header__logo svg {
+   width: fit-content !important;
+   height: 60px !important;
 }
 
-/* .header__logo g:last-child .st1:nth-last-child(-n+2) {
-   fill: #e49e2c;
- }
-
- .header__logo g:first-child .st1:nth-last-child(-n+3) {
-   fill: #e49e2c;
- } */
-
 @media (max-width: 768px) {
-   .header__logo {
-      svg {
-         width: 3rem !important;
-         height: 3rem !important;
-      }
-   }
-
    .header__logo svg {
-      fill: black !important;
+      width: 3rem !important;
+      height: 3rem !important;
+      fill: #111812 !important;
    }
 }

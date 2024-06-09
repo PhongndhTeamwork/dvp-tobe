@@ -735,7 +735,7 @@ const Quote = () => {
          <div className="wrapper wrapper-top wrapper-bottom work">
             <div className="wrapper__header cursor-default">
                <h4 className="wrapper__header-sub--heading text-uppercase">
-                  Work
+                  PROJECT
                </h4>
                <h1 className="wrapper__header-heading text-capitalize">
                   Dự án

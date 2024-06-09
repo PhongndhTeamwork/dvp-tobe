@@ -1,3 +1,10 @@
 .info__header-logo svg{
    fill: var(--bg-light);
+   height: 60px;
+   width: fit-content;
+}
+
+.info__header-logo {
+   padding-top: 1rem;
+   padding-bottom: 0.8125rem;
 }

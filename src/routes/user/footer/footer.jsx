@@ -39,10 +39,10 @@ const Footer = () => {
          return await res.text();
       };
 
-      getTheSvg(`${process.env.REACT_APP_BASE_IMAGE_URL}/${companyInfos?.logo}`).then((res) => {
+      getTheSvg(preApi + `/${companyInfos?.logo}`).then((res) => {
          setSvgComponent(res);
       });
-   }, [companyInfos]);
+   }, [companyInfos, preApi]);
 
    return (
       <footer
@@ -57,11 +57,6 @@ const Footer = () => {
                         <h1 className="info__header-logo">
                            {companyInfos?.logo ? (
                               <div
-                                 style={{
-                                    width: "45%",
-                                    position: "relative",
-                                    left: "-14px",
-                                 }}
                                  className="d-flex align-items-center justify-content-start"
                                  dangerouslySetInnerHTML={{
                                     __html: svgComponent,

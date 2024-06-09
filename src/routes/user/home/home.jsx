@@ -31,7 +31,6 @@ const Home = () => {
    }, []);
 
    useEffect(() => {
-      // console.log(process.env.NODE_ENV);
       axios
          .get(preApi + "/api/home")
          .then(({ data }) => {
@@ -51,7 +50,6 @@ const Home = () => {
          .get(preApi + "/api/info/services")
          .then(({ data }) => {
             setServiceItems(data.services);
-            // console.log(data.services);
          })
          .catch((error) => {
             throw new Error(error);
@@ -95,14 +93,6 @@ const Home = () => {
    const handleVideoClick = () => {
       setIsMuted(!isMuted);
    };
-
-   // const handleLogin = () => {
-   //    console.log("LOGIN");
-   //    dispatch(login({}));
-   // };
-   // const handleGetUser = () => {
-   //    console.log(userLogin);
-   // };
 
    return (
       <Fragment>
@@ -231,7 +221,7 @@ const Home = () => {
          <div className="wrapper wrapper-top wrapper-bottom work">
             <div className="wrapper__header cursor-default">
                <h4 className="wrapper__header-sub--heading text-uppercase">
-                  Work
+                  PROJECT
                </h4>
                <h1 className="wrapper__header-heading text-capitalize">
                   Dự án

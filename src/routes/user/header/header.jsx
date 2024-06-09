@@ -67,12 +67,12 @@ const Header = () => {
          if (scrollY >= bannerH) {
             setIsHeaderActive(true);
             const svgElement = logoRef.current.querySelector("svg");
-            if (svgElement) svgElement.style.fill = "black";
+            if (svgElement) svgElement.style.fill = "#111812";
          } else {
             if (!location.pathname.includes("quote")) {
                setIsHeaderActive(false);
                const svgElement = logoRef.current.querySelector("svg");
-               if (svgElement) svgElement.style.fill = "white";
+               if (svgElement) svgElement.style.fill = "#f8f9fa";
             }
          }
       };
@@ -90,10 +90,10 @@ const Header = () => {
          return await res.text();
       };
 
-      getTheSvg(`${process.env.REACT_APP_BASE_IMAGE_URL}/${companyInfos?.logo}`).then((res) => {
+      getTheSvg(preApi + `/${companyInfos?.logo}`).then((res) => {
          setSvgComponent(res);
       });
-   }, [companyInfos]);
+   }, [companyInfos, preApi]);
 
    return (
       <div
@@ -109,17 +109,9 @@ const Header = () => {
                   }}
                   className="header__logo"
                >
-                  {/* <Image
-                     ref={logoRef}
-                     style={{ width: "4.25rem", height: "4.25rem" }}
-                     className="d-flex align-items-center"
-                     src={SVG}
-                     // __html: companyInfos?.logo,
-                  /> */}
 
                   <div
                      ref={logoRef}
-                     style={{ width: "9rem", height: "9rem" }}
                      className="d-flex align-items-center justify-content-center"
                      dangerouslySetInnerHTML={{
                         __html: svgComponent,
@@ -132,7 +124,7 @@ const Header = () => {
                      <Link to="/about">Giới Thiệu</Link>
                   </li>
                   <li className="header__nav-link">
-                     <Link to="/work">Công Việc</Link>
+                     <Link to="/work">Dự án</Link>
                   </li>
                   <li className="header__nav-link">
                      <Link to="/quote">Dịch vụ</Link>

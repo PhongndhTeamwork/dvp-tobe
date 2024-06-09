@@ -131,7 +131,7 @@ const Hiring = () => {
             </div>
 
             <div className="d-flex justify-content-center align-items-center">
-               <Link className="arrow-right-link" to="">
+               <Link className="arrow-right-link" to="https://mail.google.com/mail/?view=cm&fs=1&to=vanphongdo365@gmail.com">
                   <div className="arrow-right-link__text">Đi đến Gmail</div>
                   <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
                </Link>

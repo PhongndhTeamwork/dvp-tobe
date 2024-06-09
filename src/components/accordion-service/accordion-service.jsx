@@ -130,12 +130,12 @@ const AccordionService = ({
                                  navigate("/quote");
                               }}
                            ></h6> */}
-                           <div className="arrow-right-link">
-                              <h6 className="arrow-right-link__text service__button mb-0">
+                           <Link className="arrow-right-link" to="/quote">
+                              <div className="arrow-right-link__text" style={{paddingLeft: "0", fontSize: "var(--fs-small)"}}>
                                  Xem Chi Tiết
-                              </h6>
+                              </div>
                               <i className="arrow-right-link__icon fa-solid fa-arrow-right-long"></i>
-                           </div>
+                           </Link>
                         </div>
                      </div>
                   ) : hasJob ? (

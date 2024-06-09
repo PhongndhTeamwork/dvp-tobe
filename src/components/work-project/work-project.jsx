@@ -166,21 +166,20 @@ const WorkProject = ({ projects }) => {
          </div>
 
          <div className="wrapper-flex top">
-            <div className="rectangle-100 rectangle-pc-75">
+            <div className="rectangle-100 rectangle-pc-75" style={{aspectRatio: 3/2}}>
                <Link
                   className="project img-grayscale-hover arrow-right-translate-hover d-block"
                   to={`/cataloge/${projects[5]?.id ?? 1}`}
-                  style={{ aspectRatio: "auto" }}
                >
                   {projects[5] &&
                   <Fragment>
                      <div
-                        className="img-grayscale"
-                        style={{ height: "100%", aspectRatio: "auto" }}
+                        className="img-grayscale" style={{ height: "100%" }}
                      >
                         <Image
                            src={`${process.env.REACT_APP_BASE_IMAGE_URL}/${projects[5]?.thumbnailRect}`}
                            alt="project image"
+                           style={{ height: "100%" }}
                         />
                      </div>
 
