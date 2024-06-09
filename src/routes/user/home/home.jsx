@@ -194,7 +194,7 @@ const Home = () => {
          <div className="wrapper wrapper-top wrapper-bottom expertise">
             <div className="wrapper__header">
                <h4 className="wrapper__header-sub--heading text-uppercase">
-                  What will you find at DVP
+                  What will you find at here
                </h4>
                <h1 className="wrapper__header-heading text-capitalize">
                   Chuyên môn của chúng tôi

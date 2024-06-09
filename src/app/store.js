@@ -4,11 +4,7 @@ import {
 } from "@reduxjs/toolkit";
 import { thunk } from "redux-thunk";
 
-import userLoginReducer from "./features/userLoginSlice";
-
-const reducer = combineReducers({
-   userLogin: userLoginReducer,
-});
+const reducer = combineReducers({});
 
 const store = configureStore({
    reducer: reducer,
